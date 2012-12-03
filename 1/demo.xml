@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>	
+<Module>	
+  <ModulePrefs title="Hangout Demo">	
+    <Require feature="rpc"/>	
+    <Require feature="views"/>	
+  </ModulePrefs>	
+  <Content type="html">	
+    <![CDATA[	
+      <script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>	
+      	
+      <link rel="stylesheet" href="https://github.com/Scarygami/gplus-experiments/blob/master/hangout-demo/css/demo.css" />	
+      	
+      <h1>Hangout Demo</h1>	
+	  <p> This is the most basic of setups </p>
+      <div id="container"></div>	
+      	
+      <script src="http://ubkc.org.uk/gh/v1/scripts/demo.js"></script>	
+    ]]>	
+  </Content>	
+</Module>	
