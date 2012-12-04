@@ -10,8 +10,19 @@
       	
       <link rel="stylesheet" href="https://raw.github.com/WhatTheFunkNGC/colabhang/master/1/css/demo.css" />	
       	
-      <h1>Hangout Demo</h1>	
-	  <p> This is the most basic of setups </p>
+      <h1>Task List</h1>	
+	  <p> 
+	  Task 1 [x]
+	  Task 2 [x] 
+	  Task 3 [x] 
+	  Task 4 [x] 
+	  Task 5 [x] 
+	  Task 6 [x]
+	  
+	  [add task]
+			
+	 </p>
+	  
       <div id="container"></div>	
       	
       <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/1/scripts/demo.js"></script>	
