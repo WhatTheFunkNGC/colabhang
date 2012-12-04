@@ -12,12 +12,12 @@
       	
       <h1>Task List</h1>	
 	  <p> 
-	  Task 1 [x] <nl>
-	  Task 2 [x] <nl>
-	  Task 3 [x] <nl>
-	  Task 4 [x] <nl>
-	  Task 5 [x] <nl>
-	  Task 6 [x] <nl>
+	  Task 1 [x] <nr>
+	  Task 2 [x] <br>
+	  Task 3 [x] <br>
+	  Task 4 [x] <br>
+	  Task 5 [x] <br>
+	  Task 6 [x] <br>
 	  
 	  [add task]
 			
