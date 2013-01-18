@@ -9,11 +9,20 @@
   HangoutDemo.prototype.onApiReady = function (event) {	
     if (event.isApiReady === true) {	
       console.log("API Ready");	
+	  gapi.hangout.onParticipantsChanged.add(	// add callback for event
+        this.onParticipantsChanged.bind(this)	
+      );
       // we can start doing stuff here	
 	this.displayParticipants();
 	  console.log("done");	
     }	
   };	
+  
+  HangoutDemo.prototype.onParticipantsChanged = function (event) {	
+    var div = document.getElementById("container");	
+    div.innerHTML = "";	// make sure our container is empty before displaying the list
+    this.displayParticipants();	
+  };
   
   HangoutDemo.prototype.displayParticipants = function () {
 	var div, participants, ul, li, i, l;
