@@ -11,12 +11,13 @@
       console.log("API Ready");	
       // we can start doing stuff here	
 	this.displayParticipants();
-	  
+	  console.log("done");	
     }	
   };	
   
   HangoutDemo.prototype.displayParticipants = function () {
 	var div, participants, ul, li, i, l;
+	console.log("Running");	
 	participants = gapi.hangout.getParticipants();
 	ul = document.createElement("ul");
 	l = participants.length;
