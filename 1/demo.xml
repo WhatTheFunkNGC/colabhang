@@ -12,6 +12,8 @@
       	
 	  
       <div id="container"></div>	
+	  <button id="clickme">Click Me</button>	
+      <span id="count">0</span>
       	
       <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/1/scripts/demo.js"></script>	
     ]]>	
