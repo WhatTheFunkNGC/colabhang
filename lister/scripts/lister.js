@@ -22,7 +22,7 @@
   //-------------------- Functions -------------------------
   
   // On Add Item Button push
-  HangoutDemo.prototype.btnAddItemClick = function () {	
+  Lister.prototype.btnAddItemClick = function () {	
     var tempLL = gapi.hangout.data.getValue("listLength") || "0"; // get current number of list items
 	tempLL = (parseInt(value, 10) + 1).toString();                // add 1 to value and convert to string 
     gapi.hangout.data.setValue("listLength", tempLL);	
