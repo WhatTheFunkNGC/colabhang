@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>	
 <Module>	
-  <ModulePrefs title="Hangout Demo">	
+  <ModulePrefs title="Lister">	
     <Require feature="rpc"/>	
     <Require feature="views"/>	
   </ModulePrefs>	
@@ -11,6 +11,9 @@
 
       <div id="container"></div>	
       	
+		<h1> List </h1>
+		<button id="btnAddItem">Add List Item</button>
+		
       <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/scripts/lister.js"></script>	
     ]]>	
   </Content>	
