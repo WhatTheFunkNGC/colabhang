@@ -16,10 +16,18 @@
       // we can start doing stuff here	
 	  document.getElementById("clickme").onclick = 	// callback for button-click
         this.buttonClick.bind(this);
+		gapi.hangout.data.onStateChanged.add(	// add callback for event
+        this.displayCount.bind(this)	
+      );
+	  this.displayCount.bind(this);
 	this.displayParticipants();
 	  console.log("done");	
     }	
   };	
+  HangoutDemo.prototype.displayCount = function () {	
+    var value = gapi.hangout.data.getValue("count") || "0";	// read current count from state
+    document.getElementById("count").innerHTML = value;	// display current count
+  };
   
    HangoutDemo.prototype.buttonClick = function () {	
     var value = gapi.hangout.data.getValue("count") || "0";	// read current count from state
