@@ -28,9 +28,11 @@
   
   // On Add Item Button push
 	Lister.prototype.btnAddItemClick = function () {	
-		var tempLL = gapi.hangout.data.getValue("listLength") || "0"; 	// get current number of list items
-		tempLL = (parseInt(tempLL, 10) + 1).toString();                	// add 1 to value and convert to string 
-		gapi.hangout.data.setValue("listLength", tempLL);				// Commits new item value
+		var tempLL = gapi.hangout.data.getValue("listLength") || "0"; 				// get current number of list items
+		tempLL = (parseInt(tempLL, 10) + 1).toString();                				// add 1 to value and convert to string 
+		gapi.hangout.data.setValue("listLength", tempLL);							// Commits new item value
+		
+		gapi.hangout.data.setValue("listTxt" + tempLL, "LIST OBJECT " + tempLL); 	// create shared text value for line under number
 	};	
   
 	//Display list Items
@@ -40,8 +42,8 @@
 		noItems = gapi.hangout.data.getValue("listLength") || "0";		// get list Length
 		for (i = 0; i < noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
-			li.innerHTML = "LIST ITEM " + noItems;						// generate list line
-			ul.appendChild(li);												// add list element to end of full list
+			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i);	// get list value and write into HTML line
+			ul.appendChild(li);											// add list element to end of full list
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
