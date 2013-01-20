@@ -3,63 +3,59 @@
   	
   function HangoutDemo() {	
     console.log("Starting...");	
-    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	// Add callback
+    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	
   }	
   	
   HangoutDemo.prototype.onApiReady = function (event) {	
     if (event.isApiReady === true) {	
       console.log("API Ready");	
-	  gapi.hangout.onParticipantsChanged.add(	// add callback for events in here
-        this.onParticipantsChanged.bind(this)
-		console.log("Check");		
-      );
-      // we can start doing stuff here	
-	  document.getElementById("clickme").onclick = 	// callback for button-click
-        this.buttonClick.bind(this);
-		gapi.hangout.data.onStateChanged.add(	// add callback for event
+      gapi.hangout.onParticipantsChanged.add(	
+        this.onParticipantsChanged.bind(this)	
+      );	
+      document.getElementById("clickme").onclick =	
+        this.buttonClick.bind(this);	
+      gapi.hangout.data.onStateChanged.add(	// add callback for event
         this.displayCount.bind(this)	
-      );
-	  this.displayCount.bind(this);
-	this.displayParticipants();
-	  console.log("done");	
+      );	
+      this.displayCount();	
+      this.displayParticipants();	
     }	
   };	
+  	
   HangoutDemo.prototype.displayCount = function () {	
     var value = gapi.hangout.data.getValue("count") || "0";	// read current count from state
     document.getElementById("count").innerHTML = value;	// display current count
-  };
-  
-   HangoutDemo.prototype.buttonClick = function () {	
-    var value = gapi.hangout.data.getValue("count") || "0";	// read current count from state
-    value = (parseInt(value, 10) + 1).toString();	// increment count by one
-    gapi.hangout.data.setValue("count", value);	// write new count into state
-  };
-  
-  HangoutDemo.prototype.onParticipantsChanged = function (event) {	// sorts out ON change, so function is re-called when needed
+  };	
+  	
+  HangoutDemo.prototype.buttonClick = function () {	
+    var value = gapi.hangout.data.getValue("count") || "0";	
+    value = (parseInt(value, 10) + 1).toString();	
+    gapi.hangout.data.setValue("count", value);	
+  };	
+  	
+  HangoutDemo.prototype.onParticipantsChanged = function (event) {	
     var div = document.getElementById("container");	
-    div.innerHTML = "";	// make sure our container is empty before displaying the list
+    div.innerHTML = "";	
     this.displayParticipants();	
-  };
-  
-  HangoutDemo.prototype.displayParticipants = function () {
-	var div, participants, ul, li, i, l;
-	console.log("Running");	
-	participants = gapi.hangout.getParticipants();
-	ul = document.createElement("ul");
-	l = participants.length;
-		for (i = 0; i < l; i++){
-		li = document.createElement("li");
-		if (participants[i].person) {
-		li.innerHTML = participants[i].person.displayName; // add name to list if available
-		} else {
-			li.innerHTML = "unknown";
-		}
-			ul.appendChild(li);
-	}
-			div = document.getElementById("container");
-			div.appendChild(ul);
-};
-			
+  };	
+  	
+  HangoutDemo.prototype.displayParticipants = function () {	
+    var div, participants, ul, li, i, l;	
+    participants = gapi.hangout.getParticipants();	
+    ul = document.createElement("ul");	
+    l = participants.length;	
+    for (i = 0; i < l; i++) {	
+      li = document.createElement("li");	
+      if (participants[i].person) {	
+        li.innerHTML = participants[i].person.displayName;	
+      } else {	
+        li.innerHTML = "unknown";	
+      }	
+      ul.appendChild(li);	
+    }	
+    div = document.getElementById("container");	
+    div.appendChild(ul);	
+  };	
   	
   var hangoutDemo = new HangoutDemo();	
 }(window));
