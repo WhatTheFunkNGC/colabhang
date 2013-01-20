@@ -44,7 +44,8 @@
 			ul.appendChild(li);												// add list element to end of full list
 		}
 	div = document.getElementById("list");				// get element
-    div.appendChild(ul);								// add List to HTML element
+	div.innerHTML = "";									// clear exsisitn displayed list
+    div.appendChild(ul);								// add new List to HTML element
 	};	
 	
 		
