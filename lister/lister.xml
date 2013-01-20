@@ -9,10 +9,12 @@
       <script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.0"></script>	
       	
 
-      <div id="container"></div>	
+      	
       	
 		<h1> List </h1>
 		<button id="btnAddItem">Add List Item</button>
+		
+		<div id="list"></div>
 		
       <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/scripts/lister.js"></script>	
     ]]>	
