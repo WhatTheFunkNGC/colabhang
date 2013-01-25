@@ -12,6 +12,7 @@
       	
       	
 		<h1> List </h1>
+		<img src="/img/deleteBtn.jpg" alt="delete" />
 		<button id="btnAddItem">Add List Item</button>
 		
 		<div id="list"></div>

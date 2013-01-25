@@ -43,11 +43,9 @@
 		noItems = gapi.hangout.data.getValue("listLength") || "0";		// get list Length
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
-			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i + " <button id=\"btnDeleteItem\">X</button>" );	// get list value and write into HTML line
+			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i + "<img src=\"/img/deleteBtn.jpg\" alt=\"delete\" />");	// get list value and write into HTML line
 			ul.appendChild(li);											// add list element to end of full list
 			
-			document.getElementById("btnDeleteItem").onclick =		// attach new delete button to function
-			this.deleteListItem.bind(this);
 			
 		}
 	div = document.getElementById("list");				// get element
@@ -57,7 +55,7 @@
 	
 	
 	// remove List item
-	Lister.prototype.deleteListItem = function () {
+	Lister.prototype.deleteListItem = function (ListItem i) {
 	
 	}
 	
