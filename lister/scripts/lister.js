@@ -15,8 +15,6 @@
 		document.getElementById("btnAddItem").onclick =		// attach Add button to function
         this.btnAddItemClick.bind(this);
 		
-		document.getElementById("btnDeleteItem").onclick =		// attach delete button to function
-        this.deleteListItem.bind(this);
 		
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)
@@ -47,6 +45,10 @@
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i + " <button id=\"btnDeleteItem\">X</button>" );	// get list value and write into HTML line
 			ul.appendChild(li);											// add list element to end of full list
+			
+			document.getElementById("btnDeleteItem").onclick =		// attach new delete button to function
+			this.deleteListItem.bind(this);
+			
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
