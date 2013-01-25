@@ -43,8 +43,7 @@
 		noItems = gapi.hangout.data.getValue("listLength") || "0";		// get list Length
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
-			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i +  // get list value and write into HTML line
-				"<img src=\"https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg\" alt=\"delete\" />");	// add delete button to end of line
+			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i)  // get list value and write into HTML line
 			ul.appendChild(li);											// add list element to end of full list
 			
 			
