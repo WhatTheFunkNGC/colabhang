@@ -55,9 +55,9 @@
 	
 	
 	// remove List item
-	Lister.prototype.deleteListItem = function (ListItem i) {
+	//Lister.prototype.deleteListItem = function (ListItem i) {
 	
-	}
+	//}
 	
 	
 		
