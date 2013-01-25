@@ -12,7 +12,7 @@
       	
       	
 		<h1> List </h1>
-		<img src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg" alt="delete" />
+		<img onClick="delete ('1')" src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg" alt="delete" width="25" height="25" />
 		<button id="btnAddItem">Add List Item</button>
 		
 		<div id="list"></div>
