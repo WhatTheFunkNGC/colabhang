@@ -44,7 +44,7 @@
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i)  // get list value and write into HTML line
-			li.appendChild(addDelButton(i) );
+			li.appendChild(addDelButton(i.toString) );
 			ul.appendChild(li);											// add list element to end of full list
 			
 			
