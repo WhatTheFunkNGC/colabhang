@@ -72,7 +72,7 @@
 	delBut.align = "top";
 	//delBut.onclick = function { alert("onClick Ran");console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
 	//delBut.onclick = removeListElement;
-	delBut.onclick = function() { console.log("CALLED"); };
+	delBut.onclick = function() { console.log("CALLED");removeListElement(itemNo); };
 	console.log("Button Created");
 	return delBut;
 	};
