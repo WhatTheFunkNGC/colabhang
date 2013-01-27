@@ -44,8 +44,9 @@
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i)  // get list value and write into HTML line
+			li.appendChild(addDelButton() );
 			ul.appendChild(li);											// add list element to end of full list
-			ul.appendChild(addDelButton() );
+			
 			
 		}
 	div = document.getElementById("list");				// get element
@@ -59,12 +60,13 @@
 	delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 	delBut.width = 20;
 	delBut.height = 20;
+	delBut.OnClick = removeListElement("1");
 	return delBut;
-	}
+	};
 	
 	// remove List item
-	Lister.prototype.deleteListItem = function (itemNo) {
-	alert("winning");
+	function removeListElement(itemNo) {
+	console.log("remove list function call");
 	};
 	
 	
