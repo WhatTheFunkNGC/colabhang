@@ -15,14 +15,10 @@
 		document.getElementById("btnAddItem").onclick =		// attach Add button to function
         this.btnAddItemClick.bind(this);
 		
-		
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)
 		);
-	  
 		}	
-	
-	
 	};	
   
   //-------------------- Functions -------------------------
@@ -47,37 +43,35 @@
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i);  // get list value and write into HTML line
 			//console.log("HTML added");
-			li.appendChild(addDelButton(i));
+			li.appendChild(addDelButton(i));							// add delete button
 			//console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
-			console.log("element added");
-			
-			
+			console.log("element added");	
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
 	
-	//document.getElementBy(delBut.name).onclick = function(){removeListElement("itemNo");};
+	
 	
 	};	
 	
-	// add listButtons
-	function addDelButton(itemNo) {
-	var delBut = document.createElement("img");
-	delBut.name = "delBut" + itemNo;
-	delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
-	delBut.width = 20;
-	delBut.height = 20;
-	delBut.align = "top";
-	delBut.onclick = function() { console.log("Delete Press");removeListElement(itemNo); };
-	console.log("Button Created");
-	return delBut;
+	// add Delete list item button
+	function addDelButton(itemNo) { 						// itemNo targets specific list item
+		var delBut = document.createElement("img");			// create element
+		delBut.name = "delBut" + itemNo;					// fill in element details
+		delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
+		delBut.width = 20;
+		delBut.height = 20;
+		delBut.align = "top";
+		delBut.onclick = function() { console.log("Delete Press");removeListElement(itemNo); }; // on click calls remove function with param targeting the specific line
+		console.log("Button Created");
+		return delBut;										// return button element
 	};
 	
 	// remove List item
 	function removeListElement(itemNo) {
-	console.log("remove list function call " + itemNo);
+		console.log("remove list function call " + itemNo);
 	};
 	
 	
