@@ -34,6 +34,7 @@
 		gapi.hangout.data.setValue("listLength", tempLL);							// Commits new item value
 		
 		gapi.hangout.data.setValue("listTxt" + tempLL, "LIST OBJECT " + tempLL); 	// create shared text value for line under number
+		console.log("LIST OBJECT " + tempLL + "Created");
 	};	
   
 	//Display list Items
@@ -46,7 +47,7 @@
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i);  // get list value and write into HTML line
 			console.log("HTML added");
-			li.appendChild(addDelButton(i);
+			li.appendChild(addDelButton(i));
 			console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
 			console.log("element added");
