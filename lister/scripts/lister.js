@@ -68,7 +68,7 @@
 	delBut.height = 20;
 	delBut.align = "top";
 	//delBut.onclick = function { alert("onClick Ran");console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
-	delBut.onclick = removeListElement;
+	delBut.onclick = removeListElement(itemNo);
 	//console.log("Button Created");
 	return delBut;
 	};
