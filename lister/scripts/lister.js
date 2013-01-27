@@ -65,8 +65,8 @@
 	delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 	delBut.width = 20;
 	delBut.height = 20;
-	delBut.align = middle;
-	delBut.OnClick = removeListElement(listNum);
+	delBut.align = 'middle';
+	delBut.OnClick = removeListElement();
 	console.log("Button Created");
 	return delBut;
 	};
