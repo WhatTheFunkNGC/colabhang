@@ -70,16 +70,14 @@
 	delBut.width = 20;
 	delBut.height = 20;
 	delBut.align = "top";
-	//delBut.onclick = function { alert("onClick Ran");console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
-	//delBut.onclick = removeListElement;
-	delBut.onclick = function() { console.log("CALLED");removeListElement(itemNo); };
+	delBut.onclick = function() { console.log("Delete Press");removeListElement(itemNo); };
 	console.log("Button Created");
 	return delBut;
 	};
 	
 	// remove List item
 	function removeListElement(itemNo) {
-	console.log("remove list function call" + itemNo);
+	console.log("remove list function call " + itemNo);
 	};
 	
 	
