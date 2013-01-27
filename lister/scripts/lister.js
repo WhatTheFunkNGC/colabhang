@@ -58,7 +58,7 @@
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
 	
-	document.getElementByName(delBut.name).onclick = function(){removeListElement("itemNo");};
+	//document.getElementBy(delBut.name).onclick = function(){removeListElement("itemNo");};
 	
 	};	
 	
@@ -72,6 +72,7 @@
 	delBut.align = "top";
 	//delBut.onclick = function { alert("onClick Ran");console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
 	//delBut.onclick = removeListElement;
+	delBut.onclick = function() { console.log("CALLED"); };
 	console.log("Button Created");
 	return delBut;
 	};
