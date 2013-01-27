@@ -59,7 +59,8 @@
 	};	
 	
 	// add listButtons
-	function addDelButton () {
+	function addDelButton() {
+	console.log("Button start creation");
 	var delBut = document.createElement("img");
 	delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 	delBut.width = 20;
