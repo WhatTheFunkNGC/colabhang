@@ -57,6 +57,9 @@
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
+	
+	document.getElementById(delBut1).onclick = removeListElement("win");
+	
 	};	
 	
 	// add listButtons
@@ -68,7 +71,7 @@
 	delBut.height = 20;
 	delBut.align = "top";
 	//delBut.onclick = function { alert("onClick Ran");console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
-	delBut.onclick = removeListElement(itemNo);
+	//delBut.onclick = removeListElement;
 	//console.log("Button Created");
 	return delBut;
 	};
