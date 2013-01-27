@@ -41,11 +41,15 @@
 		var div, noItems, ul, li, i, l;									// define variables
 		ul = document.createElement("ul");								// create element
 		noItems = gapi.hangout.data.getValue("listLength") || "0";		// get list Length
+		console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i)  // get list value and write into HTML line
+			console.log("HTML added");
 			li.appendChild(addDelButton() );
+			console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
+			console.log("element added");
 			
 			
 		}
@@ -62,6 +66,7 @@
 	delBut.height = 20;
 	delBut.align = middle;
 	delBut.OnClick = removeListElement(listNum);
+	console.log("Button Created");
 	return delBut;
 	};
 	
