@@ -62,11 +62,12 @@
 	// add listButtons
 	function addDelButton(itemNo) {
 	var delBut = document.createElement("img");
+	delBut.name = "delBut" + itemNo;
 	delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 	delBut.width = 20;
 	delBut.height = 20;
 	delBut.align = "top";
-	delBut.OnClick = function() { alert('onClick Ran'); }; //removeListElement(itemNo);
+	delBut.OnClick = function() { alert('onClick Ran');console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
 	//console.log("Button Created");
 	return delBut;
 	};
