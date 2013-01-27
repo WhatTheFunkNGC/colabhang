@@ -34,7 +34,7 @@
 		gapi.hangout.data.setValue("listLength", tempLL);							// Commits new item value
 		
 		gapi.hangout.data.setValue("listTxt" + tempLL, "LIST OBJECT " + tempLL); 	// create shared text value for line under number
-		console.log("LIST OBJECT " + tempLL + "Created");
+		console.log("LIST OBJECT " + tempLL + " Created");
 	};	
   
 	//Display list Items
@@ -42,15 +42,15 @@
 		var div, noItems, ul, li, i, l;									// define variables
 		ul = document.createElement("ul");								// create element
 		noItems = gapi.hangout.data.getValue("listLength") || "0";		// get list Length
-		console.log("Begin display loop");
+		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i);  // get list value and write into HTML line
-			console.log("HTML added");
+			//console.log("HTML added");
 			li.appendChild(addDelButton(i));
-			console.log("Button Added");
+			//console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
-			console.log("element added");
+			//console.log("element added");
 			
 			
 		}
@@ -66,8 +66,8 @@
 	delBut.width = 20;
 	delBut.height = 20;
 	delBut.align = "top";
-	delBut.OnClick = removeListElement(itemNo);
-	console.log("Button Created");
+	delBut.OnClick = function() {removeListElement(itemNo);};
+	//console.log("Button Created");
 	return delBut;
 	};
 	
