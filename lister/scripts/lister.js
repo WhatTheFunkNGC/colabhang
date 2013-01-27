@@ -50,7 +50,7 @@
 			li.appendChild(addDelButton(i));
 			//console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
-			//console.log("element added");
+			console.log("element added");
 			
 			
 		}
@@ -58,21 +58,21 @@
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
 	
-	document.getElementById(delBut1).onclick = function(){removeListElement("itemNo");};
+	document.getElementById(delBut).onclick = function(){removeListElement("itemNo");};
 	
 	};	
 	
 	// add listButtons
 	function addDelButton(itemNo) {
 	var delBut = document.createElement("img");
-	delBut.name = "delBut" + itemNo;
+	delBut.name = "delBut";
 	delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 	delBut.width = 20;
 	delBut.height = 20;
 	delBut.align = "top";
 	//delBut.onclick = function { alert("onClick Ran");console.log("CALLED"); }; //removeListElement(itemNo);   document.getElementById("myBtn").onclick=
 	//delBut.onclick = removeListElement;
-	//console.log("Button Created");
+	console.log("Button Created");
 	return delBut;
 	};
 	
