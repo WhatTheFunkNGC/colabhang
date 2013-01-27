@@ -44,7 +44,7 @@
 		console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
-			li.innerHTML = gapi.hangout.data.getValue("list item " + i)  // get list value and write into HTML line
+			li.innerHTML = gapi.hangout.data.getValue("list item " + i);  // get list value and write into HTML line
 			console.log("HTML added");
 			li.appendChild(addDelButton(i.toString() );
 			console.log("Button Added");
