@@ -66,7 +66,7 @@
 	delBut.width = 20;
 	delBut.height = 20;
 	delBut.align = "top";
-	delBut.OnClick = function() {removeListElement(itemNo);console.log("onClick Ran");};
+	delBut.OnClick = function() { alert('onClick Ran'); }; //removeListElement(itemNo);
 	//console.log("Button Created");
 	return delBut;
 	};
