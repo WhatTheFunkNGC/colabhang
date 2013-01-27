@@ -58,7 +58,7 @@
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
 	
-	document.getElementById(delBut1).onclick = removeListElement;
+	document.getElementById(delBut1).onclick = function(){removeListElement("itemNo");};
 	
 	};	
 	
