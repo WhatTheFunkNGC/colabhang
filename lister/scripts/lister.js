@@ -46,7 +46,7 @@
 			li = document.createElement("li");							// Create new element to attach
 			li.innerHTML = gapi.hangout.data.getValue("list item " + i);  // get list value and write into HTML line
 			console.log("HTML added");
-			li.appendChild(addDelButton(i.toString() );
+			li.appendChild(addDelButton(i);
 			console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
 			console.log("element added");
