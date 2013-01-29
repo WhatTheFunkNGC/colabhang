@@ -19,18 +19,16 @@
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)		
 		);
-		console.log("about to run first element");
-		this.firstElement();
-		console.log("ran");
+		this.firstItemLoad();
+		
 		}	
 	};	
   
   //-------------------- Functions -------------------------
   
-  //first line setup
-	function addfirstElement() {
-		console.log("call done");
-		addNewItemToList("listTxt","1"); 					
+  
+	HangoutDemo.prototype.firstItemLoad() {
+		addNewItemToList ("listTxt","1");
 	};
   
 	//Display list Items
@@ -54,7 +52,7 @@
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
-	//div.appendChild(addAddButton(noItems));
+	div.appendChild(addAddButton(noItems));
 	
 	};	
 	
