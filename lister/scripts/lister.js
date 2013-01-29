@@ -37,7 +37,7 @@
 	Lister.prototype.displayListItems = function () {	
 		var div, noItems, ul, li, i, l;									
 		ul = document.createElement("ul");								// create element
-		ul.listStyleType= "decimal"										// display numberd items
+		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listLength") || "0";		// get list Length
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
@@ -65,7 +65,7 @@
 			j++;																		// j in loop always is i + 1
 			gapi.hangout.data.setValue("listTxt" + i, gapi.hangout.data.getValue("listTxt" + j));	// save data in pos j into i
 		}
-		gapi.hangout.data.setValue("listTxt" + j,"");									// Nullify top list element
+		gapi.hangout.data.clearValue("listTxt" + j);									// Nullify top list element
 		gapi.hangout.data.setValue("listLength", (parseInt(noItems, 10) - 1).toString());	//  -1 to value list total and save.
 	};
 	
