@@ -83,15 +83,15 @@
 	
 	// add text input bar
 	function addTxtInput(itemNo) { 
-	var txtIn = document.createElement("input"); 					// create input element
-	delBut.name = "TxtIn" + itemNo;
-	txtIn.type = "text";											// of text type
-	//txtIn.className = "css-class-name";							// set style will be implimented later
-	txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
-	delBut.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
-	console.log("Txt entry Created");
-	return txtIn;													// return txtInput element
-	
+		var txtIn = document.createElement("input"); 					// create input element
+		delBut.name = "TxtIn" + itemNo;
+		txtIn.type = "text";											// of text type
+		//txtIn.className = "css-class-name";							// set style will be implimented later
+		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
+		delBut.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
+		console.log("Txt entry Created");
+		return txtIn;													// return txtInput element
+	};
 	
 		
   var Lister = new Lister();	
