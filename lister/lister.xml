@@ -14,7 +14,6 @@
 		<h1> List </h1>
 		
 		<div id="list"></div>
-		<img id="btnAddItem" src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg" alt="add new line" height="40" width="40">
 		
       <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/scripts/lister.js"></script>	
     ]]>	

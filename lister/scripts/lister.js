@@ -12,15 +12,17 @@
 		if (event.isApiReady === true) {	
 			console.log("Lister Ready");	
 	  
-		//document.getElementById("btnAddItem").onclick =		// attach Add button to function
+		//document.getElementById("btnAddItem").onclick =		// old method saved for refrance
         //this.btnAddItemClick.bind(this);
-		//document.getElementById("btnAddItem").onclick =
-		//	this.addNewItemToList("listTxt",gapi.hangout.data.getValue("listTxt")); // calls add function to end value
+
 		
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
-		this.displayListItems.bind(this)
+		this.displayListItems.bind(this);
+		
+		this.addNewItemToList ("listTxt","1"); 				// add start element
+		
 		);
-		this.displayListItems();
+		
 		}	
 	};	
   
@@ -48,35 +50,9 @@
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
-	div.appendChild(addAddButton(noItems));
+	//div.appendChild(addAddButton(noItems));
 	
 	};	
-	
-	// On Add Item Button push
-	//Lister.prototype.btnAddItemClick = function () {	
-	//	var tempLL = gapi.hangout.data.getValue("listTxt") || "0"; 				// get current number of list items
-	//	tempLL = (parseInt(tempLL, 10) + 1).toString();                				// add 1 to value and convert to string 
-	//	gapi.hangout.data.setValue("listTxt", tempLL);							// Commits new item value
-	//	
-	//	gapi.hangout.data.setValue("listTxt" + tempLL, "LIST OBJECT " + tempLL); 	// TESTING :fill with text value rathert than blank
-	//	//gapi.hangout.data.setValue("listTxt" + tempLL, ""); 						// create textvalue for list item
-	//	console.log("LIST OBJECT " + tempLL + " Created");
-	//};	
-	
-	//Remove List item (by overwriting and shifting items down)
-	//function removeListElement(itemNo) {												// itemNo = list element to omit
-	//	var noItems, i, j;
-	//	console.log("remove list function call " + itemNo);							
-	//	noItems = gapi.hangout.data.getValue("listTxt") || "0";						// get current number of list items
-	//	j = itemNo;																		// set up j var
-	//	for ( i = itemNo; i < noItems; i++) {
-	//		j++;																		// j in loop always is i + 1
-	//		gapi.hangout.data.setValue("listTxt" + i, gapi.hangout.data.getValue("listTxt" + j));	// save data in pos j into i
-	//	}
-	//	gapi.hangout.data.clearValue("listTxt" + j);									// Nullify top list element
-	//	gapi.hangout.data.setValue("listTxt", (parseInt(noItems, 10) - 1).toString());	//  -1 to value list total and save.
-	//};
-	
 	
 	//Sign user to element
 	//function addUserToElement(itemNo) {
@@ -114,7 +90,7 @@
 			j--;																				// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
-		if(!entryValue){ var entryValue = "NEW IN LOC " + targetLocation;};													// TESTING if no Value to enter, defult to blank
+		if(!entryValue){ var entryValue = "List item " + targetLocation;};													// TESTING if no Value to enter, defult to blank
 		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 								// create textvalue for list item					
 		console.log("LIST OBJECT " + noItems + " Created with value ");
 	};
