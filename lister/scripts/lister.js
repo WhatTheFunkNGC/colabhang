@@ -17,9 +17,9 @@
 
 		
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
-		this.displayListItems.bind(this);
-		
+		this.displayListItems.bind(this)		
 		);
+		
 		this.addNewItemToList("listTxt","1"); 				// add start element
 		}	
 	};	
