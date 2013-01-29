@@ -19,7 +19,7 @@
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)		
 		);
-		this.firstItemLoad();
+		//this.firstItemLoad();
 		
 		}	
 	};	
@@ -27,9 +27,9 @@
   //-------------------- Functions -------------------------
   
   
-	Lister.prototype.firstItemLoad = function () {
-		addNewItemToList ("listTxt","1");
-	};
+	//Lister.prototype.firstItemLoad = function () {
+	//	addNewItemToList ("listTxt","1");
+	//};
   
 	//Display list Items
 	Lister.prototype.displayListItems = function () {	
@@ -37,9 +37,7 @@
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
-		if (parseInt(noItems) < 1){
-			addNewItemToList ("listTxt","1"); 
-		}																	// if delete would leave list empty, add new blank
+		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
