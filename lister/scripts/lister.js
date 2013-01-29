@@ -20,7 +20,7 @@
 		this.displayListItems.bind(this)		
 		);
 		
-		this.addNewItemToList("listTxt","1"); 				// add start element
+		//this.addNewItemToList("listTxt","1"); 				// add start element
 		}	
 	};	
   
