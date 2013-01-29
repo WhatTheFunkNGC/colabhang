@@ -108,7 +108,7 @@
 		delBut.align = "top";
 		delBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
-				removeItemFromList("listTxt",itemNo);#
+				removeItemFromList("listTxt",itemNo);
 				if ((parseInt(gapi.hangout.data.getValue("listTxt") || "0"), 10) < 1){ addNewItemToList ("listTxt","1"); }		// if delete would leave list empty, add new blank
 		}; 
 		return delBut;										// return button element
