@@ -85,8 +85,7 @@
 	
 	/* Remove Genralised value system
 	- listName : target shared list variable name (int ommited)
-	- targetElement : Element number to remove from list
-	*/
+	- targetElement : Element number to remove from list */
 	function removeItemFromList(listName,targetElement){
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0";							// get the list length
@@ -102,8 +101,7 @@
 	/* Remove Genralised value system
 	- listName : target shared list variable name (int ommited)
 	- targetLocation : Element number to remove from list
-	- entryValue OPTIONAL : value to save in new list element
-	*/
+	- entryValue OPTIONAL : value to save in new list element */
 	function addNewItemToList (listName,targetLocation,entryValue){	
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0"; 									// get current number of list items
@@ -146,7 +144,7 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Add Press");
-				Var listL = (parseInt(itemNo, 10) + 1).toString(); // gets targets below current for new element
+				var listL = (parseInt(itemNo, 10) + 1).toString(); // gets targets below current for new element
 				addNewItemToList ("listTxt",listL); 				// adds blank list element below selected element
 		}; 
 		return addBut;										// return button element
