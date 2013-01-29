@@ -37,7 +37,7 @@
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
-		if ((parseInt(noItems) < 1){
+		if (parseInt(noItems) < 1){
 			addNewItemToList ("listTxt","1"); 
 		}																	// if delete would leave list empty, add new blank
 		//console.log("Begin display loop");
