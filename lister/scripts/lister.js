@@ -20,7 +20,7 @@
 		this.displayListItems.bind(this)		
 		);
 		//this.firstItemLoad();
-		
+		this.displayListItems();
 		}	
 	};	
   
