@@ -29,7 +29,8 @@
 		tempLL = (parseInt(tempLL, 10) + 1).toString();                				// add 1 to value and convert to string 
 		gapi.hangout.data.setValue("listLength", tempLL);							// Commits new item value
 		
-		gapi.hangout.data.setValue("listTxt" + tempLL, "LIST OBJECT " + tempLL); 	// create shared text value for line under number
+		gapi.hangout.data.setValue("listTxt" + tempLL, "LIST OBJECT " + tempLL); 	// TESTING :fill with text value rathert than blank
+		//gapi.hangout.data.setValue("listTxt" + tempLL, ""); 						// create textvalue for list item
 		console.log("LIST OBJECT " + tempLL + " Created");
 	};	
   
