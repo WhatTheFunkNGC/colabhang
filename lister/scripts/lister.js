@@ -41,7 +41,10 @@
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
-			li.innerHTML = gapi.hangout.data.getValue("listTxt" + i);  // get list value and write into HTML line
+			console.log("about to add txtInput");	
+			li.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
+			console.log("added txtInput");
+			//li.innerHTML = gapi.hangout.data.getValue("listTxt" + i);  // get list value and write into HTML line OLD METHOD
 			//console.log("HTML added");
 			li.appendChild(addDelButton(i));							// add delete button
 			//console.log("Button Added");
@@ -52,27 +55,42 @@
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
 	
-	
-	
 	};	
+	
+	// remove List item
+	function removeListElement(itemNo) {
+		console.log("remove list function call " + itemNo);
+	};
+	
+	
+//-------------------- Button creation -------------------------
 	
 	// add Delete list item button
 	function addDelButton(itemNo) { 						// itemNo targets specific list item
 		var delBut = document.createElement("img");			// create element
 		delBut.name = "delBut" + itemNo;					// fill in element details
 		delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
-		delBut.width = 20;
-		delBut.height = 20;
+		delBut.width = 50;
+		delBut.height = 50;
 		delBut.align = "top";
 		delBut.onclick = function() { console.log("Delete Press");removeListElement(itemNo); }; // on click calls remove function with param targeting the specific line
-		console.log("Button Created");
+		//console.log("Button Created");
 		return delBut;										// return button element
 	};
 	
-	// remove List item
-	function removeListElement(itemNo) {
-		console.log("remove list function call " + itemNo);
-	};
+	
+
+	
+	// add text input bar
+	function addTxtInput(itemNo) { 
+	var txtIn = document.createElement("input"); 					// create input element
+	delBut.name = "TxtIn" + itemNo;
+	txtIn.type = "text";											// of text type
+	//txtIn.className = "css-class-name";							// set style will be implimented later
+	txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
+	delBut.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
+	console.log("Txt entry Created");
+	return txtIn;													// return txtInput element
 	
 	
 		
