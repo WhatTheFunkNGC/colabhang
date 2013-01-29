@@ -20,6 +20,7 @@
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)
 		);
+		displayListItems();
 		}	
 	};	
   
@@ -47,6 +48,7 @@
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
+	div.appendChild(addAddButton(noItems));
 	
 	};	
 	
