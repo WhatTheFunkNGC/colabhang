@@ -70,8 +70,8 @@
 		var delBut = document.createElement("img");			// create element
 		delBut.name = "delBut" + itemNo;					// fill in element details
 		delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
-		delBut.width = 50;
-		delBut.height = 50;
+		delBut.width = 25;
+		delBut.height = 25;
 		delBut.align = "top";
 		delBut.onclick = function() { console.log("Delete Press");removeListElement(itemNo); }; // on click calls remove function with param targeting the specific line
 		//console.log("Button Created");
@@ -85,14 +85,11 @@
 	function addTxtInput(itemNo) { 
 	console.log("Txt entry STARTED");
 		var txtIn = document.createElement("input"); 					// create input element
-			console.log("1");
-		//delBut.name = "TxtIn" + itemNo;
-		console.log("2");
+		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
-		console.log("3");
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
-		//delBut.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
+		txtIn.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
 		console.log("Txt entry Created");
 		return txtIn;													// return txtInput element
 	};
