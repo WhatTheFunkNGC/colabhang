@@ -27,7 +27,7 @@
   
   //first line setup
 	function add firstElement() {
-			addNewItemToList("listTxt","1")); 					
+			addNewItemToList("listTxt","1"); 					
 	};
   
 	//Display list Items
