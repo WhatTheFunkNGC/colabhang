@@ -110,11 +110,11 @@
 		noItems = (parseInt(noItems, 10) + 1).toString();                							// add 1 to value and convert to string 
 		gapi.hangout.data.setValue(listName, noItems);											// Commits new item value
 		j = noItems;
-		for ( i = noItems; i > targetLocation; i++) {												// loop down moving element values up
+		for ( i = noItems; i > targetLocation; i--) {												// loop down moving element values up
 			j--;																				// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
-		if(!entryValue){ var entryValue = "";};													// if no Value to enter, defult to blank
+		if(!entryValue){ var entryValue = "NEW IN LOC " + targetLocation;};													// TESTING if no Value to enter, defult to blank
 		gapi.hangout.data.setValue(listName + noItems, entryValue); 								// create textvalue for list item					
 		console.log("LIST OBJECT " + noItems + " Created with value ");
 	};
