@@ -92,7 +92,7 @@
 		console.log("3");
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
-		delBut.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
+		//delBut.onchange = function() { console.log("TxtInputChanged"); gapi.hangout.data.setValue("listTxt" + tempLL, txtIn.value); }; // updates shared value with enterd txt
 		console.log("Txt entry Created");
 		return txtIn;													// return txtInput element
 	};
