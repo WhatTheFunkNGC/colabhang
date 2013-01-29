@@ -41,11 +41,8 @@
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
-			console.log("about to add txtInput");	
 			li.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
-			console.log("added txtInput");
-			//li.innerHTML = gapi.hangout.data.getValue("listTxt" + i);  // get list value and write into HTML line OLD METHOD
-			//console.log("HTML added");
+			//console.log("added txtInput");
 			li.appendChild(addDelButton(i));							// add delete button
 			//console.log("Button Added");
 			ul.appendChild(li);											// add list element to end of full list
@@ -73,27 +70,25 @@
 		delBut.width = 25;
 		delBut.height = 25;
 		delBut.align = "top";
-		delBut.onclick = function() { console.log("Delete Press");removeListElement(itemNo); }; // on click calls remove function with param targeting the specific line
-		//console.log("Button Created");
+		delBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
+				console.log("Delete Press");
+				removeListElement(itemNo); 
+		}; 
 		return delBut;										// return button element
 	};
 	
 	
-
-	
 	// add text input bar
 	function addTxtInput(itemNo) { 
-	console.log("Txt entry STARTED");
 		var txtIn = document.createElement("input"); 					// create input element
 		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
-		txtIn.onchange = function() { 
-			console.log("TxtInputChanged"); 
-			gapi.hangout.data.setValue("listTxt" + itemNo, txtIn.value); 
-			}; // updates shared value with enterd txt
-		console.log("Txt entry Created");
+		txtIn.onchange = function() { 									// updates shared value with enterd txt
+				console.log("TxtInputChanged"); 
+				gapi.hangout.data.setValue("listTxt" + itemNo, txtIn.value); 
+		}; 		
 		return txtIn;													// return txtInput element
 	};
 	
