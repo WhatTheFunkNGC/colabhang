@@ -52,7 +52,6 @@
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
-	div.appendChild(addAddButton(noItems));
 	
 	};	
 	
@@ -109,7 +108,8 @@
 		delBut.align = "top";
 		delBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
-				removeItemFromList("listTxt",itemNo);
+				removeItemFromList("listTxt",itemNo);#
+				if (gapi.hangout.data.getValue("listTxt") == 0){ addNewItemToList ("listTxt","1"); }		// if delete would leave list empty, add new blank
 		}; 
 		return delBut;										// return button element
 	};
