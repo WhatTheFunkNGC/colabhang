@@ -16,7 +16,7 @@
 		
 		<div id="list"></div>
 		<button id="btnAddItem">Add List Item</button>
-		<img id="btnAddItem"> src="smiley.gif" alt="add new line" height="40" width="40">
+		<img id="btnAddItem" src="smiley.gif" alt="add new line" height="40" width="40">
 		
       <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/scripts/lister.js"></script>	
     ]]>	
