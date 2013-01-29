@@ -39,9 +39,9 @@
 			li.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			//console.log("added txtInput");
 			li.appendChild(addDelButton(i));							// add delete button
-			console.log("Button Added");
+			//console.log("Button Added");
 			li.appendChild(addAddButton(i));							// add Add button
-			console.log(" AddButton Added");
+			//console.log(" AddButton Added");
 			ul.appendChild(li);											// add list element to end of full list
 			//console.log("element added");	
 		}
@@ -115,7 +115,7 @@
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
 		if(!entryValue){ var entryValue = "NEW IN LOC " + targetLocation;};													// TESTING if no Value to enter, defult to blank
-		gapi.hangout.data.setValue(listName + noItems, entryValue); 								// create textvalue for list item					
+		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 								// create textvalue for list item					
 		console.log("LIST OBJECT " + noItems + " Created with value ");
 	};
 	
