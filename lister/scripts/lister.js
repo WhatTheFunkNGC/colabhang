@@ -37,6 +37,9 @@
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
+		if ((parseInt(noItems) < 1){
+			addNewItemToList ("listTxt","1"); 
+		}																	// if delete would leave list empty, add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
@@ -109,7 +112,6 @@
 		delBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
 				removeItemFromList("listTxt",itemNo);
-				if ((parseInt(gapi.hangout.data.getValue("listTxt") || "0"), 10) <= 1){ addNewItemToList ("listTxt","1"); }		// if delete would leave list empty, add new blank
 		}; 
 		return delBut;										// return button element
 	};
