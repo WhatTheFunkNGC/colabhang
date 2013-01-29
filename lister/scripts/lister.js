@@ -15,7 +15,7 @@
 		//document.getElementById("btnAddItem").onclick =		// attach Add button to function
         //this.btnAddItemClick.bind(this);
 		document.getElementById("btnAddItem").onclick =
-			this.addNewItemToList("listTxt",gapi.hangout.data.getValue("listTxt")).bind(this); // calls add function to end value
+			this.addNewItemToList("listTxt",gapi.hangout.data.getValue("listTxt")); // calls add function to end value
 		
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)
