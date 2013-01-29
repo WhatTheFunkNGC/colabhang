@@ -20,7 +20,7 @@
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)
 		);
-		displayListItems();
+		this.displayListItems();
 		}	
 	};	
   
