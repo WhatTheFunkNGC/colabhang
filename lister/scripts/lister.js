@@ -27,7 +27,7 @@
   //-------------------- Functions -------------------------
   
   
-	HangoutDemo.prototype.firstItemLoad() {
+	HangoutDemo.prototype.firstItemLoad = function () {
 		addNewItemToList ("listTxt","1");
 	};
   
