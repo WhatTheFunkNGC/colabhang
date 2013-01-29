@@ -19,13 +19,16 @@
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)		
 		);
-		
-		//this.addNewItemToList("listTxt","1"); 				// add start element
+		this.firstElement();
 		}	
 	};	
   
   //-------------------- Functions -------------------------
   
+  //first line setup
+	function add firstElement() {
+			addNewItemToList("listTxt","1")); 					
+	};
   
 	//Display list Items
 	Lister.prototype.displayListItems = function () {	
