@@ -26,7 +26,7 @@
   //-------------------- Functions -------------------------
   
   //first line setup
-	function add firstElement() {
+	function addfirstElement() {
 			addNewItemToList("listTxt","1"); 					
 	};
   
