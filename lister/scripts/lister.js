@@ -32,8 +32,8 @@
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
 		console.log(" about to get user");
-		userID =  gapi.hangout.getParticipantById( gapi.hangout.getParticipantId() );
-		console.log(" got user");
+		userID =  gapi.hangout.getParticipantById( gapi.hangout.getParticipantId() ).toString;
+		console.log(" got user" + userID);
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
@@ -62,7 +62,7 @@
 		var idListLength, i;
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";		// get length of current list ID list
 		for (i = 1; i <= idListLength; i++){														// ---
-//			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };			// ---Check for id exsisting already
+			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };			// ---Check for id exsisting already
 //																							// ---if exsists break out of adding
 		}																							// ---
 		idListLength = (parseInt(idListLength, 10) + 1).toString();								// increase target list length
