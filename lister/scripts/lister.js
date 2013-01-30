@@ -41,10 +41,10 @@
 			li.appendChild(addDelButton(i));							// add delete button
 			//console.log("Button Added");
 			li.appendChild(addAddButton(i));							// add Add button
-			//console.log(" AddButton Added");
+			console.log(" AddButton Added");
 			li.appendChild(addIDAddButton(userID,i));
 			ul.appendChild(li);											// add list element to end of full list
-			//console.log("element added");	
+			console.log("element added");	
 			//li2 = document.createElement("li");
 			
 			//ul.appendChild(li2);	
@@ -139,6 +139,7 @@
 	// add Add ID list item button
 	function addIDAddButton(userID,itemNo) { 						// itemNo targets specific list item
 		var addIDBut = document.createElement("img");			// create element
+		console.log("ID but start");	
 		addIDBut.name = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
 		addIDBut.width = 50;
@@ -148,6 +149,7 @@
 				console.log("Add ID Press");
 				addUserToElement(userID,itemNo);					// adds users ID to list element
 		}; 
+		console.log("ID but end");	
 		return addIDBut;										// return button element
 	};
 	
