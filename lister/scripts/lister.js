@@ -44,16 +44,16 @@
 			//console.log(" AddButton Added");
 			li.appendChild(addIDAddButton(userID,i));
 			li.appendChild(addIDDelButton(userID,i));
+			console.log("Pree loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";
 			for (j = 1; j <= idListLength ; j++) {
+				console.log("in loop");
 				li.appendChild(userPicture(itemNo,j));
+				console.log("done loop");
 			};
 			
 			ul.appendChild(li);											// add list element to end of full list
-			//console.log("element added");	
-			//li2 = document.createElement("li");
-			
-			//ul.appendChild(li2);	
+			console.log("element added");	
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
@@ -200,6 +200,7 @@
 	
 	// add Add ID list item button
 	function userPicture(itemNo,idLoc) { 						// itemNo targets specific list item
+		console.log("img create");
 		var userPic = document.createElement("img");			// create element
 		var user = gapi.hangout.getParticipantById( gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc));
 		userPic.src = user.getImage().getUrl();
