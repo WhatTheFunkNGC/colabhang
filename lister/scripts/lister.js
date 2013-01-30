@@ -207,7 +207,7 @@
 		var user = gapi.hangout.getParticipantById(userID);
 		console.log("user got");
 		//userPic.src = user.getImage().getUrl();
-		var userObj = JSON.parse(user);
+		var userObj = eval(user);
 		console.log("img conv");
 		userPic.src = userObj.image.url;
 		// + "sz=50" to resize
