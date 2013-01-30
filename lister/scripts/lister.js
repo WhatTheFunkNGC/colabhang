@@ -199,17 +199,14 @@
 	};
 	
 	// add Add ID list item button
-	function userPicture(itemNo,idLoc) { 						// itemNo targets specific list item
+	function userPicture(itemNo,idLoc) { 														
 		console.log("img create");
-		var userPic = document.createElement("img");			// create element
-		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0";
+		var userPic = document.createElement("img");											// create element
+		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		console.log("user ID got = " + userID);
-		var user = gapi.hangout.getParticipantById(userID);
-		console.log("user got");
-		//userPic.src = user.getImage().getUrl();
-		var userObj = eval(user);
+		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		console.log("img conv");
-		userPic.src = userObj.person.image.url;
+		userPic.src = userObj.person.image.url;													// Use Avatar as image
 		// + "sz=50" to resize
 		console.log("img url got");
 		userPic.width = 50;
