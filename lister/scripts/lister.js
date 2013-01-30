@@ -30,26 +30,20 @@
 		var div, noItems, ul, li, li2, i, j, l, userID, idListLength, user;									
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
-		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
-		userID =  gapi.hangout.getParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
+		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
+		userID =  gapi.hangout.getLocalParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
 			li.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
-			//console.log("added txtInput");
 			li.appendChild(addDelButton(i));							// add delete button
-			//console.log("Button Added");
 			li.appendChild(addAddButton(i));							// add Add button
-			//console.log(" AddButton Added");
-			li.appendChild(addIDAddButton(userID,i));
-			li.appendChild(addIDDelButton(userID,i));
-			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";
-			console.log("Pree loop" + idListLength);
-			for (j = 1; j <= idListLength ; j++) {
-				console.log("in loop");
+			li.appendChild(addIDAddButton(userID,i));					// add Add user sing button
+			li.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
+			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
+			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
 				li.appendChild(userPicture(i,j));
-				console.log("done loop");
 			};
 			
 			ul.appendChild(li);											// add list element to end of full list
@@ -61,7 +55,9 @@
 	
 	};	
 	
-	//Sign user to element
+	/* signs user up to list element
+	- userID : User ID to add
+	- itemNo : Which List element */
 	function addUserToElement(userID,itemNo) {
 		var idListLength, i;
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
@@ -72,7 +68,9 @@
 		addNewItemToList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
 	};
 	
-	//Sign user off element
+	/* Removes User signed up to list element
+	- userID : User ID to remove
+	- itemNo : Which List element */
 	function removeUserFromElement(userID,itemNo) {
 		var idListLength, i;
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
@@ -90,14 +88,14 @@
 	- targetElement : Element number to remove from list */
 	function removeItemFromList(listName,targetElement){
 		var noItems, i, j;
-		noItems = gapi.hangout.data.getValue(listName) || "0";							// get the list length
+		noItems = gapi.hangout.data.getValue(listName) || "0";										// get the list length
 		j = targetElement;	
 		for ( i = targetElement; i < noItems; i++) {
-			j++;																				// j in loop always is i + 1
-			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
+			j++;																					// j in loop always is i + 1
+			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));		// save data in pos j into i
 		}
-		gapi.hangout.data.clearValue(listName + j);												// removes top variable holder
-		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());			// saves list length -1 to shared state
+		gapi.hangout.data.clearValue(listName + j);													// removes top variable holder
+		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
 	};
 	
 	/* Remove Genralised value system
@@ -107,68 +105,68 @@
 	function addNewItemToList (listName,targetLocation,entryValue){	
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0"; 									// get current number of list items
-		noItems = (parseInt(noItems, 10) + 1).toString();                							// add 1 to value and convert to string 
+		noItems = (parseInt(noItems, 10) + 1).toString();                						// add 1 to value and convert to string 
 		gapi.hangout.data.setValue(listName, noItems);											// Commits new item value
 		j = noItems;
-		for ( i = noItems; i > targetLocation; i--) {												// loop down moving element values up
+		for ( i = noItems; i > targetLocation; i--) {											// loop down moving element values up
 			j--;																				// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
-		if(!entryValue){ var entryValue = "List item " + targetLocation;};													// TESTING if no Value to enter, defult to blank
-		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 								// create textvalue for list item					
+		if(!entryValue){ var entryValue = "List item " + targetLocation;};						// TESTING if no Value to enter, defult to blank
+		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 						// create textvalue for list item					
 		console.log("LIST OBJECT " + noItems + " Created with value ");
 	};
 	
 //-------------------- Button creation -------------------------
 	
 	// add Delete list item button
-	function addDelButton(itemNo) { 						// itemNo targets specific list item
-		var delBut = document.createElement("img");			// create element
-		delBut.name = "delBut" + itemNo;					// fill in element details
+	function addDelButton(itemNo) { 								// itemNo targets specific list item
+		var delBut = document.createElement("img");					// create element
+		delBut.name = "delBut" + itemNo;							// fill in element details
 		delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 		delBut.width = 25;
 		delBut.height = 25;
 		delBut.align = "top";
-		delBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
+		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
 				removeItemFromList("listTxt",itemNo);
 		}; 
-		return delBut;										// return button element
+		return delBut;												// return button element
 	};
 	
 	// add Add list item button
-	function addAddButton(itemNo) { 						// itemNo targets specific list item
-		var addBut = document.createElement("img");			// create element
-		addBut.name = "addBut" + itemNo;					// fill in element details
+	function addAddButton(itemNo) { 									// itemNo targets specific list item
+		var addBut = document.createElement("img");						// create element
+		addBut.name = "addBut" + itemNo;								// fill in element details
 		addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
 		addBut.width = 25;
 		addBut.height = 25;
 		addBut.align = "top";
-		addBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
+		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press");
-				var listL = (parseInt(itemNo, 10) + 1).toString(); // gets targets below current for new element
-				addNewItemToList ("listTxt",listL); 				// adds blank list element below selected element
+				var listL = (parseInt(itemNo, 10) + 1).toString(); 		// gets targets below current for new element
+				addNewItemToList ("listTxt",listL); 					// adds blank list element below selected element
 		}; 
-		return addBut;										// return button element
+		return addBut;													// return button element
 	};
 	
 	// add Delete ID list item button
 	function addIDDelButton(userID,itemNo) { 						// itemNo targets specific list item
-		var delIDBut = document.createElement("img");			// create element
-		delIDBut.name = "delIDBut" + itemNo;					// fill in element details
+		var delIDBut = document.createElement("img");				// create element
+		delIDBut.name = "delIDBut" + itemNo;						// fill in element details
 		delIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 		delIDBut.width = 50;
 		delIDBut.height = 50;
 		delIDBut.align = "top";
-		delIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
+		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 				console.log("Del ID Press");
-				removeUserFromElement(userID,itemNo);					// adds users ID to list element
+				removeUserFromElement(userID,itemNo);				// adds users ID to list element
 		}; 
-		return delIDBut;										// return button element
+		return delIDBut;											// return button element
 	};
 	
 	// add Add ID list item button
-	function addIDAddButton(userID,itemNo) { 						// itemNo targets specific list item
+	function addIDAddButton(userID,itemNo) { 					// itemNo targets specific list item
 		var addIDBut = document.createElement("img");			// create element
 		addIDBut.name = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
@@ -177,7 +175,7 @@
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Add ID Press");
-				addUserToElement(userID,itemNo);					// adds users ID to list element
+				addUserToElement(userID,itemNo);				// adds users ID to list element
 		}; 
 		return addIDBut;										// return button element
 	};
@@ -206,13 +204,12 @@
 		console.log("user ID got = " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		console.log("img conv");
-		userPic.src = userObj.person.image.url;													// Use Avatar as image
-		// + "sz=50" to resize
+		userPic.src = userObj.person.image.url + "sz=50";										// Use Avatar as image (+ resize to 50x50)
 		console.log("img url got");
 		userPic.width = 50;
 		userPic.height = 50;
 		userPic.align = "top"; 
-		return userPic;										// return button element
+		return userPic;																			// return button element
 	};
 	
 	
