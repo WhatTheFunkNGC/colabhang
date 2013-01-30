@@ -44,7 +44,9 @@
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
 				console.log("loop" + j);
-				li.appendChild(userPicture(i,j));
+				var imger = userPicture(i,j);
+				console.log("loop" + j);
+				li.appendChild(imger);
 				console.log("loop" + j);
 			};
 			
