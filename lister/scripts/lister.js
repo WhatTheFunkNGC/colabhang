@@ -44,12 +44,11 @@
 			//console.log(" AddButton Added");
 			li.appendChild(addIDAddButton(userID,i));
 			li.appendChild(addIDDelButton(userID,i));
-			console.log("Pree ");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";
 			console.log("Pree loop" + idListLength);
 			for (j = 1; j <= idListLength ; j++) {
 				console.log("in loop");
-				li.appendChild(userPicture(itemNo,j));
+				li.appendChild(userPicture(i,j));
 				console.log("done loop");
 			};
 			
