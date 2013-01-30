@@ -209,7 +209,7 @@
 		//userPic.src = user.getImage().getUrl();
 		var userObj = eval(user);
 		console.log("img conv");
-		userPic.src = userObj.image.url;
+		userPic.src = userObj.person.image.url;
 		// + "sz=50" to resize
 		console.log("img url got");
 		userPic.width = 50;
