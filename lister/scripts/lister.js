@@ -201,8 +201,8 @@
 	// add Add ID list item button
 	function userPicture(itemNo,idLoc) { 						// itemNo targets specific list item
 		var userPic = document.createElement("img");			// create element
-		var user = gapi.hangout.getParticipantById( gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc);
-		//userPic.src = user.getImage().getUrl());
+		var user = gapi.hangout.getParticipantById( gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc));
+		userPic.src = user.getImage().getUrl());
 		userPic.width = 50;
 		userPic.height = 50;
 		userPic.align = "top";
