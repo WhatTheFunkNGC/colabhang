@@ -31,7 +31,9 @@
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
+		console.log(" about to get user");
 		userID = gapi.hangout.getLocalParticipantId();
+		console.log(" got user");
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
