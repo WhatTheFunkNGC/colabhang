@@ -59,7 +59,7 @@
 		myID = gapi.hangout.getLocalParticipantId();											// get current users ID
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";		// get length of current list ID list
 		for (i = 1; i <= idListLength; i++){														// ---
-			if (myID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){				// ---Check for id exsisting already
+			if (myID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i))				// ---Check for id exsisting already
 			return;																					// ---if exsists break out of adding
 		}																							// ---
 		idListLength = (parseInt(idListLength, 10) + 1).toString();								// increase target list length
