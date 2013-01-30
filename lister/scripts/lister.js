@@ -31,9 +31,7 @@
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
-		console.log(" about to get user");
-		userID =  gapi.hangout.getParticipantId();
-		console.log(" got user" + userID);
+		userID =  gapi.hangout.getParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
@@ -45,6 +43,7 @@
 			li.appendChild(addAddButton(i));							// add Add button
 			console.log(" AddButton Added");
 			li.appendChild(addIDAddButton(userID,i));
+			li.appendChild(addIDDelButton(userID,i));
 			ul.appendChild(li);											// add list element to end of full list
 			console.log("element added");	
 			//li2 = document.createElement("li");
@@ -60,13 +59,24 @@
 	//Sign user to element
 	function addUserToElement(userID,itemNo) {
 		var idListLength, i;
-		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";		// get length of current list ID list
+		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
 		for (i = 1; i <= idListLength; i++){														// ---
-			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };			// ---Check for id exsisting already
-//																							// ---if exsists break out of adding
+			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };// ---Check for id exsisting already if so quit
 		}																							// ---
-		idListLength = (parseInt(idListLength, 10) + 1).toString();								// increase target list length
+		idListLength = (parseInt(idListLength, 10) + 1).toString();									// increase target list length
 		addNewItemToList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
+	};
+	
+	//Sign user off element
+	function removeUserFromElement(userID,itemNo) {
+		var idListLength, i;
+		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
+		for (i = 1; i <= idListLength; i++){														// ---
+			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){
+				removeItemFromList("listTxt" + itemNo + "listID",i);
+			};																						// ---Check for id exsisting already if so quit
+		}																							// ---
+
 	};
 	
 	
@@ -137,6 +147,20 @@
 		return addBut;										// return button element
 	};
 	
+	// add Delete ID list item button
+	function addIDDelButton(userID,itemNo) { 						// itemNo targets specific list item
+		var delIDBut = document.createElement("img");			// create element
+		delIDBut.name = "delIDBut" + itemNo;					// fill in element details
+		delIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
+		delIDBut.width = 50;
+		delIDBut.height = 50;
+		delIDBut.align = "top";
+		delIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
+				console.log("Del ID Press");
+				removeUserFromElement(userID,itemNo);					// adds users ID to list element
+		}; 
+		return delIDBut;										// return button element
+	};
 	
 	// add Add ID list item button
 	function addIDAddButton(userID,itemNo) { 						// itemNo targets specific list item
@@ -161,6 +185,7 @@
 		var txtIn = document.createElement("input"); 					// create input element
 		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
+		txtIn.size = "40";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
