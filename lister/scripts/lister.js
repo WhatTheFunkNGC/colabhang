@@ -56,7 +56,7 @@
 	//Sign user to element
 	function addUserToElement(itemNo) {
 		var myID, idListLength, i;
-		myID = gapi.hangout.getLocalParticipantId();											// get current users ID
+		myID = gapi.hangout.getLocalParticipantId().toString();											// get current users ID
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";		// get length of current list ID list
 		for (i = 1; i <= idListLength; i++){														// ---
 			if (myID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i))				// ---Check for id exsisting already
