@@ -45,7 +45,7 @@
 			ul.appendChild(li);											// add list element to end of full list
 			//console.log("element added");	
 			li2 = document.createElement("li");
-			li2.appendChild(addIDAddButton(UserID,i));
+			li2.appendChild(addIDAddButton(userID,i));
 			ul.appendChild(li2);	
 		}
 	div = document.getElementById("list");				// get element
