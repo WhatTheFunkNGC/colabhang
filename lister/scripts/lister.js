@@ -202,8 +202,12 @@
 	function userPicture(itemNo,idLoc) { 						// itemNo targets specific list item
 		console.log("img create");
 		var userPic = document.createElement("img");			// create element
-		var user = gapi.hangout.getParticipantById( gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc));
+		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0";
+		console.log("user ID got = " + userID);
+		var user = gapi.hangout.getParticipantById(userID);
+		console.log("user got");
 		userPic.src = user.getImage().getUrl();
+		console.log("img url got");
 		userPic.width = 50;
 		userPic.height = 50;
 		userPic.align = "top"; 
