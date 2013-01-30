@@ -27,10 +27,11 @@
   
 	//Display list Items
 	Lister.prototype.displayListItems = function () {	
-		var div, noItems, ul, li, li2, i, l;									
+		var div, noItems, ul, li, li2, i, l, userID;									
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
+		userID = gapi.hangout.getLocalParticipantId();
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
@@ -44,7 +45,7 @@
 			ul.appendChild(li);											// add list element to end of full list
 			//console.log("element added");	
 			li2 = document.createElement("li");
-			li.appendChild(addIDAddButton(i));
+			li2.appendChild(addIDAddButton(UserID,i));
 			ul.appendChild(li2);	
 		}
 	div = document.getElementById("list");				// get element
@@ -54,16 +55,15 @@
 	};	
 	
 	//Sign user to element
-	function addUserToElement(itemNo) {
-		var myID, idListLength, i;
-		myID = gapi.hangout.getLocalParticipantId().toString();											// get current users ID
+	function addUserToElement(userID,itemNo) {
+		var idListLength, i;
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";		// get length of current list ID list
 		for (i = 1; i <= idListLength; i++){														// ---
-			if (myID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i))				// ---Check for id exsisting already
+			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i))				// ---Check for id exsisting already
 			return;																					// ---if exsists break out of adding
 		}																							// ---
 		idListLength = (parseInt(idListLength, 10) + 1).toString();								// increase target list length
-		addNewItemToList ("listTxt" + itemNo + "listID",idListLength,myID);						// add ID to list
+		addNewItemToList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
 	};
 	
 	
@@ -136,7 +136,7 @@
 	
 	
 	// add Add ID list item button
-	function addIDAddButton(itemNo) { 						// itemNo targets specific list item
+	function addIDAddButton(userID,itemNo) { 						// itemNo targets specific list item
 		var addIDBut = document.createElement("img");			// create element
 		addIDBut.name = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
@@ -145,7 +145,7 @@
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Add ID Press");
-				addUserToElement(itemNo);					// adds users ID to list element
+				addUserToElement(userID,itemNo);					// adds users ID to list element
 		}; 
 		return addIDBut;										// return button element
 	};
