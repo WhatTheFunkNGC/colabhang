@@ -32,7 +32,7 @@
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
 		console.log(" about to get user");
-		userID = gapi.hangout.getLocalParticipantId();
+		userID =  gapi.hangout.getParticipantById( gapi.hangout.getParticipantId() );
 		console.log(" got user");
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		//console.log("Begin display loop");
