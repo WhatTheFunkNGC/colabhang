@@ -42,11 +42,12 @@
 			//console.log("Button Added");
 			li.appendChild(addAddButton(i));							// add Add button
 			//console.log(" AddButton Added");
+			li.appendChild(addIDAddButton(userID,i));
 			ul.appendChild(li);											// add list element to end of full list
 			//console.log("element added");	
-			li2 = document.createElement("li");
-			li2.appendChild(addIDAddButton(userID,i));
-			ul.appendChild(li2);	
+			//li2 = document.createElement("li");
+			
+			//ul.appendChild(li2);	
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
