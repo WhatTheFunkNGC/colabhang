@@ -27,7 +27,7 @@
   
 	//Display list Items
 	Lister.prototype.displayListItems = function () {	
-		var div, noItems, ul, li, li2, i, l, userID;									
+		var div, noItems, ul, li, li2, i, j, l, userID, idListLength, user;									
 		ul = document.createElement("ul");								// create element
 		ul.listStyleType= "decimal"	;									// display numberd items
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";		// get list Length
@@ -44,6 +44,11 @@
 			//console.log(" AddButton Added");
 			li.appendChild(addIDAddButton(userID,i));
 			li.appendChild(addIDDelButton(userID,i));
+			idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";
+			for (j = 1; j <= idListLength ; j++) {
+				li.appendChild(userPicture(itemNo,j));
+			};
+			
 			ul.appendChild(li);											// add list element to end of full list
 			//console.log("element added");	
 			//li2 = document.createElement("li");
@@ -192,6 +197,19 @@
 		}; 		
 		return txtIn;													// return txtInput element
 	};
+	
+	// add Add ID list item button
+	function userPicture(itemNo,idLoc) { 						// itemNo targets specific list item
+		var userPic = document.createElement("img");			// create element
+		var user = gapi.hangout.getParticipantById( gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc);
+		userPic.src = user.person.image.url;
+		userPic.width = 50;
+		userPic.height = 50;
+		userPic.align = "top";
+		}; 
+		return userPic;										// return button element
+	};
+	
 	
 		
   var Lister = new Lister();	
