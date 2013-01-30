@@ -206,7 +206,7 @@
 		console.log("user ID got = " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		console.log("img conv");
-		userPic.src = userObj.person.image.url;													// Use Avatar as image
+		userPic.src = userObj.person.image.url + "sz=50";													// Use Avatar as image
 		// + "sz=50" to resize
 		console.log("img url got");
 		userPic.width = 50;
