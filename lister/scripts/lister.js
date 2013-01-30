@@ -205,8 +205,7 @@
 		userPic.src = user.getImage().getUrl();
 		userPic.width = 50;
 		userPic.height = 50;
-		userPic.align = "top";
-		}; 
+		userPic.align = "top"; 
 		return userPic;										// return button element
 	};
 	
