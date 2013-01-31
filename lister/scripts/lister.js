@@ -33,29 +33,35 @@
 		userID =  gapi.hangout.getLocalParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		for (i = 1; i <= noItems; i++) {
+		console.log("1");
 			li = document.createElement("tr");							// Create new element to attach
 			e1 = document.createElement("td");
+			console.log("2");
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e2 = document.createElement("td");
 			e2.appendChild(addDelButton(i));							// add delete button
 			e2.appendChild(addAddButton(i));							// add Add button
+			console.log("3");
 			li = document.createElement(e1);
 			li = document.createElement(e2);
-			
+			console.log("4");
 			li2 = document.createElement("tr");
 			e3 = document.createElement("td");
 			e3.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e3.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
 			e4 = document.createElement("td");
+			console.log("5");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
 				e4.appendChild(userPicture(i,j));
 			};
+			console.log("6");
 			li2.appendChild(e3);
 			li2.appendChild(e4);
 			
 			ul.appendChild(li);											// add list element to end of full list	
 			ul.appendChild(li2);
+			console.log("7");
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
