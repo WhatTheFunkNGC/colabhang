@@ -28,13 +28,12 @@
 	//Display list Items
 	Lister.prototype.displayListItems = function () {	
 		var div, noItems, ul, li, li2, i, j, l, userID, idListLength, user;									
-		ul = document.createElement("ul");								// create element
-		ul.listStyleType= "decimal"	;									// display numberd items
+		ul = document.createElement("table");								// create element
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		userID =  gapi.hangout.getLocalParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		for (i = 1; i <= noItems; i++) {
-			li = document.createElement("li");							// Create new element to attach
+			li = document.createElement("tr");							// Create new element to attach
 			li.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			li.appendChild(addDelButton(i));							// add delete button
 			li.appendChild(addAddButton(i));							// add Add button
