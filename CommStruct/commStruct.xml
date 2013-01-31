@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>	
+<Module>	
+  <ModulePrefs title="Commuication Structurer">	
+    <Require feature="rpc"/>	
+    <Require feature="views"/>	
+  </ModulePrefs>	
+  <Content type="html">	
+    <![CDATA[	
+      <script src="//talkgadget.google.com/hangouts/api/hangout.js?v=1.2"></script>	    	
+	  
+      <div id="userList"></div>	
+      	
+      <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/commStruct.js"></script>	
+    ]]>	
+  </Content>	
+</Module>	

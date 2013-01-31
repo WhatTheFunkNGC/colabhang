@@ -11,11 +11,7 @@
 	Lister.prototype.onApiReady = function (event) {	
 		if (event.isApiReady === true) {	
 			console.log("Lister Ready");	
-	  
-		//document.getElementById("btnAddItem").onclick =		// old method saved for refrance
-        //this.btnAddItemClick.bind(this);
-
-		
+	
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
 		this.displayListItems.bind(this)		
 		);
