@@ -51,6 +51,7 @@
 			e3.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e3.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
 			e4 = document.createElement("td");
+			e4.style.width= "250"; 
 			console.log("5");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
