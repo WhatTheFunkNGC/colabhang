@@ -38,7 +38,6 @@
       li = document.createElement("li");	
       if (participants[i].person) {	
         li.innerHTML = participants[i].person.displayName;	
-      }
       }	
       ul.appendChild(li);	
     }	
