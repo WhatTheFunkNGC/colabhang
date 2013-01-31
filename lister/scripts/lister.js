@@ -47,6 +47,7 @@
 			console.log("4");
 			li2 = document.createElement("tr");
 			e3 = document.createElement("td");
+			e3.style.width= "50";
 			e3.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e3.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
 			e4 = document.createElement("td");
@@ -169,8 +170,8 @@
 		var delIDBut = document.createElement("img");				// create element
 		delIDBut.name = "delIDBut" + itemNo;						// fill in element details
 		delIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
-		delIDBut.width = 50;
-		delIDBut.height = 50;
+		delIDBut.width = 25;
+		delIDBut.height = 25;
 		delIDBut.align = "top";
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 				console.log("Del ID Press");
@@ -184,8 +185,8 @@
 		var addIDBut = document.createElement("img");			// create element
 		addIDBut.name = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
-		addIDBut.width = 50;
-		addIDBut.height = 50;
+		addIDBut.width = 25;
+		addIDBut.height = 25;
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 				console.log("Add ID press");
@@ -200,7 +201,7 @@
 		var txtIn = document.createElement("input"); 					// create input element
 		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
-		txtIn.size = "25";
+		txtIn.size = "35";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
@@ -214,9 +215,9 @@
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
-		userPic.src = userObj.person.image.url + "sz=50";										// Use Avatar as image (+ resize to 50x50)
-		userPic.width = 50;
-		userPic.height = 50;
+		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
+		userPic.width = 25;
+		userPic.height = 25;
 		userPic.align = "top"; 
 		return userPic;																			// return button element
 	};
