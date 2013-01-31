@@ -91,13 +91,14 @@
 	function removeItemFromList(listName,targetElement){
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0";										// get the list length
+		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
 		j = targetElement;	
 		for ( i = targetElement; i < noItems; i++) {
 			j++;																					// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));		// save data in pos j into i
 		}
 		gapi.hangout.data.clearValue(listName + j);													// removes top variable holder
-		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
+		//gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
 	};
 	
 	/* Remove Genralised value system
@@ -200,14 +201,11 @@
 	
 	// add Add ID list item button
 	function userPicture(itemNo,idLoc) { 														
-		console.log("img create");
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		console.log("user ID got = " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
-		console.log("img conv");
 		userPic.src = userObj.person.image.url + "sz=50";										// Use Avatar as image (+ resize to 50x50)
-		console.log("img url got");
 		userPic.width = 50;
 		userPic.height = 50;
 		userPic.align = "top"; 
