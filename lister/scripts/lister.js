@@ -42,8 +42,8 @@
 			e2.appendChild(addDelButton(i));							// add delete button
 			e2.appendChild(addAddButton(i));							// add Add button
 			console.log("3");
-			li = document.createElement(e1);
-			li = document.createElement(e2);
+			li.appendChild(e1);
+			li.appendChild(e2);
 			console.log("4");
 			li2 = document.createElement("tr");
 			e3 = document.createElement("td");
