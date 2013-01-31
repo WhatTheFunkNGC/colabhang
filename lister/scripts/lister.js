@@ -42,8 +42,9 @@
 			li.appendChild(e1);
 			li2 = document.createElement("tr");
 			e2 = document.createElement("td");
-			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
-			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
+			//e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
+			//e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
+			e2.appendChild(addIDControlButton(userID,i));				
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
 				e2.appendChild(userPicture(i,j));
@@ -117,7 +118,7 @@
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
 		//if(!entryValue){ var entryValue = "List item " + targetLocation;};						// TESTING if no Value to enter, defult to blank
-		if(!entryValue){ var entryValue = "";};						
+		if(!entryValue){ var entryValue = "";};										
 		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 						// create textvalue for list item					
 		console.log("LIST OBJECT " + noItems + " Created with value ");
 	};
@@ -183,6 +184,29 @@
 				addUserToElement(userID,itemNo);				// adds users ID to list element
 		}; 
 		return addIDBut;										// return button element
+	};
+	
+	function addIDControlButton(userID,itemNo) { 					// itemNo targets specific list item
+		var state = true;												// false = delete, True = Add
+		var IDBut = document.createElement("img");			// create element
+		IDBut.name = "addIDBut" + itemNo;					// fill in element details
+		IDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		IDBut.width = 25;
+		IDBut.height = 25;
+		addIDBut.align = "top";
+		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
+				console.log("ID Btn press");
+				if(state){
+					removeUserFromElement(userID,itemNo);
+					addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+					state = false;
+				} else { 
+					addUserToElement(userID,itemNo);
+					delIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
+					state = true;
+				};				// adds users ID to list element
+		}; 
+		return IDBut;										// return button element
 	};
 	
 	
