@@ -33,7 +33,6 @@
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		userID =  gapi.hangout.getLocalParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
-		//console.log("Begin display loop");
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("li");							// Create new element to attach
 			li.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
@@ -42,14 +41,11 @@
 			li.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			li.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
-			console.log("LENGTH =" + idListLength);
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
 				li.appendChild(userPicture(i,j));
-				console.log("loop" + j);
 			};
 			
-			ul.appendChild(li);											// add list element to end of full list
-			console.log("element added");	
+			ul.appendChild(li);											// add list element to end of full list	
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
@@ -176,7 +172,7 @@
 		addIDBut.height = 50;
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
-				console.log("Add ID Press");
+				console.log("Add ID press");
 				addUserToElement(userID,itemNo);				// adds users ID to list element
 		}; 
 		return addIDBut;										// return button element
@@ -192,7 +188,6 @@
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
-				console.log("TxtInputChanged"); 
 				gapi.hangout.data.setValue("listTxt" + itemNo, txtIn.value); 
 		}; 		
 		return txtIn;													// return txtInput element
@@ -202,13 +197,11 @@
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
-		console.log("user ID got = " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		userPic.src = userObj.person.image.url + "sz=50";										// Use Avatar as image (+ resize to 50x50)
 		userPic.width = 50;
 		userPic.height = 50;
 		userPic.align = "top"; 
-		console.log("img done");
 		return userPic;																			// return button element
 	};
 	
