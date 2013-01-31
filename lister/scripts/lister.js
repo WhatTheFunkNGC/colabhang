@@ -44,7 +44,8 @@
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			console.log("LENGTH =" + idListLength);
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
-				li.appendChild(userPicture(i,j));
+				var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc);
+				if(!userID){ li.appendChild(userPicture(i,userID));};
 				console.log("loop" + j);
 			};
 			
@@ -91,14 +92,13 @@
 	function removeItemFromList(listName,targetElement){
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0";										// get the list length
-		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
 		j = targetElement;	
 		for ( i = targetElement; i < noItems; i++) {
 			j++;																					// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));		// save data in pos j into i
 		}
 		gapi.hangout.data.clearValue(listName + j);													// removes top variable holder
-		//gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
+		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
 	};
 	
 	/* Remove Genralised value system
@@ -202,7 +202,7 @@
 	// add Add ID list item button
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
-		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
+		//var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		console.log("user ID got = " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		userPic.src = userObj.person.image.url + "sz=50";										// Use Avatar as image (+ resize to 50x50)
