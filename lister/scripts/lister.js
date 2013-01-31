@@ -42,11 +42,9 @@
 			li.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			li.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
+			console.log("LENGTH =" + idListLength);
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
-				console.log("loop" + j);
-				var imger = userPicture(i,j);
-				console.log("loop" + j);
-				li.appendChild(imger);
+				li.appendChild(userPicture(i,j));
 				console.log("loop" + j);
 			};
 			
