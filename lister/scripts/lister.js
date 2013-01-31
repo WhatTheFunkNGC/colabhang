@@ -30,10 +30,9 @@
 		var div, noItems, ul, li, li2, e1, e2, e3, e4, i, j, l, userID, idListLength, user;									
 		ul = document.createElement("table");								// create element
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
-		userID =  gapi.hangout.getLocalParticipantId();						// IS IS AN OLD COMMAND, should use getLocalParticipantId() but currently not functional
+		userID =  gapi.hangout.getLocalParticipantId();					// get the current participants ID
 		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
 		for (i = 1; i <= noItems; i++) {
-		console.log("1");
 			li = document.createElement("tr");							// Create new element to attach
 			e1 = document.createElement("td");
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
