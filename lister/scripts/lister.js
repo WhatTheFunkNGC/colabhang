@@ -44,8 +44,7 @@
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			console.log("LENGTH =" + idListLength);
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
-				var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc);
-				if(!userID){ li.appendChild(userPicture(i,userID));};
+				li.appendChild(userPicture(i,j));
 				console.log("loop" + j);
 			};
 			
@@ -202,7 +201,7 @@
 	// add Add ID list item button
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
-		//var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
+		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		console.log("user ID got = " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		userPic.src = userObj.person.image.url + "sz=50";										// Use Avatar as image (+ resize to 50x50)
