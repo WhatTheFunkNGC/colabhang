@@ -183,7 +183,7 @@
 		var txtIn = document.createElement("input"); 					// create input element
 		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
-		txtIn.size = "40";
+		txtIn.size = "30";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
