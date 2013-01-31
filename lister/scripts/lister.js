@@ -116,7 +116,8 @@
 			j--;																				// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
-		if(!entryValue){ var entryValue = "List item " + targetLocation;};						// TESTING if no Value to enter, defult to blank
+		//if(!entryValue){ var entryValue = "List item " + targetLocation;};						// TESTING if no Value to enter, defult to blank
+		if(!entryValue){ var entryValue = "";};						
 		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 						// create textvalue for list item					
 		console.log("LIST OBJECT " + noItems + " Created with value ");
 	};
@@ -190,7 +191,7 @@
 		var txtIn = document.createElement("input"); 					// create input element
 		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
-		txtIn.size = "30";
+		txtIn.size = "32";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
