@@ -36,34 +36,22 @@
 		console.log("1");
 			li = document.createElement("tr");							// Create new element to attach
 			e1 = document.createElement("td");
-			console.log("2");
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
-			e2 = document.createElement("td");
-			e2.appendChild(addDelButton(i));							// add delete button
-			e2.appendChild(addAddButton(i));							// add Add button
-			console.log("3");
+			e1.appendChild(addDelButton(i));							// add delete button
+			e1.appendChild(addAddButton(i));							// add Add button
 			li.appendChild(e1);
-			li.appendChild(e2);
-			console.log("4");
 			li2 = document.createElement("tr");
-			e3 = document.createElement("td");
-			e3.style.width= "50";
-			e3.appendChild(addIDAddButton(userID,i));					// add Add user sing button
-			e3.appendChild(addIDDelButton(userID,i));					// add Remove user sign button
-			e4 = document.createElement("td");
-			e4.style.width= "250"; 
-			console.log("5");
+			e2 = document.createElement("td");
+			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
+			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
-				e4.appendChild(userPicture(i,j));
+				e2.appendChild(userPicture(i,j));
 			};
-			console.log("6");
-			li2.appendChild(e3);
-			li2.appendChild(e4);
+			li2.appendChild(e2);
 			
 			ul.appendChild(li);											// add list element to end of full list	
 			ul.appendChild(li2);
-			console.log("7");
 		}
 	div = document.getElementById("list");				// get element
 	div.innerHTML = "";									// clear exsisitn displayed list
