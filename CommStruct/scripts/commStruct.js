@@ -62,7 +62,7 @@
 	- rawTime : number of seconds
 	- return : string "00:00:00" format */
 	function displayTimerString(rawTime){
-		var hours, minutes, seconds, dateWrap;
+		var hours, minutes, seconds;
 		hours = parseInt(rawTime / 3600);				// Mod to get hours
 		rawTime %= 3600;								// get remaineder
 		minutes = parseInt(rawTime / 60);				// Mod to get mins
