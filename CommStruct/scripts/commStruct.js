@@ -7,8 +7,7 @@
 
 	
 	//-------------------- VARS -------------------------	
-	var totalTime;
-	var SpeakTime;
+	
 	
   }	
  
@@ -24,6 +23,10 @@
 		);		
 		this.listUsers();							// list users
 		}	
+		console.log("global Vars"); 
+		var totalTime;
+		var SpeakTime;
+		
 		console.log("creating timer var"); 
 		var tTimer = setInterval(function(){userTimer()},1000);
 		console.log("completed timer var");
