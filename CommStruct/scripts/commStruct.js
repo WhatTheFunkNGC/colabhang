@@ -3,7 +3,13 @@
   	
   function commStruct() {	
     console.log("Starting...");	
-    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	
+    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
+
+	
+	//-------------------- VARS -------------------------	
+	var totalTime;
+	var SpeakTime;
+	
   }	
  
 	//-------------------- Listeners -------------------------
@@ -18,6 +24,10 @@
 		);		
 		this.listUsers();							// list users
 		}	
+		console.log("creating timer var"); 
+		var tTimer = setInterval(function(){userTimer()},1000);
+		console.log("completed timer var");
+		var dTimer = setInterval(function(){listUsers},5000);
   };	
   	
 	//-------------------- Functions -------------------------
@@ -37,13 +47,23 @@
     for (i = 0; i < l; i++) {	
       li = document.createElement("li");	
       if (participants[i].person) {	
-        li.innerHTML = participants[i].person.displayName;	
+        li.innerHTML = participants[i].person.displayName + "<br>   Active time :" + totalTime;	
       }	
       ul.appendChild(li);	
     }	
     div = document.getElementById("userList");	
     div.appendChild(ul);	
+	console.log(Displayed); 
   };	
+  
+  
+  
+
+	function userTimer() {
+		totalTime = totalTime++ ;
+		console.log("time = " + totalTime); 
+	}
+	
   	
   var commStruct = new commStruct();	
 }(window));
