@@ -13,10 +13,6 @@
   console.log("global Vars"); 
 		var totalTime ;
 		var SpeakTime;
-		
-		var oneHour = 1000 * 60 * 60;
-		var oneMin = 1000 * 60;
-		var oneSec = 1000;
  
 	//-------------------- Listeners -------------------------
  
@@ -67,7 +63,7 @@
   };	
   
 	function displayTimer(rawTime){
-	var, hours, minutes, seconds, dateWrap;
+	var hours, minutes, seconds, dateWrap;
 		hours = parseInt(rawTime / 3600);
 		rawTime %= 3600;
 		minutes = parseInt(rawTime / 60);
