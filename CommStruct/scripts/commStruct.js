@@ -11,7 +11,7 @@
 	
   }	
   console.log("global Vars"); 
-		var totalTime = 0;
+		var totalTime ;
 		var SpeakTime;
  
 	//-------------------- Listeners -------------------------
@@ -27,12 +27,12 @@
 		console.log("lis Users");
 		//this.listUsers();							// list users
 		}	
-		
+		totalTime = 0;
 		
 		console.log("creating timer var"); 
 		var tTimer = setInterval(function() {userTimer()},1000);
 		console.log("completed timer var");
-		var dTimer = setInterval(function() {this.listUsers()},5000);
+		var dTimer = setInterval(function() {listUsers()},5000);
   };	
   	
 	//-------------------- Functions -------------------------
@@ -65,7 +65,7 @@
   
 
 	function userTimer() {
-		totalTime = totalTime++ ;
+		totalTime = totalTime + 1 ;
 		console.log("time = " + totalTime); 
 	}
 	
