@@ -10,7 +10,6 @@
 	
 	
   }	
-  console.log("global Vars"); 
 		var totalTime ;
 		var SpeakTime;
  
@@ -24,14 +23,13 @@
 		gapi.hangout.onParticipantsChanged.add(		// Call function on event
         this.onParticipantsChanged.bind(this)	
 		);	
-		console.log("lis Users");
-		//this.listUsers();							// list users
+		listUsers();							// list users
 		}	
 		totalTime = 1;
 		
-		console.log("creating timer var"); 
+
 		var tTimer = setInterval(function() {userTimer()},1000);
-		console.log("completed timer var");
+
 		var dTimer = setInterval(function() {listUsers()},5000);
   };	
   	
@@ -52,7 +50,7 @@
     for (i = 0; i < l; i++) {	
       tr = document.createElement("tr");	
       if (participants[i].person) {	
-        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimer(totalTime);	
+        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimerString(totalTime);	
       }	
       ul.appendChild(tr);	
     }	
