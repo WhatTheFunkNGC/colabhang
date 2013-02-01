@@ -52,7 +52,7 @@
     for (i = 0; i < l; i++) {	
       tr = document.createElement("tr");	
       if (participants[i].person) {	
-        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimer(totalTime).toTimeString;	
+        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimer(totalTime);	
       }	
       ul.appendChild(tr);	
     }	
@@ -62,20 +62,19 @@
 	console.log("Displayed"); 
   };	
   
-	function displayTimer(rawTime){
+	function displayTimerString(rawTime){
 		var hours, minutes, seconds, dateWrap;
 		hours = parseInt(rawTime / 3600);
 		rawTime %= 3600;
 		minutes = parseInt(rawTime / 60);
 		rawTime %= 60;
 		seconds = rawTime;
-		dateWrap = new Date();
-		dateWrap.setHours(hours);
-		dateWrap.setMinutes(minutes);
-		dateWrap.setSeconds(seconds);
+		if (seconds < 10) { seconds = "0" + seconds;};
+		if (minutes < 10) { minutes = "0" + minutes;};
+		if (hours < 10) { hours = "0" + hours;};
 		
 		
-		return dateWrap;
+		return hours + ":" + minutes + ":" + seconds;
 	}
   
 
