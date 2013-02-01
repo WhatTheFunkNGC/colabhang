@@ -56,9 +56,10 @@
       }	
       ul.appendChild(li);	
     }	
-    div = document.getElementById("userList");	
+    div = document.getElementById("userList");
+	div.innerHTML = "";		
     div.appendChild(ul);	
-	console.log(Displayed); 
+	console.log("Displayed"); 
   };	
   
   
