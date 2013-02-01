@@ -20,17 +20,18 @@
 	  
 		gapi.hangout.onParticipantsChanged.add(		// Call function on event
         this.onParticipantsChanged.bind(this)	
-		);		
-		this.listUsers();							// list users
+		);	
+		console.log("lis Users");
+		//this.listUsers();							// list users
 		}	
 		console.log("global Vars"); 
 		var totalTime;
 		var SpeakTime;
 		
 		console.log("creating timer var"); 
-		var tTimer = setInterval(function(){userTimer()},1000);
+		var tTimer = setInterval(userTimer(),1000);
 		console.log("completed timer var");
-		var dTimer = setInterval(function(){listUsers},5000);
+		var dTimer = setInterval(listUsers(),5000);
   };	
   	
 	//-------------------- Functions -------------------------
