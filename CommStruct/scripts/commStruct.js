@@ -63,7 +63,7 @@
   };	
   
 	function displayTimer(rawTime){
-	var hours, minutes, seconds, dateWrap;
+		var hours, minutes, seconds, dateWrap;
 		hours = parseInt(rawTime / 3600);
 		rawTime %= 3600;
 		minutes = parseInt(rawTime / 60);
@@ -73,8 +73,8 @@
 		dateWrap.setSeconds() = seconds;
 		dateWrap.setMinutes() = minutes;
 		dateWrap.sethours() = minutes;
-	return dateWrap;
-	
+		return dateWrap;
+	}
   
 
 	function userTimer() {
