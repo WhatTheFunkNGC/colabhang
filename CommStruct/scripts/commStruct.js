@@ -7,7 +7,9 @@
 
 	
 	//-------------------- VARS -------------------------	
-	
+	console.log("global Vars"); 
+		var totalTime;
+		var SpeakTime;
 	
   }	
  
@@ -24,14 +26,12 @@
 		console.log("lis Users");
 		//this.listUsers();							// list users
 		}	
-		console.log("global Vars"); 
-		var totalTime;
-		var SpeakTime;
+		
 		
 		console.log("creating timer var"); 
 		var tTimer = setInterval(function() {userTimer()},1000);
 		console.log("completed timer var");
-		var dTimer = setInterval(function() {listUsers()},5000);
+		var dTimer = setInterval(function() {this.listUsers()},5000);
   };	
   	
 	//-------------------- Functions -------------------------
@@ -67,6 +67,10 @@
 		totalTime = totalTime++ ;
 		console.log("time = " + totalTime); 
 	}
+	
+	function dataGet(){
+		return totalTime;
+		}
 	
   	
   var commStruct = new commStruct();	
