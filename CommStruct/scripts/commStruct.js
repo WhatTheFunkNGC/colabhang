@@ -7,11 +7,12 @@
 
 	
 	//-------------------- VARS -------------------------	
-	console.log("global Vars"); 
-		var totalTime;
-		var SpeakTime;
+	
 	
   }	
+  console.log("global Vars"); 
+		var totalTime;
+		var SpeakTime;
  
 	//-------------------- Listeners -------------------------
  
