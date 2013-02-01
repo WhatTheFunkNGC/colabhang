@@ -70,7 +70,7 @@
 		rawTime %= 60;
 		seconds = rawTime;
 		dateWrap = new Date();
-		dateWrap.sethours(hours);
+		dateWrap.setHours(hours);
 		dateWrap.setMinutes(minutes);
 		dateWrap.setSeconds(seconds);
 		
