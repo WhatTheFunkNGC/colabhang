@@ -29,9 +29,9 @@
 		var SpeakTime;
 		
 		console.log("creating timer var"); 
-		var tTimer = setInterval(userTimer(),1000);
+		var tTimer = setInterval(function() {userTimer()},1000);
 		console.log("completed timer var");
-		var dTimer = setInterval(listUsers(),5000);
+		var dTimer = setInterval(function() {listUsers()},5000);
   };	
   	
 	//-------------------- Functions -------------------------
