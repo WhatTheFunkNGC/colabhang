@@ -11,7 +11,7 @@
 	
   }	
   console.log("global Vars"); 
-		var totalTime;
+		var totalTime = 0;
 		var SpeakTime;
  
 	//-------------------- Listeners -------------------------
@@ -41,10 +41,10 @@
 	commStruct.prototype.onParticipantsChanged = function (event) {	
     var div = document.getElementById("userList");	
     div.innerHTML = "";	
-    this.listUsers();	
+    listUsers();	
   };	
   	
-  commStruct.prototype.listUsers = function () {	
+  function listUsers() {	
     var div, participants, ul, li, i, l;	
     participants = gapi.hangout.getParticipants();	
     ul = document.createElement("ul");	
