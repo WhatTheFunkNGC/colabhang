@@ -13,6 +13,10 @@
   console.log("global Vars"); 
 		var totalTime ;
 		var SpeakTime;
+		
+		var oneHour = 1000 * 60 * 60;
+		var oneMin = 1000 * 60;
+		var oneSec = 1000;
  
 	//-------------------- Listeners -------------------------
  
@@ -27,7 +31,7 @@
 		console.log("lis Users");
 		//this.listUsers();							// list users
 		}	
-		totalTime = 0;
+		totalTime = 1;
 		
 		console.log("creating timer var"); 
 		var tTimer = setInterval(function() {userTimer()},1000);
@@ -45,16 +49,16 @@
   };	
   	
   function listUsers() {	
-    var div, participants, ul, li, i, l;	
+    var div, participants, ul, tr, i, l;	
     participants = gapi.hangout.getParticipants();	
-    ul = document.createElement("ul");	
+    ul = document.createElement("table");	
     l = participants.length;	
     for (i = 0; i < l; i++) {	
-      li = document.createElement("li");	
+      tr = document.createElement("tr");	
       if (participants[i].person) {	
-        li.innerHTML = participants[i].person.displayName + "<br>   Active time :" + totalTime;	
+        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimer(totalTime).toTimeString;	
       }	
-      ul.appendChild(li);	
+      ul.appendChild(tr);	
     }	
     div = document.getElementById("userList");
 	div.innerHTML = "";		
@@ -62,17 +66,25 @@
 	console.log("Displayed"); 
   };	
   
-  
+	function displayTimer(rawTime){
+	var, hours, minutes, seconds, dateWrap;
+		hours = parseInt(rawTime / 3600);
+		rawTime %= 3600;
+		minutes = parseInt(rawTime / 60);
+		rawTime %= 60;
+		seconds = rawTime;
+		dateWrap = new Date();
+		dateWrap.setSeconds() = seconds;
+		dateWrap.setMinutes() = minutes;
+		dateWrap.sethours() = minutes;
+	return dateWrap;
+	
   
 
 	function userTimer() {
 		totalTime = totalTime + 1 ;
-		console.log("time = " + totalTime); 
 	}
 	
-	function dataGet(){
-		return totalTime;
-		}
 	
   	
   var commStruct = new commStruct();	
