@@ -8,6 +8,8 @@
     //-------------------- VARS -------------------------	
 		var totalTime;		// glabal var - how long user has been connected
 		var SpeakTime;		// global var - how long user has spoken for total
+		var userData;		// global object - hold all keey users data. to be updated regularly
+		var userDataPos;	// golbal var - marks the position that the local users data is stored in "userData"
 		
 		var refreshUserList = 1000; // refresh rate of main display
  
@@ -18,13 +20,12 @@
 		if (event.isApiReady === true) {			// on ready
 			console.log("API Ready");	
 	  
-		gapi.hangout.onParticipantsChanged.add(		// Call function on event
-        this.onParticipantsChanged.bind(this)	
-		);	
+		
 		listUsers();							// list users
 		}	
 		totalTime = 1;
-		
+
+		startSystem();
 
 		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
 
@@ -33,10 +34,21 @@
   	
 	//-------------------- Functions -------------------------
  	
-	// on new participant joining - refresh display
-	commStruct.prototype.onParticipantsChanged = function (event) {	
-    var div = document.getElementById("userList");	
-    listUsers();	
+	// on new user joining - refresh display
+	function startSystem(){
+	
+	var userDataTxt = gapi.hangout.data.getValue("userData") || false;
+	if(!userData) { 
+		var txt= '{"users":[]}';
+		userData = eval("(" + txt + ")");	
+	} else { userData = eval(userDataTxt); };
+	userDataPos = userData.users.length;
+	userData.users[i].id = gapi.hangout.getLocalParticipantId();
+	userData.users[i].name = getLocalParticipant().person.displayName;
+	userData.users[i].hasMic = getLocalParticipant().person.hasMicrophone;
+	userData.users[i].connectionLength = "1";
+	userData.users[i].commLength = "0";
+	gapi.hangout.data.setValue("userData", JSON.stringify(userData));
   };	
   	
 	// display list of partisipants with relivant time stats
@@ -48,7 +60,7 @@
     for (i = 0; i < l; i++) {	
       tr = document.createElement("tr");	
       if (participants[i].person) {	
-        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimerString(totalTime); // list usrs connection time
+        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimerString(userData[userDataPos].connectionLength); // list usrs connection time
       }	
       ul.appendChild(tr);	
     }	
