@@ -40,17 +40,17 @@
 	var userDataTxt = gapi.hangout.data.getValue("userData") || false;
 	if(!userData) { 
 		console.log("JSON 2");	
-		var txt= '{"users":[]}';
-		userData = eval("(" + txt + ")");	
+		
+		var txt= '{"users":[' +
+		'{ "id":"NULL" , "name":"NULL" , "hasMic":"NULL" , "connectionLength":"1" "commLength":"0" } ] }';	
+		userData = eval("(" + txt + ")");					
 	} else { userData = eval(userDataTxt); };
 	console.log("JSON 3");	
 	userDataPos = userData.users.length + 1;
-	console.log("JSON 4 " + userDataPos);	
-	try {
+	console.log("JSON 4 " + userDataPos + "    " + userData.users[0].name);	
+	
 	userData.users[userDataPos].id = gapi.hangout.getLocalParticipantId();
-	} catch (eee){
-	console.log(" blaaa " + e.getMessage())
-	}
+
 	console.log("JSON 4.1");
 	userData.users[userDataPos].name = getLocalParticipant().person.displayName;
 	userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
