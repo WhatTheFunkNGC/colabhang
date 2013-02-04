@@ -46,10 +46,10 @@
 	console.log("JSON 3");	
 	userDataPos = userData.users.length + 1;
 	console.log("JSON 4 " + userDataPos);	
-	try{
+	try {
 	userData.users[userDataPos].id = gapi.hangout.getLocalParticipantId();
-	} catch (Exception e){
-	console.log(e.getMessage())
+	} catch (eee){
+	console.log(" blaaa " + e.getMessage())
 	}
 	console.log("JSON 4.1");
 	userData.users[userDataPos].name = getLocalParticipant().person.displayName;
