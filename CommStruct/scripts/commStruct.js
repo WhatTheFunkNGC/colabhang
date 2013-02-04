@@ -19,12 +19,13 @@
 		if (event.isApiReady === true) {			// on ready
 			console.log("API Ready");	
 	  
-		
+			
+		startSystem();
+		console.log("list");
 		listUsers();							// list users
 		}	
 		totalTime = 1;
-
-		startSystem();
+		
 
 		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
 
