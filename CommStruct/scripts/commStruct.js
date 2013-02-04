@@ -9,8 +9,7 @@
 		var totalTime;		// glabal var - how long user has been connected
 		var SpeakTime;		// global var - how long user has spoken for total
 		var userData;		// global object - hold all keey users data. to be updated regularly
-		var userDataPos;	// golbal var - marks the position that the local users data is stored in "userData"
-		
+		var userDataPos;	// golbal var - marks the position that the local users data is stored in "userData"		
 		var refreshUserList = 1000; // refresh rate of main display
  
 	//-------------------- Listeners -------------------------
@@ -36,19 +35,24 @@
  	
 	// on new user joining - refresh display
 	function startSystem(){
-	
+	console.log("JSON 1");	
 	var userDataTxt = gapi.hangout.data.getValue("userData") || false;
 	if(!userData) { 
+		console.log("JSON 2");	
 		var txt= '{"users":[]}';
 		userData = eval("(" + txt + ")");	
 	} else { userData = eval(userDataTxt); };
+	console.log("JSON 3");	
 	userDataPos = userData.users.length;
+	console.log("JSON 4");	
 	userData.users[i].id = gapi.hangout.getLocalParticipantId();
 	userData.users[i].name = getLocalParticipant().person.displayName;
 	userData.users[i].hasMic = getLocalParticipant().person.hasMicrophone;
 	userData.users[i].connectionLength = "1";
 	userData.users[i].commLength = "0";
+	console.log("JSON 5");	
 	gapi.hangout.data.setValue("userData", JSON.stringify(userData));
+	console.log("JSON 6");	
   };	
   	
 	// display list of partisipants with relivant time stats
