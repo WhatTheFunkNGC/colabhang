@@ -45,13 +45,14 @@
 	} else { userData = eval(userDataTxt); };
 	console.log("JSON 3");	
 	userDataPos = userData.users.length;
-	console.log("JSON 4");	
-	userData.users[userDataPos].id = gapi.hangout.getLocalParticipantId();
+	console.log("JSON 4 " + userDataPos);	
+	userData.users.id.push = gapi.hangout.getLocalParticipantId();
 	console.log("JSON 4.1");
 	userData.users[userDataPos].name = getLocalParticipant().person.displayName;
 	userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
 	userData.users[userDataPos].connectionLength = "1";
 	userData.users[userDataPos].commLength = "0";
+	userData.users.length = userData.users.length + 1;
 	console.log("JSON 5");	
 	gapi.hangout.data.setValue("userData", JSON.stringify(userData));
 	console.log("JSON 6");	
