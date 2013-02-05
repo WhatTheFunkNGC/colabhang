@@ -61,23 +61,23 @@
 		for (i = 0; i < l; i++) {	
 			console.log("Loop " + i);
 			tr = document.createElement("tr");
-			e1 = document.createElement("text");	
-			e1.data = userData.users[i].name;
+			e1 = document.createElement("td");	
+			e1.innerHTML = userData.users[i].name;
 			tr.appendChild(e1);
 			console.log("1"); 
-			 e2 = document.createElement("text");	
-			e2.data = userData.users[i].connectionLength;
+			e2 = document.createElement("td");	
+			e2.innerHTML = userData.users[i].connectionLength;
 			tr.appendChild(e2);
 			console.log("2" + userData.users[i].connectionLength); 
-			e3 = document.createElement("text");	
-			e3.data = userData.users[i].commLength;
+			e3 = document.createElement("td");	
+			e3.innerHTML = userData.users[i].commLength;
 			tr.appendChild(e3);
 			console.log("3"); 
 			
 			ul.appendChild(tr);	
 		}	
 		div = document.getElementById("userList");
-		//div.innerHTML = "";		
+		div.innerHTML = "";		
 		div.appendChild(ul);	
 		console.log("Displayed"); 
   };
