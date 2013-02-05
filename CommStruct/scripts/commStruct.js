@@ -44,14 +44,17 @@
 	} else { userData = eval(userDataTxt); };
 	userDataPos = userData.users.length ;
 	console.log("JSON 4");	
-	userData.users.length = userData.users.length + 1;
-		console.log("JSON 4.2  "+ userData.users.length + "   " + userDataPos + "   " + gapi.hangout.getLocalParticipantId());	
-	userData.users[userDataPos].id = gapi.hangout.getLocalParticipantId();
+	//userData.users.length = userData.users.length + 1;
+	console.log("JSON 4.2  "+ userData.users.length + "   " + userDataPos + "   " + gapi.hangout.getLocalParticipantId());	
+	userData.users.push({ id:gapi.hangout.getLocalParticipantId() , name:getLocalParticipant().person.displayName , hasMic:getLocalParticipant().person.hasMicrophone , connectionLength:"1" , commLength:"0" });
+		
+		
+	//userData.users[userDataPos].id = gapi.hangout.getLocalParticipantId();
 	console.log("JSON 4.3");
-	userData.users[userDataPos].name = getLocalParticipant().person.displayName;
-	userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
-	userData.users[userDataPos].connectionLength = "1";
-	userData.users[userDataPos].commLength = "0";
+	//userData.users[userDataPos].name = getLocalParticipant().person.displayName;
+	//userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
+	//userData.users[userDataPos].connectionLength = "1";
+	//userData.users[userDataPos].commLength = "0";
 	
 	
 	console.log("JSON 5");	
