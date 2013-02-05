@@ -65,12 +65,11 @@
 			e1.data = userData.users[i].name;
 			tr.appendChild(e1);
 			console.log("txt"); 
-			var e2 = document.createElement("td");	
-			e2.appendChild(userData.users[i].connectionLength);
+			var e2 = document.createElement("text");	
+			e2.data = userData.users[i].name;
 			tr.appendChild(e2);
-			console.log("cell"); 
-			var e3 = document.createElement("td");	
-			e3.appendChild(userData.users[i].commLength);
+			var e3 = document.createElement("text");	
+			e3.data = userData.users[i].name;
 			tr.appendChild(e3);
 			
 			ul.appendChild(tr);	
