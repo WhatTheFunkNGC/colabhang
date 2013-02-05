@@ -38,9 +38,7 @@
 	function startSystem(){
 		console.log("JSON 1");	
 		var userDataTxt = gapi.hangout.data.getValue("userData") || false;
-		if(!userData) { 			
-			var txt= '{"users" :[ { "id":"none" , "name":"none" , "hasMic":"none" , "connectionLength":"1" , "commLength":"0" } ] }';	;	
-			userData = eval("(" + txt + ")");					
+		if (!userData) { userData = { };				
 		} else { userData = eval(userDataTxt); };
 		userDataPos = userData.users.length ;
 		var newUser = { };
@@ -64,16 +62,12 @@
 			e1 = document.createElement("td");	
 			e1.innerHTML = userData.users[i].name;
 			tr.appendChild(e1);
-			console.log("1"); 
 			e2 = document.createElement("td");	
-			e2.innerHTML = userData.users[i].connectionLength;
+			e2.innerHTML = displayTimerString(userData.users[i].connectionLength);
 			tr.appendChild(e2);
-			console.log("2" + userData.users[i].connectionLength); 
 			e3 = document.createElement("td");	
-			e3.innerHTML = userData.users[i].commLength;
+			e3.innerHTML = displayTimerString(userData.users[i].commLength);
 			tr.appendChild(e3);
-			console.log("3"); 
-			
 			ul.appendChild(tr);	
 		}	
 		div = document.getElementById("userList");
