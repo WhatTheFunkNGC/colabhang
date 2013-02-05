@@ -58,16 +58,17 @@
 		var div, ul, tr, i, l;		
 		ul = document.createElement("table");	
 		l = userData.users.length;
-		console.log("Length " + l);
 		for (i = 0; i < l; i++) {	
 			console.log("Loop " + i);
 			tr = document.createElement("tr");
 			var e1 = document.createElement("text");	
 			e1.data = userData.users[i].name;
 			tr.appendChild(e1);
+			console.log("txt"); 
 			var e2 = document.createElement("td");	
 			e2.appendChild(userData.users[i].connectionLength);
 			tr.appendChild(e2);
+			console.log("cell"); 
 			var e3 = document.createElement("td");	
 			e3.appendChild(userData.users[i].commLength);
 			tr.appendChild(e3);
