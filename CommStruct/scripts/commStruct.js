@@ -38,9 +38,14 @@
 	function startSystem(){
 		console.log("JSON 1");	
 		var userDataTxt = gapi.hangout.data.getValue("userData") || false;
-		if (!userData) { userData = { } ;} else { userData = eval(userDataTxt); };
+		if (!userData) {
+			userData = { } ;
+		} else {
+			userData = eval(userDataTxt); 
+		};
 		userDataPos = userData.users.length || 0;
 		var newUser = { };
+		console.log("JSON 1");
 		newUser.id = gapi.hangout.getLocalParticipantId();
 		newUser.name = gapi.hangout.getLocalParticipant().person.displayName;
 		newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
