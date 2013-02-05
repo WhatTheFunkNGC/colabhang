@@ -60,8 +60,8 @@
 		l = userData.length;
 		for (i = 0; i < l; i++) {	
 			tr = document.createElement("tr");
-			var e1 = document.createElement("td");	
-			e1.appendChild(userData.users[i].name);
+			var e1 = document.createElement("text");	
+			e1.data = userData.users[i].name;
 			tr.appendChild(e1);
 			var e2 = document.createElement("td");	
 			e2.appendChild(userData.users[i].connectionLength);
