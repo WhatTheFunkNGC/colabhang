@@ -48,7 +48,7 @@
 	console.log("JSON 4.2  "+ userData.users.length + "   " + userDataPos + "   " + gapi.hangout.getLocalParticipantId());	
 	//userData.users.push({ id:gapi.hangout.getLocalParticipantId() , name:getLocalParticipant().person.displayName , hasMic:getLocalParticipant().person.hasMicrophone , connectionLength:"1" , commLength:"0" });
 		
-		
+	console.log(userData.users[0].id);	
 	userData.users[1].id = "WIN";
 	console.log("JSON 4.3");
 	//userData.users[userDataPos].name = getLocalParticipant().person.displayName;
