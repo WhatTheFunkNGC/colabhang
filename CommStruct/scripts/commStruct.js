@@ -58,6 +58,7 @@
 		var div, ul, tr, i, l;		
 		ul = document.createElement("table");	
 		l = userData.length;
+		console.log("Length " + l);
 		for (i = 0; i < l; i++) {	
 			console.log("Loop " + i);
 			tr = document.createElement("tr");
