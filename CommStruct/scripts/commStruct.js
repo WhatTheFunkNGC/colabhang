@@ -36,60 +36,46 @@
  	
 	// on new user joining - refresh display
 	function startSystem(){
-	console.log("JSON 1");	
-	var userDataTxt = gapi.hangout.data.getValue("userData") || false;
-	if(!userData) { 			
-		var txt= '{"users" :[ { "id":"none" , "name":"none" , "hasMic":"none" , "connectionLength":"1" , "commLength":"0" } ] }';	;	
-		userData = eval("(" + txt + ")");					
-	} else { userData = eval(userDataTxt); };
-	userDataPos = userData.users.length ;
-	console.log("JSON 4");	
-	//userData.users.length = userData.users.length + 1;
-	console.log("JSON 4.2 ");	
-	//userData.users.push({ id:gapi.hangout.getLocalParticipantId() , name:getLocalParticipant().person.displayName , hasMic:getLocalParticipant().person.hasMicrophone , connectionLength:"1" , commLength:"0" });	
-	//userData.users[0].id = "WIN";
-	console.log("JSON 4.3");
-	
-	var newUser = { };
-	newUser.id = gapi.hangout.getLocalParticipantId();
-	console.log("JSON 5 ");
-	newUser.name = gapi.hangout.getLocalParticipant().person.displayName;
-	console.log("JSON 6");
-	newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
-	console.log("JSON 7");
-	newUser.connectionLength = "1";
-	console.log("JSON 8");
-	newUser.commLength = "0";
-	console.log("JSON 9");
-	userData.users.push(newUser);
-	//userData.users[userDataPos].name = getLocalParticipant().person.displayName;
-	//userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
-	//userData.users[userDataPos].connectionLength = "1";
-	//userData.users[userDataPos].commLength = "0";
-	
-	
-	console.log("JSON 5");	
-	gapi.hangout.data.setValue("userData", JSON.stringify(userData));
-	console.log("JSON 6");	
-  };	
+		console.log("JSON 1");	
+		var userDataTxt = gapi.hangout.data.getValue("userData") || false;
+		if(!userData) { 			
+			var txt= '{"users" :[ { "id":"none" , "name":"none" , "hasMic":"none" , "connectionLength":"1" , "commLength":"0" } ] }';	;	
+			userData = eval("(" + txt + ")");					
+		} else { userData = eval(userDataTxt); };
+		userDataPos = userData.users.length ;
+		var newUser = { };
+		newUser.id = gapi.hangout.getLocalParticipantId();
+		newUser.name = gapi.hangout.getLocalParticipant().person.displayName;
+		newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
+		newUser.connectionLength = "1";
+		newUser.commLength = "0";
+		userData.users.push(newUser);		
+		gapi.hangout.data.setValue("userData", JSON.stringify(userData));	
+	};	
   	
 	// display list of partisipants with relivant time stats
-  function listUsers() {	
-    var div, participants, ul, tr, i, l;	
-    participants = gapi.hangout.getParticipants();	
-    ul = document.createElement("table");	
-    l = participants.length;	
-    for (i = 0; i < l; i++) {	
-      tr = document.createElement("tr");	
-      if (participants[i].person) {	
-        tr.innerHTML = participants[i].person.displayName + "<br>   Active time : " + displayTimerString(userData[userDataPos].connectionLength); // list usrs connection time
-      }	
-      ul.appendChild(tr);	
-    }	
-    div = document.getElementById("userList");
-	div.innerHTML = "";		
-    div.appendChild(ul);	
-	console.log("Displayed"); 
+	function listUsers() {	
+		var div, ul, tr, i, l;		
+		ul = document.createElement("table");	
+		l = userData.length;
+		for (i = 0; i < l; i++) {	
+			tr = document.createElement("tr");
+			var e1 = document.createElement("td");	
+			e1.appendChild(userData.users[i].name);
+			tr.appendChild(e1);
+			var e2 = document.createElement("td");	
+			e2.appendChild(userData.users[i].connectionLength);
+			tr.appendChild(e2);
+			var e3 = document.createElement("td");	
+			e3.appendChild(userData.users[i].commLength);
+			tr.appendChild(e3);
+			
+			ul.appendChild(tr);	
+		}	
+		div = document.getElementById("userList");
+		div.innerHTML = "";		
+		div.appendChild(ul);	
+		console.log("Displayed"); 
   };
   
 	/* Displays an enterd second count in time format
