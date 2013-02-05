@@ -28,6 +28,8 @@
 		
 
 		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
+		
+		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
 
 		var dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
   };	
@@ -62,7 +64,6 @@
 		ul = document.createElement("table");	
 		l = userData.users.length;
 		for (i = 0; i < l; i++) {	
-			console.log("Loop " + i);
 			tr = document.createElement("tr");
 			e1 = document.createElement("td");	
 			e1.innerHTML = userData.users[i].name;
@@ -104,6 +105,12 @@
 		totalTime = totalTime + 1 ;
 	}
 	
+	function updateTimer() {
+		var userDataString = gapi.hangout.data.getValue("userData");
+		userdata = eval(userDataString);
+		userData.users[userDataPos].connectionLength = totalTime;
+		gapi.hangout.data.setValue("userData" : JSON.stringify(userData));
+	}
 	
   	
   var commStruct = new commStruct();	
