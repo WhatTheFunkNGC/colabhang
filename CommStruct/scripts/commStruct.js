@@ -41,7 +41,8 @@
 	if(!userData) { 
 		console.log("JSON 2");	
 		
-		var txt= '{"users":[ { "id":"NULL" , "name":"NULL" , "hasMic":"NULL" , "connectionLength":"1" "commLength":"0" } ] }';	
+		var txt= '{"users":[ { "id":"none" , "name":"none" , "hasMic":"none" , "connectionLength":"1" "commLength":"0" } ] }';	
+		console.log("JSON 2,1");	
 		userData = eval("(" + txt + ")");					
 	} else { userData = eval(userDataTxt); };
 	console.log("JSON 3");	
