@@ -38,26 +38,22 @@
 	function startSystem(){
 	console.log("JSON 1");	
 	var userDataTxt = gapi.hangout.data.getValue("userData") || false;
-	if(!userData) { 
-		console.log("JSON 2");	
-		
-		var txt= '{"users" :[ { "id":"none" , "name":"none" , "hasMic":"none" , "connectionLength":"1" , "commLength":"0" } ] }';	
-		console.log("JSON 2,1");	
+	if(!userData) { 			
+		var txt= '{"users" :[ { "id":"none" , "name":"none" , "hasMic":"none" , "connectionLength":"1" , "commLength":"0" } ] }';	;	
 		userData = eval("(" + txt + ")");					
 	} else { userData = eval(userDataTxt); };
-	console.log("JSON 3 " + userData.users.length);	
 	userDataPos = userData.users.length ;
-	console.log("JSON 4 " + userDataPos + "    " + userData.users[0].name);	
-	
+	console.log("JSON 4");	
+	userData.users.length = userData.users.length + 1;
+		console.log("JSON 4.2");	
 	userData.users[userDataPos].id = gapi.hangout.getLocalParticipantId();
-
-	console.log("JSON 4.1");
+	console.log("JSON 4.3");
 	userData.users[userDataPos].name = getLocalParticipant().person.displayName;
 	userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
 	userData.users[userDataPos].connectionLength = "1";
 	userData.users[userDataPos].commLength = "0";
 	
-	userData.users.length = userData.users.length + 1;
+	
 	console.log("JSON 5");	
 	gapi.hangout.data.setValue("userData", JSON.stringify(userData));
 	console.log("JSON 6");	
