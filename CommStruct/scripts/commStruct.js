@@ -45,13 +45,18 @@
 	userDataPos = userData.users.length ;
 	console.log("JSON 4");	
 	//userData.users.length = userData.users.length + 1;
-	console.log("JSON 4.2  "+ userData.users.length + "   " + userDataPos + "   " + gapi.hangout.getLocalParticipantId());	
-	//userData.users.push({ id:gapi.hangout.getLocalParticipantId() , name:getLocalParticipant().person.displayName , hasMic:getLocalParticipant().person.hasMicrophone , connectionLength:"1" , commLength:"0" });
-		
-	console.log(userData.users[1].id);	
-	userData.users[1].id = "WIN";
-	console.log(userData.users[1].id);	
+	console.log("JSON 4.2 ");	
+	//userData.users.push({ id:gapi.hangout.getLocalParticipantId() , name:getLocalParticipant().person.displayName , hasMic:getLocalParticipant().person.hasMicrophone , connectionLength:"1" , commLength:"0" });	
+	//userData.users[0].id = "WIN";
 	console.log("JSON 4.3");
+	
+	var newUser = { };
+	newUser.id = gapi.hangout.getLocalParticipantId();
+	newUser.name = getLocalParticipant().person.displayName;
+	newUser.hasMic = getLocalParticipant().person.hasMicrophone;
+	newUser.connectionLength = "1";
+	newUser.commLength = "0";
+	userData.users.push(newUser);
 	//userData.users[userDataPos].name = getLocalParticipant().person.displayName;
 	//userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
 	//userData.users[userDataPos].connectionLength = "1";
