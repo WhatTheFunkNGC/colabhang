@@ -73,7 +73,7 @@
 			ul.appendChild(tr);	
 		}	
 		div = document.getElementById("userList");
-		div.innerHTML = "";		
+		div.innerHTML = "eefrg";		
 		div.appendChild(ul);	
 		console.log("Displayed"); 
   };
