@@ -55,21 +55,21 @@
   	
 	// display list of partisipants with relivant time stats
 	function listUsers() {	
-		var div, ul, tr, i, l;		
+		var div, ul, tr, i, l, e1, e2, e3;		
 		ul = document.createElement("table");	
 		l = userData.users.length;
 		for (i = 0; i < l; i++) {	
 			console.log("Loop " + i);
 			tr = document.createElement("tr");
-			var e1 = document.createElement("text");	
+			e1 = document.createElement("text");	
 			e1.data = userData.users[i].name;
 			tr.appendChild(e1);
 			console.log("1"); 
-			var e2 = document.createElement("text");	
+			 e2 = document.createElement("text");	
 			e2.data = userData.users[i].connectionLength;
 			tr.appendChild(e2);
 			console.log("2"); 
-			var e3 = document.createElement("text");	
+			e3 = document.createElement("text");	
 			e3.data = userData.users[i].commLength;
 			tr.appendChild(e3);
 			console.log("3"); 
