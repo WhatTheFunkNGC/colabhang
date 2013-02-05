@@ -39,7 +39,8 @@
 		console.log("JSON 1");	
 		var userDataTxt = gapi.hangout.data.getValue("userData") || false;
 		if (!userData) {
-			userData = { } ;
+			userData = {"users":[] } ;
+			
 		} else {
 			userData = eval(userDataTxt); 
 		};
