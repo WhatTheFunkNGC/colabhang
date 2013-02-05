@@ -52,10 +52,15 @@
 	
 	var newUser = { };
 	newUser.id = gapi.hangout.getLocalParticipantId();
+	console.log("JSON 5");
 	newUser.name = getLocalParticipant().person.displayName;
+	console.log("JSON 6");
 	newUser.hasMic = getLocalParticipant().person.hasMicrophone;
+	console.log("JSON 7");
 	newUser.connectionLength = "1";
+	console.log("JSON 8");
 	newUser.commLength = "0";
+	console.log("JSON 9");
 	userData.users.push(newUser);
 	//userData.users[userDataPos].name = getLocalParticipant().person.displayName;
 	//userData.users[userDataPos].hasMic = getLocalParticipant().person.hasMicrophone;
