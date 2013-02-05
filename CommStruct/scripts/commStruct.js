@@ -59,6 +59,7 @@
 		ul = document.createElement("table");	
 		l = userData.length;
 		for (i = 0; i < l; i++) {	
+			console.log("Loop " + i);
 			tr = document.createElement("tr");
 			var e1 = document.createElement("text");	
 			e1.data = userData.users[i].name;
@@ -73,7 +74,7 @@
 			ul.appendChild(tr);	
 		}	
 		div = document.getElementById("userList");
-		div.innerHTML = "eefrg";		
+		div.innerHTML = "";		
 		div.appendChild(ul);	
 		console.log("Displayed"); 
   };
