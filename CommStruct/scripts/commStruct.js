@@ -68,7 +68,7 @@
 			 e2 = document.createElement("text");	
 			e2.data = userData.users[i].connectionLength;
 			tr.appendChild(e2);
-			console.log("2"); 
+			console.log("2" + userData.users[i].connectionLength); 
 			e3 = document.createElement("text");	
 			e3.data = userData.users[i].commLength;
 			tr.appendChild(e3);
@@ -77,7 +77,7 @@
 			ul.appendChild(tr);	
 		}	
 		div = document.getElementById("userList");
-		div.innerHTML = "";		
+		//div.innerHTML = "";		
 		div.appendChild(ul);	
 		console.log("Displayed"); 
   };
