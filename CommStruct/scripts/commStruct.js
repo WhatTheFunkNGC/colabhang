@@ -109,7 +109,7 @@
 		var userDataString = gapi.hangout.data.getValue("userData");
 		userdata = eval(userDataString);
 		userData.users[userDataPos].connectionLength = totalTime;
-		gapi.hangout.data.setValue("userData" : JSON.stringify(userData));
+		gapi.hangout.data.setValue("userData" , JSON.stringify(userData));
 	}
 	
   	
