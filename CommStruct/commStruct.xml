@@ -10,7 +10,8 @@
 	  
       <div id="userList"></div>	
       	
-      <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/CommStruct/scripts/commStruct.js"></script>	
+		
+      <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/CommStruct/scripts/commStruct.js" type="text/javascript" ></script>
     ]]>	
   </Content>	
 </Module>	
