@@ -108,7 +108,7 @@
 	function updateTimer() {
 		var userDataString = gapi.hangout.data.getValue("userData");
 		userData = eval( "(" + userDataString + ")");
-		console.log(userdata);
+		console.log(userData);
 		userData.users[userDataPos].connectionLength = totalTime;
 		gapi.hangout.data.setValue("userData" , JSON.stringify(userData));
 	}
