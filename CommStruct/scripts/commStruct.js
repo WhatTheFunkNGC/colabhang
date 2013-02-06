@@ -38,24 +38,23 @@
  	
 	// on new user joining - refresh display
 	function startSystem(){
-		console.log("JSON 1");	
-		var userDataTxt = gapi.hangout.data.getValue("userData") || false;
-		if (!userData) {
-			userData = {"users":[] } ;
-			
+		console.log("user data initilisation");	
+		var userDataTxt = gapi.hangout.data.getValue("userData") || false;			// get exsisting user data
+		if (!userData) {															// if data dosnt exsist
+			userData = {"users":[] } ;												// create blank object
 		} else {
-			userData = eval(userDataTxt); 
+			userData = eval(userDataTxt); 											// else convert to JS obj
 		};
-		userDataPos = userData.users.length || 0;
-		var newUser = { };
-		console.log("JSON 1");
-		newUser.id = gapi.hangout.getLocalParticipantId();
+		userDataPos = userData.users.length || 0;									// get local users array pos
+		var newUser = { };															// create new user data object
+		newUser.id = gapi.hangout.getLocalParticipantId();							// fill with data
 		newUser.name = gapi.hangout.getLocalParticipant().person.displayName;
 		newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 		newUser.connectionLength = "1";
 		newUser.commLength = "0";
-		userData.users.push(newUser);		
-		gapi.hangout.data.setValue("userData", JSON.stringify(userData));	
+		userData.users.push(newUser);												// ad new ueser to array
+		gapi.hangout.data.setValue("userData", JSON.stringify(userData));			// send updated array back to server
+		console.log("user data complete");
 	};	
   	
 	// display list of partisipants with relivant time stats
@@ -63,7 +62,7 @@
 		var div, ul, tr, i, l, e1, e2, e3;		
 		ul = document.createElement("table");	
 		l = userData.users.length;
-		for (i = 0; i < l; i++) {	
+		for (i = 0; i < l; i++) {						// loop through all users in data array and display in table format
 			tr = document.createElement("tr");
 			e1 = document.createElement("td");	
 			e1.innerHTML = userData.users[i].name;
@@ -105,12 +104,13 @@
 		totalTime = totalTime + 1 ;
 	}
 	
+	// sends updates from local user to shared state
 	function updateTimer() {
 		var userDataString = gapi.hangout.data.getValue("userData");
-		userData = eval( "(" + userDataString + ")");
+		userData = eval( "(" + userDataString + ")");						// convert to JS object
 		console.log(userData);
 		userData.users[userDataPos].connectionLength = totalTime;
-		gapi.hangout.data.setValue("userData" , JSON.stringify(userData));
+		gapi.hangout.data.setValue("userData" , JSON.stringify(userData));	// return JSON string of object
 	}
 	
   	
