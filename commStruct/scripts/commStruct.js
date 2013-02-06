@@ -45,7 +45,7 @@
 		newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 		newUser.connectionLength = "1";
 		newUser.commLength = "0";
-		userDataPos = sharedStateControls.addNewItemToSharedList("userData",-1,JSON.stringify(newUser));
+		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(newUser));
 		console.log("user data complete");
 	};	
   	
