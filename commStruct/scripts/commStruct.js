@@ -27,9 +27,9 @@
 		totalTime = 1;
 		
 
-		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
+		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
 		
-		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
+		//var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
 
 		var dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
   };	
@@ -39,21 +39,13 @@
 	// on new user joining - refresh display
 	function startSystem(){
 		console.log("user data initilisation");	
-		var userDataTxt = gapi.hangout.data.getValue("userData") || false;			// get exsisting user data
-		if (!userData) {															// if data dosnt exsist
-			userData = {"users":[] } ;												// create blank object
-		} else {
-			userData = eval(userDataTxt); 											// else convert to JS obj
-		};
-		userDataPos = userData.users.length || 0;									// get local users array pos
 		var newUser = { };															// create new user data object
 		newUser.id = gapi.hangout.getLocalParticipantId();							// fill with data
 		newUser.name = gapi.hangout.getLocalParticipant().person.displayName;
 		newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 		newUser.connectionLength = "1";
 		newUser.commLength = "0";
-		userData.users.push(newUser);												// ad new ueser to array
-		gapi.hangout.data.setValue("userData", JSON.stringify(userData));			// send updated array back to server
+		userDataPos = sharedStateControls.addNewItemToSharedList("userData",-1,JSON.stringify(newUser));
 		console.log("user data complete");
 	};	
   	
