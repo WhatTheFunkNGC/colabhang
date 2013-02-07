@@ -57,29 +57,29 @@
 	/* signs user up to list element
 	- userID : User ID to add
 	- itemNo : Which List element */
-	function addUserToElement(userID,itemNo) {
-		var idListLength, i;
-		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
-		for (i = 1; i <= idListLength; i++){														// ---
-			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };// ---Check for id exsisting already if so quit
-		}																							// ---
-		idListLength = (parseInt(idListLength, 10) + 1).toString();									// increase target list length
-		addNewItemToSharedList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
-	};
+	//function addUserToElement(userID,itemNo) {
+	//	var idListLength, i;
+	//	idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
+	//	for (i = 1; i <= idListLength; i++){														// ---
+	//		if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };// ---Check for id exsisting already if so quit
+	//	}																							// ---
+	//	idListLength = (parseInt(idListLength, 10) + 1).toString();									// increase target list length
+	//	addNewItemToSharedList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
+	//};
 	
 	/* Removes User signed up to list element
 	- userID : User ID to remove
 	- itemNo : Which List element */
-	function removeUserFromElement(userID,itemNo) {
-		var idListLength, i;
-		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
-		for (i = 1; i <= idListLength; i++){														// ---
-			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){
-				removeItemFromSharedList("listTxt" + itemNo + "listID",i);
-			};																						// ---Check for id exsisting already if so quit
-		}																							// ---
+	//function removeUserFromElement(userID,itemNo) {
+	//	var idListLength, i;
+	//	idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
+	//	for (i = 1; i <= idListLength; i++){														// ---
+	//		if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){
+	//			removeItemFromSharedList("listTxt" + itemNo + "listID",i);
+	//		};																						// ---Check for id exsisting already if so quit
+	//	}																							// ---
 
-	};
+	//};
 
 	
 //-------------------- Button creation -------------------------
@@ -109,8 +109,7 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press");
-				var listL = (parseInt(itemNo, 10) + 1).toString(); 		// gets targets below current for new element
-				addNewItemToSharedList ("listTxt",listL); 					// adds blank list element below selected element
+				addNewItemToSharedList ("listTxt",-1); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
@@ -124,8 +123,8 @@
 		delIDBut.height = 25;
 		delIDBut.align = "top";
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
-				console.log("Del ID Press");
-				removeUserFromElement(userID,itemNo);				// adds users ID to list element
+			console.log("Del ID Press");
+			findAndRemoveItemFromSharedList("listTxt" + itemNo + "listID",userID);
 		}; 
 		return delIDBut;											// return button element
 	};
@@ -139,8 +138,8 @@
 		addIDBut.height = 25;
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
-				console.log("Add ID press");
-				addUserToElement(userID,itemNo);				// adds users ID to list element
+			console.log("Add ID press");
+			findAndAddNewItemToSharedList("listTxt" + itemNo + "listID",userID))
 		}; 
 		return addIDBut;										// return button element
 	};
@@ -160,7 +159,7 @@
 		return txtIn;													// return txtInput element
 	};
 	
-	// add Add ID list item button
+	// add Add ID pic
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID

@@ -39,7 +39,7 @@
 	// on new user joining - refresh display
 	function startSystem(){
 		console.log("user data initilisation");	
-		userDataPos = checkDataExsistanceInArray(gapi.hangout.getLocalParticipantId(),"userData");	// check if user already exsists
+		userDataPos = checkDataExsistanceInArray("userData",gapi.hangout.getLocalParticipantId());	// check if user already exsists
 		console.log("dat pos got " + userDataPos);	
 		if (!userDataPos){															// if false create new user data				
 		var userData = { };															// create new user data object

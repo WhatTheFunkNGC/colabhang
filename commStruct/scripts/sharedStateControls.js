@@ -37,11 +37,28 @@
 		return targetLocation;
 	};
 	
+	
+	function findAndRemoveItemFromSharedList(list,data){
+		var loc = checkDataExsistanceInArray(list,data);
+		if (!loc) {
+		} else {
+			removeItemFromSharedList(list,loc);
+		}
+	};	
+	
+	
+	function findAndAddNewItemToSharedList(list,data){
+		if (!checkDataExsistanceInArray(list,data)){
+		} else {
+			addNewItemToSharedList (list,data);
+		};
+	};
+	
 	/* checks if data exsists within the list array
 	- data : the data to check for in the list
 	- list : the name of the list in the shared state to look through 
 	Returns false if not found and the arry pos if it is          */
-	function checkDataExsistanceInArray(data,list) {
+	function checkDataExsistanceInArray(list,data) {
 		var listLength, i;
 		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
 		for (i = 1; i <= listLength; i++){									
