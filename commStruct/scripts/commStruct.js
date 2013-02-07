@@ -117,6 +117,7 @@
 			chatIntervalTotal = 0;
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id);
+			console.log(" user vol = "gapi.hangout.av.getParticipantVolume(userData.id));
 		}
 	};
 	
