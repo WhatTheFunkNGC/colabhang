@@ -7,10 +7,12 @@
   }	
     //-------------------- VARS -------------------------	
 		var totalTime;		// glabal var - how long user has been connected
-		var SpeakTime;		// global var - how long user has spoken for total
-		var userData;		// global object - hold all keey users data. to be updated regularly
+		var speakTime;		// global var - how long user has spoken for total
+		var userData;		// global object - hold all local users key data
 		var userDataPos;	// golbal var - marks the position that the local users data is stored in "userData"		
 		var refreshUserList = 1000; // refresh rate of main display
+		var chatIntervalCounter;
+		var chatIntervalTotal;
  
 	//-------------------- Listeners -------------------------
  
@@ -30,6 +32,8 @@
 		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
 		
 		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
+		
+		var uTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
 
 		var dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
   };	
@@ -101,11 +105,25 @@
 		totalTime = totalTime + 1 ;
 	}
 	
+	function userChatCounter() {
+		if (chatIntervalCounter == 2){
+			chatIntervalCounter = 0; 
+			if( (chatIntervalTotal / 2) > 2){
+				speakTime = speakTime + 1;
+			}
+			chatIntervalTotal = 0;
+		} else {
+			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id);
+		}
+	};
+	
+	
 	// sends updates from local user to shared state
 	function updateTimer() {
 		var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
 		userData = eval( "(" + userDataString + ")");						// convert to JS object
 		userData.connectionLength = totalTime;
+		userData.commLength = speakTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 	}
 	

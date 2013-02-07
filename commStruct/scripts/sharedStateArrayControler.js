@@ -1,10 +1,11 @@
 
-function sharedStateArray (arrayName) {
+function sharedStateArrayControler (listName) {
+	this.listName = listName;
 
 /* Remove Genralised value system
 	- listName : target shared list variable name (int ommited)
 	- targetElement : Element number to remove from list */
-	function removeItemFromSharedList(listName,targetElement){
+	function remove(targetElement){
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0";										// get the list length
 		j = targetElement;	
@@ -20,7 +21,7 @@ function sharedStateArray (arrayName) {
 	- listName : target shared list variable name (int ommited)
 	- targetLocation : Element number to remove from list (defults to end of list when -1 found)
 	- entryValue OPTIONAL : value to save in new list element */
-	function addNewItemToSharedList (listName,targetLocation,entryValue){	
+	function add (targetLocation,entryValue){	
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue(listName) || "0"; 									// get current number of list items
 		noItems = (parseInt(noItems, 10) + 1).toString();                						// add 1 to value and convert to string 
@@ -42,7 +43,7 @@ function sharedStateArray (arrayName) {
 	/* remove an item from the list
 	- list : name of the list to remove from
 	- data : the data to find and remove from the list */
-	function findAndRemoveItemFromSharedList(list,data){
+	function addUnique(data){
 		var loc = checkDataExsistanceInArray(list,data);
 		if (!loc) {
 		} else {
@@ -53,7 +54,7 @@ function sharedStateArray (arrayName) {
 	/* adds an item to a list providing it dosnt already exsist
 	- list : name of the list to remove from
 	- data : the data to find and remove from the list */
-	function findAndAddNewItemToSharedList(list,data){
+	function removeData(data){
 		if (!checkDataExsistanceInArray(list,data)){
 		addNewItemToSharedList (list,-1,data);
 		};
@@ -63,7 +64,7 @@ function sharedStateArray (arrayName) {
 	- data : the data to check for in the list
 	- list : the name of the list in the shared state to look through 
 	Returns false if not found and the arry pos if it is          */
-	function checkDataExsistanceInArray(list,data) {
+	function contains(data) {
 		var listLength, i;
 		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
 		for (i = 1; i <= listLength; i++){									
