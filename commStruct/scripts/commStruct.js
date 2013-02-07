@@ -22,14 +22,14 @@
 			
 		startSystem();
 		console.log("list");
-		listUsers();							// list users
+		//listUsers();							// list users
 		}	
 		totalTime = 1;
 		
 
-		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
+		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
 		
-		//var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
+		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
 
 		var dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
   };	
