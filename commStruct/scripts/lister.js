@@ -40,7 +40,9 @@
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
+			console.log("1");
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
+			console.log("2");
 				e2.appendChild(userPicture(i,j));
 			};
 			li2.appendChild(e2);
@@ -163,6 +165,7 @@
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
+		console.log("3");
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
 		userPic.width = 25;
