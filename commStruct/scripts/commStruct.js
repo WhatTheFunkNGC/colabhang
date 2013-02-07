@@ -51,9 +51,9 @@
   	
 	// display list of partisipants with relivant time stats
 	function listUsers() {	
-		var div, ul, tr, i, l, e1, e2, e3, userD, userDString;	
+		var div, ul, tr, i, e1, e2, e3, userD, userDString;	
 		ul = document.createElement("table");	
-		for (i = 0; i < l; i++) {						// loop through all users in data array and display in table format
+		for (i = 1; i <= gapi.hangout.data.getValue("userData"); i++) {						// loop through all users in data array and display in table format
 			userDString = gapi.hangout.data.getValue("userData" + i);
 			userD = eval( "(" + userDString + ")");
 			tr = document.createElement("tr");
