@@ -1,6 +1,4 @@
 
-function sharedStateArray (arrayName) {
-
 /* Remove Genralised value system
 	- listName : target shared list variable name (int ommited)
 	- targetElement : Element number to remove from list */
@@ -74,4 +72,3 @@ function sharedStateArray (arrayName) {
 		return false;														// if no index found return false
 	};
 	
-	}
