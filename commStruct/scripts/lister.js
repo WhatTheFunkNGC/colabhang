@@ -139,7 +139,7 @@
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press");
-			findAndAddNewItemToSharedList("listTxt" + itemNo + "listID",userID));
+			findAndAddNewItemToSharedList("listTxt" + itemNo + "listID",userID);
 		}; 
 		return addIDBut;										// return button element
 	};
