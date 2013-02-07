@@ -43,7 +43,9 @@
 	function checkDataExsistanceInArray(data,list) {
 		var listLength, i;
 		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
-		for (i = 1; i <= idListLength; i++){														
+		console.log("list length " + listLength);
+		for (i = 1; i <= idListLength; i++){								
+		console.log("check " + gapi.hangout.data.getValue(list + i));		
 			if (data.indexOf(gapi.hangout.data.getValue(list + i) !== -1)){							
 				return i;												// if index found, return true
 			};																						
