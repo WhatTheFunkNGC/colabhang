@@ -26,7 +26,8 @@
 		var div, noItems, ul, li, li2, e1, e2, e3, e4, i, j, l, userID, idListLength, user;									
 		ul = document.createElement("table");								// create element
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
-		userID =  gapi.hangout.getLocalParticipantId();					// get the current participants ID
+		userID =  gapi.hangout.getLocalParticipantId();						// get the current participants ID
+		console.log("LOCAL USER" + userID);
 		if (parseInt(noItems) < 1){ addNewItemToSharedList ("listTxt","1"); }	// if list empty add new blank
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("tr");							// Create new element to attach
