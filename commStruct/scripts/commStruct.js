@@ -39,6 +39,8 @@
 	// on new user joining - refresh display
 	function startSystem(){
 		console.log("user data initilisation");	
+		userDataPos = checkDataExsistanceInArray(gapi.hangout.getLocalParticipantId(),"userData");	// check if user already exsists
+		if (!userDataPos){															// if false create new user data				
 		var userData = { };															// create new user data object
 		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
 		userData.name = gapi.hangout.getLocalParticipant().person.displayName;
@@ -46,6 +48,7 @@
 		userData.connectionLength = "1";
 		userData.commLength = "0";
 		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
+		}
 		console.log("user data complete");
 	};	
   	
@@ -101,7 +104,6 @@
 	function updateTimer() {
 		var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
 		userData = eval( "(" + userDataString + ")");						// convert to JS object
-		console.log(userData);
 		userData.connectionLength = totalTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 	}

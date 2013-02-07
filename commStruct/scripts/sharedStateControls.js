@@ -36,3 +36,17 @@
 		console.log("List object added");
 		return targetLocation;
 	};
+	
+	/* checks if data exsists within the list array
+	- data : the data to check for in the list
+	- list : the name of the list in the shared state to look through */
+	function checkDataExsistanceInArray(data,list) {
+		var listLength, i;
+		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
+		for (i = 1; i <= idListLength; i++){														
+			if (data.indexOf(gapi.hangout.data.getValue(list + i) !== -1){							
+				return i;												// if index found, return true
+			};																						
+		}																							
+		return false;														// if no index found return false
+	};
