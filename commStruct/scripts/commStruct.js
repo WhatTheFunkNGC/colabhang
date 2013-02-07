@@ -33,7 +33,7 @@
 		
 		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
 		
-		var uTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
+		var cTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
 
 		var dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
   };	
