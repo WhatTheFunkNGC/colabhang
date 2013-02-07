@@ -81,7 +81,6 @@
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";		
 		div.appendChild(ul);	
-		console.log("Displayed"); 
   };
   
 	/* Displays an enterd second count in time format
@@ -107,17 +106,16 @@
 		totalTime = totalTime + 1 ;
 	}
 	
+	// timer function to take a set of readings each second to see if the user is speaking and incriment if threshold met
 	function userChatCounter() {
 		if (chatIntervalCounter == 2){	
-			console.log(" total= " + chatIntervalTotal);
-			if (chatIntervalTotal > 2){
-				console.log("INCRIMENT"); 
+			if (chatIntervalTotal > 1){ 
 				speakTime = speakTime + 1;
 			}
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
 		} else {
-			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id);
+			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // gets current mic volume level
 			chatIntervalCounter = chatIntervalCounter + 1;
 		}
 	};
