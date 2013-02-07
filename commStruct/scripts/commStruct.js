@@ -27,7 +27,9 @@
 		//listUsers();							// list users
 		}	
 		totalTime = 1;
-		
+		speakTime = 0;
+		chatIntervalCounter = 0;
+		chatIntervalTotal = 0;
 
 		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
 		
@@ -106,9 +108,11 @@
 	}
 	
 	function userChatCounter() {
+	console.log("1"); 
 		if (chatIntervalCounter == 2){
 			chatIntervalCounter = 0; 
 			if( (chatIntervalTotal / 2) > 2){
+				console.log("2"); 
 				speakTime = speakTime + 1;
 			}
 			chatIntervalTotal = 0;
