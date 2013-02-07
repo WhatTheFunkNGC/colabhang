@@ -108,10 +108,9 @@
 	}
 	
 	function userChatCounter() {
-	console.log("1"); 
 		if (chatIntervalCounter == 2){
 			chatIntervalCounter = 0; 
-			if( (chatIntervalTotal / 2) > 2){
+			if( (chatIntervalTotal) => 3){
 				console.log("2"); 
 				speakTime = speakTime + 1;
 			}
