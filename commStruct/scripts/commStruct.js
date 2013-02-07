@@ -108,12 +108,12 @@
 	}
 	
 	function userChatCounter() {
-		if (chatIntervalCounter == 2){
-			chatIntervalCounter = 0; 
-			if ( chatIntervalTotal => 3){
-				console.log("2"); 
+		if (chatIntervalCounter == 2){	
+			if (chatIntervalTotal >= 3){
+				console.log("INCRIMENT"); 
 				speakTime = speakTime + 1;
 			}
+			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id);
