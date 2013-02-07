@@ -33,6 +33,6 @@
 		if(!entryValue){ var entryValue = "";};	
 			
 		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 						// create textvalue for list item					
-		console.log("LIST OBJECT " + noItems + " Created with value ");
+		console.log("List object added");
 		return targetLocation;
 	};

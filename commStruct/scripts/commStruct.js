@@ -39,31 +39,32 @@
 	// on new user joining - refresh display
 	function startSystem(){
 		console.log("user data initilisation");	
-		var newUser = { };															// create new user data object
-		newUser.id = gapi.hangout.getLocalParticipantId();							// fill with data
-		newUser.name = gapi.hangout.getLocalParticipant().person.displayName;
-		newUser.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
-		newUser.connectionLength = "1";
-		newUser.commLength = "0";
-		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(newUser));
+		var userData = { };															// create new user data object
+		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
+		userData.name = gapi.hangout.getLocalParticipant().person.displayName;
+		userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
+		userData.connectionLength = "1";
+		userData.commLength = "0";
+		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
 		console.log("user data complete");
 	};	
   	
 	// display list of partisipants with relivant time stats
 	function listUsers() {	
-		var div, ul, tr, i, l, e1, e2, e3;		
+		var div, ul, tr, i, l, e1, e2, e3, userD, userDString;	
 		ul = document.createElement("table");	
-		l = userData.users.length;
 		for (i = 0; i < l; i++) {						// loop through all users in data array and display in table format
+			userDString = gapi.hangout.data.getValue("userData" + i);
+			userD = eval( "(" + userDString + ")");
 			tr = document.createElement("tr");
 			e1 = document.createElement("td");	
-			e1.innerHTML = userData.users[i].name;
+			e1.innerHTML = userD.name;
 			tr.appendChild(e1);
 			e2 = document.createElement("td");	
-			e2.innerHTML = displayTimerString(userData.users[i].connectionLength);
+			e2.innerHTML = displayTimerString(userD.connectionLength);
 			tr.appendChild(e2);
 			e3 = document.createElement("td");	
-			e3.innerHTML = displayTimerString(userData.users[i].commLength);
+			e3.innerHTML = displayTimerString(userD.commLength);
 			tr.appendChild(e3);
 			ul.appendChild(tr);	
 		}	
@@ -98,11 +99,11 @@
 	
 	// sends updates from local user to shared state
 	function updateTimer() {
-		var userDataString = gapi.hangout.data.getValue("userData");
+		var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
 		userData = eval( "(" + userDataString + ")");						// convert to JS object
 		console.log(userData);
-		userData.users[userDataPos].connectionLength = totalTime;
-		gapi.hangout.data.setValue("userData" , JSON.stringify(userData));	// return JSON string of object
+		userData.connectionLength = totalTime;
+		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 	}
 	
   	
