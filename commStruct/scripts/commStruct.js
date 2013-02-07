@@ -3,7 +3,7 @@
   	
   function commStruct() {	
     console.log("Starting...");	
-    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
+    //gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
   }	
     //-------------------- VARS -------------------------	
 		var totalTime;		// glabal var - how long user has been connected
