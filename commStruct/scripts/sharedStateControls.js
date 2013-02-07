@@ -16,7 +16,7 @@
 	
 	/* Remove Genralised value system
 	- listName : target shared list variable name (int ommited)
-	- targetLocation OPTIONAL : Element number to remove from list (defults to end of list when -1 found)
+	- targetLocation : Element number to remove from list (defults to end of list when -1 found)
 	- entryValue OPTIONAL : value to save in new list element */
 	function addNewItemToSharedList (listName,targetLocation,entryValue){	
 		var noItems, i, j;
@@ -39,13 +39,12 @@
 	
 	/* checks if data exsists within the list array
 	- data : the data to check for in the list
-	- list : the name of the list in the shared state to look through */
+	- list : the name of the list in the shared state to look through 
+	Returns false if not found and the arry pos if it is          */
 	function checkDataExsistanceInArray(data,list) {
 		var listLength, i;
 		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
-		console.log("list length " + listLength);
-		for (i = 1; i <= listLength; i++){								
-		console.log("check " + gapi.hangout.data.getValue(list + i));		
+		for (i = 1; i <= listLength; i++){									
 			if (data.indexOf(gapi.hangout.data.getValue(list + i) !== -1)){							
 				return i;												// if index found, return true
 			};																						

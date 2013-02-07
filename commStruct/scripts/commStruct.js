@@ -72,7 +72,7 @@
 			tr.appendChild(e3);
 			ul.appendChild(tr);	
 		}	
-		div = document.getElementById("userList");
+		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";		
 		div.appendChild(ul);	
 		console.log("Displayed"); 
