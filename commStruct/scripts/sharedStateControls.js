@@ -49,8 +49,7 @@
 	
 	function findAndAddNewItemToSharedList(list,data){
 		if (!checkDataExsistanceInArray(list,data)){
-		addNewItemToSharedList (list,data);
-		console.log("11 object added");
+		addNewItemToSharedList (list,-1,data);
 		};
 	};
 	
