@@ -167,7 +167,7 @@
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
-		console.log("3");
+		console.log("3  " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
 		console.log("4");
