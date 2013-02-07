@@ -48,12 +48,8 @@
 	
 	
 	function findAndAddNewItemToSharedList(list,data){
-		console.log(checkDataExsistanceInArray(list,data));
 		if (!checkDataExsistanceInArray(list,data)){
-		console.log("FOUND SO NO ADD");
-		} else {
-		console.log("add new ID");
-			addNewItemToSharedList (list,data);
+		addNewItemToSharedList (list,data);
 		};
 	};
 	
