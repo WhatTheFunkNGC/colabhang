@@ -27,7 +27,7 @@
 		ul = document.createElement("table");								// create element
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		userID =  gapi.hangout.getLocalParticipantId();					// get the current participants ID
-		if (parseInt(noItems) < 1){ addNewItemToList ("listTxt","1"); }	// if list empty add new blank
+		if (parseInt(noItems) < 1){ addNewItemToSharedList ("listTxt","1"); }	// if list empty add new blank
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("tr");							// Create new element to attach
 			e1 = document.createElement("td");
@@ -64,7 +64,7 @@
 			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };// ---Check for id exsisting already if so quit
 		}																							// ---
 		idListLength = (parseInt(idListLength, 10) + 1).toString();									// increase target list length
-		addNewItemToList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
+		addNewItemToSharedList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
 	};
 	
 	/* Removes User signed up to list element
@@ -75,7 +75,7 @@
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
 		for (i = 1; i <= idListLength; i++){														// ---
 			if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){
-				removeItemFromList("listTxt" + itemNo + "listID",i);
+				removeItemFromSharedList("listTxt" + itemNo + "listID",i);
 			};																						// ---Check for id exsisting already if so quit
 		}																							// ---
 
@@ -94,7 +94,7 @@
 		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
-				removeItemFromList("listTxt",itemNo);
+				removeItemFromSharedList("listTxt",itemNo);
 		}; 
 		return delBut;												// return button element
 	};
@@ -110,7 +110,7 @@
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press");
 				var listL = (parseInt(itemNo, 10) + 1).toString(); 		// gets targets below current for new element
-				addNewItemToList ("listTxt",listL); 					// adds blank list element below selected element
+				addNewItemToSharedList ("listTxt",listL); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
