@@ -37,7 +37,9 @@
 		return targetLocation;
 	};
 	
-	
+	/* remove an item from the list
+	- list : name of the list to remove from
+	- data : the data to find and remove from the list */
 	function findAndRemoveItemFromSharedList(list,data){
 		var loc = checkDataExsistanceInArray(list,data);
 		if (!loc) {
@@ -46,7 +48,9 @@
 		}
 	};	
 	
-	
+	/* adds an item to a list providing it dosnt already exsist
+	- list : name of the list to remove from
+	- data : the data to find and remove from the list */
 	function findAndAddNewItemToSharedList(list,data){
 		if (!checkDataExsistanceInArray(list,data)){
 		addNewItemToSharedList (list,-1,data);
