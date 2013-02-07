@@ -44,8 +44,10 @@
 			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
 			console.log("2");
 				e2.appendChild(userPicture(i,j));
+				console.log("5");
 			};
 			li2.appendChild(e2);
+			console.log("6");
 			
 			ul.appendChild(li);											// add list element to end of full list	
 			ul.appendChild(li2);
@@ -168,6 +170,7 @@
 		console.log("3");
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
 		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
+		console.log("4");
 		userPic.width = 25;
 		userPic.height = 25;
 		userPic.align = "top"; 
