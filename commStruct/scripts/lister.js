@@ -52,7 +52,34 @@
 	div.innerHTML = "";									// clear exsisitn displayed list
     div.appendChild(ul);								// add new List to HTML element
 	
-	};
+	};	
+	
+	/* signs user up to list element
+	- userID : User ID to add
+	- itemNo : Which List element */
+	//function addUserToElement(userID,itemNo) {
+	//	var idListLength, i;
+	//	idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
+	//	for (i = 1; i <= idListLength; i++){														// ---
+	//		if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };// ---Check for id exsisting already if so quit
+	//	}																							// ---
+	//	idListLength = (parseInt(idListLength, 10) + 1).toString();									// increase target list length
+	//	addNewItemToSharedList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
+	//};
+	
+	/* Removes User signed up to list element
+	- userID : User ID to remove
+	- itemNo : Which List element */
+	//function removeUserFromElement(userID,itemNo) {
+	//	var idListLength, i;
+	//	idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
+	//	for (i = 1; i <= idListLength; i++){														// ---
+	//		if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){
+	//			removeItemFromSharedList("listTxt" + itemNo + "listID",i);
+	//		};																						// ---Check for id exsisting already if so quit
+	//	}																							// ---
+
+	//};
 
 	
 //-------------------- Button creation -------------------------
@@ -121,14 +148,13 @@
 	// add text input bar
 	function addTxtInput(itemNo) { 
 		var txtIn = document.createElement("input"); 					// create input element
-		txtIn.name = "txtIn" + itemNo;
+		//delBut.name = "TxtIn" + itemNo;;
 		txtIn.type = "text";											// of text type
 		txtIn.size = "32";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
 				gapi.hangout.data.setValue("listTxt" + itemNo, txtIn.value); 
-				
 		}; 		
 		return txtIn;													// return txtInput element
 	};
@@ -137,8 +163,8 @@
 	function userPicture(itemNo,idLoc) { 														
 		var userPic = document.createElement("img");											// create element
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
+		console.log("3  " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
-		userPic.name = "list" + itemNo + "ID" + userID;
 		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
 		console.log("4");
 		userPic.width = 25;
