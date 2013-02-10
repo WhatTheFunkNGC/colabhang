@@ -111,13 +111,13 @@
 		if (chatIntervalCounter == 2){	
 			if (chatIntervalTotal > 1){ 
 				speakTime = speakTime + 1;
-			}
+			};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // gets current mic volume level
 			chatIntervalCounter = chatIntervalCounter + 1;
-		}
+		};
 	};
 	
 	
