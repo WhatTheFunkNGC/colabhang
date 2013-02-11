@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>	
-<Module>	
+	<Module>	
   <ModulePrefs title="Commuication Structurer">	
     <Require feature="rpc"/>	
     <Require feature="views"/>	

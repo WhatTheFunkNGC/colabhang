@@ -109,9 +109,7 @@
 	
 	function userChatCounter() {
 		if (chatIntervalCounter == 2){	
-			console.log(" total= " + chatIntervalTotal);
 			if (chatIntervalTotal > 2){
-				console.log("INCRIMENT"); 
 				speakTime = speakTime + 1;
 			};
 			chatIntervalCounter = 0; 
