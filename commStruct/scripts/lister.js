@@ -2,7 +2,7 @@
   	
   function Lister() {	
     console.log("Starting Lister");	
-    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	// Add callback
+    //gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	// Add callback
   }	
   
   //-------------------- Listeners -------------------------
