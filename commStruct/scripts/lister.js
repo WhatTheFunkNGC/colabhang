@@ -61,27 +61,38 @@
 
 	for (i = 0; i < addedKeys.length ; i++ ){
 	console.log("length = " + addedKeys.length);
-	if (addedKeys[i].key.indexOf("listTxt" !== -1)){							
-				addListItem();												
-			};
+	if (addedKeys[i].key.indexOf("listTxt" !== -1)){
+		var itemNo = addedKeys[i].key.charAt(7);
+		if (addedKeys[i].key.indexOf("listID" !== -1)){	
+															
+		} else {
+		addListItem(itemNo);
+		};
+	};
 	};
 	
 	}
 	
-	function addListItem (){
+	function addListItem (itemNo){
 	var div, i, li, li2, e1, e2, userID;
 	console.log("New list item print");
 		div = document.getElementById("lister");
 		i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		userID =  gapi.hangout.getLocalParticipantId();
 		li = document.createElement("tr");							// Create new element to attach
+		console.log("add name");
+		li.name = "objTxtLine" + itemNo;
+			e2.name = "objIDlist" + itemNo;
 			e1 = document.createElement("td");
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
 			li.appendChild(e1);
-			li2 = document.createElement("tr");
+		li2 = document.createElement("tr");
+		li.name = "objTxtLineID" + itemNo;
 			e2 = document.createElement("td");
+			console.log("add name");
+			e2.name = "objIDlist" + itemNo;
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
 			li2.appendChild(e2);	
@@ -89,33 +100,6 @@
 			div.appendChild(li2);
 			console.log("New list item print Complete");
 	};
-	
-	/* signs user up to list element
-	- userID : User ID to add
-	- itemNo : Which List element */
-	//function addUserToElement(userID,itemNo) {
-	//	var idListLength, i;
-	//	idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
-	//	for (i = 1; i <= idListLength; i++){														// ---
-	//		if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){ return; };// ---Check for id exsisting already if so quit
-	//	}																							// ---
-	//	idListLength = (parseInt(idListLength, 10) + 1).toString();									// increase target list length
-	//	addNewItemToSharedList ("listTxt" + itemNo + "listID",idListLength,userID);						// add ID to list
-	//};
-	
-	/* Removes User signed up to list element
-	- userID : User ID to remove
-	- itemNo : Which List element */
-	//function removeUserFromElement(userID,itemNo) {
-	//	var idListLength, i;
-	//	idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || "0";			// get length of current list ID list
-	//	for (i = 1; i <= idListLength; i++){														// ---
-	//		if (userID == gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + i)){
-	//			removeItemFromSharedList("listTxt" + itemNo + "listID",i);
-	//		};																						// ---Check for id exsisting already if so quit
-	//	}																							// ---
-
-	//};
 
 	
 //-------------------- Button creation -------------------------
@@ -184,7 +168,7 @@
 	// add text input bar
 	function addTxtInput(itemNo) { 
 		var txtIn = document.createElement("input"); 					// create input element
-		//delBut.name = "TxtIn" + itemNo;;
+		//delBut.name = "TxtIn" + itemNo;
 		txtIn.type = "text";											// of text type
 		txtIn.size = "32";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
