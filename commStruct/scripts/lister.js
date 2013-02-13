@@ -2,7 +2,7 @@
   	
   function Lister() {	
     console.log("Starting Lister");	
-    //gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	// Add callback
+    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	// Add callback
   }	
   
   //-------------------- Listeners -------------------------
@@ -13,8 +13,7 @@
 			console.log("Lister Ready");	
 	
 		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
-		this.displayListItems.bind(this)		
-		);
+		this.add.bind(this)	);
 		this.displayListItems();
 		}	
 	};	
@@ -54,6 +53,29 @@
     div.appendChild(ul);								// add new List to HTML element
 	
 	};	
+	
+	Lister.prototype.add = function (){
+	addListItem();
+	}
+	
+	function addListItem (){
+	var div, i, li, li2, e1, e2;
+		div = document.getElementById("lister");
+		i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
+		li = document.createElement("tr");							// Create new element to attach
+			e1 = document.createElement("td");
+			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
+			e1.appendChild(addDelButton(i));							// add delete button
+			e1.appendChild(addAddButton(i));							// add Add button
+			li.appendChild(e1);
+			li2 = document.createElement("tr");
+			e2 = document.createElement("td");
+			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
+			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
+			li2.appendChild(e2);			
+			div.appendChild(li);											// add list element to end of full list	
+			div.appendChild(li2);
+	};
 	
 	/* signs user up to list element
 	- userID : User ID to add

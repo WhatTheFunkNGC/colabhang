@@ -3,7 +3,7 @@
   	
   function commStruct() {	
     console.log("Starting...");	
-    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
+    //gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
   }	
     //-------------------- VARS -------------------------	
 		var totalTime;		// glabal var - how long user has been connected
@@ -109,13 +109,13 @@
 	
 	function userChatCounter() {
 		if (chatIntervalCounter == 2){	
-			if (chatIntervalTotal > 2){
+			if (chatIntervalTotal > 1){
 				speakTime = speakTime + 1;
 			};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
 		} else {
-			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id);
+			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 			chatIntervalCounter = chatIntervalCounter + 1;
 		};
 	};
