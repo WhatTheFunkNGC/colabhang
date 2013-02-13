@@ -56,19 +56,18 @@
 	
 	function add (addedKeys,removedKeys){
 	var i;
-	console.log("get keys");
 	console.log("output");
 
 	for (i = 0; i < addedKeys.length ; i++ ){
-	console.log("length = " + addedKeys.length);
 	if (addedKeys[i].key.indexOf("listTxt" !== -1)){
 		var itemNo = addedKeys[i].key.charAt(7);
 		if (addedKeys[i].key.indexOf("listID" !== -1)){	
-															
+			console.log("ID list change");												
 		} else {
 		addListItem(itemNo);
 		};
 	};
+	console.log("check");	
 	};
 	
 	}
