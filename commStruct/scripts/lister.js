@@ -60,7 +60,7 @@
 	console.log("output");
 	console.log(ar);
 	for (i = 0; i < ar.length ;i++ ){
-	console.log("length = " ar.length);
+	console.log("length = " + ar.length);
 		if (ar[i].key = "listTxt1") {console.log("1")};
 		if (ar[i].key = "listTxt2") {console.log("2")};
 		if (ar[i].key = "listTxt3") {console.log("3")};
