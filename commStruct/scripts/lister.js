@@ -54,27 +54,24 @@
 	
 	};	
 	
-	function add (a,b){
+	function add (addedKeys,removedKeys){
 	var i;
 	console.log("get keys");
-	var ar = a;
 	console.log("output");
-	console.log(ar);
-	for (i = 0; i < 2 ; i++ ){
-	console.log("length = " + ar.length);
-		if (ar[i].key = "listTxt1") {console.log("1")};
-		if (ar[i].key = "listTxt2") {console.log("2")};
-		if (ar[i].key = "listTxt3") {console.log("3")};
-		if (ar[i].key = "listTxt4") {console.log("4")};
+
+	for (i = 0; i < addedKeys.length ; i++ ){
+	console.log("length = " + addedKeys.length);
+	if (addedKeys[i].key.indexOf("listTxt" !== -1)){							
+				addListItem();												
+			};
 	};
-	addListItem();
+	
 	}
 	
 	function addListItem (){
 	var div, i, li, li2, e1, e2, userID;
-	console.log("New 1");
+	console.log("New list item print");
 		div = document.getElementById("lister");
-		console.log("new 2");
 		i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		userID =  gapi.hangout.getLocalParticipantId();
 		li = document.createElement("tr");							// Create new element to attach
@@ -83,16 +80,14 @@
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
 			li.appendChild(e1);
-			console.log("new 3");
 			li2 = document.createElement("tr");
 			e2 = document.createElement("td");
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
-			li2.appendChild(e2);
-console.log("new 4");			
+			li2.appendChild(e2);	
 			div.appendChild(li);											// add list element to end of full list	
 			div.appendChild(li2);
-			console.log("new 5");
+			console.log("New list item print Complete");
 	};
 	
 	/* signs user up to list element
