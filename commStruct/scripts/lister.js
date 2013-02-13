@@ -13,8 +13,8 @@
 			console.log("Lister Ready");	
 	
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
-		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys));
-		}(;
+		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
+		});
 		this.displayListItems();
 		}	
 	};	
