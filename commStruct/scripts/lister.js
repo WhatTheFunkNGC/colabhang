@@ -58,6 +58,12 @@
 	var ar = this.addedKeys;
 	console.log("output");
 	console.log(ar);
+	for (i = 0; i < ar.length ;i++ ){
+		if (ar[i].key = "listTxt1") {console.log("1")};
+		if (ar[i].key = "listTxt2") {console.log("2")};
+		if (ar[i].key = "listTxt3") {console.log("3")};
+		if (ar[i].key = "listTxt4") {console.log("4")};
+	}
 	addListItem();
 	}
 	
