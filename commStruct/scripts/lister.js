@@ -54,6 +54,10 @@
 	};	
 	
 	Lister.prototype.add = function (){
+	console.log("get keys");
+	var ar = addedKeys;
+	console.log("output");
+	console.log(addedKeys);
 	addListItem();
 	}
 	
