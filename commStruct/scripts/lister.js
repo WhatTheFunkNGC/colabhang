@@ -58,11 +58,12 @@
 	}
 	
 	function addListItem (){
-	var div, i, li, li2, e1, e2;
+	var div, i, li, li2, e1, e2, userID;
 	console.log("New 1");
 		div = document.getElementById("lister");
 		console.log("new 2");
 		i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
+		userID =  gapi.hangout.getLocalParticipantId();
 		li = document.createElement("tr");							// Create new element to attach
 			e1 = document.createElement("td");
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
