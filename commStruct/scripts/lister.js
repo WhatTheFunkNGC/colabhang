@@ -55,7 +55,7 @@
 	
 	Lister.prototype.add = function (){
 	console.log("get keys");
-	var ar = addedKeys;
+	var ar = this.addedKeys;
 	console.log("output");
 	console.log(addedKeys);
 	addListItem();
