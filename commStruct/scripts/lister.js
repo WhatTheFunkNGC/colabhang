@@ -62,6 +62,7 @@
 	if (addedKeys[i].key.indexOf("listTxt" !== -1)){
 		var itemNo = addedKeys[i].key.charAt(7);
 		if (addedKeys[i].key.indexOf("listID" !== -1)){	
+			console.log(addedKeys[i].key);
 			console.log("ID list change");												
 		} else {
 		addListItem(itemNo);
