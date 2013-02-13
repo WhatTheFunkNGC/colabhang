@@ -12,8 +12,9 @@
 		if (event.isApiReady === true) {	
 			console.log("Lister Ready");	
 	
-		gapi.hangout.data.onStateChanged.add(				// add callback event for list change
-		this.add.bind(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys)	);
+		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
+		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys));
+		}(;
 		this.displayListItems();
 		}	
 	};	
@@ -53,7 +54,7 @@
 	
 	};	
 	
-	Lister.prototype.add = function (a,b){
+	function add (a,b){
 	var i;
 	console.log("get keys");
 	var ar = a;
