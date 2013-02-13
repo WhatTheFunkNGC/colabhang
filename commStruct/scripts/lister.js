@@ -57,7 +57,7 @@
 	console.log("get keys");
 	var ar = this.addedKeys;
 	console.log("output");
-	console.log(addedKeys[0].key);
+	console.log(ar[0].key);
 	addListItem();
 	}
 	
