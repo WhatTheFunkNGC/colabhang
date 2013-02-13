@@ -63,7 +63,7 @@
 		var itemNo = addedKeys[i].key.charAt(7);
 		if (addedKeys[i].key.indexOf("listID" !== -1)){	
 			console.log(addedKeys[i].key);
-			console.log("ID list change");												
+			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 		} else {
 		addListItem(itemNo);
 		};
