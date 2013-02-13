@@ -61,7 +61,7 @@
 	for (i = 0; i < addedKeys.length ; i++ ){
 	if (addedKeys[i].key.indexOf("listTxt") !== -1){
 		var itemNo = addedKeys[i].key.charAt(7);
-		if (addedKeys[i].key.indexOf("listID") !== -1)){	
+		if (addedKeys[i].key.indexOf("listID") !== -1){	
 			console.log(addedKeys[i].key);
 			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 		} else {
