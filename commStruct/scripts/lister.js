@@ -152,7 +152,7 @@
 	var div, i, li, li2, e1, e2, userID;
 	console.log("New list item print");
 		div = document.getElementById(tableId);
-		console.log("table found");
+		console.log("table found id = " + tableId + " and equals " + div);
 		//i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		i = itemNo;
 		console.log("call refrence update");
