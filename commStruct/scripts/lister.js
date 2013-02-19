@@ -160,7 +160,7 @@
 		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
-		j = (parseInt(itemNo) + 1).toString();
+		j = (parseInt(itemNo)).toString();
 		console.log("start adding rows " + j);
 		li = div.insertRow(j);								// Create new element to attach
 		console.log("add line1");
