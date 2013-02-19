@@ -78,7 +78,8 @@
 					addListItem(itemNo);									// add to table
 				} else if (removedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
 					itemNo = removedKeys[i].key.charAt(7);					// itemNo is single digit
-					addListItem(itemNo);									// add to table
+					console.log("begin remove");
+					removeListItem(itemNo);									// add to table
 				} else if (removedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 					console.log(removedKeys[i].key);
 					console.log(" found at " + removedKeys[i].key.indexOf("listID" !== -1));												
