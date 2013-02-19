@@ -120,8 +120,10 @@
 		for (i = noItems; i >= start; i--) {
 			console.log("start list item");
 			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
+			console.log("del");
 			delBut = document.getElementsByName("delBut" + i);
 			delBut.name = "delBut" + (i + 1);
+			console.log("del name = " + delBut.name);
 			addBut = document.getElementsByName("addBut" + i);
 			addBut.name = "addBut" + (i + 1);
 			delIDBut = document.getElementsByName("delIDBut" + i);
@@ -132,11 +134,14 @@
 			txtIn.name = "txtIn" + (i + 1);	
 			txtIn.value = gapi.hangout.data.getValue("listTxt" + (i + 1));
 			
+			console.log("do image loop");
+			
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 			for (j = 1; j <= idListLength; j++) {
 				var userPic = document.getElementsByName("listTxt" + i + "listID" + j);
 				userPic.name = "listTxt" + (i + 1) + "listID" + j;
 			};
+			console.log("update refrences done");
 		};
 	};
 		
