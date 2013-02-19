@@ -37,7 +37,8 @@
 		
 		tb = document.createElement("table");
 		tb.id = "mainListerTable";
-		tableId = tb.id;									// stores the table refrence
+		tableId = tb.id;
+		tb.insertRow(0);										// stores the table refrence
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
 		addNewItemToSharedList ("listTxt","1");
@@ -160,18 +161,18 @@
 		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
-		j = (parseInt(itemNo) - 1).toString();
+		j = (parseInt(itemNo)).toString();
 		console.log("start adding rows " + j);
 		li = div.insertRow(j);								// Create new element to attach
 		console.log("add line1");
-			e1 = li.instertCell(0);
+			e1 = li.insertCell(0);
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
 		console.log("add line2");	
 			j++;
 		li2 = div.insertRow(itemNo);
-			e2 = li2.instertCell(0);
+			e2 = li2.insertCell(0);
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
 			console.log("New list item print Complete");
