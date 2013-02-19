@@ -117,32 +117,34 @@
 	console.log("start Refrence UPDATE from element " + start);
 	var noItems, i;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
+		j = (noItems, 10) + 1).toString();
 		for (i = noItems; i >= start; i--) {
 			console.log("start list item");
-			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
+			var delBut, addBut, delIDBut, addIDBut, txtIn, j, k ,idListLength;
 			console.log("del");
 			delBut = document.getElementsByName("delBut" + i);
-			delBut.name = "delBut" + parseInt(i, 10) + 1);
+			delBut.name = "delBut" + j;
 			console.log("del name = " + delBut.name);
 			addBut = document.getElementsByName("addBut" + i);
-			addBut.name = "addBut" + parseInt(i, 10) + 1).toString();
+			addBut.name = "addBut" + j;
 			delIDBut = document.getElementsByName("delIDBut" + i);
-			delIDBut.name = "delIDBut" + parseInt(i, 10) + 1).toString();
+			delIDBut.name = "delIDBut" + j;
 			addIDBut = document.getElementsByName("addIDBut" + i);
-			addIDBut.name = "addIDBut" + parseInt(i, 10) + 1).toString();
+			addIDBut.name = "addIDBut" + j;
 			txtIn = document.getElementsByName("txtIn" + i);
-			txtIn.name = "txtIn" + parseInt(i, 10) + 1).toString();	
-			txtIn.value = gapi.hangout.data.getValue("listTxt" + parseInt(i, 10) + 1).toString());
+			txtIn.name = "txtIn" + j;	
+			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);
 			
 			console.log("do image loop");
 			
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
-			for (j = 1; j <= idListLength; j++) {
-				var userPic = document.getElementsByName("listTxt" + i + "listID" + j);
-				userPic.name = "listTxt" + parseInt(i, 10) + 1).toString() + "listID" + j;
+			for (k = 1; k <= idListLength; k++) {
+				var userPic = document.getElementsByName("listTxt" + i + "listID" + k);
+				userPic.name = "listTxt" + j + "listID" + k;
 			};
-			console.log("update refrences done");
+			j--;
 		};
+		console.log("update refrences done");
 	};
 		
 	
