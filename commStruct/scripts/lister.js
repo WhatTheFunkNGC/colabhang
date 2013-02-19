@@ -50,11 +50,13 @@
 		addedKeys - a list of added key pairs
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
-		var itemNo;
+		var itemNo, div;
 		console.log("state changer start");
+		div = document.getElementById(tableId);
+		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ 
+		
 
 		for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
-			console.log("if added found = " + addedKeys);
 			if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
 				if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
 					itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
@@ -69,9 +71,10 @@
 			};
 			
 		};
+		
+		};
 		console.log("added check done");
 		for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
-			console.log("if removed found = " + removedKeys[i]);
 			if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
 				console.log("true for txt val");
 				if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
