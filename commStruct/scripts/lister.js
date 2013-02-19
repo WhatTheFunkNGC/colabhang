@@ -73,9 +73,10 @@
 		for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
 			console.log("if removed found = " + removedKeys);
 			if (removedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
+				console.log("true for txt val");
 				if (removedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
 					itemNo = removedKeys[i].key.substring(7,9); 				// item id = double digits
-					addListItem(itemNo);									// add to table
+					removeListItem(itemNo);									// add to table
 				} else if (removedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
 					itemNo = removedKeys[i].key.charAt(7);					// itemNo is single digit
 					console.log("begin remove");
@@ -84,6 +85,7 @@
 					console.log(removedKeys[i].key);
 					console.log(" found at " + removedKeys[i].key.indexOf("listID" !== -1));												
 				};
+				console.log("removeer check done");
 			};	
 		};
 		console.log("removed check done");
