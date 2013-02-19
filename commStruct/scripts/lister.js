@@ -122,24 +122,24 @@
 			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
 			console.log("del");
 			delBut = document.getElementsByName("delBut" + i);
-			delBut.name = "delBut" + (i + 1);
+			delBut.name = "delBut" + parseInt(i, 10) + 1).toString();
 			console.log("del name = " + delBut.name);
 			addBut = document.getElementsByName("addBut" + i);
-			addBut.name = "addBut" + (i + 1);
+			addBut.name = "addBut" + parseInt(i, 10) + 1).toString();
 			delIDBut = document.getElementsByName("delIDBut" + i);
-			delIDBut.name = "delIDBut" + (i + 1);
+			delIDBut.name = "delIDBut" + parseInt(i, 10) + 1).toString();
 			addIDBut = document.getElementsByName("addIDBut" + i);
-			addIDBut.name = "addIDBut" + (i + 1);
+			addIDBut.name = "addIDBut" + parseInt(i, 10) + 1).toString();
 			txtIn = document.getElementsByName("txtIn" + i);
-			txtIn.name = "txtIn" + (i + 1);	
-			txtIn.value = gapi.hangout.data.getValue("listTxt" + (i + 1));
+			txtIn.name = "txtIn" + parseInt(i, 10) + 1).toString();	
+			txtIn.value = gapi.hangout.data.getValue("listTxt" + parseInt(i, 10) + 1).toString());
 			
 			console.log("do image loop");
 			
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 			for (j = 1; j <= idListLength; j++) {
 				var userPic = document.getElementsByName("listTxt" + i + "listID" + j);
-				userPic.name = "listTxt" + (i + 1) + "listID" + j;
+				userPic.name = "listTxt" + parseInt(i, 10) + 1).toString() + "listID" + j;
 			};
 			console.log("update refrences done");
 		};
@@ -156,14 +156,15 @@
 		console.log("call refrence update");
 		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
-		li = div.insertRow(pos);								// Create new element to attach
+		console.log("start adding rows");
+		li = div.insertRow(itemNo);								// Create new element to attach
 		console.log("add line1");
 			e1 = li.instertCell(0);
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
 		console.log("add line2");										
-		li2 = div.insertRow(pos);
+		li2 = div.insertRow(itemNo);
 			e2 = li2.instertCell(0);
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
