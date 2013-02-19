@@ -94,15 +94,17 @@
 			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
 			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
 			}
-		} else {			
+			addListItem(itemNo);
+		} else if (addedKeys[i].key.length > 6) {			
 			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
 			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
-		}
+			addListItem(itemNo);
+		} else { 
 		if (addedKeys[i].key.indexOf("listID") !== -1){	
 			console.log(addedKeys[i].key);
 			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
-		} else {
-		addListItem(itemNo);
+		}
+		
 		};
 	};
 	console.log("check");	
