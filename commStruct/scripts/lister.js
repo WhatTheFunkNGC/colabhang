@@ -122,7 +122,7 @@
 			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
 			console.log("del");
 			delBut = document.getElementsByName("delBut" + i);
-			delBut.name = "delBut" + parseInt(i, 10) + 1).toString();
+			delBut.name = "delBut" + parseInt(i, 10) + 1);
 			console.log("del name = " + delBut.name);
 			addBut = document.getElementsByName("addBut" + i);
 			addBut.name = "addBut" + parseInt(i, 10) + 1).toString();
