@@ -30,6 +30,7 @@
   
 	//inital table setup and item
 	function listerTableSetup(){
+		console.log("setup table start");
 		var div, tb;
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
@@ -37,7 +38,9 @@
 		tb = document.createElement("table");
 		tableId = tb.id;									// stores the table refrence
 		div.appendChild(tb);								// add new List to HTML element
+		console.log("table added");
 		addNewItemToSharedList ("listTxt","1");
+		console.log("blank added");
 	};
 	
 	
@@ -78,15 +81,17 @@
 	
 	function add (addedKeys,removedKeys){
 	var i;
-	console.log("output");
+	console.log("state changer start");
 
 	for (i = 0; i < addedKeys.length ; i++ ){
 	var itemNo;
 	if (addedKeys[i].key.indexOf("listTxt") !== -1){
-		if (!isNan(addedKeys[i].key.charAt(8))){ 				// checks if item id is in double digits
+		console.log("if added found");
+		if (!isNan(addedKeys[i].key.charAt(8) || true)){ 				// checks if item id is in double digits
 			itemNo = addedKeys[i].key.subString(7,9); 			// item id = double digits
-		} else {
+		} else {			
 			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
+			console.log("single digit length = " + itemNo);
 		}
 		if (addedKeys[i].key.indexOf("listID") !== -1){	
 			console.log(addedKeys[i].key);
