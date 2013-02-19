@@ -214,7 +214,9 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.name);
-				addNewItemToSharedList ("listTxt",parseInt(addBut.name.substring(6)) + 1); 					// adds blank list element below selected element
+				var j = (parseInt(addBut.name.substring(6)) + 1);
+				console.log(j);
+				addNewItemToSharedList ("listTxt",j); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
