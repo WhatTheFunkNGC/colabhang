@@ -5,21 +5,43 @@
     gapi.hangout.onApiReady.add(this.onApiReady.bind(this));	// Add callback
   }	
   
+  //-------------------- VARS -------------------------	
+  
+  var tableId;
+  
+  
   //-------------------- Listeners -------------------------
 	
 	// script start and loop
 	Lister.prototype.onApiReady = function (event) {	
 		if (event.isApiReady === true) {	
 			console.log("Lister Ready");	
+			listerTableSetup();
 	
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
 		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
-		this.displayListItems();
+		//this.displayListItems();
+		
 		}	
 	};	
   
   //-------------------- Functions -------------------------
+  
+	//inital table setup and item
+	function listerTableSetup(){
+		var div, tb;
+		div = document.getElementById("lister");				// get element
+		div.innerHTML = "";									// clear exsisitn displayed list
+		
+		tb = document.createElement("table");
+		tableId = tb.id;									// stores the table refrence
+		div.appendChild(tb);								// add new List to HTML element
+		addNewItemToSharedList ("listTxt","1");
+	};
+	
+	
+	
   
 	//Display list Items
 	Lister.prototype.displayListItems = function () {	
@@ -27,7 +49,7 @@
 		ul = document.createElement("table");								// create element
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		userID =  gapi.hangout.getLocalParticipantId();						// get the current participants ID
-		if (parseInt(noItems) < 1){ addNewItemToSharedList ("listTxt","1"); }	// if list empty add new blank
+		if (parseInt(noItems) < 1){ addNewItemToSharedList ("listTxt","1"); }
 		for (i = 1; i <= noItems; i++) {
 			li = document.createElement("tr");							// Create new element to attach
 			e1 = document.createElement("td");
@@ -59,8 +81,13 @@
 	console.log("output");
 
 	for (i = 0; i < addedKeys.length ; i++ ){
+	var itemNo;
 	if (addedKeys[i].key.indexOf("listTxt") !== -1){
-		var itemNo = addedKeys[i].key.charAt(7);
+		if (!isNan(addedKeys[i].key.charAt(8))){ 				// checks if item id is in double digits
+			itemNo = addedKeys[i].key.subString(7,9); 			// item id = double digits
+		} else {
+			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
+		}
 		if (addedKeys[i].key.indexOf("listID") !== -1){	
 			console.log(addedKeys[i].key);
 			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
@@ -71,33 +98,54 @@
 	console.log("check");	
 	};
 	
-	}
+	};
+
+
+	function updateListRefrences(start){
+	var noItems, i;
+		noItems = gapi.hangout.data.getValue("listTxt") || "0";
+		for (i = NoItems; i >= start; i--) {
+			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
+			delBut = document.getElementsByName("delBut" + i);
+			delBut.name = "delBut" + (i + 1);
+			addBut = document.getElementsByName("addBut" + i);
+			addBut.name = "addBut" + (i + 1);
+			delIDBut = document.getElementsByName("delIDBut" + i);
+			delIDBut.name = "delIDBut" + (i + 1);
+			addIDBut = document.getElementsByName("addIDBut" + i);
+			addIDBut.name = "addIDBut" + (i + 1);
+			txtIn = document.getElementsByName("txtIn" + i);
+			txtIn.name = "txtIn" + (i + 1);	
+			txtIn.value = gapi.hangout.data.getValue("listTxt" + (i + 1));
+			
+			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
+			for (j = 1; j <= idListLength; j++) {
+				var userPic = document.getElementsByName("listTxt" + i + "listID" + j);
+				userPic.name = "listTxt" + (i + 1) + "listID" + j;
+			};
+		};
+	};
+		
 	
 	function addListItem (itemNo){
 	var div, i, li, li2, e1, e2, userID;
 	console.log("New list item print");
-		div = document.getElementById("lister");
-		i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
+		div = document.getElementById(tableId);
+		//i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
+		i = itemNo;
+		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
-		li = document.createElement("tr");							// Create new element to attach
-		console.log("add name");
-		li.name = "objTxtLine" + itemNo;
-			e2.name = "objIDlist" + itemNo;
-			e1 = document.createElement("td");
+		li = div.insertRow(pos);								// Create new element to attach
+		console.log("add line1");
+			e1 = li.instertCell(0);
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
-			li.appendChild(e1);
-		li2 = document.createElement("tr");
-		li.name = "objTxtLineID" + itemNo;
-			e2 = document.createElement("td");
-			console.log("add name");
-			e2.name = "objIDlist" + itemNo;
+		console.log("add line2");										
+		li2 = div.insertRow(pos);
+			e2 = li2.instertCell(0);
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
-			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
-			li2.appendChild(e2);	
-			div.appendChild(li);											// add list element to end of full list	
-			div.appendChild(li2);
+			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
 			console.log("New list item print Complete");
 	};
 
@@ -114,7 +162,7 @@
 		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
-				removeItemFromSharedList("listTxt",itemNo);
+				removeItemFromSharedList("listTxt",delBut.name.subString(6));
 		}; 
 		return delBut;												// return button element
 	};
@@ -144,7 +192,7 @@
 		delIDBut.align = "top";
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 			console.log("Del ID Press");
-			findAndRemoveItemFromSharedList("listTxt" + itemNo + "listID",userID);
+			findAndRemoveItemFromSharedList("listTxt" + delIDBut.name.subString(8) + "listID",userID);
 		}; 
 		return delIDBut;											// return button element
 	};
@@ -159,7 +207,7 @@
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press");
-			findAndAddNewItemToSharedList("listTxt" + itemNo + "listID",userID);
+			findAndAddNewItemToSharedList("listTxt" + addIDBut.name.subString(8) + "listID",userID);
 		}; 
 		return addIDBut;										// return button element
 	};
@@ -168,13 +216,13 @@
 	// add text input bar
 	function addTxtInput(itemNo) { 
 		var txtIn = document.createElement("input"); 					// create input element
-		//delBut.name = "TxtIn" + itemNo;
+		txtIn.name = "txtIn" + itemNo;
 		txtIn.type = "text";											// of text type
 		txtIn.size = "32";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
-				gapi.hangout.data.setValue("listTxt" + itemNo, txtIn.value); 
+				gapi.hangout.data.setValue("listTxt" + txtIn.name.subString(5), txtIn.value); 
 		}; 		
 		return txtIn;													// return txtInput element
 	};
@@ -185,6 +233,7 @@
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		console.log("3  " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
+		userPic.name = "listTxt" + itemNo + "listID" + idLoc;
 		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
 		console.log("4");
 		userPic.width = 25;
