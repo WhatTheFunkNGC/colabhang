@@ -152,7 +152,7 @@
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
 		div.deleteRow(i);
-		div.deleteRow(i + 1);
+		div.deleteRow((parseInt(i) + 1).toString());
 	};	
 		
 	/* Adds a new table row for a new list item
