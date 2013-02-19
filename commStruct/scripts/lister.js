@@ -117,7 +117,7 @@
 	console.log("start Refrence UPDATE from element " + start);
 	var noItems, i;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
-		for (i = NoItems; i >= start; i--) {
+		for (i = noItems; i >= start; i--) {
 			console.log("start list item");
 			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
 			delBut = document.getElementsByName("delBut" + i);
