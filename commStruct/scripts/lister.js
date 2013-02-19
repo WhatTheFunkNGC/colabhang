@@ -71,19 +71,19 @@
 		};
 		console.log("added check done");
 		for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
-			console.log("if removed found = " + removedKeys[i].key);
-			if (removedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
+			console.log("if removed found = " + removedKeys[i]);
+			if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
 				console.log("true for txt val");
-				if (removedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
-					itemNo = removedKeys[i].key.substring(7,9); 				// item id = double digits
+				if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
+					itemNo = removedKeys[i].substring(7,9); 				// item id = double digits
 					removeListItem(itemNo);									// add to table
-				} else if (removedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
-					itemNo = removedKeys[i].key.charAt(7);					// itemNo is single digit
+				} else if (removedKeys[i].length == 8) {				// 	if name is 8 long then must havde single digit itemNo
+					itemNo = removedKeys[i].charAt(7);					// itemNo is single digit
 					console.log("begin remove");
 					removeListItem(itemNo);									// add to table
-				} else if (removedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					console.log(removedKeys[i].key);
-					console.log(" found at " + removedKeys[i].key.indexOf("listID" !== -1));												
+				} else if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+					console.log(removedKeys[i]);
+					console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
 				};
 				console.log("removeer check done");
 			};	
