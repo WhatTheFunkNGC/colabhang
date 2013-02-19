@@ -171,7 +171,7 @@
 			e1.appendChild(addAddButton(i));							// add Add button
 		console.log("add line2");	
 			j++;
-		li2 = div.insertRow(itemNo);
+		li2 = div.insertRow(j);
 			e2 = li2.insertCell(0);
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
