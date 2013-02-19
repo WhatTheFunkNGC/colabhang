@@ -115,12 +115,12 @@
 
 	function updateListRefrences(start){
 	console.log("start Refrence UPDATE from element " + start);
-	var noItems, i;
+	var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
-		j = parseInt(noItems, 10) + 1).toString();
+		j = parseInt(noItems) + 1).toString();
 		for (i = noItems; i >= start; i--) {
 			console.log("start list item");
-			var delBut, addBut, delIDBut, addIDBut, txtIn, j, k ,idListLength;
+			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			console.log("del");
 			delBut = document.getElementsByName("delBut" + i);
 			delBut.name = "delBut" + j;
