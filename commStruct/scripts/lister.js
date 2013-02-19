@@ -198,7 +198,7 @@
 		delBut.height = 25;
 		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
-				console.log("Delete Press");
+				console.log("Delete Press " + delBut.name);
 				removeItemFromSharedList("listTxt",delBut.name.substring(6));
 		}; 
 		return delBut;												// return button element
@@ -213,7 +213,7 @@
 		addBut.height = 25;
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
-				console.log("Add Press");
+				console.log("Add Press " + addBut.name);
 				addNewItemToSharedList ("listTxt",parseInt(addBut.name.substring(6)) + 1); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
