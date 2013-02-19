@@ -114,9 +114,11 @@
 
 
 	function updateListRefrences(start){
+	console.log("start Refrence UPDATE from element " + start);
 	var noItems, i;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		for (i = NoItems; i >= start; i--) {
+			console.log("start list item");
 			var delBut, addBut, delIDBut, addIDBut, txtIn, j ,idListLength;
 			delBut = document.getElementsByName("delBut" + i);
 			delBut.name = "delBut" + (i + 1);
@@ -143,8 +145,10 @@
 	var div, i, li, li2, e1, e2, userID;
 	console.log("New list item print");
 		div = document.getElementById(tableId);
+		console.log("table found");
 		//i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
 		i = itemNo;
+		console.log("call refrence update");
 		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		li = div.insertRow(pos);								// Create new element to attach
