@@ -16,13 +16,13 @@
 	Lister.prototype.onApiReady = function (event) {	
 		if (event.isApiReady === true) {	
 			console.log("Lister Ready");	
-			listerTableSetup();
+			
 	
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
 		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		//this.displayListItems();
-		
+		listerTableSetup();
 		}	
 	};	
   
