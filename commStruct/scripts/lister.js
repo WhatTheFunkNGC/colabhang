@@ -36,6 +36,7 @@
 		div.innerHTML = "";									// clear exsisitn displayed list
 		
 		tb = document.createElement("table");
+		tb.id = "mainListerTable";
 		tableId = tb.id;									// stores the table refrence
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
