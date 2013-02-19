@@ -87,7 +87,7 @@
 	var itemNo;
 	if (addedKeys[i].key.indexOf("listTxt") !== -1){
 		console.log("if added found");
-		if (!isNan(addedKeys[i].key.charAt(8) || 'a')){ 				// checks if item id is in double digits
+		if (!isNan(addedKeys[i].key.charAt(8)) || false){ 				// checks if item id is in double digits
 			itemNo = addedKeys[i].key.subString(7,9); 			// item id = double digits
 		} else {			
 			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
