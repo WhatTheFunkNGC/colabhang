@@ -118,7 +118,8 @@
 			};
 		};
 
-	
+	/* runs through all affected list element components and renames them to suit new position
+	 - removed : element to stop at */
 	function updateListRefrencesDelete(removed){
 	var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
@@ -130,8 +131,10 @@
 		//console.log("update refrences done");
 	};
 	
+	/* adds list element to the display table
+		itemNo - the item to start displaying	*/
 	function updateListRefrencesAdd(start){
-	var noItems, i, j;
+		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
 		for (i = noItems; i >= start; i--) {								// for all list lines, imcriment name refrence by 1
@@ -141,13 +144,15 @@
 		//console.log("update refrences done");
 	};
 		
-		
+	/* removes a list element from the display table
+		itemNo - the item to stop displaying	*/
 	function removeListItem(itemNo){
 		var i;
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
 		div.deleteRow(i);
+		div.deleteRow(i + 1);
 	};	
 		
 	/* Adds a new table row for a new list item
