@@ -50,38 +50,51 @@
 		addedKeys - a list of added key pairs
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
-	var i;
-	console.log("state changer start");
+		var i;
+		console.log("state changer start");
 
-	for (i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
-	var itemNo;
-	if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
-		console.log("if added found");
-		if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
-			itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
-			addListItem(itemNo);									// add to table
-		} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
-			itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
-			addListItem(itemNo);									// add to table
-		} else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-			console.log(addedKeys[i].key);
-			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
+		for (i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
+			var itemNo;
+			if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
+				console.log("if added found");
+				if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
+					itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
+					addListItem(itemNo);									// add to table
+				} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
+					itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
+					addListItem(itemNo);									// add to table
+				} else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+					console.log(addedKeys[i].key);
+					console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
+				};
+			};
+			
 		};
-	};
-	console.log("check");	
+		console.log("added check done");
+		for (i = 0; i < removedKeys.length ; i++ ){				// for all the added keys
+			var itemNo;
+			if (removedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
+				console.log("if added found");
+				if (removedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
+					itemNo = removedKeys[i].key.substring(7,9); 				// item id = double digits
+					addListItem(itemNo);									// add to table
+				} else if (removedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
+					itemNo = removedKeys[i].key.charAt(7);					// itemNo is single digit
+					addListItem(itemNo);									// add to table
+				} else if (removedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+					console.log(removedKeys[i].key);
+					console.log(" found at " + removedKeys[i].key.indexOf("listID" !== -1));												
+				};
+			};	
+		};
+		console.log("removed check done");
 	};
 	
-	};
+	
 
 	/* updates the list object elements to adjust there position due to insterted table lines
 		start - the location of the new line */
-	function updateListRefrences(start){
-	//console.log("start Refrence UPDATE from element " + start);
-	var noItems, i, j;
-		noItems = gapi.hangout.data.getValue("listTxt") || "0";
-		j = (parseInt(noItems) + 1).toString();
-		for (i = noItems; i >= start; i--) {								// for all list lines, imcriment name refrence by 1
-			//console.log("start list item");
+	function updateListRefrences(i,j){
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			//console.log("del");
 			delBut = document.getElementsByName("delBut" + i);				// get element by name
@@ -102,10 +115,39 @@
 				var userPic = document.getElementsByName("listTxt" + i + "listID" + k);
 				userPic.name = "listTxt" + j + "listID" + k;
 			};
+		};
+
+	
+	function updateListRefrencesDelete(removed){
+	var noItems, i, j;
+		noItems = gapi.hangout.data.getValue("listTxt") || "0";
+		j = (parseInt(noItems) - 1).toString();
+		for (i = noItems; i > removed; i--) {								// for all list lines, imcriment name refrence by 1
+			updateListRefrences(i,j);
 			j--;
 		};
 		//console.log("update refrences done");
 	};
+	
+	function updateListRefrencesAdd(start){
+	var noItems, i, j;
+		noItems = gapi.hangout.data.getValue("listTxt") || "0";
+		j = (parseInt(noItems) + 1).toString();
+		for (i = noItems; i >= start; i--) {								// for all list lines, imcriment name refrence by 1
+			updateListRefrences(i,j);
+			j--;
+		};
+		//console.log("update refrences done");
+	};
+		
+		
+	function removeListItem(itemNo){
+		var i;
+		updateListRefrencesDelete(itemNo);
+		div = document.getElementById(tableId);
+		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
+		div.deleteRow(i);
+	};	
 		
 	/* Adds a new table row for a new list item
 	itemNo - the location in the list to add too */
@@ -116,7 +158,7 @@
 		//console.log("table found id = " + tableId + " and equals " + div);
 		i = itemNo;
 		//console.log("call refrence update");
-		updateListRefrences(itemNo);
+		updateListRefrencesAdd(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
 		j = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
