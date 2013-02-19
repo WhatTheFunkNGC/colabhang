@@ -51,49 +51,48 @@
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("state changer start");
+		//console.log("state changer start");
 		div = document.getElementById(tableId);
-		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ 
-		
-
-		for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
-			if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
-				if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
-					itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
-					addListItem(itemNo);									// add to table
-				} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
-					itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
-					addListItem(itemNo);									// add to table
-				} else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					console.log(addedKeys[i].key);
-					console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
-				};
-			};
-			
+		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
+			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
+				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
+					if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
+						itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
+						addListItem(itemNo);									// add to table
+					} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
+						itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
+						addListItem(itemNo);									// add to table
+					};
+				};		
+			};		
 		};
-		
+		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+			console.log(addedKeys[i].key);
+			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 		};
 		console.log("added check done");
-		for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
-			if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
-				console.log("true for txt val");
-				if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
-					itemNo = removedKeys[i].substring(7,9); 				// item id = double digits
-					removeListItem(itemNo);									// add to table
-				} else if (removedKeys[i].length == 8) {				// 	if name is 8 long then must havde single digit itemNo
-					itemNo = removedKeys[i].charAt(7);					// itemNo is single digit
-					console.log("begin remove");
-					removeListItem(itemNo);									// add to table
-				} else if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					console.log(removedKeys[i]);
-					console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
-				};
-				console.log("removeer check done");
-			};	
+		if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate removals
+			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
+				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
+					//console.log("true for txt val");
+					if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
+						itemNo = removedKeys[i].substring(7,9); 				// item id = double digits
+						removeListItem(itemNo);									// add to table
+					} else if (removedKeys[i].length == 8) {				// 	if name is 8 long then must havde single digit itemNo
+						itemNo = removedKeys[i].charAt(7);					// itemNo is single digit
+						//console.log("begin remove");
+						removeListItem(itemNo);									// add to table
+					};
+				//console.log("removeer check done");
+				};	
+			};
+			//console.log("removed check done");
 		};
-		console.log("removed check done");
+		if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+			console.log(removedKeys[i]);
+			console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
+		};
 	};
-	
 	
 
 	/* updates the list object elements to adjust there position due to insterted table lines
@@ -215,7 +214,7 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press");
-				addNewItemToSharedList ("listTxt",-1); 					// adds blank list element below selected element
+				addNewItemToSharedList ("listTxt",addBut.name.substring(6)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
