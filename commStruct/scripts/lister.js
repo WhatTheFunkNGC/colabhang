@@ -7,7 +7,7 @@
   
   //-------------------- VARS -------------------------	
   
-  var tableId;
+  var tableId;	// holds the id of the main lister Table for refrenceing
   
   
   //-------------------- Listeners -------------------------
@@ -46,67 +46,26 @@
 	};
 	
 	
-	
-  
-	//Display list Items
-	Lister.prototype.displayListItems = function () {	
-		var div, noItems, ul, li, li2, e1, e2, e3, e4, i, j, l, userID, idListLength, user;									
-		ul = document.createElement("table");								// create element
-		noItems = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
-		userID =  gapi.hangout.getLocalParticipantId();						// get the current participants ID
-		if (parseInt(noItems) < 1){ addNewItemToSharedList ("listTxt","1"); }
-		for (i = 1; i <= noItems; i++) {
-			li = document.createElement("tr");							// Create new element to attach
-			e1 = document.createElement("td");
-			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
-			e1.appendChild(addDelButton(i));							// add delete button
-			e1.appendChild(addAddButton(i));							// add Add button
-			li.appendChild(e1);
-			li2 = document.createElement("tr");
-			e2 = document.createElement("td");
-			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
-			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 
-			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID") || "0";	// get number of users singed to element i
-			for (j = 1; j <= idListLength ; j++) {						// run through User Singed list for element and add image per user
-				e2.appendChild(userPicture(i,j));
-			};
-			li2.appendChild(e2);
-			
-			ul.appendChild(li);											// add list element to end of full list	
-			ul.appendChild(li2);
-		}
-	div = document.getElementById("lister");				// get element
-	div.innerHTML = "";									// clear exsisitn displayed list
-    div.appendChild(ul);								// add new List to HTML element
-	
-	};	
-	
+	/* function to orginise state update and call relivent functions
+		addedKeys - a list of added key pairs
+		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
 	var i;
 	console.log("state changer start");
 
-	for (i = 0; i < addedKeys.length ; i++ ){
+	for (i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 	var itemNo;
-	if (addedKeys[i].key.indexOf("listTxt") !== -1){
+	if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
 		console.log("if added found");
-		if (addedKeys[i].key.length > 8) {
-			if (!isNaN(addedKeys[i].key.charAt(8))){ 				// checks if item id is in double digits
-				itemNo = addedKeys[i].key.substring(7,9); 			// item id = double digits
-			} else {			
-			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
-			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
-			}
-			addListItem(itemNo);
-		} else if (addedKeys[i].key.length == 8) {			
-			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
-			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
-			addListItem(itemNo);
-		} else { 
-		if (addedKeys[i].key.indexOf("listID") !== -1){	
+		if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
+			itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
+			addListItem(itemNo);									// add to table
+		} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
+			itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
+			addListItem(itemNo);									// add to table
+		} else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 			console.log(addedKeys[i].key);
 			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
-		}
-		
 		};
 	};
 	console.log("check");	
@@ -114,19 +73,20 @@
 	
 	};
 
-
+	/* updates the list object elements to adjust there position due to insterted table lines
+		start - the location of the new line */
 	function updateListRefrences(start){
-	console.log("start Refrence UPDATE from element " + start);
+	//console.log("start Refrence UPDATE from element " + start);
 	var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
-		for (i = noItems; i >= start; i--) {
-			console.log("start list item");
+		for (i = noItems; i >= start; i--) {								// for all list lines, imcriment name refrence by 1
+			//console.log("start list item");
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
-			console.log("del");
-			delBut = document.getElementsByName("delBut" + i);
-			delBut.name = "delBut" + j;
-			console.log("del name = " + delBut.name);
+			//console.log("del");
+			delBut = document.getElementsByName("delBut" + i);				// get element by name
+			delBut.name = "delBut" + j;										// rename as "name"idNo + 1
+			//console.log("del name = " + delBut.name);
 			addBut = document.getElementsByName("addBut" + i);
 			addBut.name = "addBut" + j;
 			delIDBut = document.getElementsByName("delIDBut" + i);
@@ -135,47 +95,45 @@
 			addIDBut.name = "addIDBut" + j;
 			txtIn = document.getElementsByName("txtIn" + i);
 			txtIn.name = "txtIn" + j;	
-			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);
-			
-			console.log("do image loop");
-			
+			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
+			//console.log("do image loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
-			for (k = 1; k <= idListLength; k++) {
+			for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
 				var userPic = document.getElementsByName("listTxt" + i + "listID" + k);
 				userPic.name = "listTxt" + j + "listID" + k;
 			};
 			j--;
 		};
-		console.log("update refrences done");
+		//console.log("update refrences done");
 	};
 		
-	
+	/* Adds a new table row for a new list item
+	itemNo - the location in the list to add too */
 	function addListItem (itemNo){
 	var div, i, li, li2, e1, e2, userID, j;
 	console.log("New list item print");
-		div = document.getElementById(tableId);
-		console.log("table found id = " + tableId + " and equals " + div);
-		//i = gapi.hangout.data.getValue("listTxt") || "0";			// get list Length
+		div = document.getElementById(tableId);							// get table ref
+		//console.log("table found id = " + tableId + " and equals " + div);
 		i = itemNo;
-		console.log("call refrence update");
+		//console.log("call refrence update");
 		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
-		j = ((2 * parseInt(itemNo)) - 1).toString();
-		console.log("start adding rows " + j);
+		j = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
+		//console.log("start adding rows " + j);
 		li = div.insertRow(j);								// Create new element to attach
-		console.log("add line1");
+		//console.log("add line1");
 			e1 = li.insertCell(0);
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
-		console.log("add line2");	
-			j++;
+		//console.log("add line2");	
+			j++;														// set to add below just added line
 		li2 = div.insertRow(j);
 			e2 = li2.insertCell(0);
-			e2.appendChild(addIDAddButton(userID,i));					// add Add user sing button
+			e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
-			console.log("New list item print Complete");
+			//console.log("New list item print Complete");
 	};
 
 	
