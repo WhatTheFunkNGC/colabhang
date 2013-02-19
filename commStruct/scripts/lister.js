@@ -91,7 +91,7 @@
 		console.log("if added found");
 		if (addedKeys[i].key.length > 8) {
 			if (!isNaN(addedKeys[i].key.charAt(8))){ 				// checks if item id is in double digits
-				itemNo = addedKeys[i].key.subString(7,9); 			// item id = double digits
+				itemNo = addedKeys[i].key.substring(7,9); 			// item id = double digits
 			} else {			
 			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
 			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
@@ -161,7 +161,7 @@
 		updateListRefrences(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
-		j = (parseInt(itemNo)).toString();
+		j = ((2 * parseInt(itemNo)) - 1).toString();
 		console.log("start adding rows " + j);
 		li = div.insertRow(j);								// Create new element to attach
 		console.log("add line1");
@@ -191,7 +191,7 @@
 		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
 				console.log("Delete Press");
-				removeItemFromSharedList("listTxt",delBut.name.subString(6));
+				removeItemFromSharedList("listTxt",delBut.name.substring(6));
 		}; 
 		return delBut;												// return button element
 	};
@@ -221,7 +221,7 @@
 		delIDBut.align = "top";
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 			console.log("Del ID Press");
-			findAndRemoveItemFromSharedList("listTxt" + delIDBut.name.subString(8) + "listID",userID);
+			findAndRemoveItemFromSharedList("listTxt" + delIDBut.name.substring(8) + "listID",userID);
 		}; 
 		return delIDBut;											// return button element
 	};
@@ -236,7 +236,7 @@
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press");
-			findAndAddNewItemToSharedList("listTxt" + addIDBut.name.subString(8) + "listID",userID);
+			findAndAddNewItemToSharedList("listTxt" + addIDBut.name.substring(8) + "listID",userID);
 		}; 
 		return addIDBut;										// return button element
 	};
@@ -251,7 +251,7 @@
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
-				gapi.hangout.data.setValue("listTxt" + txtIn.name.subString(5), txtIn.value); 
+				gapi.hangout.data.setValue("listTxt" + txtIn.name.substring(5), txtIn.value); 
 		}; 		
 		return txtIn;													// return txtInput element
 	};
