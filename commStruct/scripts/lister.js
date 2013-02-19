@@ -50,13 +50,12 @@
 		addedKeys - a list of added key pairs
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
-		var i;
+		var itemNo;
 		console.log("state changer start");
 
-		for (i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
-			var itemNo;
-			if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
-				console.log("if added found");
+		for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
+			console.log("if added found = " + addedKeys);
+			if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
 				if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
 					itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
 					addListItem(itemNo);									// add to table
@@ -71,10 +70,9 @@
 			
 		};
 		console.log("added check done");
-		for (i = 0; i < removedKeys.length ; i++ ){				// for all the added keys
-			var itemNo;
+		for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
+			console.log("if removed found = " + removedKeys);
 			if (removedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items
-				console.log("if added found");
 				if (removedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
 					itemNo = removedKeys[i].key.substring(7,9); 				// item id = double digits
 					addListItem(itemNo);									// add to table
