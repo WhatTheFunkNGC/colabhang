@@ -90,10 +90,13 @@
 		if (addedKeys[i].key.length > 7) {
 			if (!isNaN(addedKeys[i].key.charAt(8))){ 				// checks if item id is in double digits
 				itemNo = addedKeys[i].key.subString(7,9); 			// item id = double digits
+			} else {			
+			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
+			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
 			}
 		} else {			
 			itemNo = addedKeys[i].key.charAt(7);				// itemNo is single digit
-			console.log("single digit length = " + itemNo);
+			console.log("single digit length = " + itemNo + " from " + addedKeys[i].key);
 		}
 		if (addedKeys[i].key.indexOf("listID") !== -1){	
 			console.log(addedKeys[i].key);
