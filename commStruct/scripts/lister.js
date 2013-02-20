@@ -51,8 +51,9 @@
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("state changer start");
+		console.log("state changer start " + addKeys + "   " + removedKeys);
 		div = document.getElementById(tableId);
+		
 		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
@@ -184,6 +185,7 @@
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
+			console.log("add line done");
 	};
 
 	
