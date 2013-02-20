@@ -51,7 +51,7 @@
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("state changer start " + addKeys + "   " + removedKeys);
+		console.log("state changer start " + addedKeys + "   " + removedKeys);
 		div = document.getElementById(tableId);
 		
 		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
