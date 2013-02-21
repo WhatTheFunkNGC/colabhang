@@ -62,7 +62,7 @@
 						addListItem(itemNo);									// add to table
 					} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
 						itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
-						//console.log("adding normal list")
+						console.log("adding normal list " + itemNo)
 						addListItem(itemNo);									// add to table
 					}else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 						//console.log(addedKeys[i].key);
@@ -88,7 +88,7 @@
 						removeListItem(itemNo);									// add to table
 					} else if (removedKeys[i].length == 8) {				// 	if name is 8 long then must havde single digit itemNo
 						itemNo = removedKeys[i].charAt(7);					// itemNo is single digit
-						console.log("begin remove");
+						console.log("begin remove of " + itemNo);
 						removeListItem(itemNo);									// add to table
 					}else if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 						//console.log(removedKeys[i]);
