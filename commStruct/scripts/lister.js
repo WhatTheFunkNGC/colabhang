@@ -51,7 +51,7 @@
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("state changer start ");
+		//console.log("state changer start ");
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){
 		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
@@ -62,24 +62,24 @@
 						addListItem(itemNo);									// add to table
 					} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
 						itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
-						console.log("adding normal list")
-						addListItem(itemNo);									// add to table
+						//console.log("adding normal list")
+						//addListItem(itemNo);									// add to table
 					}else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-						console.log(addedKeys[i].key);
-						console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
+						//console.log(addedKeys[i].key);
+						//console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 					};
 				};		
 			};		
 		};
 		
 		};
-		console.log("added check done");
+		//console.log("added check done");
 		if(!!removedKeys.length != 0){
-		console.log("removedkeys check start true");
+		//console.log("removedkeys check start true");
 		
-		console.log("added check done");
+		//console.log("added check done");
 		if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){ // check for ligitimate removals
-			console.log("remove length true = " + removedKeys[0] + " and length " + removedKeys.length);
+			//console.log("remove length true = " + removedKeys[0] + " and length " + removedKeys.length);
 			
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys	
 				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
@@ -91,13 +91,13 @@
 						console.log("begin remove");
 						removeListItem(itemNo);									// add to table
 					}else if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-						console.log(removedKeys[i]);
-						console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
+						//console.log(removedKeys[i]);
+						//console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
 					};
-				console.log("removeer check done");
+				//console.log("removeer check done");
 				};	
 			};
-			console.log("removed check done");
+			//console.log("removed check done");
 		};
 		
 	};
