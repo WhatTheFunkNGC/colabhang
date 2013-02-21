@@ -62,15 +62,16 @@
 						addListItem(itemNo);									// add to table
 					} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
 						itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
+						console.log("adding normal list")
 						addListItem(itemNo);									// add to table
+					}else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+						console.log(addedKeys[i].key);
+						console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 					};
 				};		
 			};		
 		};
-		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-			console.log(addedKeys[i].key);
-			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
-		};
+		
 		};
 		console.log("added check done");
 		if(!!removedKeys){
@@ -88,16 +89,16 @@
 						itemNo = removedKeys[i].charAt(7);					// itemNo is single digit
 						console.log("begin remove");
 						removeListItem(itemNo);									// add to table
+					}else if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+						console.log(removedKeys[i]);
+						console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
 					};
 				console.log("removeer check done");
 				};	
 			};
 			console.log("removed check done");
 		};
-		if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-			console.log(removedKeys[i]);
-			console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
-		};
+		
 	};
 	};
 	
