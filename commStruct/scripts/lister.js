@@ -53,7 +53,7 @@
 		var itemNo, div;
 		console.log("state changer start ");
 		div = document.getElementById(tableId);
-		if (!!addedKeys){
+		if (addedKeys.length != 0){
 		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
@@ -74,7 +74,7 @@
 		
 		};
 		console.log("added check done");
-		if(!!removedKeys){
+		if(!!removedKeys.length != 0){
 		console.log("removedkeys check start true");
 		
 		console.log("added check done");
@@ -159,6 +159,7 @@
 		itemNo - the item to stop displaying	*/
 	function removeListItem(itemNo){
 		var i;
+		console.log( "updating i = " + 1);
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
