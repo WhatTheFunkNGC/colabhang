@@ -114,24 +114,24 @@
 			delBut = document.getElementById("delBut" + i);				// get element by name
 			console.log(" looking for  " + i + " but found " + delBut);
 			delBut.id = "delBut" + j;										// rename as "name"idNo + 1
-			console.log("delBut" + i  + " new name = " + delBut.name);
+			console.log("delBut" + i  + " new name = " + delBut.id);
 			console.log("1");
-			addBut = document.getElementsByTagName("addBut" + i);
-			addBut.name = "addBut" + j;
-			delIDBut = document.getElementsByTagName("delIDBut" + i);
+			addBut = document.getElementById("addBut" + i);
+			addBut.id = "addBut" + j;
+			delIDBut = document.getElementById("delIDBut" + i);
 			console.log("2");
-			delIDBut.name = "delIDBut" + j;
-			addIDBut = document.getElementsByTagName("addIDBut" + i);
-			addIDBut.name = "addIDBut" + j;
-			txtIn = document.getElementsByTagName("txtIn" + i);
-			txtIn.name = "txtIn" + j;	
+			delIDBut.id = "delIDBut" + j;
+			addIDBut = document.getElementById("addIDBut" + i);
+			addIDBut.id = "addIDBut" + j;
+			txtIn = document.getElementById("txtIn" + i);
+			txtIn.id = "txtIn" + j;	
 			console.log("3");
 			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
 			console.log("do image loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 			for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
-				var userPic = document.getElementsByTagName("listTxt" + i + "listID" + k);
-				userPic.name = "listTxt" + j + "listID" + k;
+				var userPic = document.getElementById("listTxt" + i + "listID" + k);
+				userPic.id = "listTxt" + j + "listID" + k;
 			};
 		};
 
@@ -152,6 +152,7 @@
 		itemNo - the item to start displaying	*/
 	function updateListRefrencesAdd(start){
 		var noItems, i, j;
+		start = gapi.hangout.data.getValue("lastListItemAdded");
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
 		for (i = noItems; i > start; i--) {								// for all list lines, imcriment name refrence by 1
@@ -223,19 +224,18 @@
 		return delBut;												// return button element
 	};
 	
-	// add Add list item button
+	// add Add list item button name
 	function addAddButton(itemNo) { 									// itemNo targets specific list item
 		var addBut = document.createElement("img");						// create element
-		addBut.name = "addBut" + itemNo;								// fill in element details
+		addBut.id = "addBut" + itemNo;								// fill in element details
 		addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
 		addBut.width = 25;
 		addBut.height = 25;
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
-				console.log("Add Press " + addBut.name);
-				var j = (parseInt(addBut.name.substring(6)) + 1);
-				console.log(j);
-				addNewItemToSharedList ("listTxt",j); 					// adds blank list element below selected element
+				console.log("Add Press " + addBut.id);
+				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6));
+				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
@@ -243,14 +243,14 @@
 	// add Delete ID list item button
 	function addIDDelButton(userID,itemNo) { 						// itemNo targets specific list item
 		var delIDBut = document.createElement("img");				// create element
-		delIDBut.name = "delIDBut" + itemNo;						// fill in element details
+		delIDBut.id = "delIDBut" + itemNo;						// fill in element details
 		delIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 		delIDBut.width = 25;
 		delIDBut.height = 25;
 		delIDBut.align = "top";
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 			console.log("Del ID Press");
-			findAndRemoveItemFromSharedList("listTxt" + delIDBut.name.substring(8) + "listID",userID);
+			findAndRemoveItemFromSharedList("listTxt" + delIDBut.id.substring(8) + "listID",userID);
 		}; 
 		return delIDBut;											// return button element
 	};
@@ -258,14 +258,14 @@
 	// add Add ID list item button
 	function addIDAddButton(userID,itemNo) { 					// itemNo targets specific list item
 		var addIDBut = document.createElement("img");			// create element
-		addIDBut.name = "addIDBut" + itemNo;					// fill in element details
+		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
 		addIDBut.width = 25;
 		addIDBut.height = 25;
 		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press");
-			findAndAddNewItemToSharedList("listTxt" + addIDBut.name.substring(8) + "listID",userID);
+			findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",userID);
 		}; 
 		return addIDBut;										// return button element
 	};
@@ -274,13 +274,13 @@
 	// add text input bar
 	function addTxtInput(itemNo) { 
 		var txtIn = document.createElement("input"); 					// create input element
-		txtIn.name = "txtIn" + itemNo;
+		txtIn.id = "txtIn" + itemNo;
 		txtIn.type = "text";											// of text type
 		txtIn.size = "32";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
-				gapi.hangout.data.setValue("listTxt" + txtIn.name.substring(5), txtIn.value); 
+				gapi.hangout.data.setValue("listTxt" + txtIn.id.substring(5), txtIn.value); 
 		}; 		
 		return txtIn;													// return txtInput element
 	};
@@ -291,7 +291,7 @@
 		var userID = gapi.hangout.data.getValue("listTxt" + itemNo + "listID" + idLoc) || "0"; 	// Get Persons ID
 		console.log("3  " + userID);
 		var userObj = eval(gapi.hangout.getParticipantById(userID));							// Get person object and JSON convert
-		userPic.name = "listTxt" + itemNo + "listID" + idLoc;
+		userPic.id = "listTxt" + itemNo + "listID" + idLoc;
 		userPic.src = userObj.person.image.url + "sz=25";										// Use Avatar as image (+ resize to 50x50)
 		console.log("4");
 		userPic.width = 25;
