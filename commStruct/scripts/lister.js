@@ -79,8 +79,10 @@
 		
 		console.log("added check done");
 		if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){ // check for ligitimate removals
-			console.log("remove length true");
-			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
+			console.log("remove length true = " + removedKeys[0] + " and length " + removedKeys.length);
+			
+			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys	
+							console.log("listtxt found" );	
 				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
 					console.log("true for txt val");
 					if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
