@@ -111,7 +111,7 @@
 	function updateListRefrences(i,j){
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			console.log("re structure " + i + " " + j);
-			document.getElementById("delBut" + i);				// get element by name
+			delBut = document.getElementById("delBut" + i);				// get element by name
 			console.log(" looking for  " + i + " but found " + delBut);
 			delBut.id = "delBut" + j;										// rename as "name"idNo + 1
 			console.log("delBut" + i  + " new name = " + delBut.name);
