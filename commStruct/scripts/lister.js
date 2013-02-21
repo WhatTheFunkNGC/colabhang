@@ -51,9 +51,9 @@
 		removedKeys - a list of removed key pairs */
 	function add (addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("state changer start " + addedKeys + "   " + removedKeys);
+		console.log("state changer start ");
 		div = document.getElementById(tableId);
-		
+		if (!!addedKeys){
 		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
@@ -67,6 +67,9 @@
 				};		
 			};		
 		};
+		};
+		
+		if(!!removedKeys){
 		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 			console.log(addedKeys[i].key);
 			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
@@ -93,6 +96,7 @@
 			console.log(removedKeys[i]);
 			console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
 		};
+	};
 	};
 	
 
