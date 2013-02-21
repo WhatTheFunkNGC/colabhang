@@ -111,22 +111,22 @@
 	function updateListRefrences(i,j){
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			console.log("re structure ");
-			delBut = document.getElementsById("delBut" + i);				// get element by name
+			delBut = document.getElementById("delBut" + i);				// get element by name
 			delBut.name = "delBut WAFFLE" + j;										// rename as "name"idNo + 1
 			console.log("delBut" + i  + " new name = " + delBut.name);
-			addBut = document.getElementsById("addBut" + i);
+			addBut = document.getElementById("addBut" + i);
 			addBut.name = "addBut" + j;
-			delIDBut = document.getElementsById("delIDBut" + i);
+			delIDBut = document.getElementById("delIDBut" + i);
 			delIDBut.name = "delIDBut" + j;
-			addIDBut = document.getElementsById("addIDBut" + i);
+			addIDBut = document.getElementById("addIDBut" + i);
 			addIDBut.name = "addIDBut" + j;
-			txtIn = document.getElementsById("txtIn" + i);
+			txtIn = document.getElementById("txtIn" + i);
 			txtIn.name = "txtIn" + j;	
 			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
 			console.log("do image loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 			for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
-				var userPic = document.getElementsById("listTxt" + i + "listID" + k);
+				var userPic = document.getElementById("listTxt" + i + "listID" + k);
 				userPic.name = "listTxt" + j + "listID" + k;
 			};
 		};
