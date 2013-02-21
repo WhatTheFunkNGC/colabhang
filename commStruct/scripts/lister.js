@@ -155,7 +155,7 @@
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
-		for (i = (parseInt(noItems)).toString(); i > start; i--) {								// for all list lines, imcriment name refrence by 1
+		for (i = (parseInt(noItems)- 1).toString(); i >= start; i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
 		};
@@ -183,7 +183,6 @@
 		itemNo = gapi.hangout.data.getValue("lastListItemAdded");
 		console.log("call refrence update " + gapi.hangout.data.getValue("lastListItemAdded"));
 		div = document.getElementById(tableId);							// get table ref
-		console.log("table found id = " + tableId + " and equals " + div);
 		i = itemNo;
 		
 		updateListRefrencesAdd(itemNo);
