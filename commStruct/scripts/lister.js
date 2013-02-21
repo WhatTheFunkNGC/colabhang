@@ -180,10 +180,11 @@
 	var div, i, li, li2, e1, e2, userID, j;
 	console.log("New list item print");
 		itemNo = gapi.hangout.data.getValue("lastListItemAdded");
+		console.log("call refrence update " + gapi.hangout.data.getValue("lastListItemAdded"));
 		div = document.getElementById(tableId);							// get table ref
 		console.log("table found id = " + tableId + " and equals " + div);
 		i = itemNo;
-		console.log("call refrence update " + i);
+		
 		updateListRefrencesAdd(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
@@ -235,6 +236,7 @@
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.id);
 				gapi.hangout.data.setValue("lastListItemAdded", (parseInt(addBut.id.substring(6)) + 1)); 
+				console.log("Add last affected " + (parseInt(addBut.id.substring(6)) + 1));
 				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
