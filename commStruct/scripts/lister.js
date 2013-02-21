@@ -155,7 +155,7 @@
 		start = gapi.hangout.data.getValue("lastListItemAdded");
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
-		for (i = noItems; i > start; i--) {								// for all list lines, imcriment name refrence by 1
+		for (i = (parseInt(noItems)).toString(); i > start; i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
 		};
