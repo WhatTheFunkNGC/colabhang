@@ -78,7 +78,8 @@
 		console.log("removedkeys check start true");
 		
 		console.log("added check done");
-		if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate removals
+		if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){ // check for ligitimate removals
+			console.log("remove length true");
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
 				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
 					console.log("true for txt val");
