@@ -112,7 +112,7 @@
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			console.log("re structure ");
 			delBut = document.getElementsByName("delBut" + i);				// get element by name
-			delBut.name = "delBut" + j;										// rename as "name"idNo + 1
+			delBut.name = "delBut WAFFLE" + j;										// rename as "name"idNo + 1
 			console.log("delBut" + i  + " new name = " + delBut.name);
 			addBut = document.getElementsByName("addBut" + i);
 			addBut.name = "addBut" + j;
