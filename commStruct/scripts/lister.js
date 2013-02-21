@@ -141,7 +141,7 @@
 	var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems)).toString();
-		for (i = noItems + 1; i > removed; i--) {								// for all list lines, imcriment name refrence by 1
+		for (i = parseInt(noItems + 1)).toString(); i > removed; i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
 		};
@@ -165,7 +165,7 @@
 		itemNo - the item to stop displaying	*/
 	function removeListItem(itemNo){
 		var i;
-		console.log( "updating i = " + 1);
+		console.log( "updating i = " + itemNo);
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
