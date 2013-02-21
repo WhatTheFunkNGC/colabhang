@@ -67,13 +67,15 @@
 				};		
 			};		
 		};
-		};
-		
-		if(!!removedKeys){
 		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 			console.log(addedKeys[i].key);
 			console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 		};
+		};
+		console.log("added check done");
+		if(!!removedKeys){
+		console.log("removedkeys check start true");
+		
 		console.log("added check done");
 		if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate removals
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
