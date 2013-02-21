@@ -41,7 +41,7 @@
 		tb.insertRow(0);										// stores the table refrence
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
-		gapi.hangout.data.setValue("lastListItemAdded", 1); 
+		gapi.hangout.data.setValue("lastListItemAdded", "1"); 
 		addNewItemToSharedList ("listTxt","1");
 		console.log("blank added");
 	};
@@ -236,7 +236,7 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.id);
-				gapi.hangout.data.setValue("lastListItemAdded", (parseInt(addBut.id.substring(6)) + 1)); 
+				gapi.hangout.data.setValue("lastListItemAdded", (parseInt(addBut.id.substring(6)) + 1).toString()); 
 				console.log("Add last affected " + (parseInt(addBut.id.substring(6))));
 				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
