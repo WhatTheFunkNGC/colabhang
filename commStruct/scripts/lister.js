@@ -110,10 +110,10 @@
 		start - the location of the new line */
 	function updateListRefrences(i,j){
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
-			console.log("re structure ");
-			document.getElementsByTagName("delBut" + i);				// get element by name
+			console.log("re structure " + i + " " + j);
+			document.getElementById("delBut" + i);				// get element by name
 			console.log(" looking for  " + i + " but found " + delBut);
-			delBut.name = "delBut" + j;										// rename as "name"idNo + 1
+			delBut.id = "delBut" + j;										// rename as "name"idNo + 1
 			console.log("delBut" + i  + " new name = " + delBut.name);
 			console.log("1");
 			addBut = document.getElementsByTagName("addBut" + i);
@@ -210,15 +210,15 @@
 	// add Delete list item button
 	function addDelButton(itemNo) { 								// itemNo targets specific list item
 		var delBut = document.createElement("img");					// create element
-		delBut.name = "delBut" + itemNo;							// fill in element details
+		delBut.id = "delBut" + itemNo;							// fill in element details
 		delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
 		delBut.width = 25;
 		delBut.height = 25;
 		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
-				console.log("Delete Press " + delBut.name);
-				gapi.hangout.data.setValue("lastListItemDeleted", delBut.name.substring(6));
-				removeItemFromSharedList("listTxt",delBut.name.substring(6));
+				console.log("Delete Press " + delBut.id);
+				gapi.hangout.data.setValue("lastListItemDeleted", delBut.id.substring(6));
+				removeItemFromSharedList("listTxt",delBut.id.substring(6));
 		}; 
 		return delBut;												// return button element
 	};
