@@ -12,7 +12,6 @@
 		}
 		gapi.hangout.data.clearValue(listName + j);													// removes top variable holder
 		gapi.hangout.data.setValue(listName, (parseInt(noItems, 10) - 1).toString());				// saves list length -1 to shared state
-		gapi.hangout.data.setValue("lastListItemDeleted", targetElement);
 	};
 	
 	/* Remove Genralised value system

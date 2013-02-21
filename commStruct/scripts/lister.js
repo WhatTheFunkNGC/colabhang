@@ -213,6 +213,7 @@
 		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
 				console.log("Delete Press " + delBut.name);
+				gapi.hangout.data.setValue("lastListItemDeleted", delBut.name.substring(6));
 				removeItemFromSharedList("listTxt",delBut.name.substring(6));
 		}; 
 		return delBut;												// return button element
