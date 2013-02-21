@@ -112,17 +112,20 @@
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			console.log("re structure ");
 			delBut = document.getElementById("delBut" + i);				// get element by name
-			console.log("cant find ");
+			console.log(" but " + delBut);
 			delBut.name = "delBut" + j;										// rename as "name"idNo + 1
 			console.log("delBut" + i  + " new name = " + delBut.name);
+			console.log("1");
 			addBut = document.getElementById("addBut" + i);
 			addBut.name = "addBut" + j;
 			delIDBut = document.getElementById("delIDBut" + i);
+			console.log("2");
 			delIDBut.name = "delIDBut" + j;
 			addIDBut = document.getElementById("addIDBut" + i);
 			addIDBut.name = "addIDBut" + j;
 			txtIn = document.getElementById("txtIn" + i);
 			txtIn.name = "txtIn" + j;	
+			console.log("3");
 			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
 			console.log("do image loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
