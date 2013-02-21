@@ -112,7 +112,8 @@
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
 			console.log("re structure ");
 			delBut = document.getElementById("delBut" + i);				// get element by name
-			delBut.name = "delBut WAFFLE" + j;										// rename as "name"idNo + 1
+			console.log("cant find ");
+			delBut.name = "delBut" + j;										// rename as "name"idNo + 1
 			console.log("delBut" + i  + " new name = " + delBut.name);
 			addBut = document.getElementById("addBut" + i);
 			addBut.name = "addBut" + j;
@@ -150,7 +151,7 @@
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
-		for (i = noItems; i >= start; i--) {								// for all list lines, imcriment name refrence by 1
+		for (i = noItems; i > start; i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
 		};
