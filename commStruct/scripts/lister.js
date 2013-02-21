@@ -152,7 +152,6 @@
 		itemNo - the item to start displaying	*/
 	function updateListRefrencesAdd(start){
 		var noItems, i, j;
-		start = gapi.hangout.data.getValue("lastListItemAdded");
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
 		for (i = (parseInt(noItems)).toString(); i > start; i--) {								// for all list lines, imcriment name refrence by 1
@@ -180,10 +179,11 @@
 	function addListItem (itemNo){
 	var div, i, li, li2, e1, e2, userID, j;
 	console.log("New list item print");
+		itemNo = gapi.hangout.data.getValue("lastListItemAdded");
 		div = document.getElementById(tableId);							// get table ref
 		console.log("table found id = " + tableId + " and equals " + div);
 		i = itemNo;
-		console.log("call refrence update");
+		console.log("call refrence update " + i);
 		updateListRefrencesAdd(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
