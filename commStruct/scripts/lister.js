@@ -82,9 +82,7 @@
 			console.log("remove length true = " + removedKeys[0] + " and length " + removedKeys.length);
 			
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys	
-							console.log("listtxt found" );	
 				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
-					console.log("true for txt val");
 					if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
 						itemNo = removedKeys[i].substring(7,9); 				// item id = double digits
 						removeListItem(itemNo);									// add to table
@@ -164,6 +162,7 @@
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
+		console.log(" delete row " + i);
 		div.deleteRow(i);
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
 	};	
