@@ -108,10 +108,10 @@
 		start - the location of the new line */
 	function updateListRefrences(i,j){
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
-			//console.log("del");
+			console.log("re structure ");
 			delBut = document.getElementsByName("delBut" + i);				// get element by name
 			delBut.name = "delBut" + j;										// rename as "name"idNo + 1
-			//console.log("del name = " + delBut.name);
+			console.log("i and j = " + i + j);
 			addBut = document.getElementsByName("addBut" + i);
 			addBut.name = "addBut" + j;
 			delIDBut = document.getElementsByName("delIDBut" + i);
