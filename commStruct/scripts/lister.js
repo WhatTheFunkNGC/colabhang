@@ -44,7 +44,7 @@
 		tb.insertRow(0);										// stores the table refrence
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
-		gapi.hangout.data.setValue("lastListItemAdded", "1"); 
+		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
 		console.log("blank added");
 	};
@@ -159,9 +159,11 @@
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems)).toString();
 		console.log(" loop info " + noItems + " " + j);
+		if (start != 0){
 		for (i = (parseInt(noItems) - 1).toString(); i >= (start); i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
+		};
 		};
 		console.log("update refrences done");
 	};
