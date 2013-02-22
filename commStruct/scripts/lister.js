@@ -22,7 +22,7 @@
 		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		
-		if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
+		//if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
 		
 		//this.displayListItems();
 		listerTableSetup();
