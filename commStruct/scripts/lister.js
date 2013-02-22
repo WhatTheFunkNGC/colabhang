@@ -184,7 +184,7 @@
 		itemNo = gapi.hangout.data.getValue("lastListItemAdded");
 		console.log("call refrence update " + gapi.hangout.data.getValue("lastListItemAdded"));
 		div = document.getElementById(tableId);							// get table ref
-		i = (parseInt(itemNo)) + 1).toString();
+		i = (parseInt(itemNo) + 1).toString();
 		
 		updateListRefrencesAdd(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
