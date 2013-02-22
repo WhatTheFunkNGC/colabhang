@@ -192,7 +192,7 @@
 		updateListRefrencesAdd(itemNo);
 		userID =  gapi.hangout.getLocalParticipantId();
 		
-		j = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
+		j = ((2 * parseInt(i)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
 		console.log("start adding rows " + j);
 		li = div.insertRow(j);								// Create new element to attach
 			e1 = li.insertCell(0);
