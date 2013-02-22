@@ -44,7 +44,7 @@
 		tb.insertRow(0);										// stores the table refrence
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
-		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
+		gapi.hangout.data.setValue("lastListItemAdded", "1"); 
 		addNewItemToSharedList ("listTxt","1");
 		console.log("blank added");
 	};
