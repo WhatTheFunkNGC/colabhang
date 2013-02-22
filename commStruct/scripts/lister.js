@@ -129,7 +129,7 @@
 			addIDBut.id = "addIDBut" + j;
 			txtIn = document.getElementById("txtIn" + i);
 			txtIn.id = "txtIn" + j;	
-			console.log("txtIn id from " + i " to " + j + " with val " + txtIn.value + " to " +  gapi.hangout.data.getValue("listTxt" + j));
+			console.log( "txtIn id from " + i + " to " + j + " with val " + txtIn.value + " to " +  gapi.hangout.data.getValue("listTxt" + j));
 			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
 			console.log("do image loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
