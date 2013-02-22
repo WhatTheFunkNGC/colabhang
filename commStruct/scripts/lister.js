@@ -48,7 +48,7 @@
 		li2.innerHTML="2";
 		var li3 =  tb.insertRow(3);
 		li3.innerHTML="3";
-		var li4 =  tb.insertRow(1);
+		var li4 =  tb.insertRow(2);
 		li4.innerHTML="4";
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
