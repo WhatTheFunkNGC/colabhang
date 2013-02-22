@@ -42,13 +42,13 @@
 		tb.id = "mainListerTable";
 		tableId = tb.id;
 		tb.insertRow(0);										// stores the table refrence
-		var li1 = div.insertRow(1);
+		var li1 = tb.insertRow(1);
 		li1.innerHTML="1";
-		var li2 = div.insertRow(2);
+		var li2 =  tb.insertRow(2);
 		li1.innerHTML="2";
-		var li3 = div.insertRow(3);
+		var li3 =  tb.insertRow(3);
 		li1.innerHTML="3";
-		var li4 = div.insertRow(1);
+		var li4 =  tb.insertRow(1);
 		li1.innerHTML="4";
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
