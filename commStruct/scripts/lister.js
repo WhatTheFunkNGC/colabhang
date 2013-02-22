@@ -234,8 +234,8 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.id);
-				gapi.hangout.data.setValue("lastListItemAdded", (parseInt(addBut.id.substring(6)) + 1)); 
-				console.log("Add last affected " + (parseInt(addBut.id.substring(6)) + 1));
+				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6)); 
+				console.log("Add last affected " + (addBut.id.substring(6)));
 				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
