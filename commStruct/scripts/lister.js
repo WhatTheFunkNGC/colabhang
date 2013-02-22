@@ -45,7 +45,7 @@
 		div.appendChild(tb);								// add new List to HTML element
 		console.log("table added");
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
-		addNewItemToSharedList ("listTxt",-1,"0");
+		addNewItemToSharedList ("listTxt",1);
 		console.log("blank added");
 	};
 	
