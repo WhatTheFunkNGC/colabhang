@@ -51,6 +51,10 @@
 		var li4 =  tb.insertRow(2);
 		li4.innerHTML="4";
 		div.appendChild(tb);								// add new List to HTML element
+		
+		div1 = document.getElementById("mainListerTable");
+		var li5 =  div1.insertRow(2);
+		li5.innerHTML="5";
 		console.log("table added");
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
