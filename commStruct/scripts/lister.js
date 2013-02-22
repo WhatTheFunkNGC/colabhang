@@ -156,7 +156,7 @@
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) + 1).toString();
 		console.log(" loop info " + noItems + " " + j);
-		for (i = (parseInt(noItems)- 1).toString(); i >= start; i--) {								// for all list lines, imcriment name refrence by 1
+		for (i = (parseInt(noItems)- 1).toString(); i > start; i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
 		};
@@ -192,12 +192,10 @@
 		j = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
 		console.log("start adding rows " + j);
 		li = div.insertRow(j);								// Create new element to attach
-		console.log("add line1");
 			e1 = li.insertCell(0);
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 			e1.appendChild(addDelButton(i));							// add delete button
 			e1.appendChild(addAddButton(i));							// add Add button
-		console.log("add line2");	
 			j++;														// set to add below just added line
 		li2 = div.insertRow(j);
 			e2 = li2.insertCell(0);
@@ -236,8 +234,8 @@
 		addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.id);
-				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6)); 
-				console.log("Add last affected " + addBut.id.substring(6));
+				gapi.hangout.data.setValue("lastListItemAdded", (parseInt(addBut.id.substring(6)) + 1)); 
+				console.log("Add last affected " + (parseInt(addBut.id.substring(6)) + 1));
 				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
