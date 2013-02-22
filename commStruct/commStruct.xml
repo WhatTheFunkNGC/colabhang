@@ -8,6 +8,8 @@
     <![CDATA[
       <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.2"></script>   	
 	  
+	  
+	  <button type="button">Display Settings</button>
       <div id="userDetailsList"></div>	
 	  
 	  
