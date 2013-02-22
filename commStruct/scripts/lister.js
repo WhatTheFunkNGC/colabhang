@@ -279,7 +279,7 @@
 		txtIn.type = "text";											// of text type
 		txtIn.size = "32";
 		//txtIn.className = "css-class-name";							// set style will be implimented later
-		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
+		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo) || ""; 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
 				gapi.hangout.data.setValue("listTxt" + txtIn.id.substring(5), txtIn.value); 
 		}; 		
