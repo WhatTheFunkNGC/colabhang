@@ -169,8 +169,11 @@
 		li = div.rows[rowNum];
 		console.log("3");
 		li.innerHTML = "";
+		console.log("7");
 			e1 = li.insertCell(0);
+			console.log("5");
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
+			console.log("6");
 			e1.appendChild(addIDDelButton(userID,itemNo));
 			console.log("4");
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
