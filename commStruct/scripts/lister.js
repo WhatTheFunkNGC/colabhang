@@ -152,10 +152,12 @@
 	};
 	
 	function updateIDlistDisplay(itemNo){
-		var div, i, li, e1, idListLength;
+		var div, i, li, e1, idListLength, rowNum;
 		div = document.getElementById("mainListerTable");				// get element
 		console.log("3");
-		li = div.rows[((2 * parseInt(i)) - 1).toString()];
+		rowNum = ((2 * parseInt(i)) - 1).toString();
+		console.log("row num = " + rowNum);
+		li = div.rows[];
 		console.log("4 = " + li);
 		li.innerHTML = "";
 			e1 = li.insertCell(0);
