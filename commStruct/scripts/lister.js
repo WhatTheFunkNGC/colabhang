@@ -239,7 +239,7 @@
 				console.log("Add Press " + addBut.id);
 				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6)); 
 				console.log("Add last affected " + addBut.id.substring(6));
-				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
+				//addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
