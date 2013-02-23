@@ -23,12 +23,13 @@
 		noItems = gapi.hangout.data.getValue(listName) || "0"; 									// get current number of list items
 		noItems = (parseInt(noItems, 10) + 1).toString();                						// add 1 to value and convert to string 
 		if(targetLocation = -1){ var targetLocation = noItems;};
-		gapi.hangout.data.setValue(listName, noItems);											// Commits new item value
+		//gapi.hangout.data.setValue(listName, noItems);											// Commits new item value
 		j = noItems;
 		for ( i = noItems; i > targetLocation; i--) {											// loop down moving element values up
 			j--;																				// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
+		gapi.hangout.data.setValue(listName, noItems);	
 		//if(!entryValue){ var entryValue = "List item " + targetLocation;};						// TESTING if no Value to enter, defult to blank
 		if(!entryValue){ var entryValue = "";};	
 			
