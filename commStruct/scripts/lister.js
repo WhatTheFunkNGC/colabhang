@@ -171,6 +171,7 @@
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,itemNo));
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
+		console.log("and we have " + idListLength);
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
