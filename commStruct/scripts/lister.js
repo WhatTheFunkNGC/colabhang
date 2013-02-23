@@ -148,7 +148,7 @@
 				var re2='(\\d+)';	// Integer Number 1
 				var p = new RegExp(re1+re2,["i"]);
 				var m = p.exec(removedKeys[i]);		
-				if (m != null){
+				if (m[1] != 0){
 					itemNo = m[1];
 					console.log("imtem No is " + itemNo);					
 					updateIDlistDisplay(itemNo);
