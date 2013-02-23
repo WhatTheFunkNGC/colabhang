@@ -42,6 +42,7 @@
 		tb.id = "mainListerTable";
 		tableId = tb.id;
 		tb.insertRow(0);										// stores the table refrence
+		div.appendChild(tb);
 		console.log("table added");
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
