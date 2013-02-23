@@ -70,10 +70,14 @@
 				e1.appendChild(addAddButton(i));							// add Add button		
 			console.log("4");				
 			li2 = tb.insertRow(-1);
+			console.log("4.1");
 				e2 = li2.insertCell(0);
+			console.log("4.2");
 				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
+				console.log("4.3");
 				e2.appendChild(addIDDelButton(userID,i));
-				idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
+				console.log("4.4");
+				idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 			console.log("5");
 				for (j = 1; j <= idListLength; j++) {									// for all ID pics in list line, imcriment name refrence by 1
 					e2.appendChild(userPicture(i,j));
