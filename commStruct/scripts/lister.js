@@ -25,7 +25,11 @@
 		//if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
 		
 		//this.displayListItems();
-		listerTableSetup();
+		if (!!gapi.hangout.data.getValue("listTxt")){ 
+			listerTableSetupExsisting();
+		} else { 
+			listerTableSetup();
+		};
 		}	
 	};	
   
@@ -49,6 +53,26 @@
 		console.log("blank added");
 	};
 	
+	function listerTableSetupExsisting(){
+	var div,li, li2, e1, e2, tb;
+		console.log("build table of exsisting list items");
+		div = document.getElementById("lister");				// get element
+		div.innerHTML = "";									// clear exsisitn displayed list
+		tb = document.createElement("table");
+		userID =  gapi.hangout.getLocalParticipantId();
+		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
+			li = div.insertRow(-1);								// Create new element to attach
+				e1 = li.insertCell(0);
+				e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
+				e1.appendChild(addDelButton(i));							// add delete button
+				e1.appendChild(addAddButton(i));							// add Add button														
+			li2 = div.insertRow(-1);
+				e2 = li2.insertCell(0);
+				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
+				e2.appendChild(addIDDelButton(userID,i));
+		}
+		div.appendChild(tb);
+	}
 	
 	/* function to orginise state update and call relivent functions
 		addedKeys - a list of added key pairs
@@ -239,7 +263,7 @@
 				console.log("Add Press " + addBut.id);
 				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6)); 
 				console.log("Add last affected " + addBut.id.substring(6));
-				//addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
+				addNewItemToSharedList ("listTxt",(parseInt(addBut.id.substring(6)) + 1)); 					// adds blank list element below selected element
 		}; 
 		return addBut;													// return button element
 	};
