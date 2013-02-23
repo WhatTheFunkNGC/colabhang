@@ -37,7 +37,7 @@
   
 	//inital table setup and item
 	function listerTableSetup(){
-		console.log("setup table start");
+		console.log("setup new table start");
 		var div, tb;
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
@@ -47,7 +47,6 @@
 		tableId = tb.id;
 		tb.insertRow(0);										// stores the table refrence
 		div.appendChild(tb);
-		console.log("table added");
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
 		console.log("blank added");
@@ -93,8 +92,8 @@
 						console.log("adding normal list " + itemNo)
 						addListItem(itemNo);									// add to table
 					}else if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-						//console.log(addedKeys[i].key);
-						//console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
+						console.log(addedKeys[i].key);
+						console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 					};
 				};		
 			};		
@@ -121,8 +120,8 @@
 						
 						removeListItem(itemNo);									// add to table
 					}else if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-						//console.log(removedKeys[i]);
-						//console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
+						console.log(removedKeys[i]);
+						console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
 					};
 				//console.log("removeer check done");
 				};	
