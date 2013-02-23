@@ -90,6 +90,7 @@
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){
 		console.log("added has length ");
+
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
@@ -212,7 +213,6 @@
 	var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems) - 1).toString();
-		removed = gapi.hangout.data.getValue("lastListItemDeleted");
 		for (i = (parseInt(noItems)).toString(); i > removed; i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
@@ -239,6 +239,7 @@
 	function removeListItem(itemNo){
 		var i;
 		//console.log( "updating i = " + itemNo);
+		itemNo = gapi.hangout.data.getValue("lastListItemDeleted");
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
