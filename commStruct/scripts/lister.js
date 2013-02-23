@@ -155,7 +155,7 @@
 		var div, i, li, e1, idListLength, rowNum;
 		div = document.getElementById("mainListerTable");				// get element
 		console.log("3");
-		rowNum = ((2 * parseInt(i)) - 1).toString();
+		rowNum = ((2 * parseInt(itemNo)) - 1).toString();
 		console.log("row num = " + rowNum);
 		li = div.rows[rowNum];
 		console.log("4 = " + li);
