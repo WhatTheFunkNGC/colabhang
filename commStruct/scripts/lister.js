@@ -98,7 +98,7 @@
 		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 						console.log(addedKeys[i].key);
 						console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
-					};
+		};
 		
 		};
 		//console.log("added check done");
@@ -126,12 +126,12 @@
 			};
 			//console.log("removed check done");
 		};
-		
-	};
-	if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+		if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 						console.log(removedKeys[i]);
-						console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));												
-					};
+						console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));
+		};
+													
+	};
 	};
 	
 
