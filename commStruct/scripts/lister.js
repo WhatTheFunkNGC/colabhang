@@ -102,10 +102,10 @@
 					var p = new RegExp(re1+re2,["i"]);
 					console.log("3");
 					var m = p.exec(addedKeys[i].key);
-					console.log("4");					
+					console.log("4");										
+					if (m != null){
 					itemNo = m[1];
-					console.log("imtem No is " + itemNo);
-					if (!! itemNo){										
+					console.log("imtem No is " + itemNo);					
 						addListItem(itemNo);
 					};	
 				};
@@ -116,9 +116,9 @@
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
-					itemNo = m[1];	
-					console.log("imtem No is " + itemNo);
-					if (!! itemNo){				
+					if (m != null){
+						itemNo = m[1];
+						console.log("imtem No is " + itemNo);					
 						updateIDlistDisplay(itemNo);
 					};											
 				};
@@ -134,9 +134,9 @@
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(removedKeys[i]);		
+					if (m != null){
 					itemNo = m[1];
-					console.log("imtem No is " + itemNo);
-					if (!! itemNo){										
+					console.log("imtem No is " + itemNo);					
 						removeListItem(itemNo);
 					};				
 				console.log("removeer check done");
@@ -148,9 +148,9 @@
 				var re2='(\\d+)';	// Integer Number 1
 				var p = new RegExp(re1+re2,["i"]);
 				var m = p.exec(removedKeys[i]);		
-				itemNo = m[1];
-				console.log("imtem No is " + itemNo);
-				if (!! itemNo){					
+				if (m != null){
+					itemNo = m[1];
+					console.log("imtem No is " + itemNo);					
 					updateIDlistDisplay(itemNo);
 				};				
 			};				
