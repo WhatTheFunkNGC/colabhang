@@ -193,17 +193,17 @@
 		userID =  gapi.hangout.getLocalParticipantId();
 		
 		j = ((2 * parseInt(i)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
-		console.log("start adding rows " + j);
-		//li = div.insertRow(j);								// Create new element to attach
-		//	e1 = li.insertCell(0);
-		//	e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
-		//	e1.appendChild(addDelButton(i));							// add delete button
-		//	e1.appendChild(addAddButton(i));							// add Add button
-		//	j++;														// set to add below just added line
-		//li2 = div.insertRow(j);
-		//	e2 = li2.insertCell(0);
-		//	e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
-		//	e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
+		console.log("start adding rows " + i);
+		li = div.insertRow(j);								// Create new element to attach
+			e1 = li.insertCell(0);
+			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
+			e1.appendChild(addDelButton(i));							// add delete button
+			e1.appendChild(addAddButton(i));							// add Add button
+			j++;														// set to add below just added line
+		li2 = div.insertRow(j);
+			e2 = li2.insertCell(0);
+			e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
+			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
 			console.log("add line done");
 	};
