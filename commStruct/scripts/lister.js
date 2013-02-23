@@ -156,7 +156,7 @@
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
 		console.log("3");
-		rowNum = ((2 * parseInt(itemNo)) - 1).toString();
+		rowNum = ((2 * parseInt(itemNo))).toString();
 		console.log("row num = " + rowNum);
 		li = div.rows[rowNum];
 		console.log("4 = " + li);
