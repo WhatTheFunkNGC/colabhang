@@ -81,6 +81,7 @@
 		console.log("state changer start ");
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){
+		console.log("added has length ");
 		if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){ // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
@@ -95,12 +96,14 @@
 				};		
 			};		
 		};
+		console.log("about to check for IDs ");
 		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 						console.log("ADD ID FOUND");
 						//console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 		};
 		
 		};
+		console.log("now checking removd ");
 		//console.log("added check done");
 		if(!!removedKeys.length != 0){
 		//console.log("removedkeys check start true");
