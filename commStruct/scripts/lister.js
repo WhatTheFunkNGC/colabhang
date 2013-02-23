@@ -93,11 +93,12 @@
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
-				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
+				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items	
+					console.log("added has length ");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
-					var m = p.exec(removedKeys[i]);		
+					var m = p.exec(addedKeys[i].key);		
 					itemNo = m[1];
 					console.log("imtem No is " = itemNo);
 					if (!! itemNo){										
