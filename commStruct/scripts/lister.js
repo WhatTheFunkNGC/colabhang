@@ -96,8 +96,8 @@
 			};		
 		};
 		if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-						console.log(addedKeys[i].key);
-						console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
+						console.log("ADD ID FOUND");
+						//console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
 		};
 		
 		};
@@ -127,8 +127,9 @@
 			//console.log("removed check done");
 		};
 		if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-						console.log(removedKeys[i]);
-						console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));
+					console.log("REMOVE ID FOUND");
+						//console.log(removedKeys[i]);
+						//console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));
 		};
 													
 	};
