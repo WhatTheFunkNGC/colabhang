@@ -100,9 +100,11 @@
 					console.log("ADD ID FOUND");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
+					console.log("1");
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
-					itemNo = m[1];	 	  
+					itemNo = m[1];	
+					console.log("2");
 					updateIDlistDisplay(itemNo);												
 				};
 				};		
@@ -152,16 +154,19 @@
 	function updateIDlistDisplay(itemNo){
 		var div, i, li, e1, idListLength;
 		div = document.getElementById("mainListerTable");				// get element
+		console.log("3");
 		li = div.rows[((2 * parseInt(i)) - 1).toString()];
+		console.log("4");
 		li.innerHTML = "";
 			e1 = li2.insertCell(0);
 			e1.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,i));
-			
+		console.log("5");
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
+		console.log("6");
 	};
 		
 	
