@@ -152,17 +152,19 @@
 	};
 	
 	function updateIDlistDisplay(itemNo){
-		var div, i, li, e1, idListLength, rowNum;
+		var div, i, li, e1, idListLength, rowNum, userID ;
 		div = document.getElementById("mainListerTable");				// get element
+		userID =  gapi.hangout.getLocalParticipantId();
 		console.log("3");
 		rowNum = ((2 * parseInt(itemNo)) - 1).toString();
 		console.log("row num = " + rowNum);
 		li = div.rows[rowNum];
 		console.log("4 = " + li);
 		li.innerHTML = "";
+		console.log("6");
 			e1 = li.insertCell(0);
-			e1.appendChild(addIDAddButton(userID,i));					// add Add user sign button
-			e1.appendChild(addIDDelButton(userID,i));
+			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
+			e1.appendChild(addIDDelButton(userID,itemNo));
 		console.log("5");
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
