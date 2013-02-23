@@ -53,10 +53,11 @@
 	};
 	
 	function listerTableSetupExsisting(){
-	var div,li, li2, e1, e2, tb;
+	var div, li, li2, e1, e2, tb, i;
 		console.log("build table of exsisting list items");
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
+		console.log("1");
 		tb = document.createElement("table");
 		userID =  gapi.hangout.getLocalParticipantId();
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
@@ -112,13 +113,8 @@
 		
 		
 		console.log("now checking removd ");
-		//console.log("added check done");
 		if(!!removedKeys.length != 0){
-		//console.log("removedkeys check start true");
-		
-		//console.log("added check done");
-		 // check for ligitimate removals
-			//console.log("remove length true = " + removedKeys[0] + " and length " + removedKeys.length);
+
 			
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys	
 			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
@@ -155,22 +151,16 @@
 		var div, i, li, e1, idListLength, rowNum, userID ;
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
-		console.log("3");
 		rowNum = ((2 * parseInt(itemNo))).toString();
-		console.log("row num = " + rowNum);
 		li = div.rows[rowNum];
-		console.log("4 = " + li);
 		li.innerHTML = "";
-		console.log("6");
 			e1 = li.insertCell(0);
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,itemNo));
-		console.log("5");
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
-		console.log("6");
 	};
 		
 	
