@@ -53,23 +53,28 @@
 	};
 	
 	function listerTableSetupExsisting(){
-	var div, li, li2, e1, e2, tb, i;
+	var div, li, li2, e1, e2, tb, i, j, idListLength;
 		console.log("build table of exsisting list items");
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
 		console.log("1");
 		tb = document.createElement("table");
 		userID =  gapi.hangout.getLocalParticipantId();
+		console.log("2");
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
-			li = div.insertRow(-1);								// Create new element to attach
+			li = tb.insertRow(-1);								// Create new element to attach
 				e1 = li.insertCell(0);
 				e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 				e1.appendChild(addDelButton(i));							// add delete button
 				e1.appendChild(addAddButton(i));							// add Add button														
-			li2 = div.insertRow(-1);
+			li2 = tb.insertRow(-1);
 				e2 = li2.insertCell(0);
 				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 				e2.appendChild(addIDDelButton(userID,i));
+				idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
+				for (j = 1; j <= idListLength; j++) {									// for all ID pics in list line, imcriment name refrence by 1
+					e2.appendChild(userPicture(i,j));
+				};
 		}
 		div.appendChild(tb);
 	}
