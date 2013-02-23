@@ -89,7 +89,7 @@
 		var itemNo, div;
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){
-		//console.log("added has length ");
+		console.log("added has length ");
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
@@ -99,21 +99,21 @@
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(removedKeys[i]);		
 					itemNo = m[1];
-					if (!! itemNo){				
-						console.log("imtem No is " = itemNo);	
+					console.log("imtem No is " = itemNo);
+					if (!! itemNo){										
 						addListItem(itemNo);
 					};	
 				};
 				};
 				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					//console.log("ADD ID FOUND");
+					console.log("ADD ID FOUND");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
 					itemNo = m[1];	
+					console.log("imtem No is " = itemNo);
 					if (!! itemNo){				
-						console.log("imtem No is " = itemNo);	
 						updateIDlistDisplay(itemNo);
 					};											
 				};
@@ -121,7 +121,8 @@
 			};				
 		console.log("now checking removd ");
 		if(!!removedKeys.length != 0){
-			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys	
+			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys
+			console.log("looping ");			
 			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
 				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
 					var re1='.*?';	// Non-greedy match on filler
@@ -129,22 +130,22 @@
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(removedKeys[i]);		
 					itemNo = m[1];
-					if (!! itemNo){				
-						console.log("imtem No is " = itemNo);	
+					console.log("imtem No is " = itemNo);
+					if (!! itemNo){										
 						removeListItem(itemNo);
 					};				
-				//console.log("removeer check done");
+				console.log("removeer check done");
 				};
 			};
 			if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-				//console.log("REMOVE ID FOUND");
+				console.log("REMOVE ID FOUND");
 				var re1='.*?';	// Non-greedy match on filler
 				var re2='(\\d+)';	// Integer Number 1
 				var p = new RegExp(re1+re2,["i"]);
 				var m = p.exec(removedKeys[i]);		
 				itemNo = m[1];
-				if (!! itemNo){				
-					console.log("imtem No is " = itemNo);	
+				console.log("imtem No is " = itemNo);
+				if (!! itemNo){					
 					updateIDlistDisplay(itemNo);
 				};				
 			};				
