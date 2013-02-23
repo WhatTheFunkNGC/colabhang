@@ -164,12 +164,15 @@
 		var div, i, li, e1, idListLength, rowNum, userID ;
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
+		console.log("2");
 		rowNum = ((2 * parseInt(itemNo))).toString();
 		li = div.rows[rowNum];
+		console.log("3");
 		li.innerHTML = "";
 			e1 = li.insertCell(0);
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,itemNo));
+			console.log("4");
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
 		console.log("and we have " + idListLength);
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
