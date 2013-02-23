@@ -19,7 +19,7 @@
 			
 	
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
-		add(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
+		updateChecker(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		
 		//if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
@@ -76,7 +76,7 @@
 	/* function to orginise state update and call relivent functions
 		addedKeys - a list of added key pairs
 		removedKeys - a list of removed key pairs */
-	function add (addedKeys,removedKeys){
+	function updateChecker (addedKeys,removedKeys){
 		var itemNo, div;
 		console.log("state changer start ");
 		div = document.getElementById(tableId);
@@ -98,7 +98,12 @@
 				};
 				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 					console.log("ADD ID FOUND");
-					//console.log(" found at " + addedKeys[i].key.indexOf("listID" !== -1));												
+					var re1='.*?';	// Non-greedy match on filler
+					var re2='(\\d+)';	// Integer Number 1
+					var p = new RegExp(re1+re2,["i"]);
+					var m = p.exec(addedKeys[i].key);		
+					itemNo = m[1];	 	  
+					updateIDlistDisplay(itemNo);												
 				};
 				};		
 			};		
@@ -131,13 +136,34 @@
 			};
 			if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 				console.log("REMOVE ID FOUND");
-				//console.log(removedKeys[i]);
-				//console.log(" found at " + removedKeys[i].indexOf("listID" !== -1));
+				var re1='.*?';	// Non-greedy match on filler
+				var re2='(\\d+)';	// Integer Number 1
+				var p = new RegExp(re1+re2,["i"]);
+				var m = p.exec(removedKeys[i]);		
+				itemNo = m[1];	 	  
+				updateIDlistDisplay(itemNo);
+				
 			};				
 			};
 			//console.log("removed check done");
 		};
 	};
+	
+	function updateIDlistDisplay(itemNo){
+		var div, i, li, e1, idListLength;
+		div = document.getElementById("mainListerTable");				// get element
+		li = div.rows[((2 * parseInt(i)) - 1).toString()];
+		li.innerHTML = "";
+			e1 = li2.insertCell(0);
+			e1.appendChild(addIDAddButton(userID,i));					// add Add user sign button
+			e1.appendChild(addIDDelButton(userID,i));
+			
+		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
+		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
+				e1.appendChild(userPicture(itemNo,i));
+		};
+	};
+		
 	
 
 	/* updates the list object elements to adjust there position due to insterted table lines
