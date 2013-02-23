@@ -157,7 +157,7 @@
 		console.log("3");
 		rowNum = ((2 * parseInt(i)) - 1).toString();
 		console.log("row num = " + rowNum);
-		li = div.rows[];
+		li = div.rows[rowNum];
 		console.log("4 = " + li);
 		li.innerHTML = "";
 			e1 = li.insertCell(0);
