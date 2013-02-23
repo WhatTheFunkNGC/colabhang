@@ -63,19 +63,23 @@
 		console.log("2");
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			li = tb.insertRow(-1);								// Create new element to attach
+			console.log("3");
 				e1 = li.insertCell(0);
 				e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 				e1.appendChild(addDelButton(i));							// add delete button
-				e1.appendChild(addAddButton(i));							// add Add button														
+				e1.appendChild(addAddButton(i));							// add Add button		
+			console.log("4");				
 			li2 = tb.insertRow(-1);
 				e2 = li2.insertCell(0);
 				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 				e2.appendChild(addIDDelButton(userID,i));
 				idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
+			console.log("5");
 				for (j = 1; j <= idListLength; j++) {									// for all ID pics in list line, imcriment name refrence by 1
 					e2.appendChild(userPicture(i,j));
 				};
 		}
+		console.log("6");
 		div.appendChild(tb);
 	}
 	
