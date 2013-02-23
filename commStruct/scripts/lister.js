@@ -49,7 +49,6 @@
 		div.appendChild(tb);
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
-		console.log("blank added");
 	};
 	
 	function listerTableSetupExsisting(){
@@ -57,33 +56,24 @@
 		console.log("build table of exsisting list items");
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
-		console.log("1");
 		tb = document.createElement("table");
 		userID =  gapi.hangout.getLocalParticipantId();
-		console.log("2");
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			li = tb.insertRow(-1);								// Create new element to attach
-			console.log("3");
 				e1 = li.insertCell(0);
 				e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 				e1.appendChild(addDelButton(i));							// add delete button
-				e1.appendChild(addAddButton(i));							// add Add button		
-			console.log("4");				
+				e1.appendChild(addAddButton(i));							// add Add button					
 			li2 = tb.insertRow(-1);
-			console.log("4.1");
+
 				e2 = li2.insertCell(0);
-			console.log("4.2");
 				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
-				console.log("4.3");
 				e2.appendChild(addIDDelButton(userID,i));
-				console.log("4.4");
 				idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
-			console.log("5");
 				for (j = 1; j <= idListLength; j++) {									// for all ID pics in list line, imcriment name refrence by 1
 					e2.appendChild(userPicture(i,j));
 				};
 		}
-		console.log("6");
 		div.appendChild(tb);
 	}
 	
@@ -92,10 +82,9 @@
 		removedKeys - a list of removed key pairs */
 	function updateChecker (addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("state changer start ");
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){
-		console.log("added has length ");
+		//console.log("added has length ");
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
@@ -111,14 +100,12 @@
 				};
 				};
 				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					console.log("ADD ID FOUND");
+					//console.log("ADD ID FOUND");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
-					console.log("1");
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
 					itemNo = m[1];	
-					console.log("2");
 					updateIDlistDisplay(itemNo);												
 				};
 				};		
@@ -136,17 +123,14 @@
 						itemNo = removedKeys[i].substring(7,9); 				// item id = double digits
 						removeListItem(itemNo);									// add to table
 					} else if (removedKeys[i].length == 8) {				// 	if name is 8 long then must havde single digit itemNo
-						//itemNo = removedKeys[i].charAt(7);					// itemNo is single digit
-						itemNo = gapi.hangout.data.getValue("lastListItemDeleted");
-						console.log("begin remove of " + itemNo);
-						
+						itemNo = gapi.hangout.data.getValue("lastListItemDeleted");					
 						removeListItem(itemNo);									// add to table
 					}
 				//console.log("removeer check done");
 				};
 			};
 			if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-				console.log("REMOVE ID FOUND");
+				//console.log("REMOVE ID FOUND");
 				var re1='.*?';	// Non-greedy match on filler
 				var re2='(\\d+)';	// Integer Number 1
 				var p = new RegExp(re1+re2,["i"]);
@@ -182,12 +166,12 @@
 		start - the location of the new line */
 	function updateListRefrences(i,j){
 			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
-			console.log("re structure " + i + " " + j);
+			//console.log("re structure " + i + " " + j);
 			delBut = document.getElementById("delBut" + i);				// get element by name
-			console.log(" looking for  " + i + " but found " + delBut);
+			//console.log(" looking for  " + i + " but found " + delBut);
 			delBut.id = "delBut" + j;										// rename as "name"idNo + 1
-			console.log("delBut" + i  + " new name = " + delBut.id);
-			console.log("1");
+			//console.log("delBut" + i  + " new name = " + delBut.id);
+			//console.log("1");
 			addBut = document.getElementById("addBut" + i);
 			addBut.id = "addBut" + j;
 			delIDBut = document.getElementById("delIDBut" + i);
@@ -197,9 +181,9 @@
 			addIDBut.id = "addIDBut" + j;
 			txtIn = document.getElementById("txtIn" + i);
 			txtIn.id = "txtIn" + j;	
-			console.log( "txtIn id from " + i + " to " + j + " with val " + txtIn.value + " to " +  gapi.hangout.data.getValue("listTxt" + j));
+			//console.log( "txtIn id from " + i + " to " + j + " with val " + txtIn.value + " to " +  gapi.hangout.data.getValue("listTxt" + j));
 			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
-			console.log("do image loop");
+			//console.log("do image loop");
 			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 			for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
 				var userPic = document.getElementById("listTxt" + i + "listID" + k);
@@ -226,7 +210,7 @@
 		var noItems, i, j;
 		noItems = gapi.hangout.data.getValue("listTxt") || "0";
 		j = (parseInt(noItems)).toString();
-		console.log(" loop info " + noItems + " " + j);
+		//console.log(" loop info " + noItems + " " + j);
 		for (i = (parseInt(noItems) - 1).toString(); i > (start); i--) {								// for all list lines, imcriment name refrence by 1
 			updateListRefrences(i,j);
 			j--;
@@ -238,11 +222,11 @@
 		itemNo - the item to stop displaying	*/
 	function removeListItem(itemNo){
 		var i;
-		console.log( "updating i = " + itemNo);
+		//console.log( "updating i = " + itemNo);
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
 		i = ((2 * parseInt(itemNo)) - 1).toString();					// use (2N - 1) to select tabe line corectly
-		console.log(" delete row " + i);
+		//console.log(" delete row " + i);
 		div.deleteRow(i);
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
 	};	
@@ -251,9 +235,9 @@
 	itemNo - the location in the list to add too */
 	function addListItem (itemNo){
 	var div, i, li, li2, e1, e2, userID, j;
-	console.log("New list item print");
+	//console.log("New list item print");
 		itemNo = gapi.hangout.data.getValue("lastListItemAdded");
-		console.log("call refrence update " + gapi.hangout.data.getValue("lastListItemAdded"));
+		//console.log("call refrence update " + gapi.hangout.data.getValue("lastListItemAdded"));
 		div = document.getElementById(tableId);							// get table ref
 		i = (parseInt(itemNo) + 1).toString();
 		
@@ -261,7 +245,7 @@
 		userID =  gapi.hangout.getLocalParticipantId();
 		
 		j = ((2 * parseInt(i)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
-		console.log("start adding rows " + i);
+		//console.log("start adding rows " + i);
 		li = div.insertRow(j);								// Create new element to attach
 			e1 = li.insertCell(0);
 			e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
@@ -273,7 +257,7 @@
 			e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
-			console.log("add line done");
+			//console.log("add line done");
 	};
 
 	
