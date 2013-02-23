@@ -156,9 +156,9 @@
 		div = document.getElementById("mainListerTable");				// get element
 		console.log("3");
 		li = div.rows[((2 * parseInt(i)) - 1).toString()];
-		console.log("4");
+		console.log("4 = " + li);
 		li.innerHTML = "";
-			e1 = li2.insertCell(0);
+			e1 = li.insertCell(0);
 			e1.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,i));
 		console.log("5");
