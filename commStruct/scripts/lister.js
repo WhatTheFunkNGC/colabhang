@@ -33,7 +33,7 @@
 		}	
 	};	
   
-  //-------------------- Functions -------------------------
+  //-------------------------------------------- Setup -------------------------------------------------------
   
 	//inital table setup and item
 	function listerTableSetup(){
@@ -51,6 +51,7 @@
 		addNewItemToSharedList ("listTxt",1);
 	};
 	
+	// displays list table is app data already exsists
 	function listerTableSetupExsisting(){
 	var div, li, li2, e1, e2, tb, i, j, idListLength;
 		console.log("build table of exsisting list items");
@@ -77,6 +78,10 @@
 		div.appendChild(tb);
 	}
 	
+	
+	//-------------------------------------------- Functions -------------------------------------------------------
+	
+	
 	/* function to orginise state update and call relivent functions
 		addedKeys - a list of added key pairs
 		removedKeys - a list of removed key pairs */
@@ -89,14 +94,15 @@
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
 				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items			
-					if (addedKeys[i].key.length == 9) {						// if key name is 9 long then must havde double digit itemNo
-						itemNo = addedKeys[i].key.substring(7,9); 				// item id = double digits
-						addListItem(itemNo);									// add to table
-					} else if (addedKeys[i].key.length == 8) {				// 	if key name is 8 long then must havde single digit itemNo
-						itemNo = addedKeys[i].key.charAt(7);					// itemNo is single digit
-						console.log("adding normal list " + itemNo)
-						addListItem(itemNo);									// add to table
-					};
+					var re1='.*?';	// Non-greedy match on filler
+					var re2='(\\d+)';	// Integer Number 1
+					var p = new RegExp(re1+re2,["i"]);
+					var m = p.exec(removedKeys[i]);		
+					itemNo = m[1];
+					if (!! itemNo){				
+						console.log("imtem No is " = itemNo);	
+						addListItem(itemNo);
+					};	
 				};
 				};
 				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
@@ -106,26 +112,27 @@
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
 					itemNo = m[1];	
-					updateIDlistDisplay(itemNo);												
+					if (!! itemNo){				
+						console.log("imtem No is " = itemNo);	
+						updateIDlistDisplay(itemNo);
+					};											
 				};
 				};		
-			};		
-		
-		
+			};				
 		console.log("now checking removd ");
 		if(!!removedKeys.length != 0){
-
-			
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys	
 			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
 				if (removedKeys[i].indexOf("listTxt") !== -1){			// checks add change is relivent lister items
-					if (removedKeys[i].length == 9) {						// if name is 9 long then must havde double digit itemNo
-						itemNo = removedKeys[i].substring(7,9); 				// item id = double digits
-						removeListItem(itemNo);									// add to table
-					} else if (removedKeys[i].length == 8) {				// 	if name is 8 long then must havde single digit itemNo
-						itemNo = gapi.hangout.data.getValue("lastListItemDeleted");					
-						removeListItem(itemNo);									// add to table
-					}
+					var re1='.*?';	// Non-greedy match on filler
+					var re2='(\\d+)';	// Integer Number 1
+					var p = new RegExp(re1+re2,["i"]);
+					var m = p.exec(removedKeys[i]);		
+					itemNo = m[1];
+					if (!! itemNo){				
+						console.log("imtem No is " = itemNo);	
+						removeListItem(itemNo);
+					};				
 				//console.log("removeer check done");
 				};
 			};
@@ -135,15 +142,18 @@
 				var re2='(\\d+)';	// Integer Number 1
 				var p = new RegExp(re1+re2,["i"]);
 				var m = p.exec(removedKeys[i]);		
-				itemNo = m[1];	 	  
-				updateIDlistDisplay(itemNo);
-				
+				itemNo = m[1];
+				if (!! itemNo){				
+					console.log("imtem No is " = itemNo);	
+					updateIDlistDisplay(itemNo);
+				};				
 			};				
 			};
 			//console.log("removed check done");
 		};
 	};
 	
+	// updates the User pictre list of an item to reflect additions or removals
 	function updateIDlistDisplay(itemNo){
 		var div, i, li, e1, idListLength, rowNum, userID ;
 		div = document.getElementById("mainListerTable");				// get element
