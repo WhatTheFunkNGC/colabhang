@@ -69,7 +69,7 @@
 				e1.appendChild(addDelButton(i));							// add delete button
 				e1.appendChild(addAddButton(i));							// add Add button		
 			console.log("4");				
-			li2 = li.insertRow(-1);
+			li2 = tb.insertRow(-1);
 				e2 = li2.insertCell(0);
 				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 				e2.appendChild(addIDDelButton(userID,i));
