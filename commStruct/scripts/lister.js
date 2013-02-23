@@ -116,7 +116,7 @@
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
-					if (m != null){
+					if (addedKeys[i].value.indexOf("hangout") !== -1){
 						itemNo = m[1];
 						console.log("imtem No is " + itemNo);					
 						updateIDlistDisplay(itemNo);
