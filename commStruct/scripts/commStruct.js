@@ -26,11 +26,10 @@
 		startSystem();
 		console.log("list");
 		
-		document.getElementById("displayToggle").onclick =	
-		this.toggleDisplay.bind(this);
+		document.getElementById("displayToggle").onclick = this.toggleDisplay.bind(this);
 		
 		//listUsers();							// list users
-		}	
+		};	
 		totalTime = 1;
 		speakTime = 0;
 		chatIntervalCounter = 0;

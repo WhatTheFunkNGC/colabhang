@@ -153,7 +153,6 @@
 			};
 			//console.log("removed check done");
 		};
-	};
 	
 	// updates the User pictre list of an item to reflect additions or removals
 	function updateIDlistDisplay(itemNo,idListLength){
