@@ -119,7 +119,7 @@
 					if (addedKeys[i].value.indexOf("hangout") !== -1){
 						itemNo = m[1];
 						console.log("imtem No is " + itemNo);					
-						updateIDlistDisplay(itemNo);
+						updateIDlistDisplay(itemNo,gapi.hangout.data.getValue("listTxt" + itemNo + "listID"));
 					};											
 				};
 				};		
@@ -151,7 +151,7 @@
 				if (m[1] != 0){
 					itemNo = m[1];
 					console.log("imtem No is " + itemNo);					
-					updateIDlistDisplay(itemNo);
+					updateIDlistDisplay(itemNo,0);
 				};				
 			};				
 			};
@@ -160,8 +160,8 @@
 	};
 	
 	// updates the User pictre list of an item to reflect additions or removals
-	function updateIDlistDisplay(itemNo){
-		var div, i, li, e1, idListLength, rowNum, userID ;
+	function updateIDlistDisplay(itemNo,idListLength){
+		var div, i, li, e1, rowNum, userID ;
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
 		console.log("2");
