@@ -132,8 +132,8 @@
 	}
 	
 	function userChatCounter() {
-		if (chatIntervalCounter == 5){	
-			if (chatIntervalTotal > 2){
+		if (chatIntervalCounter == 10){	
+			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
 			};
 			chatIntervalCounter = 0; 
