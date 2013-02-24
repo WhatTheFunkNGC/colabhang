@@ -38,14 +38,15 @@
 	//inital table setup and item
 	function listerTableSetup(){
 		console.log("setup new table start");
-		var div, tb;
+		var div, tb, li;
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
 		
 		tb = document.createElement("table");
 		tb.id = "mainListerTable";
 		tableId = tb.id;
-		tb.insertRow(0);										// stores the table refrence
+		li = tb.insertRow(0);										// stores the table refrence
+		li.innetHTML = "hi";
 		div.appendChild(tb);
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
