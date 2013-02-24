@@ -50,13 +50,14 @@
 	//-------------------- Functions -------------------------
 	
 	commStruct.prototype.toggleDataDisplay = function () {
-		var div, but;
-		but = document.getElementById("dataDisplayToggle");
+		var div;
 		if (!dataDisplay){ 
+		console.log("clicked when false");
 		dTimer = setInterval(function() {listUsers()},refreshUserList);
 		dataDisplay = true;
 		} else { 
-		window.clearInterval(dTimer);
+		console.log("clicked when true");
+		clearInterval(dTimer);
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
 		dataDisplay = false;
