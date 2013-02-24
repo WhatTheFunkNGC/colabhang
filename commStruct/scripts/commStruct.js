@@ -41,7 +41,7 @@
 		
 		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
 		
-		var cTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
+		var cTimer = setInterval(function() {userChatCounter()},250);			// setup chat update timer
 
 		//dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
 		dataDisplay = false;
@@ -132,8 +132,8 @@
 	}
 	
 	function userChatCounter() {
-		if (chatIntervalCounter == 2){	
-			if (chatIntervalTotal > 1){
+		if (chatIntervalCounter == 4){	
+			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
 			};
 			chatIntervalCounter = 0; 
