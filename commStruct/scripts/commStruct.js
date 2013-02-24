@@ -14,6 +14,7 @@
 		var refreshUserListHolder = 1000; // refresh rate of main display Holder
 		var chatIntervalCounter;
 		var chatIntervalTotal;
+		var dTimer; // hold the timer object for refreshing the display
  
 	//-------------------- Listeners -------------------------
  
@@ -41,7 +42,7 @@
 		
 		var cTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
 
-		var dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
+		 dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
   };	
   	
 	//-------------------- Functions -------------------------
