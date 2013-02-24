@@ -3,7 +3,7 @@
   	
   function commStruct() {	
     console.log("Starting...");	
-    //gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
+    gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
   }	
     //-------------------- VARS -------------------------	
 		var totalTime;		// glabal var - how long user has been connected
@@ -11,6 +11,7 @@
 		var userData;		// global object - hold all local users key data
 		var userDataPos;	// golbal var - marks the position that the local users data is stored in "userData"		
 		var refreshUserList = 1000; // refresh rate of main display
+		var refreshUserListHolder = 1000; // refresh rate of main display Holder
 		var chatIntervalCounter;
 		var chatIntervalTotal;
  
@@ -24,6 +25,10 @@
 			
 		startSystem();
 		console.log("list");
+		
+		document.getElementById("displayToggle").onclick =	
+		this.toggleDisplay.bind(this);
+		
 		//listUsers();							// list users
 		}	
 		totalTime = 1;
@@ -41,6 +46,18 @@
   };	
   	
 	//-------------------- Functions -------------------------
+	
+	commStruct.prototype.toggleDisplay = function () {
+		var div;
+		if (refreshUserList == -1){ 
+		refreshUserList = refreshUserListHolder;
+		} else { refreshUserList = -1;
+		div = document.getElementById("userDetailsList");
+		div.innerHTML = "";	
+		};
+	};
+	
+	
  	
 	// on new user joining - refresh display
 	function startSystem(){
