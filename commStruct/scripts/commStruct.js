@@ -49,8 +49,9 @@
 	commStruct.prototype.toggleDisplay = function () {
 		var div;
 		if (refreshUserList == -1){ 
-		refreshUserList = refreshUserListHolder;
-		} else { refreshUserList = -1;
+		dTimer = setInterval(function() {listUsers()},refreshUserList);
+		} else { 
+		window.clearInterval(dTimer);
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
 		};
