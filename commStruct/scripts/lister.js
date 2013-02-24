@@ -48,7 +48,7 @@
 		li = tb.insertRow(0);										// stores the table refrence
 		li.innetHTML = "hi";
 		div.appendChild(tb);
-		console.log("length = " + tb.rows.length);
+		//console.log("length = " + tb.rows.length);
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
 	};
@@ -90,65 +90,62 @@
 	function updateChecker (addedKeys,removedKeys){
 		var itemNo, div;
 		div = document.getElementById(tableId);
-		if (addedKeys.length != 0);
+		if (addedKeys.length != 0){
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
-				if ((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){			// checks add change is relivent lister items	
-					console.log("1");
-					var re1='.*?';	// Non-greedy match on filler
-					var re2='(\\d+)';	// Integer Number 1
-					console.log("2");
-					var p = new RegExp(re1+re2,["i"]);
-					console.log("3");
-					var m = p.exec(addedKeys[i].key);
-					console.log("4");										
-					if (m != null){
-					itemNo = m[1];
-					console.log("imtem No is " + itemNo);					
-						addListItem(itemNo);
-					};	
-				};
+					if ((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){			// checks add change is relivent lister items	
+						var re1='.*?';	// Non-greedy match on filler
+						var re2='(\\d+)';	// Integer Number 1
+						var p = new RegExp(re1+re2,["i"]);
+						var m = p.exec(addedKeys[i].key);										
+						if (m != null){
+							itemNo = m[1];
+							//console.log("imtem No is " + itemNo);					
+							addListItem(itemNo);
+						};	
+					};
 				};
 				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					console.log("ADD ID FOUND = " + addedKeys[i].key + " " + addedKeys[i].value);
+					//console.log("ADD ID FOUND = " + addedKeys[i].key + " " + addedKeys[i].value);
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
 					if (addedKeys[i].value.indexOf("hangout") !== -1){
 						itemNo = m[1];
-						console.log("imtem No is " + itemNo);					
+						//console.log("imtem No is " + itemNo);					
 						updateIDlistDisplay(itemNo,gapi.hangout.data.getValue("listTxt" + itemNo + "listID"));
 					};											
 				};
-			};					
+			};
+		};
 		//console.log("now checking removd ");
 		if(!!removedKeys.length != 0){
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
-			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
-				if ((removedKeys[i].indexOf("listTxt") !== -1) && (removedKeys[i].indexOf("listID") == -1)){			// checks add change is relivent lister items
+				if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
+					if ((removedKeys[i].indexOf("listTxt") !== -1) && (removedKeys[i].indexOf("listID") == -1)){			// checks add change is relivent lister items
+						var re1='.*?';	// Non-greedy match on filler
+						var re2='(\\d+)';	// Integer Number 1
+						var p = new RegExp(re1+re2,["i"]);
+						var m = p.exec(removedKeys[i]);		
+						if (m != null){
+							itemNo = m[1];				
+							removeListItem(itemNo);
+						};				
+					};
+				};
+				if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
+					//console.log("REMOVE ID FOUND");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(removedKeys[i]);		
-					if (m != null){
-					itemNo = m[1];				
-						removeListItem(itemNo);
+					if (m[1] != 0){
+						itemNo = m[1];				
+						updateIDlistDisplay(itemNo,0);
 					};				
-				};
-			};
-			if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-				//console.log("REMOVE ID FOUND");
-				var re1='.*?';	// Non-greedy match on filler
-				var re2='(\\d+)';	// Integer Number 1
-				var p = new RegExp(re1+re2,["i"]);
-				var m = p.exec(removedKeys[i]);		
-				if (m[1] != 0){
-					itemNo = m[1];				
-					updateIDlistDisplay(itemNo,0);
 				};				
-			};				
 			};
 			//console.log("removed check done");
 		};
@@ -160,82 +157,24 @@
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
 		rowNum = ((2 * parseInt(itemNo))).toString();
-		console.log(" div  = " + div.rows.length + " " + rowNum);
+		//console.log(" div  = " + div.rows.length + " " + rowNum);
 		li = div.rows[rowNum];
 		//li.innerHTML = "";
 		li.removeChild(li.childNodes[0]);
 			e1 = li.insertCell(0);
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,itemNo));
-		console.log("and we have " + idListLength);
+		//console.log("and we have " + idListLength);
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
-	};
-		
-	
-
-	/* updates the list object elements to adjust there position due to insterted table lines
-		start - the location of the new line */
-	function updateListRefrences(i,j){
-			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
-			//console.log("re structure " + i + " " + j);
-			delBut = document.getElementById("delBut" + i);				// get element by name
-			//console.log(" looking for  " + i + " but found " + delBut);
-			delBut.id = "delBut" + j;										// rename as "name"idNo + 1
-			//console.log("delBut" + i  + " new name = " + delBut.id);
-			//console.log("1");
-			addBut = document.getElementById("addBut" + i);
-			addBut.id = "addBut" + j;
-			delIDBut = document.getElementById("delIDBut" + i);
-			console.log("2");
-			delIDBut.id = "delIDBut" + j;
-			addIDBut = document.getElementById("addIDBut" + i);
-			addIDBut.id = "addIDBut" + j;
-			txtIn = document.getElementById("txtIn" + i);
-			txtIn.id = "txtIn" + j;	
-			//console.log( "txtIn id from " + i + " to " + j + " with val " + txtIn.value + " to " +  gapi.hangout.data.getValue("listTxt" + j));
-			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
-			//console.log("do image loop");
-			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
-			for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
-				var userPic = document.getElementById("listTxt" + i + "listID" + k);
-				userPic.id = "listTxt" + j + "listID" + k;
-			};
-		};
-
-	/* runs through all affected list element components and renames them to suit new position
-	 - removed : element to stop at */
-	function updateListRefrencesDelete(removed){
-	var noItems, i, j;
-		noItems = gapi.hangout.data.getValue("listTxt") || "0";
-		j = (parseInt(noItems) - 1).toString();
-		for (i = (parseInt(noItems)).toString(); i > removed; i--) {								// for all list lines, imcriment name refrence by 1
-			updateListRefrences(i,j);
-			j--;
-		};
-		console.log("update refrences done");
-	};
-	
-	/* adds list element to the display table
-		itemNo - the item to start displaying	*/
-	function updateListRefrencesAdd(start){
-		var noItems, i, j;
-		noItems = gapi.hangout.data.getValue("listTxt") || "0";
-		j = (parseInt(noItems)).toString();
-		//console.log(" loop info " + noItems + " " + j);
-		for (i = (parseInt(noItems) - 1).toString(); i > (start); i--) {								// for all list lines, imcriment name refrence by 1
-			updateListRefrences(i,j);
-			j--;
-		};
-		console.log("update refrences done");
 	};
 		
 	/* removes a list element from the display table
 		itemNo - the item to stop displaying	*/
 	function removeListItem(itemNo){
 		var i;
-		console.log( "REMOVING ROW updating i = " + itemNo);
+		//console.log( "REMOVING ROW updating i = " + itemNo);
 		itemNo = gapi.hangout.data.getValue("lastListItemDeleted");
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
@@ -273,6 +212,62 @@
 			//console.log("New list item print Complete");
 			//console.log("add line done");
 	};
+	
+	/* runs through all affected list element components and renames them to suit new position
+	 - removed : element to stop at */
+	function updateListRefrencesDelete(removed){
+	var noItems, i, j;
+		noItems = gapi.hangout.data.getValue("listTxt") || "0";
+		j = (parseInt(noItems) - 1).toString();
+		for (i = (parseInt(noItems)).toString(); i > removed; i--) {								// for all list lines, imcriment name refrence by 1
+			updateListRefrences(i,j);
+			j--;
+		};
+		console.log("update refrences done");
+	};
+	
+	/* adds list element to the display table
+		itemNo - the item to start displaying	*/
+	function updateListRefrencesAdd(start){
+		var noItems, i, j;
+		noItems = gapi.hangout.data.getValue("listTxt") || "0";
+		j = (parseInt(noItems)).toString();
+		//console.log(" loop info " + noItems + " " + j);
+		for (i = (parseInt(noItems) - 1).toString(); i > (start); i--) {								// for all list lines, imcriment name refrence by 1
+			updateListRefrences(i,j);
+			j--;
+		};
+		//console.log("update refrences done");
+	};
+	
+	/* updates the list object elements to adjust there position due to insterted table lines
+		start - the location of the new line */
+	function updateListRefrences(i,j){
+			var delBut, addBut, delIDBut, addIDBut, txtIn, k ,idListLength;
+			//console.log("re structure " + i + " " + j);
+			delBut = document.getElementById("delBut" + i);				// get element by name
+			//console.log(" looking for  " + i + " but found " + delBut);
+			delBut.id = "delBut" + j;										// rename as "name"idNo + 1
+			//console.log("delBut" + i  + " new name = " + delBut.id);
+			//console.log("1");
+			addBut = document.getElementById("addBut" + i);
+			addBut.id = "addBut" + j;
+			delIDBut = document.getElementById("delIDBut" + i);
+			console.log("2");
+			delIDBut.id = "delIDBut" + j;
+			addIDBut = document.getElementById("addIDBut" + i);
+			addIDBut.id = "addIDBut" + j;
+			txtIn = document.getElementById("txtIn" + i);
+			txtIn.id = "txtIn" + j;	
+			//console.log( "txtIn id from " + i + " to " + j + " with val " + txtIn.value + " to " +  gapi.hangout.data.getValue("listTxt" + j));
+			txtIn.value = gapi.hangout.data.getValue("listTxt" + j);		
+			//console.log("do image loop");
+			idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
+			for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
+				var userPic = document.getElementById("listTxt" + i + "listID" + k);
+				userPic.id = "listTxt" + j + "listID" + k;
+			};
+		};
 
 	
 //-------------------- Button creation -------------------------

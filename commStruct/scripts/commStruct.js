@@ -22,38 +22,35 @@
 	// start of script setup
 	commStruct.prototype.onApiReady = function (event) {	
 		if (event.isApiReady === true) {			// on ready
-			console.log("API Ready");	
-	  
-			
-		startSystem();
-		console.log("list");
-		
-		document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this);
-		
-		//listUsers();							// list users
+			console.log("API Ready");				
+			startSystem();	
+			document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this); // bind data display button
 		};	
+		
+		// initilise global vars 
 		totalTime = 1;
 		speakTime = 0;
 		chatIntervalCounter = 0;
 		chatIntervalTotal = 0;
+		dataDisplay = false;
 
-		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer
-		
-		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer
-		
+		// setup timers
+		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
+		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer		
 		var cTimer = setInterval(function() {userChatCounter()},100);			// setup chat update timer
 
-		//dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
-		dataDisplay = false;
+		
   };	
   	
 	//-------------------- Functions -------------------------
 	
+	
+	// a button fuction that enables and disables the data display
 	commStruct.prototype.toggleDataDisplay = function () {
 		var div;
 		if (!dataDisplay){ 
 		console.log("clicked when false");
-		dTimer = setInterval(function() {listUsers()},refreshUserList);
+		dTimer = setInterval(function() {listUsers()},refreshUserList);		// setup refresh rate of user display
 		dataDisplay = true;
 		} else { 
 		console.log("clicked when true");
