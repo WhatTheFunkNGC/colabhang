@@ -133,7 +133,7 @@
 	
 	function userChatCounter() {
 		if (chatIntervalCounter == 4){	
-			if (chatIntervalTotal > 3){
+			if (chatIntervalTotal > 2){
 				speakTime = speakTime + 1;
 			};
 			chatIntervalCounter = 0; 
