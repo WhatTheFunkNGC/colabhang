@@ -15,6 +15,7 @@
 		var chatIntervalCounter;
 		var chatIntervalTotal;
 		var dTimer; // hold the timer object for refreshing the display
+		var dataDisplay:
  
 	//-------------------- Listeners -------------------------
  
@@ -43,6 +44,7 @@
 		var cTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
 
 		 dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
+		 dataDisplay = true;
   };	
   	
 	//-------------------- Functions -------------------------
@@ -50,12 +52,14 @@
 	commStruct.prototype.toggleDataDisplay = function () {
 		var div, but;
 		but = document.getElementById("dataDisplayToggle");
-		if (but.checked == true ){ 
+		if (!!dataDisplay){ 
 		dTimer = setInterval(function() {listUsers()},refreshUserList);
+		dataDisplay = false;
 		} else { 
 		window.clearInterval(dTimer);
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
+		dataDisplay = true;
 		};
 	};
 	
