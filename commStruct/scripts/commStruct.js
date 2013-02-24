@@ -52,7 +52,7 @@
 	commStruct.prototype.toggleDataDisplay = function () {
 		var div, but;
 		but = document.getElementById("dataDisplayToggle");
-		if (!!dataDisplay){ 
+		if (!dataDisplay){ 
 		dTimer = setInterval(function() {listUsers()},refreshUserList);
 		dataDisplay = true;
 		} else { 
