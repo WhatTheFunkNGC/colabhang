@@ -167,7 +167,7 @@
 		console.log("2");
 		rowNum = ((2 * parseInt(itemNo))).toString();
 		console.log(" div  = " + div.rows.length);
-		li = div.rows[rowNum];
+		li = div.rows[rowNum - 1];
 		console.log("3 + row " + rowNum + " " + li);
 		li.innerHTML = "";
 		console.log("7");
