@@ -90,9 +90,7 @@
 	function updateChecker (addedKeys,removedKeys){
 		var itemNo, div;
 		div = document.getElementById(tableId);
-		if (addedKeys.length != 0){
-		console.log("added has length ");
-
+		if (addedKeys.length != 0);
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
@@ -126,34 +124,29 @@
 				};
 				};		
 			};				
-		console.log("now checking removd ");
+		//console.log("now checking removd ");
 		if(!!removedKeys.length != 0){
-			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys
-			console.log("looping ");			
+			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
 			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
 				if ((removedKeys[i].indexOf("listTxt") !== -1) && (removedKeys[i].indexOf("listID") == -1)){			// checks add change is relivent lister items
-					console.log("removing ");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(removedKeys[i]);		
 					if (m != null){
-					itemNo = m[1];
-					console.log("imtem No is " + itemNo);					
+					itemNo = m[1];				
 						removeListItem(itemNo);
 					};				
-				console.log("removeer check done");
 				};
 			};
 			if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-				console.log("REMOVE ID FOUND");
+				//console.log("REMOVE ID FOUND");
 				var re1='.*?';	// Non-greedy match on filler
 				var re2='(\\d+)';	// Integer Number 1
 				var p = new RegExp(re1+re2,["i"]);
 				var m = p.exec(removedKeys[i]);		
 				if (m[1] != 0){
-					itemNo = m[1];
-					console.log("imtem No is " + itemNo);					
+					itemNo = m[1];				
 					updateIDlistDisplay(itemNo,0);
 				};				
 			};				
@@ -167,21 +160,14 @@
 		var div, i, li, e1, rowNum, userID ;
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
-		console.log("2");
 		rowNum = ((2 * parseInt(itemNo))).toString();
 		console.log(" div  = " + div.rows.length + " " + rowNum);
 		li = div.rows[rowNum];
-		console.log("3 + row " + rowNum + " " + li);
 		//li.innerHTML = "";
 		li.removeChild(li.childNodes[0]);
-		console.log("7");
 			e1 = li.insertCell(0);
-			console.log("5");
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
-			console.log("6");
 			e1.appendChild(addIDDelButton(userID,itemNo));
-			console.log("4");
-		//idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID") || 0;
 		console.log("and we have " + idListLength);
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
