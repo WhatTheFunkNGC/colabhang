@@ -48,6 +48,7 @@
 		li = tb.insertRow(0);										// stores the table refrence
 		li.innetHTML = "hi";
 		div.appendChild(tb);
+		console.log("length = " + tb.rows.length);
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
 		addNewItemToSharedList ("listTxt",1);
 	};
