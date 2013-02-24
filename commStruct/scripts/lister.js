@@ -172,7 +172,7 @@
 		li = div.rows[rowNum];
 		console.log("3 + row " + rowNum + " " + li);
 		//li.innerHTML = "";
-		li.removeChild(li.childNode[0]);
+		li.removeChild(li.childNodes[0]);
 		console.log("7");
 			e1 = li.insertCell(0);
 			console.log("5");
