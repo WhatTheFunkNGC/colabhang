@@ -15,7 +15,7 @@
 	// script start and loop
 	Lister.prototype.onApiReady = function (event) {	
 		if (event.isApiReady === true) {	
-			console.log("Lister Ready");	
+			console.log("Lister Startup");	
 			
 	
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
@@ -30,7 +30,8 @@
 		} else { 
 			listerTableSetup();
 		};
-		}	
+		console.log("Lister Ready");
+		}			
 	};	
   
   //-------------------------------------------- Setup -------------------------------------------------------
