@@ -38,7 +38,7 @@
 		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
 		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer	
 		var cTimer;		
-		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer
+		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer after a 1.5 sec wait
 
 		
   };	
