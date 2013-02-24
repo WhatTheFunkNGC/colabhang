@@ -44,7 +44,7 @@
 		var cTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
 
 		//dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
-		dataDisplay = true;
+		dataDisplay = false;
   };	
   	
 	//-------------------- Functions -------------------------
