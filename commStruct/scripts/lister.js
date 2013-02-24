@@ -132,6 +132,7 @@
 			console.log("looping ");			
 			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
 				if (removedKeys[i].indexOf("listTxt") !== -1 && removedKeys[i].indexOf("listTxt") == -1){			// checks add change is relivent lister items
+					console.log("removing ");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
