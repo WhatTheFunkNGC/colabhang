@@ -43,8 +43,8 @@
 		
 		var cTimer = setInterval(function() {userChatCounter()},500);			// setup chat update timer
 
-		 dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
-		 dataDisplay = true;
+		dTimer = setInterval(function() {listUsers()},refreshUserList);	// setup refresh rate of user display
+		dataDisplay = false;
   };	
   	
 	//-------------------- Functions -------------------------
@@ -54,12 +54,12 @@
 		but = document.getElementById("dataDisplayToggle");
 		if (!!dataDisplay){ 
 		dTimer = setInterval(function() {listUsers()},refreshUserList);
-		dataDisplay = false;
+		dataDisplay = true;
 		} else { 
 		window.clearInterval(dTimer);
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
-		dataDisplay = true;
+		dataDisplay = false;
 		};
 	};
 	
@@ -104,7 +104,7 @@
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";		
 		div.appendChild(ul);	
-		console.log("Displayed"); 
+		//console.log("Displayed"); 
   };
   
 	/* Displays an enterd second count in time format
