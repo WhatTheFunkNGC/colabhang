@@ -249,7 +249,7 @@
 		itemNo - the item to stop displaying	*/
 	function removeListItem(itemNo){
 		var i;
-		//console.log( "updating i = " + itemNo);
+		console.log( "REMOVING ROW updating i = " + itemNo);
 		itemNo = gapi.hangout.data.getValue("lastListItemDeleted");
 		updateListRefrencesDelete(itemNo);
 		div = document.getElementById(tableId);
