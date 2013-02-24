@@ -27,7 +27,7 @@
 		startSystem();
 		console.log("list");
 		
-		document.getElementById("displayToggle").onclick = this.toggleDisplay.bind(this);
+		document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this);
 		
 		//listUsers();							// list users
 		};	
@@ -47,9 +47,10 @@
   	
 	//-------------------- Functions -------------------------
 	
-	commStruct.prototype.toggleDisplay = function () {
-		var div;
-		if (refreshUserList == -1){ 
+	commStruct.prototype.toggleDataDisplay = function () {
+		var div, but;
+		but = document.getElementById("dataDisplayToggle");
+		if (but.checked == true ){ 
 		dTimer = setInterval(function() {listUsers()},refreshUserList);
 		} else { 
 		window.clearInterval(dTimer);

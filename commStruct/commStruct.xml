@@ -9,7 +9,7 @@
       <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.2"></script>   	
 	  
 	  
-	  <button type="button" id = "displayToggle">Display Settings</button>
+	  <button type="radio" id = "dataDisplayToggle">Display Settings</button>
       <div id="userDetailsList"></div>	
 	  
 	  
