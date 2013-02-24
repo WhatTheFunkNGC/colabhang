@@ -122,8 +122,7 @@
 						updateIDlistDisplay(itemNo,gapi.hangout.data.getValue("listTxt" + itemNo + "listID"));
 					};											
 				};
-				};		
-			};				
+			};					
 		//console.log("now checking removd ");
 		if(!!removedKeys.length != 0){
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
