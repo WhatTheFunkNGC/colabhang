@@ -15,7 +15,7 @@
 		var chatIntervalCounter;
 		var chatIntervalTotal;
 		var dTimer; // hold the timer object for refreshing the display
-		var dataDisplay:
+		var dataDisplay;
  
 	//-------------------- Listeners -------------------------
  
