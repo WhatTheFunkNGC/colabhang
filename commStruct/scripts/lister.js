@@ -171,7 +171,8 @@
 		console.log(" div  = " + div.rows.length + " " + rowNum);
 		li = div.rows[rowNum];
 		console.log("3 + row " + rowNum + " " + li);
-		li.innerHTML = "";
+		//li.innerHTML = "";
+		li.removeChild(li.childNode[0]);
 		console.log("7");
 			e1 = li.insertCell(0);
 			console.log("5");
