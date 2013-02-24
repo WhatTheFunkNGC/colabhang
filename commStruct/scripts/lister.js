@@ -96,7 +96,7 @@
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
-				if (addedKeys[i].key.indexOf("listTxt") !== -1){			// checks add change is relivent lister items	
+				if ((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf)"listID") == -1)){			// checks add change is relivent lister items	
 					console.log("1");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
@@ -131,7 +131,7 @@
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys
 			console.log("looping ");			
 			if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
-				if (removedKeys[i].indexOf("listTxt") !== -1 && removedKeys[i].indexOf("listTxt") == -1){			// checks add change is relivent lister items
+				if ((removedKeys[i].indexOf("listTxt") !== -1) && (removedKeys[i].indexOf("listID") == -1)){			// checks add change is relivent lister items
 					console.log("removing ");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
