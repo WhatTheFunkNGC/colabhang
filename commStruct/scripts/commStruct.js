@@ -92,7 +92,7 @@
 	// display list of partisipants with relivant time stats
 	function displaySpeakerInfo() {	
 		var div, ul, tr, i, e1, e2, tr2, userD, userDString;	
-		div = document.getElementById("userDetailsList");
+		div = document.getElementById("speakerlist");
 		div.innerHTML = gapi.hangout.data.getValue("currentSpeaker") + " is Current Speaker";		
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");					// 
