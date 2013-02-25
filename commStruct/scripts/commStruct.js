@@ -100,7 +100,7 @@
 		e1.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
 		tr.appendChild(e1);
 		ul.appendChild(tr);	
-		for (i = 1; i <= gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
+		for (i = 1; i < gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
 			tr2 = document.createElement("tr");
 			e2 = document.createElement("td");	
 			e2.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
