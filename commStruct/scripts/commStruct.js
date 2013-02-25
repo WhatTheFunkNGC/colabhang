@@ -30,6 +30,7 @@
 			console.log("API Ready");				
 			startSystem();	
 			document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this); // bind data display button
+			document.getElementById("handUpBtn").onclick = this.toggleHandUp.bind(this); // bind data display button
 		};	
 		
 		// initilise global vars 
@@ -88,24 +89,26 @@
 		dataDisplay = false;
 		};
 	};
+	
+	// a button fuction that toggles if the user is waiting to speak or not
+	commStruct.prototype.toggleHandUp = function () {
+		var div;
+		if (!checkDataExsistanceInArray("speakQueue",userData.id)){ findAndAddNewItemToSharedList("speakQueue",userData.id);
+		} else { findAndRemoveItemFromSharedList("speakQueue",userData.id);};
+	};
 		
 	// display list of partisipants with relivant time stats
 	function displaySpeakerInfo() {	
-		var div, ul, tr, i, e1, e2, tr2, userD, userDString;	
+		var div, ul, tr, i, e, userD, userDString;	
 		div = document.getElementById("speakerlist");
 		div.innerHTML = gapi.hangout.data.getValue("currentSpeaker") + " is Current Speaker";		
 		ul = document.createElement("table");				// create table for users waiting to chat
-		//tr = document.createElement("tr");					// 
-		//e1 = document.createElement("td");	
-		//e1.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
-		//tr.appendChild(e1);
-		//ul.appendChild(tr);	
 		for (i = 1; i < gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
-			tr2 = document.createElement("tr");
-			e2 = document.createElement("td");	
-			e2.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
-			tr2.appendChild(e2);
-			ul.appendChild(tr2);	
+			tr = document.createElement("tr");
+			e = document.createElement("td");	
+			e.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
+			tr.appendChild(e);
+			ul.appendChild(tr);	
 		};
 		div.appendChild(ul);
 	};
