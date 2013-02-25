@@ -165,7 +165,7 @@
 			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
 				leadSpeaker();			
-			} else { gapi.hangout.data.setValue("currentSpeaker","no one");};
+			}; //else { gapi.hangout.data.setValue("currentSpeaker","no one");};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
 			
