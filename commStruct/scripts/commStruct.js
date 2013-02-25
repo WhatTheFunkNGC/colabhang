@@ -165,10 +165,10 @@
 			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
 				leadSpeaker();			
-			};
+			} else { gapi.hangout.data.setValue("currentSpeaker","no one");};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
-			gapi.hangout.data.setValue("currentSpeaker","none");
+			
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 			chatIntervalCounter = chatIntervalCounter + 1;
@@ -187,9 +187,7 @@
 	
 	// A function to sort the current spekaer state
 	function leadSpeaker(){
-		var speaker;		
-		speaker = gapi.hangout.data.getValue("currentSpeaker");
-		if (speaker != userData.id){									// if not the current speaker
+		if (gapi.hangout.data.getValue("currentSpeaker") != userData.id){									// if not the current speaker
 			if (allowButtingIn){
 			gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
 			} else {
