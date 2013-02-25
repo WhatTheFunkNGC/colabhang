@@ -92,9 +92,11 @@
 	
 	// a button fuction that toggles if the user is waiting to speak or not
 	commStruct.prototype.toggleHandUp = function () {
-		var div;
-		if (!checkDataExsistanceInArray("speakQueue",userData.id)){ findAndAddNewItemToSharedList("speakQueue",userData.id);
-		} else { findAndRemoveItemFromSharedList("speakQueue",userData.id);};
+		if (!checkDataExsistanceInArray("speakQueue",userData.id)){
+			findAndAddNewItemToSharedList("speakQueue",userData.id);
+		} else { 
+			findAndRemoveItemFromSharedList("speakQueue",userData.id);
+		};
 	};
 		
 	// display list of partisipants with relivant time stats
@@ -103,7 +105,7 @@
 		div = document.getElementById("speakerlist");
 		div.innerHTML = gapi.hangout.data.getValue("currentSpeaker") + " is Current Speaker";		
 		ul = document.createElement("table");				// create table for users waiting to chat
-		for (i = 1; i < gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
+		for (i = 1; i <= gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
 			tr = document.createElement("tr");
 			e = document.createElement("td");	
 			e.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
