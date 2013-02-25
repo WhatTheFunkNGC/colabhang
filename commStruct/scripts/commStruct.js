@@ -92,10 +92,10 @@
 	
 	// a button fuction that toggles if the user is waiting to speak or not
 	commStruct.prototype.toggleHandUp = function () {
-		if (!checkDataExsistanceInArray("speakQueue",userData.id)){
-			findAndAddNewItemToSharedList("speakQueue",userData.id);
+		if (!checkDataExsistanceInArray("speakQueue",userData.id)){ // if user not inchat queue
+			findAndAddNewItemToSharedList("speakQueue",userData.id);	// add them
 		} else { 
-			findAndRemoveItemFromSharedList("speakQueue",userData.id);
+			findAndRemoveItemFromSharedList("speakQueue",userData.id);		// if not remove them
 		};
 	};
 		
