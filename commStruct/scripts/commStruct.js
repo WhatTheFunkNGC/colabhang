@@ -95,11 +95,11 @@
 		div = document.getElementById("speakerlist");
 		div.innerHTML = gapi.hangout.data.getValue("currentSpeaker") + " is Current Speaker";		
 		ul = document.createElement("table");				// create table for users waiting to chat
-		tr = document.createElement("tr");					// 
-		e1 = document.createElement("td");	
-		e1.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
-		tr.appendChild(e1);
-		ul.appendChild(tr);	
+		//tr = document.createElement("tr");					// 
+		//e1 = document.createElement("td");	
+		//e1.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
+		//tr.appendChild(e1);
+		//ul.appendChild(tr);	
 		for (i = 1; i < gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
 			tr2 = document.createElement("tr");
 			e2 = document.createElement("td");	
