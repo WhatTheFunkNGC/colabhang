@@ -15,8 +15,13 @@
 		var chatIntervalCounter;
 		var chatIntervalTotal;
 		var dTimer; // hold the timer object for refreshing the display
-		var dataDisplay;
- 
+		var dataDisplay;	
+		
+	//-------------------- Convo Type settings -------------------------	
+		var allowButtingIn = false; // Allow users to speak over eachover
+		var muteIfSpeaker = false; // All users bar speaker muted
+		
+		
 	//-------------------- Listeners -------------------------
  
 	// start of script setup
@@ -35,15 +40,37 @@
 		dataDisplay = false;
 
 		// setup timers
-		var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
-		var uTimer = setInterval(function() {updateTimer()},1000);			// setup update timer	
+		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
+		var uTimer = setInterval(function() {userTimer(); updateTimer(); displaySpeakerInfo();},1000);			// setup update timer	
+		//var sTimer = setInterval(function() {displaySpeakerInfo()},1000);			// setup timer for displaying current speaker and thoes who wish to speak
 		var cTimer;		
 		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer after a 1.5 sec wait
 
 		
   };	
   	
-	//-------------------- Functions -------------------------
+	//-------------------- Setup Functions -------------------------
+	
+	
+	// on new user joining - refresh display
+	function startSystem(){
+		console.log("user data initilisation");	
+		userDataPos = checkDataExsistanceInArray("userData",gapi.hangout.getLocalParticipantId());	// check if user already exsists
+		console.log("dat pos got " + userDataPos);	
+		if (!userDataPos){															// if false create new user data				
+		var userData = { };															// create new user data object
+		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
+		userData.name = gapi.hangout.getLocalParticipant().person.displayName;
+		userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
+		userData.connectionLength = "1";
+		userData.commLength = "0";
+		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
+		}
+		console.log("user data complete");
+	};	
+	
+	//-------------------- Display Functions -------------------------
+	
 	
 	
 	// a button fuction that enables and disables the data display
@@ -61,26 +88,28 @@
 		dataDisplay = false;
 		};
 	};
+		
+	// display list of partisipants with relivant time stats
+	function displaySpeakerInfo() {	
+		var div, ul, tr, i, e1, e2, tr2, userD, userDString;	
+		div = document.getElementById("userDetailsList");
+		div.innerHTML = gapi.hangout.data.getValue("currentSpeaker") + " is Current Speaker";		
+		ul = document.createElement("table");				// create table for users waiting to chat
+		tr = document.createElement("tr");					// 
+		e1 = document.createElement("td");	
+		e1.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
+		tr.appendChild(e1);
+		ul.appendChild(tr);	
+		for (i = 1; i <= gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
+			tr2 = document.createElement("tr");
+			e2 = document.createElement("td");	
+			e2.innerHTML = gapi.hangout.data.getValue("speakQueue"+ i);
+			tr2.appendChild(e2);
+			ul.appendChild(tr2);	
+		};
+		div.appendChild(ul);
+	};
 	
-	
- 	
-	// on new user joining - refresh display
-	function startSystem(){
-		console.log("user data initilisation");	
-		userDataPos = checkDataExsistanceInArray("userData",gapi.hangout.getLocalParticipantId());	// check if user already exsists
-		console.log("dat pos got " + userDataPos);	
-		if (!userDataPos){															// if false create new user data				
-		var userData = { };															// create new user data object
-		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
-		userData.name = gapi.hangout.getLocalParticipant().person.displayName;
-		userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
-		userData.connectionLength = "1";
-		userData.commLength = "0";
-		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
-		}
-		console.log("user data complete");
-	};	
-  	
 	// display list of partisipants with relivant time stats
 	function listUsers() {	
 		var div, ul, tr, i, e1, e2, e3, userD, userDString;	
@@ -105,6 +134,8 @@
 		div.appendChild(ul);	
 		//console.log("Displayed"); 
   };
+  
+  //-------------------- Functions -------------------------
   
 	/* Displays an enterd second count in time format
 	- rawTime : number of seconds
@@ -133,9 +164,11 @@
 		if (chatIntervalCounter == 10){	
 			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
+				leadSpeaker();			
 			};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
+			gapi.hangout.data.setValue("currentSpeaker","none");
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 			chatIntervalCounter = chatIntervalCounter + 1;
@@ -151,6 +184,19 @@
 		userData.commLength = speakTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 	}
+	
+	// A function to sort the current spekaer state
+	function leadSpeaker(){
+		var speaker;		
+		speaker = gapi.hangout.data.getValue("currentSpeaker");
+		if (speaker != userData.id){									// if not the current speaker
+			if (allowButtingIn){
+			gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
+			} else {
+			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
+			};
+		};
+	};
 	
   	
   var commStruct = new commStruct();	
