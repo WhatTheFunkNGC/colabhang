@@ -39,7 +39,7 @@
 						};	
 					};
 				};
-				if (addedKeys[i].key.indexOf("listID") !== -1){	 if list id found then if refrencing a new user ID added to list element
+				if (addedKeys[i].key.indexOf("listID") !== -1){	 //if list id found then if refrencing a new user ID added to list element
 					console.log("ADD ID FOUND = " + addedKeys[i].key + " " + addedKeys[i].value);
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
