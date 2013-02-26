@@ -77,12 +77,12 @@
 		jsonLoader = new XMLHttpRequest();
 		jsonLoader.overrideMimeType("application/json");
 		jsonLoader.open('GET', 'https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.json', true);
-		console.log("opened";	
+		console.log("opened");	
 		jsonLoader.onreadystatechange = function () {
 			if (jsonLoader.readyState == 4) {
 				console.log(" json found = " + jsonLoader.responseText);			
 				convoProfiles = eval( "(" + jsonLoader.responseText + ")");
-				console.log("loaded ";	
+				console.log("loaded ");	
 			};
 		};
     jsonLoader.send(null);
