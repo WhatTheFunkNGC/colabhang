@@ -136,13 +136,12 @@
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
 			var e = document.createElement("button");
 			e.innerHTML = convoProfiles[i].profileName;
+			e.id = "profileBut" + i;
 			e.value = convoProfiles[i].profileName;
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
-				currentProfileLoaded = i;
-				console.log(" profile name = " + i.toString());
-				gapi.hangout.data.setValue("currentConvoMode", i.toString());
-				displayOptions();
+				console.log(" profile name = " + e.id.substring(9));
+				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(9));
 			};
 			tr.appendChild(e);
 		};
