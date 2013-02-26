@@ -17,7 +17,6 @@
 		var dTimer; // hold the timer object for refreshing the display
 		var dataDisplay;	
 		var optionsDisplay;
-		var convoProfiles;
 		
 	//-------------------- Convo Type settings -------------------------	
 		var allowButtingIn = true; // Allow users to speak over eachover
@@ -71,23 +70,7 @@
 		userData.connectionLength = "1";
 		userData.commLength = "0";
 		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
-		}
-		// get profile type information
-		console.log("start getting json profiles ");	
-		jsonLoader = new XMLHttpRequest();
-		jsonLoader.overrideMimeType("application/json");
-		jsonLoader.open('GET', 'https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.json', true);
-		console.log("opened");	
-		jsonLoader.onreadystatechange = function () {
-			if (jsonLoader.readyState == 4) {
-				console.log(" json found = " + jsonLoader.responseText);			
-				convoProfiles = eval( "(" + jsonLoader.responseText + ")");
-				console.log("loaded ");	
-			};
-		};
-    jsonLoader.send(null);
-		
-		
+		}		
 		console.log("user data complete");
 	};	
 	
@@ -140,15 +123,15 @@
 		div.innerHTML = (gapi.hangout.data.getValue("currentConvoMode") || "No") + " Current Convosation Mode";		
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		//profiles = 
-		//forEach (i = 1; i <= convoTypes.length; i++) {						// loop through all users in data array and display in table format			
-		//	e = document.createElement("button");	
-		//	e.name = 
-		//	e.onclick = function() {
-		//		gapi.hangout.data.setValue("currentConvoMode"+ i);
-		//	}
-		//	tr.appendChild(e);
-		//};
+		for (i = 0; i <= convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
+			e = document.createElement("button");	
+			e.name = convoProfiles[i].name;
+			e.value = convoProfiles[i].name;
+			e.onclick = function() {
+				gapi.hangout.data.setValue("currentConvoMode",e.name);
+			}
+			tr.appendChild(e);
+		};
 		ul.appendChild(tr);
 		div.appendChild(ul);
 	

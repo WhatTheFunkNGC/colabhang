@@ -20,6 +20,8 @@
 	  
 	  <div id="lister"></div>	
       	
+		<script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.js" type="text/javascript" ></script>
+		
 		<script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/sharedStateControls.js" type="text/javascript" ></script>
 		
 		<script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/commStruct.js" type="text/javascript" ></script>
