@@ -71,7 +71,10 @@
 		userData.commLength = "0";
 		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
 		}
-		if (!!gapi.hangout.data.getValue("currentConvoMode")){gapi.hangout.data.setValue("currentConvoMode","0");};
+		if (!!gapi.hangout.data.getValue("currentConvoMode")){
+		gapi.hangout.data.setValue("currentConvoMode","0");
+		console.log("convo mode set");
+		};
 		console.log("user data complete");
 	};	
 	
