@@ -5,7 +5,7 @@
     console.log("Starting...");	
     gapi.hangout.onApiReady.add(this.onApiReady.bind(this));
   }	
-    //-------------------- VARS -------------------------	
+    //--------------------Global VARS -------------------------	
 		var totalTime;		// glabal var - how long user has been connected
 		var speakTime;		// global var - how long user has spoken for total
 		var userData;		// global object - hold all local users key data
@@ -16,6 +16,8 @@
 		var chatIntervalTotal;
 		var dTimer; // hold the timer object for refreshing the display
 		var dataDisplay;	
+		var optionsDisplay;
+		var convoProfiles;
 		
 	//-------------------- Convo Type settings -------------------------	
 		var allowButtingIn = true; // Allow users to speak over eachover
@@ -29,6 +31,7 @@
 		if (event.isApiReady === true) {			// on ready
 			console.log("API Ready");				
 			startSystem();	
+			document.getElementById("optionDisplayToggle").onclick = this.toggleOptionDisplay.bind(this); // bind data display button
 			document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this); // bind data display button
 			document.getElementById("handUpBtn").onclick = this.toggleHandUp.bind(this); // bind data display button
 		};	
@@ -39,6 +42,7 @@
 		chatIntervalCounter = 0;
 		chatIntervalTotal = 0;
 		dataDisplay = false;
+		optionsDisplay = false;
 
 		// setup timers
 		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
@@ -55,6 +59,7 @@
 	
 	// on new user joining - refresh display
 	function startSystem(){
+		var jsonLoader, jsonTxt;
 		console.log("user data initilisation");	
 		userDataPos = checkDataExsistanceInArray("userData",gapi.hangout.getLocalParticipantId());	// check if user already exsists
 		console.log("dat pos got " + userDataPos);	
@@ -67,12 +72,41 @@
 		userData.commLength = "0";
 		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
 		}
+		// get profile type information
+		console.log("start getting json profiles ";	
+		jsonLoader = new XMLHttpRequest();
+		jsonLoader.overrideMimeType("application/json");
+		jsonLoader.open('GET', 'https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.json', true);
+		console.log("opened";	
+		jsonLoader.onreadystatechange = function () {
+			if (jsonLoader.readyState == 4) {
+				console.log(" json found = " + jsonLoader.responseText);			
+				convoProfiles = eval( "(" + jsonLoader.responseText + ")");
+				console.log("loaded ";	
+			};
+		};
+    jsonLoader.send(null);
+		
+		
 		console.log("user data complete");
 	};	
 	
 	//-------------------- Display Functions -------------------------
 	
 	
+	// toggles the options display
+	commStruct.prototype.toggleOptionDisplay = function () {
+		var div;
+		if (!optionsDisplay){ 
+			displayOptions();
+		optionsDisplay = true;
+		} else { 
+		div = document.getElementById("optionsList");
+		div.innerHTML = "";	
+		optionsDisplay = false;
+		};
+	
+	};
 	
 	// a button fuction that enables and disables the data display
 	commStruct.prototype.toggleDataDisplay = function () {
@@ -97,6 +131,28 @@
 		} else { 
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);		// if not remove them
 		};
+	};
+	
+	
+	function displayOptions() {
+	var div, ul, tr, i, e, profiles;	
+		div = document.getElementById("optionsList");
+		div.innerHTML = (gapi.hangout.data.getValue("currentConvoMode") || "No") + " Current Convosation Mode";		
+		ul = document.createElement("table");				// create table for users waiting to chat
+		tr = document.createElement("tr");
+		//profiles = 
+		//forEach (i = 1; i <= convoTypes.length; i++) {						// loop through all users in data array and display in table format			
+		//	e = document.createElement("button");	
+		//	e.name = 
+		//	e.onclick = function() {
+		//		gapi.hangout.data.setValue("currentConvoMode"+ i);
+		//	}
+		//	tr.appendChild(e);
+				
+		};
+		ul.appendChild(tr);
+		div.appendChild(ul);
+	
 	};
 		
 	// display list of partisipants with relivant time stats
