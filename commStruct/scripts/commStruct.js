@@ -268,6 +268,7 @@
 		if (currentProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			loadOptions();
+			displayOptions();
 		};
 	}
 	
