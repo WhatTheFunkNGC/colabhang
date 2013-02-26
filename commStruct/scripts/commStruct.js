@@ -133,7 +133,8 @@
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
+		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format	
+			console.log(" i = " + i);		
 			var e = document.createElement("button");
 			e.innerHTML = convoProfiles[i].profileName;
 			e.id = "profileBut" + i;
