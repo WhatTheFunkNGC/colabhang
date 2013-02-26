@@ -194,8 +194,11 @@
 	// checks for data updates that arnt used with timers
 	function updateCheckerCommStruct(addedKeys,removedKeys){
 		var itemNo, div;
+		console.log("checking up");
 		if (addedKeys.length != 0){
+		console.log("add found");
 			if (addedKeys[i].key.indexOf("currentConvoMode") !== -1 ){
+			console.log("found true");
 			loadOptions();
 			};
 		};
@@ -204,9 +207,10 @@
   
 	// loads profile variables into local user
     function loadOptions() {
+		console.log("load options");
 		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
-		//allowButtingIn = convoProfiles[profileNum].allowButtingIn;
-		//muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
+		allowButtingIn = convoProfiles[profileNum].allowButtingIn;
+		muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
 	};
   
   
