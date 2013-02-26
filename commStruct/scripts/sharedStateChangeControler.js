@@ -13,9 +13,7 @@
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
 		updateChecker(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
-				
-      );	
-    }	
+    };	
   };	
   		
   	
