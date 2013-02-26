@@ -126,7 +126,7 @@
 		console.log(" profile length = "  + convoProfiles.length);
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
 			var e = document.createElement("button");
-			console.log(" profile name = " + convoProfiles[i].profileName);			
+			e.innerHTML = convoProfiles[i].profileName;
 			e.value = convoProfiles[i].profileName;
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
