@@ -205,8 +205,8 @@
 	// loads profile variables into local user
     function loadOptions() {
 		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
-		allowButtingIn = convoProfiles[profileNum].allowButtingIn;
-		muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
+		//allowButtingIn = convoProfiles[profileNum].allowButtingIn;
+		//muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
 	};
   
   
