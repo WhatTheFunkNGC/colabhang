@@ -70,7 +70,8 @@
 		userData.connectionLength = "1";
 		userData.commLength = "0";
 		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
-		}		
+		}
+		if (!!gapi.hangout.data.setValue("currentConvoMode")){gapi.hangout.data.setValue("currentConvoMode",convoProfiles[i].profileName);};
 		console.log("user data complete");
 	};	
 	
@@ -120,10 +121,9 @@
 	function displayOptions() {
 	var div, ul, tr, i, profiles;	
 		div = document.getElementById("optionsList");
-		div.innerHTML = (gapi.hangout.data.getValue("currentConvoMode") || "No") + " Current Convosation Mode";		
+		div.innerHTML = "Convo Mode : " + (gapi.hangout.data.getValue("currentConvoMode") || "none");	
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		console.log(" profile length = "  + convoProfiles.length);
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
 			var e = document.createElement("button");
 			e.innerHTML = convoProfiles[i].profileName;
