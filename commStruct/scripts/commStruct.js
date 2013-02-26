@@ -138,6 +138,7 @@
 			var e = document.createElement("button");
 			e.innerHTML = convoProfiles[i].profileName;
 			e.id = "profileBut" + i;
+			console.log(" name = " + e.id);
 			e.value = convoProfiles[i].profileName;	
 			e.onclick = function() {
 				console.log(" CLICKED = " + e.id.substring(10));
