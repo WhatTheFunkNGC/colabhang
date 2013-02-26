@@ -140,8 +140,8 @@
 			e.value = convoProfiles[i].profileName;
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
-				console.log(" profile name = " + e.id.substring(9));
-				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(9));
+				console.log(" profile name = " + e.id.substring(10));
+				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(10));
 			};
 			tr.appendChild(e);
 		};
