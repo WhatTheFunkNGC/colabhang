@@ -148,8 +148,7 @@
 		//		gapi.hangout.data.setValue("currentConvoMode"+ i);
 		//	}
 		//	tr.appendChild(e);
-				
-		};
+		//};
 		ul.appendChild(tr);
 		div.appendChild(ul);
 	
