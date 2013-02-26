@@ -24,7 +24,7 @@
 		var itemNo, div;
 		div = document.getElementById(mainListerTable);
 		if (addedKeys.length != 0){
-		 // check for ligitimate additions
+		  //check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
 					if ((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){			// checks add change is relivent lister items	
@@ -34,26 +34,26 @@
 						var m = p.exec(addedKeys[i].key);										
 						if (m != null){
 							itemNo = m[1];
-							//console.log("imtem No is " + itemNo);					
+							console.log("imtem No is " + itemNo);					
 							addListItem(itemNo);
 						};	
 					};
 				};
-				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					//console.log("ADD ID FOUND = " + addedKeys[i].key + " " + addedKeys[i].value);
+				if (addedKeys[i].key.indexOf("listID") !== -1){	 if list id found then if refrencing a new user ID added to list element
+					console.log("ADD ID FOUND = " + addedKeys[i].key + " " + addedKeys[i].value);
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
 					var m = p.exec(addedKeys[i].key);		
 					if (addedKeys[i].value.indexOf("hangout") !== -1){
 						itemNo = m[1];
-						//console.log("imtem No is " + itemNo);					
+						console.log("imtem No is " + itemNo);					
 						updateIDlistDisplay(itemNo,gapi.hangout.data.getValue("listTxt" + itemNo + "listID"));
 					};											
 				};
 			};
 		};
-		//console.log("now checking removd ");
+		console.log("now checking removd ");
 		if(!!removedKeys.length != 0){
 			for (var i = 0; i < removedKeys.length ; i++ ){				// for all the added keys		
 				if(div.rows.length > (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10))){
@@ -69,7 +69,7 @@
 					};
 				};
 				if (removedKeys[i].indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
-					//console.log("REMOVE ID FOUND");
+					console.log("REMOVE ID FOUND");
 					var re1='.*?';	// Non-greedy match on filler
 					var re2='(\\d+)';	// Integer Number 1
 					var p = new RegExp(re1+re2,["i"]);
