@@ -137,10 +137,9 @@
 			var e = document.createElement("button");
 			e.innerHTML = convoProfiles[i].profileName;
 			e.id = "profileBut" + i;
-			e.value = convoProfiles[i].profileName;
-			console.log(" profile name = " + e.value);	
+			e.value = convoProfiles[i].profileName;	
 			e.onclick = function() {
-				console.log(" profile name = " + e.id.substring(10));
+				console.log(" CLICKED = " + e.id.substring(10));
 				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(10));
 			};
 			tr.appendChild(e);
@@ -266,6 +265,7 @@
 		userData.commLength = speakTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 		if (currentProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
+			console.log(" diffrence found " + currentProfileLoaded + " and " + gapi.hangout.data.getValue("currentConvoMode"));
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			loadOptions();
 			displayOptions();
