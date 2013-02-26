@@ -118,20 +118,20 @@
 	
 	
 	function displayOptions() {
-	var div, ul, tr, i, e, profiles;	
+	var div, ul, tr, i, profiles;	
 		div = document.getElementById("optionsList");
 		div.innerHTML = (gapi.hangout.data.getValue("currentConvoMode") || "No") + " Current Convosation Mode";		
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
 		console.log(" profile length = "  + convoProfiles.length);
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
-			e = document.createElement("button");
+			var e = document.createElement("button");
 			console.log(" profile name = " + convoProfiles[i].profileName);			
 			e.value = convoProfiles[i].profileName;
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
 				gapi.hangout.data.setValue("currentConvoMode",e.value);
-			}
+			};
 			tr.appendChild(e);
 		};
 		ul.appendChild(tr);
