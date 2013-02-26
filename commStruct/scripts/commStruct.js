@@ -127,7 +127,7 @@
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format			
 			e = document.createElement("button");
 			console.log(" profile name = " + convoProfiles[i].profileName);			
-			e.id = convoProfiles[i].profileName;
+			e.name = convoProfiles[i].profileName;
 			e.value = convoProfiles[i].profileName;
 			e.onclick = function() {
 				gapi.hangout.data.setValue("currentConvoMode",e.name);
