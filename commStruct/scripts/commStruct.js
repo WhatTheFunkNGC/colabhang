@@ -140,6 +140,7 @@
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
 				currentProfileLoaded = i;
+				console.log(" profile name = " + i.toString());
 				gapi.hangout.data.setValue("currentConvoMode", i.toString());
 				displayOptions();
 			};
