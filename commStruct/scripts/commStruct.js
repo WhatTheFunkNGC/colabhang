@@ -139,7 +139,7 @@
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
 				gapi.hangout.data.clearValue("currentConvoMode");
-				gapi.hangout.data.setValue("currentConvoMode", i);
+				gapi.hangout.data.setValue("currentConvoMode", i.toString());
 				displayOptions();
 			};
 			tr.appendChild(e);
