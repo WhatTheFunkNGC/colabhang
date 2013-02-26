@@ -73,7 +73,7 @@
 		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
 		}
 		// get profile type information
-		console.log("start getting json profiles ";	
+		console.log("start getting json profiles ");	
 		jsonLoader = new XMLHttpRequest();
 		jsonLoader.overrideMimeType("application/json");
 		jsonLoader.open('GET', 'https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.json', true);
