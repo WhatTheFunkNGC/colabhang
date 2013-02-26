@@ -121,7 +121,6 @@
 	function displayOptions() {
 	var div, ul, tr, i, profiles;	
 		div = document.getElementById("optionsList");
-		profileDiscrition
 		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + 
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;	
 		ul = document.createElement("table");				// create table for users waiting to chat
