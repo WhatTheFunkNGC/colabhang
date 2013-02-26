@@ -196,11 +196,14 @@
 		var itemNo, div;
 		console.log("checking up");
 		if (addedKeys.length != 0){
-		console.log("add found");
-			if (addedKeys[i].key.indexOf("currentConvoMode") !== -1 ){
-			console.log("found true");
-			loadOptions();
+			for (var i = 0; i < addedKeys.length ; i++ ){
+				console.log("add found");
+				if (addedKeys[i].key.indexOf("currentConvoMode") !== -1 ){
+				console.log("found true");
+				loadOptions();
+				};
 			};
+			console.log("done");
 		};
 	};
   
