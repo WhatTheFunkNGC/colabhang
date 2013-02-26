@@ -19,7 +19,7 @@
 			
 	
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
-		updateChecker(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
+		updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		
 		//if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
@@ -88,7 +88,7 @@
 	/* function to orginise state update and call relivent functions
 		addedKeys - a list of added key pairs
 		removedKeys - a list of removed key pairs */
-	function updateChecker (addedKeys,removedKeys){
+	function updateCheckerLister (addedKeys,removedKeys){
 		var itemNo, div;
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){

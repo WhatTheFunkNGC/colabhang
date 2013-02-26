@@ -19,8 +19,8 @@
 		var optionsDisplay;
 		
 	//-------------------- Convo Type settings -------------------------	
-		var allowButtingIn = true; // Allow users to speak over eachover
-		var muteIfSpeaker = false; // All users bar speaker muted
+		var allowButtingIn; // Allow users to speak over eachover
+		var muteIfSpeaker; // All users bar speaker muted
 		
 		
 	//-------------------- Listeners -------------------------
@@ -33,6 +33,10 @@
 			document.getElementById("optionDisplayToggle").onclick = this.toggleOptionDisplay.bind(this); // bind data display button
 			document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this); // bind data display button
 			document.getElementById("handUpBtn").onclick = this.toggleHandUp.bind(this); // bind data display button
+			
+			gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
+			updateCheckerCommStruct(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
+			});
 		};	
 		
 		// initilise global vars 
@@ -135,6 +139,7 @@
 			console.log(" profile name = " + e.value);	
 			e.onclick = function() {
 				gapi.hangout.data.setValue("currentConvoMode", i);
+				displayOptions();
 			};
 			tr.appendChild(e);
 		};
@@ -185,6 +190,25 @@
   };
   
   //-------------------- Functions -------------------------
+  
+	// checks for data updates that arnt used with timers
+	function updateCheckerCommStruct(addedKeys,removedKeys){
+		var itemNo, div;
+		if (addedKeys.length != 0){
+			if (addedKeys[i].key.indexOf("currentConvoMode") !== -1 ){
+			loadOptions();
+			};
+		};
+	};
+  
+  
+	// loads profile variables into local user
+    function loadOptions() {
+		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
+		allowButtingIn = convoProfiles[profileNum].allowButtingIn;
+		muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
+	};
+  
   
 	/* Displays an enterd second count in time format
 	- rawTime : number of seconds
