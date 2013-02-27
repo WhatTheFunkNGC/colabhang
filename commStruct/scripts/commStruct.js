@@ -136,8 +136,6 @@
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format	
 			console.log(" i = " + i);					
 			tr.appendChild(createProfileButton(i));
-			};
-			
 		};
 		ul.appendChild(tr);
 		div.appendChild(ul);	
