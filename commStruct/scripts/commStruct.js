@@ -141,6 +141,7 @@
 			console.log(" name = " + e.id);
 			e.value = convoProfiles[i].profileName;	
 			e.onclick = function() {
+				console.log(" name = " + e.id);
 				console.log(" CLICKED = " + e.id.substring(10));
 				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(10));
 			};
