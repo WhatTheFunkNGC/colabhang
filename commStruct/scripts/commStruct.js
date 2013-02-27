@@ -134,24 +134,28 @@
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format	
-			console.log(" i = " + i);		
-			var e = document.createElement("button");
-			e.innerHTML = convoProfiles[i].profileName;
-			e.id = "profileBut" + i;
-			console.log(" name = " + e.id);
-			e.value = convoProfiles[i].profileName;	
-			e.onclick = function() {
-				console.log(" name = " + e.id);
-				console.log(" CLICKED = " + e.id.substring(10));
-				console.log(gapi.hangout.data.getValue("currentConvoMode"));
-				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(10));
-				console.log(gapi.hangout.data.getValue("currentConvoMode"));
+			console.log(" i = " + i);					
+			tr.appendChild(createProfileButton(i));
 			};
-			tr.appendChild(e);
+			
 		};
 		ul.appendChild(tr);
-		div.appendChild(ul);
+		div.appendChild(ul);	
+	};
 	
+	createProfileButton(num){
+		var btn = document.createElement("button");
+		btn.innerHTML = convoProfiles[num].profileName;
+		btn.id = "profileBut" + num;
+		console.log(" name = " + btn.id);
+		btn.value = convoProfiles[num].profileName;	
+		btn.onclick = function() {
+			console.log(" CLICKED = " + btn.id.substring(10));
+			console.log(gapi.hangout.data.getValue("currentConvoMode"));
+			gapi.hangout.data.setValue("currentConvoMode", btn.id.substring(10));
+			console.log(gapi.hangout.data.getValue("currentConvoMode"));
+		};
+	return btn;			
 	};
 		
 	// display list of partisipants with relivant time stats
