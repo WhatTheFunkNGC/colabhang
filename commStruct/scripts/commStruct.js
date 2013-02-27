@@ -143,9 +143,9 @@
 			e.onclick = function() {
 				console.log(" name = " + e.id);
 				console.log(" CLICKED = " + e.id.substring(10));
-				console.log(gapi.hangout.data.getValue("currentConvoMode");
+				console.log(gapi.hangout.data.getValue("currentConvoMode"));
 				gapi.hangout.data.setValue("currentConvoMode", e.id.substring(10));
-				console.log(gapi.hangout.data.getValue("currentConvoMode");
+				console.log(gapi.hangout.data.getValue("currentConvoMode"));
 			};
 			tr.appendChild(e);
 		};
