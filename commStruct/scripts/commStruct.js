@@ -141,7 +141,7 @@
 		div.appendChild(ul);	
 	};
 	
-	createProfileButton(num){
+	function createProfileButton(num) {
 		var btn = document.createElement("button");
 		btn.innerHTML = convoProfiles[num].profileName;
 		btn.id = "profileBut" + num;
