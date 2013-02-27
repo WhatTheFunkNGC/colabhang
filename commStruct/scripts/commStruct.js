@@ -125,7 +125,7 @@
 		};
 	};
 	
-	
+	// sets up the button display for the possible convo profiles
 	function displayOptions() {
 	var div, ul, tr, i;	
 		div = document.getElementById("optionsList");
@@ -133,8 +133,7 @@
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format	
-			console.log(" i = " + i);					
+		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
 		ul.appendChild(tr);
@@ -145,13 +144,9 @@
 		var btn = document.createElement("button");
 		btn.innerHTML = convoProfiles[num].profileName;
 		btn.id = "profileBut" + num;
-		console.log(" name = " + btn.id);
 		btn.value = convoProfiles[num].profileName;	
 		btn.onclick = function() {
-			console.log(" CLICKED = " + btn.id.substring(10));
-			console.log(gapi.hangout.data.getValue("currentConvoMode"));
 			gapi.hangout.data.setValue("currentConvoMode", btn.id.substring(10));
-			console.log(gapi.hangout.data.getValue("currentConvoMode"));
 		};
 	return btn;			
 	};
@@ -253,10 +248,11 @@
 			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
 				leadSpeaker();			
-			} else { gapi.hangout.data.setValue("currentSpeaker","no one");};
+			} else { 
+			if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
-			
+			};
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 			chatIntervalCounter = chatIntervalCounter + 1;
@@ -266,18 +262,24 @@
 	
 	// sends updates from local user to shared state
 	function updateTimer() {
+		// main data update
 		var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
 		userData = eval( "(" + userDataString + ")");						// convert to JS object
 		userData.connectionLength = totalTime;
 		userData.commLength = speakTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
+		
+		// profile update
 		if (currentProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
 			console.log(" diffrence found " + currentProfileLoaded + " and " + gapi.hangout.data.getValue("currentConvoMode"));
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			loadOptions();
 			displayOptions();
 		};
-	}
+		
+		// check if to unmute
+		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){ setMicrophoneMute(false); };
+	};
 	
 	// A function to sort the current spekaer state
 	function leadSpeaker(){
@@ -285,6 +287,7 @@
 			if (allowButtingIn){
 			gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
 			} else {
+			setMicrophoneMute(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
 		};
