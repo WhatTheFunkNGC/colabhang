@@ -20,6 +20,7 @@
 		
 	//-------------------- Convo Type settings -------------------------
 		var currentProfileLoaded;
+		var currentUserProfileLoaded;
 		var allowButtingIn; // Allow users to speak over eachover
 		var muteIfSpeaker; // All users bar speaker muted
 		
@@ -74,7 +75,8 @@
 		userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 		userData.connectionLength = "1";
 		userData.commLength = "0";
-		userDataPos = addNewItemToSharedList("userData",-1,JSON.stringify(userData));
+		userData.userProfileLoaded = "none";
+		userDataPos = findAndAddNewItemToSharedList(list,data)("userData",JSON.stringify(userData));
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		gapi.hangout.data.setValue("currentConvoMode","0");
@@ -127,16 +129,27 @@
 	
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
-	var div, ul, tr, i;	
+	var div, ul, tr, e, i;	
 		div = document.getElementById("optionsList");
-		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + 
+		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + "User Mode : " + 
+			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[gapi.hangout.data.getValue("currentUserConvoMode")].name +
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
+		for (i = 0; i < convoProfiles.userTypes.length; i++) {						// loop through all users in data array and display in table format					
+			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
+		};
 		ul.appendChild(tr);
+		for (i = 1; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
+			tr = document.createElement("tr");
+			e = document.createElement("td");	
+			e.innerHTML =convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit
+			tr.appendChild(e);
+			ul.appendChild(tr);	
+		};
 		div.appendChild(ul);	
 	};
 	
@@ -150,6 +163,31 @@
 		};
 	return btn;			
 	};
+	
+	function createUserProfileButton(profile,userProfile) {
+		var btn = document.createElement("button");
+		btn.innerHTML = convoProfiles[profile].profileName;
+		btn.id = "userProfileOptionBtn" + userProfile;
+		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
+		btn.onclick = function() {
+		console.log( " check if limit " + convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit );
+			if(convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))){
+			// needs check hear as to if profile limit reached
+			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString());
+			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString());
+			userData.userProfileLoaded = btn.id.substring(20);
+			loadOptions();
+		};
+		};
+	return btn;			
+	};
+	
+	//function checkUserProfileNumbers (){
+	//for (var i = 0; i < gapi.hangout.data.getValue("userData"); i++){
+	//var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
+	//var	userData = eval( "(" + userDataString + ")");
+	//}
+	//}
 		
 	// display list of partisipants with relivant time stats
 	function displaySpeakerInfo() {	
@@ -215,8 +253,12 @@
     function loadOptions() {
 		console.log("load options");
 		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
+		var userProfileNum = userData.userProfileLoaded;
 		allowButtingIn = convoProfiles[profileNum].allowButtingIn;
 		muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
+		if(userProfileNum != "none"){
+		// user specific settings
+		};
 	};
   
   
@@ -269,13 +311,16 @@
 		userData.commLength = speakTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 		
-		// profile update
+		// profile update NEEED TO DO LOAD FOR USER PROFILE!
 		if (currentProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
 			console.log(" diffrence found " + currentProfileLoaded + " and " + gapi.hangout.data.getValue("currentConvoMode"));
+			userData.userProfileLoaded = "none";
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			loadOptions();
 			displayOptions();
 		};
+		if (currentUserProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
+		
 		
 		// check if to unmute
 		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){ setMicrophoneMute(false); };

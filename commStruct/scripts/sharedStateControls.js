@@ -53,8 +53,8 @@
 	- data : the data to find and remove from the list */
 	function findAndAddNewItemToSharedList(list,data){
 		if (!checkDataExsistanceInArray(list,data)){
-		addNewItemToSharedList (list,-1,data);
-		};
+		return addNewItemToSharedList (list,-1,data);
+		} else { return checkDataExsistanceInArray(list,data); };
 	};
 	
 	/* checks if data exsists within the list array
