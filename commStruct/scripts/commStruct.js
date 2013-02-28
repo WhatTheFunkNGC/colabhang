@@ -129,7 +129,8 @@
 	
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
-	var div, ul, tr, e, i;	
+		console.log("log");	
+		var div, ul, tr, e, i;	
 		div = document.getElementById("optionsList");
 		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + "User Mode : " + 
 			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[gapi.hangout.data.getValue("currentUserConvoMode")].name +
@@ -165,12 +166,14 @@
 	};
 	
 	function createUserProfileButton(profile,userProfile) {
+		console.log("log");	
 		var btn = document.createElement("button");
 		btn.innerHTML = convoProfiles[profile].profileName;
 		btn.id = "userProfileOptionBtn" + userProfile;
 		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
 		btn.onclick = function() {
-		console.log( " check if limit " + convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit );
+			console.log("log");	
+			console.log( " check if limit " + convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit );
 			if(convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))){
 			// needs check hear as to if profile limit reached
 			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString());
@@ -301,9 +304,19 @@
 		};
 	};
 	
+	function resetUserProfileTypeLimits(){
+		profile = gapi.hangout.data.getValue("currentConvoMode");
+		for (var i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++){
+			gapi.hangout.data.clearValue("userProfileTotals" + i);
+		}
+		gapi.hangout.data.setValue("userProfileTotals0",gapi.hangout.data.getValue("userData"));
+		for (var i = i; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; i++){
+			gapi.hangout.data.setValue("userProfileTotals" + i, "0");
+		}
 	
 	// sends updates from local user to shared state
 	function updateTimer() {
+		console.log("log");	
 		// main data update
 		var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
 		userData = eval( "(" + userDataString + ")");						// convert to JS object
@@ -314,7 +327,7 @@
 		// profile update NEEED TO DO LOAD FOR USER PROFILE!
 		if (currentProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
 			console.log(" diffrence found " + currentProfileLoaded + " and " + gapi.hangout.data.getValue("currentConvoMode"));
-			userData.userProfileLoaded = "none";
+			userData.userProfileLoaded = "0";
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			loadOptions();
 			displayOptions();
