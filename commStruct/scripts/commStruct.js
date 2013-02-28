@@ -76,7 +76,7 @@
 		userData.connectionLength = "1";
 		userData.commLength = "0";
 		userData.userProfileLoaded = "none";
-		userDataPos = findAndAddNewItemToSharedList(list,data)("userData",JSON.stringify(userData));
+		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		gapi.hangout.data.setValue("currentConvoMode","0");
