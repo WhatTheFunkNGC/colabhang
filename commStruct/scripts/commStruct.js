@@ -313,6 +313,7 @@
 		for (var i = i; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; i++){
 			gapi.hangout.data.setValue("userProfileTotals" + i, "0");
 		}
+	};
 	
 	// sends updates from local user to shared state
 	function updateTimer() {
