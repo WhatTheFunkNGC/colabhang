@@ -318,10 +318,7 @@
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			loadOptions();
 			displayOptions();
-		};
-		if (currentUserProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
-		
-		
+		};		
 		// check if to unmute
 		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){ setMicrophoneMute(false); };
 	};
