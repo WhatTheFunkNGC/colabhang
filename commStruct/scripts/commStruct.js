@@ -142,11 +142,11 @@
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
-		for (i = 0; i < convoProfiles.userTypes.length; i++) {						// loop through all users in data array and display in table format					
+		for (i = 0; i < convoProfiles[currentProfileLoaded]userTypes.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
 		};
 		ul.appendChild(tr);
-		for (i = 1; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
+		for (i = 0; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
 			tr = document.createElement("tr");
 			e = document.createElement("td");	
 			e.innerHTML =convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit
