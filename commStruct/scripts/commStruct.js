@@ -132,6 +132,7 @@
 		console.log("log");	
 		var div, ul, tr, e, i;	
 		div = document.getElementById("optionsList");
+		console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );	
 		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + "User Mode : " + 
 			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[gapi.hangout.data.getValue("currentUserConvoMode")].name +
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
