@@ -132,9 +132,10 @@
 		console.log("log");	
 		var div, ul, tr, e, i;	
 		div = document.getElementById("optionsList");
-		console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );	
+		console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
+		console.log("user num = " + userData.userProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
 		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + "User Mode : " + 
-			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[gapi.hangout.data.getValue("currentUserConvoMode")].name +
+			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[userData.userProfileLoaded].name +
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
