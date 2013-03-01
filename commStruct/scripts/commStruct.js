@@ -134,8 +134,8 @@
 		div = document.getElementById("optionsList");
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
 		//console.log("user num = " + userData.userProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
-		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + " <br>User Mode : " + 
-			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[userData.userProfileLoaded].name +
+		div.innerHTML = "Convo Mode : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br>User Mode : " + 
+			convoProfiles[currentProfileLoaded].userTypes[userData.userProfileLoaded].name +
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
@@ -187,7 +187,8 @@
 			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString());
 			userData.userProfileLoaded = btn.id.substring(20);
 			loadOptions();
-		};
+			displayOptions();
+			};
 		};
 	return btn;			
 	};
