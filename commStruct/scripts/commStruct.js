@@ -150,8 +150,9 @@
 			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
 		};
 		ul.appendChild(tr);
-		
+		console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
 		for (i = 0; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
+			console.log("displaying user numbers");
 			tr = document.createElement("tr");
 			e = document.createElement("td");	
 			e.innerHTML =convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit
@@ -181,7 +182,8 @@
 		btn.onclick = function() {
 			console.log("log");	
 			console.log( " check if limit " + convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit );
-			if(convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))){
+			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
+			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
 			// needs check hear as to if profile limit reached
 			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString());
 			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString());
@@ -338,6 +340,7 @@
 			console.log(" diffrence found " + currentProfileLoaded + " and " + gapi.hangout.data.getValue("currentConvoMode"));
 			userData.userProfileLoaded = "0";
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
+			resetUserProfileTypeLimits();
 			loadOptions();
 			displayOptions();
 		};		
