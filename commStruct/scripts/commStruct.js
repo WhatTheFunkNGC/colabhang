@@ -345,7 +345,7 @@
 			displayOptions();
 		};		
 		// check if to unmute
-		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){ setMicrophoneMute(false); };
+		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){ gapi.hangout.av.setMicrophoneMute(false); };
 	};
 	
 	// A function to sort the current spekaer state
@@ -354,7 +354,7 @@
 			if (allowButtingIn){
 			gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
 			} else {
-			setMicrophoneMute(true);
+			gapi.hangout.av.setMicrophoneMute(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
 		};
