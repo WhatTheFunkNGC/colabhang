@@ -142,7 +142,7 @@
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
-		for (i = 0; i < convoProfiles[currentProfileLoaded]userTypes.length; i++) {						// loop through all users in data array and display in table format					
+		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
 		};
 		ul.appendChild(tr);
