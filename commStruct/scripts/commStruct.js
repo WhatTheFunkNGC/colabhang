@@ -302,12 +302,11 @@
 		if (chatIntervalCounter == 10){	
 			if (chatIntervalTotal > 3){
 				speakTime = speakTime + 1;
+				
 				leadSpeaker();			
-			} else { 
-			if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
+			} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
 			chatIntervalCounter = 0; 
 			chatIntervalTotal = 0;
-			};
 		} else {
 			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 			chatIntervalCounter = chatIntervalCounter + 1;
@@ -345,7 +344,10 @@
 			displayOptions();
 		};		
 		// check if to unmute
-		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){ gapi.hangout.av.setMicrophoneMute(false); };
+		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){
+		console.log(" UN MUTING");
+			gapi.hangout.av.setMicrophoneMute(false); 
+		};
 	};
 	
 	// A function to sort the current spekaer state
@@ -354,6 +356,7 @@
 			if (allowButtingIn){
 			gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
 			} else {
+			console.log("MUTING");
 			gapi.hangout.av.setMicrophoneMute(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
