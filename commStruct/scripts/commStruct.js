@@ -132,20 +132,25 @@
 		console.log("log");	
 		var div, ul, tr, e, i;	
 		div = document.getElementById("optionsList");
-		console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
-		console.log("user num = " + userData.userProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
-		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + "User Mode : " + 
+		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
+		//console.log("user num = " + userData.userProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
+		div.innerHTML = "Convo Mode : " + (convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName || "none") + " <br>User Mode : " + 
 			convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes[userData.userProfileLoaded].name +
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
+		tr.innerHTML = "Convo Modes : ";
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
+		ul.appendChild(tr);
+		tr = document.createElement("tr");
+		tr.innerHTML = "User Modes : ";
 		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
 		};
 		ul.appendChild(tr);
+		
 		for (i = 0; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
 			tr = document.createElement("tr");
 			e = document.createElement("td");	
@@ -170,7 +175,7 @@
 	function createUserProfileButton(profile,userProfile) {
 		console.log("log");	
 		var btn = document.createElement("button");
-		btn.innerHTML = convoProfiles[profile].profileName;
+		btn.innerHTML = convoProfiles[profile].userTypes[userProfile].name;
 		btn.id = "userProfileOptionBtn" + userProfile;
 		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
 		btn.onclick = function() {
