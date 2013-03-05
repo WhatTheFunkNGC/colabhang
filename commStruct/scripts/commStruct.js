@@ -77,6 +77,7 @@
 		userData.commLength = "0";
 		userData.userProfileLoaded = "none";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
+		resetUserProfileTypeLimits();														// needs to be moved to only run on first user!!!!!!!!!!!!!!!
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		gapi.hangout.data.setValue("currentConvoMode","0");
