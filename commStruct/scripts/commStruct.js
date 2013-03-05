@@ -345,8 +345,11 @@
 		};		
 		// check if to unmute
 		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){
-		console.log(" UN MUTING");
-			gapi.hangout.av.setMicrophoneMute(false); 
+			if (gapi.hangout.av.getMicrophoneMute()){ 
+				console.log(" UN MUTING");
+				
+				gapi.hangout.av.setMicrophoneMute(false); 
+			};
 		};
 	};
 	
