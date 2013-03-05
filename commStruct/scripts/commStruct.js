@@ -155,7 +155,7 @@
 			console.log("displaying user numbers");
 			tr = document.createElement("tr");
 			e = document.createElement("td");	
-			e.innerHTML =convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit
+			e.innerHTML = convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit;
 			tr.appendChild(e);
 			ul.appendChild(tr);	
 		};
@@ -206,7 +206,7 @@
 	function displaySpeakerInfo() {	
 		var div, ul, tr, i, e, userD, userDString;	
 		div = document.getElementById("speakerlist");
-		div.innerHTML = gapi.hangout.data.getValue("currentSpeaker") + " is Current Speaker";		
+		div.innerHTML = (gapi.hangout.data.getValue("currentSpeaker") || "no one" ) + " is Current Speaker";		
 		ul = document.createElement("table");				// create table for users waiting to chat
 		for (i = 1; i <= gapi.hangout.data.getValue("speakQueue"); i++) {						// loop through all users in data array and display in table format
 			tr = document.createElement("tr");
