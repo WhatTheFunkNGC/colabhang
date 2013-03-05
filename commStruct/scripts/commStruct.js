@@ -182,8 +182,8 @@
 		btn.onclick = function() {
 			console.log("log");	
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
-			console.log("limit = " + limit);	
-			if(limit <= gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
+			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
+			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
 			console.log("doing if limit not reached");	
 			// needs check hear as to if profile limit reached
 			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString());
