@@ -77,6 +77,7 @@
 		userData.commLength = "0";
 		userData.userProfileLoaded = "none";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
+		currentProfileLoaded = 0;															// needs to be moved to only run on first user!!!!!!!!!!!!!!!
 		resetUserProfileTypeLimits();														// needs to be moved to only run on first user!!!!!!!!!!!!!!!
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
@@ -321,9 +322,10 @@
 			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		}
 		gapi.hangout.data.setValue("userProfileTotals0",gapi.hangout.data.getValue("userData"));
-		for (var i = i; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; i++){
+		for (var i = 0; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; i++){
 			gapi.hangout.data.setValue("userProfileTotals" + i, "0");
 		}
+		gapi.hangout.data.setValue("userProfileTotals",onvoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length);
 	};
 	
 	// sends updates from local user to shared state
