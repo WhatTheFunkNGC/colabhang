@@ -56,7 +56,8 @@
 		var cTimer;		
 		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer after a 1.5 sec wait
 
-		
+		currentProfileLoaded = 0;															// needs to be moved to only run on first user!!!!!!!!!!!!!!!
+		resetUserProfileTypeLimits();														// needs to be moved to only run on first user!!!!!!!!!!!!!!!
   };	
   	
 	//-------------------- Setup Functions -------------------------
@@ -77,8 +78,7 @@
 		userData.commLength = "0";
 		userData.userProfileLoaded = "none";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
-		currentProfileLoaded = 0;															// needs to be moved to only run on first user!!!!!!!!!!!!!!!
-		resetUserProfileTypeLimits();														// needs to be moved to only run on first user!!!!!!!!!!!!!!!
+		
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		gapi.hangout.data.setValue("currentConvoMode","0");
