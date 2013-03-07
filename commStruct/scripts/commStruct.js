@@ -80,8 +80,9 @@
 
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
-		gapi.hangout.data.setValue("currentConvoMode","0");
-		currentProfileLoaded = 0;
+		currentProfileLoaded = "0";
+		gapi.hangout.data.setValue("currentConvoMode",currentProfileLoaded);
+		
 		resetUserProfileTypeLimits();	
 		console.log("convo mode set");
 		};
