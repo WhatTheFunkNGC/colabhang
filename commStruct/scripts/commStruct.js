@@ -211,10 +211,10 @@
 			var newTotalNum = "userProfileTotals" + btn.id.substring(20);
 			console.log("old num = " + gapi.hangout.data.getValue(oldTotalNum));
 			console.log("new num = " + gapi.hangout.data.getValue(newTotalNum));
-			gapi.hangout.data.submitDelta( {oldTotalNum : oldTotal, newTotalNum : newTotal } );
+			//gapi.hangout.data.submitDelta( {oldTotalNum : oldTotal, newTotalNum : newTotal } );
 			
-			//gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,oldTotal);
-			//gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
+			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,oldTotal);
+			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
 			
 			console.log("old num = " + gapi.hangout.data.getValue(oldTotalNum));
 			console.log("new num = " + gapi.hangout.data.getValue(newTotalNum));
