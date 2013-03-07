@@ -156,7 +156,7 @@
 		};
 		ul.appendChild(tr);
 		console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
-		for (i = 0; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
+		for (i = 0; i < gapi.hangout.data.getValue("userProfileTotals"); i++) {
 			tr = document.createElement("tr");
 			e = document.createElement("td");
 			console.log("name  = " + convoProfiles[currentProfileLoaded].userTypes[i].name);
