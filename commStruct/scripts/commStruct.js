@@ -75,11 +75,12 @@
 		userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 		userData.connectionLength = "1";
 		userData.commLength = "0";
-		userData.userProfileLoaded = "none";
+		userData.userProfileLoaded = "0";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
 
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
+		console.log("no current convo mode");
 		currentProfileLoaded = "0";
 		gapi.hangout.data.setValue("currentConvoMode",currentProfileLoaded);
 		
