@@ -82,9 +82,6 @@
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		console.log("no current convo mode ");
 		currentProfileLoaded = "0";
-		
-		console.log("errrm " + currentProfileLoaded + " eeeere "  );
-		
 		gapi.hangout.data.setValue("currentConvoMode","0");
 		
 		resetUserProfileTypeLimits();	
@@ -324,7 +321,7 @@
 	
 	function resetUserProfileTypeLimits(){
 		var i, j, numProfiles;
-		var profile = (gapi.hangout.data.getValue("currentConvoMode") || "0");
+		var profile = (gapi.hangout.data.getValue("currentConvoMode") || "error");
 		for ( i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++){
 			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		};
