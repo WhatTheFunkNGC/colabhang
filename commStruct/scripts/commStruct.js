@@ -326,11 +326,11 @@
 		var i, j;
 		var profile = (gapi.hangout.data.getValue("currentConvoMode") || "0");
 		for ( i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++){
-	//		gapi.hangout.data.clearValue("userProfileTotals" + i);
+			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		};
 	//	gapi.hangout.data.setValue("userProfileTotals0",gapi.hangout.data.getValue("userData"));
 		for ( j = 1; j < convoProfiles[profile].userTypes.length; j++){
-	//		gapi.hangout.data.setValue("userProfileTotals" + j, "0");
+			gapi.hangout.data.setValue("userProfileTotals" + j, "0");
 		};
 	//	gapi.hangout.data.setValue("userProfileTotals",convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length);
 	};
