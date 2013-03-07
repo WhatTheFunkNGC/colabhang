@@ -84,7 +84,7 @@
 		currentProfileLoaded = "0";
 		console.log("errrm " + currentProfileLoaded + " eeeere " + gapi.hangout.data.getValue("currentConvoMode") );
 		
-		gapi.hangout.data.setValue("currentConvoMode",currentProfileLoaded);
+		gapi.hangout.data.setValue("currentConvoMode",currentProfileLoaded.toString());
 		
 		resetUserProfileTypeLimits();	
 		console.log("convo mode set");
