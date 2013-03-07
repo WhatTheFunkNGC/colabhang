@@ -217,7 +217,7 @@
 			//gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
 			
 			gapi.hangout.data.setValue(oldTotalNum,oldTotal);
-			gapi.hangout.data.setValue("newTotalNum,newTotal);
+			gapi.hangout.data.setValue(newTotalNum,newTotal);
 			
 			console.log("old num = " + gapi.hangout.data.getValue(oldTotalNum));
 			console.log("new num = " + gapi.hangout.data.getValue(newTotalNum));
