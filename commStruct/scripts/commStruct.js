@@ -187,17 +187,22 @@
 		btn.id = "userProfileOptionBtn" + userProfile;
 		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
 		btn.onclick = function() {
-			console.log("log");	
+			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
+			var oldTotal;
+			var newTotal;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
 			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
 			console.log("doing if limit not reached");	
 			
-			console.log("current prof = " + userData.userProfileLoaded + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));
-			console.log("new  prof = " + btn.id.substring(20) + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));
 			
-			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString());
-			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),(parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString());
+			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString();
+			newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString();
+			console.log("current prof = " + userData.userProfileLoaded + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))+ " to " + oldTotal);
+			console.log("new  prof = " + btn.id.substring(20) + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) + " to " + newTotal);
+			
+			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,oldTotal);
+			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
 			userData.userProfileLoaded = btn.id.substring(20);
 			loadOptions();
 			displayOptions();
