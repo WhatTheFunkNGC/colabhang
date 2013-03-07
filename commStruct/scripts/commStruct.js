@@ -157,9 +157,11 @@
 		ul.appendChild(tr);
 		console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
 		for (i = 0; i <= gapi.hangout.data.getValue("userProfileTotals"); i++) {
-			console.log("displaying user numbers");
 			tr = document.createElement("tr");
-			e = document.createElement("td");	
+			e = document.createElement("td");
+			console.log("name  = " + convoProfiles[currentProfileLoaded].userTypes[i].name);
+			console.log("profile numb  = " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded));
+			console.log("limit = " + convoProfiles[currentProfileLoaded].userTypes[i].limit);
 			e.innerHTML = convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit;
 			tr.appendChild(e);
 			ul.appendChild(tr);	
