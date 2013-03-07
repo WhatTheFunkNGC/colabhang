@@ -332,7 +332,7 @@
 		for ( j = 1; j < convoProfiles[profile].userTypes.length; j++){
 			gapi.hangout.data.setValue("userProfileTotals" + j, "0");
 		};
-		gapi.hangout.data.setValue("userProfileTotals",convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length);
+		gapi.hangout.data.setValue("userProfileTotals",(convoProfiles[profile].userTypes.length).toString());
 	};
 	
 	// sends updates from local user to shared state
