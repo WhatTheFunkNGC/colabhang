@@ -135,7 +135,7 @@
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
 		console.log("log");	
-		var div, ul, tr, e, i, limit;	
+		var div, ul, tr, e, i,profName,numIn, limit;	
 		div = document.getElementById("optionsList");
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
 		//console.log("user num = " + userData.userProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
