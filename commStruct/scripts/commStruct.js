@@ -329,10 +329,10 @@
 	//		gapi.hangout.data.clearValue("userProfileTotals" + i);
 		}
 	//	gapi.hangout.data.setValue("userProfileTotals0",gapi.hangout.data.getValue("userData"));
-		for ( j = 1; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; j++){
+	//	for ( j = 1; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; j++){
 	//		gapi.hangout.data.setValue("userProfileTotals" + j, "0");
-		}
-		gapi.hangout.data.setValue("userProfileTotals",convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length);
+	//	}
+	//	gapi.hangout.data.setValue("userProfileTotals",convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length);
 	};
 	
 	// sends updates from local user to shared state
