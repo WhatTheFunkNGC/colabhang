@@ -80,11 +80,11 @@
 
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
-		console.log("no current convo mode");
-		currentProfileLoaded = String(0);
+		console.log("no current convo mode " + gapi.hangout.data.getValue("userData"));
+		currentProfileLoaded = "0";
 		console.log("errrm " + currentProfileLoaded + " eeeere " + gapi.hangout.data.getValue("currentConvoMode") );
 		
-		gapi.hangout.data.setValue("currentConvoMode","penis");
+		gapi.hangout.data.setValue("currentConvoMode","0");
 		
 		resetUserProfileTypeLimits();	
 		console.log("convo mode set");
@@ -327,8 +327,8 @@
 			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		}
 		gapi.hangout.data.setValue("userProfileTotals0",gapi.hangout.data.getValue("userData"));
-		for (var i = 0; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; i++){
-			gapi.hangout.data.setValue("userProfileTotals" + i, "0");
+		for (var j = 1; i < convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length; j++){
+			gapi.hangout.data.setValue("userProfileTotals" + j, "0");
 		}
 		gapi.hangout.data.setValue("userProfileTotals",convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length);
 	};
