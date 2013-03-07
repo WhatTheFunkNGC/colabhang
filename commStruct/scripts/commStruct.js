@@ -328,7 +328,8 @@
 		for ( i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++){
 			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		};
-		//gapi.hangout.data.setValue("userProfileTotals0",gapi.hangout.data.getValue("userData"));
+		var numUsers = api.hangout.data.getValue("userData");
+		gapi.hangout.data.setValue("userProfileTotals0",numUsers);
 		for ( j = 1; j < convoProfiles[profile].userTypes.length; j++){
 			gapi.hangout.data.setValue("userProfileTotals" + j, "0");
 		};
