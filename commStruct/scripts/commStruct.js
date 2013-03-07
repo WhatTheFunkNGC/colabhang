@@ -135,7 +135,7 @@
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
 		console.log("log");	
-		var div, ul, tr, e, i;	
+		var div, ul, tr, e, i, limit;	
 		div = document.getElementById("optionsList");
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
 		//console.log("user num = " + userData.userProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
@@ -151,7 +151,7 @@
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		tr.innerHTML = "User Modes : ";
-		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {						// loop through all users in data array and display in table format					
+		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
 			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
 		};
 		ul.appendChild(tr);
@@ -159,10 +159,16 @@
 		for (i = 0; i < gapi.hangout.data.getValue("userProfileTotals"); i++) {
 			tr = document.createElement("tr");
 			e = document.createElement("td");
-			console.log("name  = " + convoProfiles[currentProfileLoaded].userTypes[i].name);
-			console.log("profile numb  = " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded));
-			console.log("limit = " + convoProfiles[currentProfileLoaded].userTypes[i].limit);
-			e.innerHTML = convoProfiles[currentProfileLoaded].userTypes[i].name + " : " + gapi.hangout.data.getValue("userProfileTotals" + currentProfileLoaded) + " out of " + convoProfiles[currentProfileLoaded].userTypes[i].limit;
+			profName = convoProfiles[currentProfileLoaded].userTypes[i].name; 						// get main bits of statistical data to display
+			numIn = gapi.hangout.data.getValue("userProfileTotals" + i);
+			limit  = convoProfiles[currentProfileLoaded].userTypes[i].limit;
+			if ( limit == "-1"){limit = "Unlimited"};
+			
+			console.log("name  = " + profName);
+			console.log("profile numb  = " + numIn);
+			console.log("limit = " + limit);
+			
+			e.innerHTML = profName + " : " + numIn + " out of " + limit;
 			tr.appendChild(e);
 			ul.appendChild(tr);	
 		};
