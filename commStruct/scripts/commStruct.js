@@ -321,7 +321,7 @@
 	
 	function resetUserProfileTypeLimits(){
 		var i, j, numProfiles;
-		var profile = (gapi.hangout.data.getValue("currentConvoMode") || "error");
+		var profile = (gapi.hangout.data.getValue("currentConvoMode") || "0");
 		for ( i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++){
 			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		};
