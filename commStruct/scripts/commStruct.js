@@ -332,8 +332,8 @@
 		for ( j = 1; j < convoProfiles[profile].userTypes.length; j++){
 			gapi.hangout.data.setValue("userProfileTotals" + j, "0");
 		};
-		numProfiles = (convoProfiles[profile].userTypes.length).toString();
-		gapi.hangout.data.setValue("userProfileTotals",numProfiles);
+		//numProfiles = (convoProfiles[profile].userTypes.length).toString();
+		//gapi.hangout.data.setValue("userProfileTotals",numProfiles);
 	};
 	
 	// sends updates from local user to shared state
