@@ -207,11 +207,18 @@
 			console.log("current prof = " + userData.userProfileLoaded + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))+ " to " + oldTotal);
 			console.log("new  prof = " + btn.id.substring(20) + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) + " to " + newTotal);
 			var oldTotalNum = "userProfileTotals" + userData.userProfileLoaded;
+			
 			var newTotalNum = "userProfileTotals" + btn.id.substring(20);
+			console.log("old num = " + gapi.hangout.data.getValue(oldTotalNum));
+			console.log("new num = " + gapi.hangout.data.getValue(newTotalNum));
 			gapi.hangout.data.submitDelta( {oldTotalNum : oldTotal, newTotalNum : newTotal } );
 			
 			//gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,oldTotal);
 			//gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
+			
+			console.log("old num = " + gapi.hangout.data.getValue(oldTotalNum));
+			console.log("new num = " + gapi.hangout.data.getValue(newTotalNum));
+			
 			userData.userProfileLoaded = btn.id.substring(20);
 			loadOptions();
 			displayOptions();
