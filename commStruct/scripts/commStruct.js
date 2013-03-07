@@ -81,7 +81,7 @@
 		}
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		console.log("no current convo mode");
-		currentProfileLoaded = (0).toString();
+		currentProfileLoaded = String(0);
 		console.log("errrm " + currentProfileLoaded + " eeeere " + gapi.hangout.data.getValue("currentConvoMode") );
 		
 		gapi.hangout.data.setValue("currentConvoMode",currentProfileLoaded);
