@@ -202,13 +202,15 @@
 			console.log("doing if limit not reached");	
 			
 			
-			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) - 1).toString();
+			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + userData.userProfileLoaded)) - 1).toString();
 			newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString();
 			console.log("current prof = " + userData.userProfileLoaded + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))+ " to " + oldTotal);
 			console.log("new  prof = " + btn.id.substring(20) + " set from " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) + " to " + newTotal);
 			
-			gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,oldTotal);
-			gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
+			gapi.hangout.data.submitDelta( {"userProfileTotals" + userData.userProfileLoaded : oldTotal, "userProfileTotals" + btn.id.substring(20) : newTotal } );
+			
+			//gapi.hangout.data.setValue("userProfileTotals" + userData.userProfileLoaded,oldTotal);
+			//gapi.hangout.data.setValue("userProfileTotals" + btn.id.substring(20),newTotal);
 			userData.userProfileLoaded = btn.id.substring(20);
 			loadOptions();
 			displayOptions();
