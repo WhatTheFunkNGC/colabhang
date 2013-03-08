@@ -5,8 +5,7 @@ var convoProfiles = [
 			"allowButtingIn" : "true",
 			"muteIfSpeaker" : "false",
 			"userTypes" : [
-				{"name" : "standard", "limit" : "-1"},
-				{"name" : "lead", "limit" : "2"}
+				{"name" : "standard", "limit" : "-1"}
 				] },
 			
 		{	"profileName" : "No ButIns", "discription" : "basic profile that gards against butting in",

@@ -193,7 +193,7 @@
 		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
 		btn.onclick = function() {
 			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
-			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
+			var oldTotal, oldTotalNum ,newTotalNum, newTotal, div;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
 			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
@@ -209,6 +209,8 @@
 			
 			currentUserProfileLoaded = btn.id.substring(20);
 			loadOptions();
+			div = document.getElementById("optionsList");
+			div.innerHTML = "";	
 			displayOptions();
 			console.log("currne loaded = " + currentUserProfileLoaded);
 			};
@@ -345,7 +347,7 @@
 		for ( i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++){
 			gapi.hangout.data.clearValue("userProfileTotals" + i);
 		};
-		var numUsers = (gapi.hangout.data.getValue("userData") || "0");
+		var numUsers = (gapi.hangout.data.getValue("userData") || "1");
 		console.log("num of reg users = " + gapi.hangout.data.getValue("userData"));
 		gapi.hangout.data.setValue("userProfileTotals0",numUsers);
 		for ( j = 1; j < convoProfiles[profile].userTypes.length; j++){
