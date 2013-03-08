@@ -78,7 +78,8 @@
 		userData.commLength = "0";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
 		}
-		currentUserProfileChecker = (gapi.hangout.data.getValue("currentUserProfileChecker") || "0");
+		currentUserProfileChecker = (gapi.hangout.data.getValue("currentUserProfileChecker") || "0");			// setup profile display checker
+		if (currentUserProfileChecker == "0" ){gapi.hangout.data.setValue("currentUserProfileChecker","0");};
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		console.log("no current convo mode ");
 		currentProfileLoaded = "0";
