@@ -393,7 +393,7 @@
 		if (muteIfSpeaker){													// if muteSpeaker setting, mute all users when speaking starts
 			console.log("MUTE ALL BAR SPEAKER");
 			console.log("num users " + gapi.hangout.data.getValue("userData"));
-			for (var i = 0; i < gapi.hangout.data.getValue("userData"); i++){
+			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");
 				console.log("user id " + userDataHolder.id);
 				if(userData.id != userDataHolder.id){ 
