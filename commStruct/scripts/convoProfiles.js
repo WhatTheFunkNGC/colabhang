@@ -23,7 +23,7 @@ var convoProfiles = [
 		{	"profileName" : "dominant speaker", "discription" : "only the speaker is able to speak",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
-					"allowButtingIn" : "false",
+					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "true",
 				}
 				] }
