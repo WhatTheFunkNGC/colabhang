@@ -136,6 +136,7 @@
 		console.log("log");	
 		var div, ul, tr, e, i,profName,numIn, limit;	
 		div = document.getElementById("optionsList");
+		div.innerHTML = "";	
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
 		//console.log("user num = " + currentUserProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
 		div.innerHTML = "Convo Mode : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br>User Mode : " + 
@@ -155,7 +156,7 @@
 		};
 		ul.appendChild(tr);
 		console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
-		for (i = 0; i < gapi.hangout.data.getValue("userProfileTotals"); i++) {
+		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {
 			tr = document.createElement("tr");
 			e = document.createElement("td");
 			profName = convoProfiles[currentProfileLoaded].userTypes[i].name; 						// get main bits of statistical data to display
@@ -193,7 +194,7 @@
 		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
 		btn.onclick = function() {
 			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
-			var oldTotal, oldTotalNum ,newTotalNum, newTotal, div;
+			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
 			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
@@ -209,8 +210,6 @@
 			
 			currentUserProfileLoaded = btn.id.substring(20);
 			loadOptions();
-			div = document.getElementById("optionsList");
-			div.innerHTML = "";	
 			displayOptions();
 			console.log("currne loaded = " + currentUserProfileLoaded);
 			};
