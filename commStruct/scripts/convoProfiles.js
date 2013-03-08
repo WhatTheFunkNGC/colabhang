@@ -12,7 +12,7 @@ var convoProfiles = [
 		{	"profileName" : "No ButIns", "discription" : "basic profile that gards against butting in",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
-					"allowButtingIn" : "true",
+					"allowButtingIn" : "false",
 					"muteIfSpeaker" : "false" 
 				},
 				{"name" : "lead", "limit" : "2",
