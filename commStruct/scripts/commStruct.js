@@ -199,7 +199,7 @@
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
 			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
-			console.log("doing if limit not reached");	
+			console.log("doing if limit not reached " + userData.userProfileLoaded);	
 			
 			
 			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + userData.userProfileLoaded)) - 1).toString();
@@ -225,6 +225,7 @@
 			userData.userProfileLoaded = btn.id.substring(20);
 			loadOptions();
 			displayOptions();
+			console.log("currne loaded = " + userData.userProfileLoaded);
 			};
 		};
 	return btn;			
