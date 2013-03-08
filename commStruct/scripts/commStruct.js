@@ -193,7 +193,7 @@
 		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
 		btn.onclick = function() {
 			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
-			var oldTotal, oldTotalNum ,newTotalNum newTotal;
+			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
 			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
