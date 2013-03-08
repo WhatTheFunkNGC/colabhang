@@ -389,20 +389,19 @@
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);
-		}
-		if (muteIfSpeaker){													// if muteSpeaker setting, mute all users when speaking starts
-			console.log("MUTE ALL BAR SPEAKER");
-			console.log("num users " + gapi.hangout.data.getValue("userData"));
-			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
-				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");
-				console.log("user id " + userDataHolder.id);
-				if(userData.id != userDataHolder.id){ 
-				
-					muteParticipantMicrophone(userDataHolder.id); 
-					
+			
+			if (muteIfSpeaker){													// if muteSpeaker setting, mute all users when speaking starts
+				console.log("MUTE ALL BAR SPEAKER");
+				console.log("num users " + gapi.hangout.data.getValue("userData"));
+				for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
+					var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");
+					console.log("user id " + userDataHolder.id);
+					if(userData.id != userDataHolder.id){ 				
+					muteParticipantMicrophone(userDataHolder.id); 					
+					};
 				};
 			};
-		};
+		};	
 	};
 	
   	
