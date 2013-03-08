@@ -19,5 +19,12 @@ var convoProfiles = [
 					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "false" 
 				}
+				] },
+		{	"profileName" : "dominant speaker", "discription" : "only the speaker is able to speak",
+			"userTypes" : [
+				{"name" : "standard", "limit" : "-1",
+					"allowButtingIn" : "false",
+					"muteIfSpeaker" : "true",
+				}
 				] }
     ];
