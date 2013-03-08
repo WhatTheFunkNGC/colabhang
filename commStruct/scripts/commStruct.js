@@ -318,8 +318,7 @@
 	function userChatCounter() {
 		if (chatIntervalCounter == 10){	
 			if (chatIntervalTotal > 3){
-				speakTime = speakTime + 1;
-				
+				speakTime = speakTime + 1;				
 				leadSpeaker();			
 			} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
 			chatIntervalCounter = 0; 
@@ -355,7 +354,7 @@
 		userData.commLength = speakTime;
 		gapi.hangout.data.setValue("userData" + userDataPos, JSON.stringify(userData));	// return JSON string of object
 		
-		// profile update NEEED TO DO LOAD FOR USER PROFILE!
+		// profile update 
 		if (currentProfileLoaded != gapi.hangout.data.getValue("currentConvoMode")){
 			console.log(" diffrence found " + currentProfileLoaded + " and " + gapi.hangout.data.getValue("currentConvoMode"));
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
@@ -363,7 +362,7 @@
 			loadOptions();
 			displayOptions();
 		};
-		
+		// user profile update 
 		if (currentUserProfileChecker != gapi.hangout.data.getValue("currentUserProfileChecker")){		// checker detects if a user has chnaged profile 
 			if(optionsDisplay){displayOptions();};														// and re-displays options acordingly			
 			currentUserProfileChecker = gapi.hangout.data.getValue("currentUserProfileChecker");
@@ -390,6 +389,7 @@
 			gapi.hangout.av.setMicrophoneMute(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
+			findAndRemoveItemFromSharedList("speakQueue",userData.id);
 		};
 	};
 	
