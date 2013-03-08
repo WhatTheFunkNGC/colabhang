@@ -86,6 +86,7 @@
 		gapi.hangout.data.setValue("currentConvoMode","0");
 		currentUserProfileLoaded = "0";
 		resetUserProfileTypeLimits();	
+		loadOptions();
 		console.log("convo mode set");
 		};
 		console.log("user data complete");
