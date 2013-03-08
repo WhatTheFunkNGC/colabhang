@@ -230,6 +230,11 @@
 	return btn;			
 	};
 	
+	
+	
+	
+	
+	
 	//function checkUserProfileNumbers (){
 	//for (var i = 0; i < gapi.hangout.data.getValue("userData"); i++){
 	//var userDataString = gapi.hangout.data.getValue("userData" + userDataPos);
