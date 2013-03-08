@@ -375,7 +375,6 @@
 		
 		// check if to unmute
 		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){
-			console.log(" speaker gone");
 			if (gapi.hangout.av.getMicrophoneMute()){ 
 				console.log(" UN MUTING");				
 				gapi.hangout.av.setMicrophoneMute(false); 
@@ -397,12 +396,11 @@
 			
 			if (muteIfSpeaker){													// if muteSpeaker setting, mute all users when speaking starts
 				console.log("MUTE ALL BAR SPEAKER");
-				console.log("num users " + gapi.hangout.data.getValue("userData"));
+				//console.log("num users " + gapi.hangout.data.getValue("userData"));
 				for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
-					var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");
-					
+					var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 					if(userData.id != userDataHolder.id){ 
-						console.log("user id " + userDataHolder.id);
+						//console.log("user id " + userDataHolder.id);
 						muteParticipantMicrophone(userDataHolder.id); 					
 					};
 				};
