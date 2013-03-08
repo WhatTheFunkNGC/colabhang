@@ -282,7 +282,7 @@
   
 	// loads profile variables into local user
     function loadOptions() {
-		console.log("load options");
+		console.log("load options " + gapi.hangout.data.getValue("currentConvoMode") + "  and " + currentUserProfileLoaded);
 		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
 		allowButtingIn = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].allowButtingIn;
 		muteIfSpeaker = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteIfSpeaker;
@@ -383,7 +383,7 @@
 			if (allowButtingIn){
 			gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
 			} else {
-			console.log("MUTING");
+			console.log("MUTING " + allowButtingIn);
 			gapi.hangout.av.setMicrophoneMute(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
