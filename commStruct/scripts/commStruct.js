@@ -288,10 +288,9 @@
 		if (setupNeeded) { profileNum = "0";};
 		console.log("load options " + profileNum + "  and " + currentUserProfileLoaded);
 		allowButtingIn = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].allowButtingIn;
+		if(allowButtingIn == "false"){allowButtingIn = false };
 		muteIfSpeaker = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteIfSpeaker;
-		console.log("muter is " + muteIfSpeaker);
-		if(muteIfSpeaker){console.log(" muter true"); };
-		if(!muteIfSpeaker){console.log(" muter false"); };
+		if(muteIfSpeaker == "false"){muteIfSpeaker = false };
 		
 		
 	};
