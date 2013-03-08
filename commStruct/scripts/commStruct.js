@@ -86,7 +86,7 @@
 		gapi.hangout.data.setValue("currentConvoMode","0");
 		currentUserProfileLoaded = "0";
 		resetUserProfileTypeLimits();	
-		loadOptions();
+		loadOptions(true);
 		console.log("convo mode set");
 		};
 		console.log("user data complete");
@@ -282,9 +282,11 @@
   
   
 	// loads profile variables into local user
-    function loadOptions() {
-		console.log("load options " + gapi.hangout.data.getValue("currentConvoMode") + "  and " + currentUserProfileLoaded);
+    function loadOptions(setupNeeded) {
+		
 		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
+		if (setupNeeded) { profileNum = "0";};
+		console.log("load options " + profileNum + "  and " + currentUserProfileLoaded);
 		allowButtingIn = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].allowButtingIn;
 		muteIfSpeaker = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteIfSpeaker;
 	};
