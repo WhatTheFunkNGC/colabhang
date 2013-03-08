@@ -17,6 +17,7 @@
 		var dTimer; // hold the timer object for refreshing the display
 		var dataDisplay;	
 		var optionsDisplay;
+		var currentUserProfileChecker; // changes each time a user changes profile. used for re-drawing display
 		
 	//-------------------- Convo Type settings -------------------------
 		var currentProfileLoaded;
@@ -76,8 +77,8 @@
 		userData.connectionLength = "1";
 		userData.commLength = "0";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
-
 		}
+		currentUserProfileChecker = (gapi.hangout.data.getValue("currentUserProfileChecker") || "0");
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
 		console.log("no current convo mode ");
 		currentProfileLoaded = "0";
@@ -210,7 +211,7 @@
 			
 			currentUserProfileLoaded = btn.id.substring(20);
 			loadOptions();
-			displayOptions();
+			gapi.hangout.data.setValue("currentUserProfileChecker",(parseInt(gapi.hangout.data.getValue("currentUserProfileChecker")) + 1).toString());
 			console.log("currne loaded = " + currentUserProfileLoaded);
 			};
 		};
@@ -372,7 +373,14 @@
 			resetUserProfileTypeLimits();
 			loadOptions();
 			displayOptions();
-		};		
+		};
+		
+		if (currentUserProfileChecker != gapi.hangout.data.getValue("currentUserProfileChecker")){		// checker detects if a user has chnaged profile 
+			if(optionsDisplay){displayOptions();};														// and re-displays options acordingly			
+			currentUserProfileChecker = gapi.hangout.data.getValue("currentUserProfileChecker");
+		}
+
+		
 		// check if to unmute
 		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){
 			if (gapi.hangout.av.getMicrophoneMute()){ 
