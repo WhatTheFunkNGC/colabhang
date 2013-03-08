@@ -372,8 +372,7 @@
 		// check if to unmute
 		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){
 			if (gapi.hangout.av.getMicrophoneMute()){ 
-				console.log(" UN MUTING");
-				
+				console.log(" UN MUTING");				
 				gapi.hangout.av.setMicrophoneMute(false); 
 			};
 		};
@@ -390,6 +389,13 @@
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);
+		}
+		if (muteIfSpeaker){													// if muteSpeaker setting, mute all users when speaking starts
+			console.log("MUTE ALL BAR SPEAKER");
+			for (var i = 0; i < gapi.hangout.data.getValue("userData"); i++){
+				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");
+				if(userData.id != userDataHolder.id){ muteParticipantMicrophone(userDataHolder.id); };
+			};
 		};
 	};
 	
