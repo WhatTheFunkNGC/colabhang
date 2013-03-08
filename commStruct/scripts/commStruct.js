@@ -160,7 +160,7 @@
 			tr = document.createElement("tr");
 			e = document.createElement("td");
 			profName = convoProfiles[currentProfileLoaded].userTypes[i].name; 						// get main bits of statistical data to display
-			numIn = gapi.hangout.data.getValue("userProfileTotals" + i);
+			numIn = (gapi.hangout.data.getValue("userProfileTotals" + i) || "0");
 			limit  = convoProfiles[currentProfileLoaded].userTypes[i].limit;
 			if ( limit == "-1"){limit = "Unlimited"};
 			
