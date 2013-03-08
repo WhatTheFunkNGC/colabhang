@@ -2,17 +2,22 @@
 
 var convoProfiles = [
 		{	"profileName" : "Basic", "discription" : "basic profile operating with no aditional functionality",
-			"allowButtingIn" : "true",
-			"muteIfSpeaker" : "false",
 			"userTypes" : [
-				{"name" : "standard", "limit" : "-1"}
+				{"name" : "standard", "limit" : "-1",
+					"allowButtingIn" : "true",
+					"muteIfSpeaker" : "false",
+				}
 				] },
 			
 		{	"profileName" : "No ButIns", "discription" : "basic profile that gards against butting in",
-			"allowButtingIn" : "true",
-			"muteIfSpeaker" : "false" ,
 			"userTypes" : [
-				{"name" : "standard", "limit" : "-1"},
-				{"name" : "lead", "limit" : "2"}
+				{"name" : "standard", "limit" : "-1",
+					"allowButtingIn" : "true",
+					"muteIfSpeaker" : "false" 
+				},
+				{"name" : "lead", "limit" : "2",
+					"allowButtingIn" : "true",
+					"muteIfSpeaker" : "false" 
+				}
 				] }
     ];

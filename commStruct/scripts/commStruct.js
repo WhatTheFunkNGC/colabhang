@@ -294,12 +294,8 @@
     function loadOptions() {
 		console.log("load options");
 		var profileNum = gapi.hangout.data.getValue("currentConvoMode");
-		var userProfileNum = currentUserProfileLoaded;
-		allowButtingIn = convoProfiles[profileNum].allowButtingIn;
-		muteIfSpeaker = convoProfiles[profileNum].muteIfSpeaker;
-		if(userProfileNum != "none"){
-		// user specific settings
-		};
+		allowButtingIn = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].allowButtingIn;
+		muteIfSpeaker = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteIfSpeaker;
 	};
   
   
