@@ -417,7 +417,7 @@
 					var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 					if(userData.id != userDataHolder.id){ 
 						//console.log("user id " + userDataHolder.id);
-						muteParticipantMicrophone(userDataHolder.id); 					
+						 gapi.hangout.av.muteParticipantMicrophone(userDataHolder.id); 					
 					};
 				};
 			};
