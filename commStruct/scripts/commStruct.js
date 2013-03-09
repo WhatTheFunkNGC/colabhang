@@ -24,6 +24,7 @@
 		var currentUserProfileLoaded;
 		var allowButtingIn; // Allow users to speak over eachover
 		var muteIfSpeaker; // All users bar speaker muted
+		var notifyChatLength; // if enabled the system displays notes to the user baised on the amount they have been speaking
 		
 		
 	//-------------------- Listeners -------------------------
@@ -309,6 +310,8 @@
 		if(allowButtingIn == "false"){allowButtingIn = false };
 		muteIfSpeaker = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteIfSpeaker;
 		if(muteIfSpeaker == "false"){muteIfSpeaker = false };
+		notifyChatLength = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].notifyChatLength;
+		if(notifyChatLength == "false"){notifyChatLength = false };
 		
 		
 	};
@@ -427,8 +430,37 @@
 	};
 	
 	 function userNotifyer(){
-	 
-	
+		var totalTalkTime, userPercent, avgTalkTime, noUsers, div, lowLevelLimit, highLevelLimit;
+		if(notifyChatLength){
+			totalTalkTime = 0;
+			noUsers = gapi.hangout.data.getValue("userData");
+			for (var i = 1; i <= noUsers; i++){
+				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");
+				totalTalkTime = totalTalkTime + parseInt(userDataHolder.commLength);
+			};
+			userPercent = userData.commLength / (totalTalkTime / 100);
+			console.log("local user contribruted " userPercent + "% of the convosation");
+			avgTalkTime = totalTalkTime / noUsers;
+			console.log("Average talk time =  " avgTalkTime);
+			
+			div = document.getElementById("userNotification");
+			div.innerHTML = "";	
+			// CRAZY MATHS TIME!!!!!!!!!!!!!!!!!!!!!!!!!
+			// the level is the avrage + the percantage limit from that avrage. (e.g. if limit is 10%. and the avrage is 30, then the limit is 33)
+			lowLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel));
+			
+			highLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel));
+			
+			if(userData.commLength <= lowLevelLimit) {
+			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
+			};
+			
+			if(userData.commLength >= highLevelLimit) {
+			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
+			};
+			
+		};
+	};
   	
   var commStruct = new commStruct();	
 }(window));

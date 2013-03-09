@@ -17,6 +17,7 @@
 	  <button type="button" id = "dataDisplayToggle">Data Display</button>
       <div id="userDetailsList"></div>	
 	  
+	  <div id="userNotification"></div>	
 	  
 	  <div id="lister"></div>	
       	
