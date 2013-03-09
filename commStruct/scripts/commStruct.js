@@ -88,7 +88,8 @@
 			userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 			userData.connectionLength = "1";
 			userData.commLength = "0";
-			userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
+			//userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
+			userDataPos = addNewItemToSharedList ("userData",-1,JSON.stringify(userData))
 		}
 		console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
