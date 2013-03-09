@@ -56,31 +56,35 @@
 	
 	// displays list table is app data already exsists
 	function listerTableSetupExsisting(){
-	var div, li, li2, e1, e2, tb, i, j, idListLength;
+	var div, li, li2, e1, e2, tb, i, j, k, idListLength;
 		console.log("build table of exsisting list items");
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
 		tb = document.createElement("table");
 		tb.id = "mainListerTable";
 		tableId = tb.id;
+		tb.insertRow(0);
 		userID =  gapi.hangout.getLocalParticipantId();
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
-			li = tb.insertRow(-1);								// Create new element to attach
+			j = ((2 * parseInt(i)) - 1).toString();
+			li = tb.insertRow(j);								// Create new element to attach
 				e1 = li.insertCell(0);
 				e1.appendChild(addTxtInput(i));								// Adds txtInput item (containing list value)
 				e1.appendChild(addDelButton(i));							// add delete button
-				e1.appendChild(addAddButton(i));							// add Add button					
-			li2 = tb.insertRow(-1);
+				e1.appendChild(addAddButton(i));							// add Add button	
+				j++;
+			li2 = tb.insertRow(j);
 
 				e2 = li2.insertCell(0);
 				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
 				e2.appendChild(addIDDelButton(userID,i));
 				idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
-				for (j = 1; j <= idListLength; j++) {									// for all ID pics in list line, imcriment name refrence by 1
-					e2.appendChild(userPicture(i,j));
+				for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
+					e2.appendChild(userPicture(i,k));
 				};
 		}
 		div.appendChild(tb);
+		
 	}
 	
 	
