@@ -55,7 +55,9 @@
 		var uTimer = setInterval(function() {userTimer(); updateTimer(); displaySpeakerInfo();},1000);			// setup update timer	
 		//var sTimer = setInterval(function() {displaySpeakerInfo()},1000);			// setup timer for displaying current speaker and thoes who wish to speak
 		var cTimer;		
+		var nTimer;		
 		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer after a 1.5 sec wait
+		setTimeout(function (){ nTimer = setInterval(function() {userNotifyer()},10000);},60000);			// setup notification checker
 
 		
   };	
@@ -423,6 +425,9 @@
 			};
 		};	
 	};
+	
+	 function userNotifyer(){
+	 
 	
   	
   var commStruct = new commStruct();	
