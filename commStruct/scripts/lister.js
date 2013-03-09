@@ -61,6 +61,8 @@
 		div = document.getElementById("lister");				// get element
 		div.innerHTML = "";									// clear exsisitn displayed list
 		tb = document.createElement("table");
+		tb.id = "mainListerTable";
+		tableId = tb.id;
 		userID =  gapi.hangout.getLocalParticipantId();
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			li = tb.insertRow(-1);								// Create new element to attach
