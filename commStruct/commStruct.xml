@@ -8,6 +8,7 @@
     <![CDATA[
       <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"></script>   	
 	  
+	 <div type = "textarea" id="userNotification"></div>	 
 	 <button type="button" id = "handUpBtn">Hand Up</button> <button type="button" id = "optionDisplayToggle">Options</button> 
 	  <div id="optionsList"></div>
 	  
@@ -15,9 +16,7 @@
 	  <div id="speakerlist"></div>	
 	  
 	  <button type="button" id = "dataDisplayToggle">Data Display</button>
-      <div id="userDetailsList"></div>	
-	  
-	  <div id="userNotification"></div>	
+      <div id="userDetailsList"></div>	 
 	  
 	  <div id="lister"></div>	
       	
