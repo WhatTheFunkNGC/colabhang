@@ -66,10 +66,11 @@
 	// on new user joining - refresh display
 	function startSystem(){
 		var jsonLoader, jsonTxt;
-		console.log("user data initilisation");	
+		console.log("user data initilisation " + gapi.hangout.getLocalParticipantId());	
 		userDataPos = checkDataExsistanceInArray("userData",gapi.hangout.getLocalParticipantId());	// check if user already exsists
 		console.log("dat pos got " + userDataPos);	
-		if (!userDataPos){															// if false create new user data				
+		//if (userDataPos = false){															// if false create new user data	
+		console.log("make new user profile info"); 		
 		var userData = { };															// create new user data object
 		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
 		userData.name = gapi.hangout.getLocalParticipant().person.displayName;
@@ -77,7 +78,10 @@
 		userData.connectionLength = "1";
 		userData.commLength = "0";
 		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
-		}
+		//}
+		console.log("dat pos got " + userDataPos);
+		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
+		
 		currentUserProfileChecker = (gapi.hangout.data.getValue("currentUserProfileChecker") || "0");			// setup profile display checker
 		if (currentUserProfileChecker == "0" ){gapi.hangout.data.setValue("currentUserProfileChecker","0");};
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
