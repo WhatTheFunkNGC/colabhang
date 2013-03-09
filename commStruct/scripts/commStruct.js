@@ -447,16 +447,19 @@
 			div.innerHTML = "";	
 			// CRAZY MATHS TIME!!!!!!!!!!!!!!!!!!!!!!!!!
 			// the level is the avrage + the percantage limit from that avrage. (e.g. if limit is 10%. and the avrage is 30, then the limit is 33)
-			lowLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel)));
+			lowLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel)));
 			
-			highLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel)));
+			highLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel)));
 			
+			console.log("low lev limit = " + lowLevelLimit + "high limit  = " + highLevelLimit);
 			if(userData.commLength <= lowLevelLimit) {
+			console.log("display message");
 			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
 			};
 			
 			if(userData.commLength >= highLevelLimit) {
-			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
+			console.log("display message");
+			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsg;	
 			};
 			
 		};
