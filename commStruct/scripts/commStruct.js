@@ -453,14 +453,15 @@
 			
 			console.log("low lev limit = " + lowLevelLimit + "high limit  = " + highLevelLimit);
 			if(userData.commLength <= lowLevelLimit) {
-			console.log("display message");
-			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
-			};
-			
-			if(userData.commLength >= highLevelLimit) {
-			console.log("display message");
-			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsg;	
-			};
+				console.log("display message");
+				div.style.backgroundColor="#3399FF";
+				div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
+			} else if (userData.commLength >= highLevelLimit) {
+				console.log("display message");
+				div.style.backgroundColor="#FF6666";
+				div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsg;	
+			} else {
+				div.style.backgroundColor = "transparent";
 			
 		};
 	};
