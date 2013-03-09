@@ -33,13 +33,15 @@ var convoProfiles = [
 					"muteIfSpeaker" : "false" 
 				}
 				] },
-		{	"profileName" : "dominant speaker", "discription" : "only the speaker is able to speak",
+		{	"profileName" : "Strict", "discription" : "only the speaker is able to speak",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
 					"lowMsg" : "Do you have anything to say?" , 
 					"highMsg" : "You have said alot, does anyone else want to speak?",
+					"minMsgLevel" : "-50",
 					"lowMsgLevel" : "-10",
 					"highMsgLevel" : "10",
+					"maxMsgLevel" : "50",
 					
 					"notifyChatLength" : "true",
 					"allowButtingIn" : "true",
