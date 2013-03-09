@@ -447,9 +447,9 @@
 			div.innerHTML = "";	
 			// CRAZY MATHS TIME!!!!!!!!!!!!!!!!!!!!!!!!!
 			// the level is the avrage + the percantage limit from that avrage. (e.g. if limit is 10%. and the avrage is 30, then the limit is 33)
-			lowLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel));
+			lowLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel)));
 			
-			highLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel));
+			highLevelLimit = avgTalkTime + ((totalTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel)));
 			
 			if(userData.commLength <= lowLevelLimit) {
 			div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
