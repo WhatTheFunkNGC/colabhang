@@ -439,7 +439,7 @@
 				totalTalkTime = totalTalkTime + parseInt(userDataHolder.commLength);
 			};
 			userPercent = userData.commLength / (totalTalkTime / 100);
-			console.log("local user contribruted " userPercent + "% of the convosation");
+			console.log("local user contribruted " + userPercent + "% of the convosation");
 			avgTalkTime = totalTalkTime / noUsers;
 			console.log("Average talk time =  " avgTalkTime);
 			
