@@ -67,9 +67,9 @@
 	function startSystem(){
 		var jsonLoader, jsonTxt;
 		console.log("user data initilisation " + (gapi.hangout.getLocalParticipantId()).substring(7,14);	
-		userDataPos = checkDataExsistanceInArray("userData",(gapi.hangout.getLocalParticipantId()).substring(7,14));	// check if user already exsists
-		console.log("dat pos got " + userDataPos);	
-		//if (userDataPos = false){															// if false create new user data	
+		//userDataPos = checkDataExsistanceInArray("userData",(gapi.hangout.getLocalParticipantId()).substring(7,14));	// check if user already exsists
+		//console.log("dat pos got " + userDataPos);	
+		//if (userDataPos == false){															// if false create new user data	
 		console.log("make new user profile info"); 		
 		var userData = { };															// create new user data object
 		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
