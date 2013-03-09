@@ -65,33 +65,44 @@
 	
 	// on new user joining - refresh display
 	function startSystem(){
-		var jsonLoader, jsonTxt;
+		var jsonLoader, jsonTxt, alreadyExsists;
 		console.log("user data initilisation " + (gapi.hangout.getLocalParticipantId()).substring(7,15));	
-		userDataPos = checkDataExsistanceInArray("userData",(gapi.hangout.getLocalParticipantId()).substring(7,15));	// check if user already exsists
+		//userDataPos = checkDataExsistanceInArray("userData",(gapi.hangout.getLocalParticipantId()).substring(7,15));	// check if user already exsists
 		console.log("dat pos got " + userDataPos);	
-		//if (userDataPos == false){															// if false create new user data	
-		console.log("make new user profile info"); 		
-		var userData = { };															// create new user data object
-		userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
-		userData.name = gapi.hangout.getLocalParticipant().person.displayName;
-		userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
-		userData.connectionLength = "1";
-		userData.commLength = "0";
-		userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
-		//}
+		
+		alreadyExsists = false
+		for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
+			var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
+			if(gapi.hangout.getLocalParticipantId() == userDataHolder.id){ 
+				userDataPos = i;
+				alreadyExsists = true;
+				};
+			};
+		
+		console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
+		if (alreadyExsists == false){															// if false create new user data	
+			console.log("make new user profile info"); 		
+			var userData = { };															// create new user data object
+			userData.id = gapi.hangout.getLocalParticipantId();							// fill with data
+			userData.name = gapi.hangout.getLocalParticipant().person.displayName;
+			userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
+			userData.connectionLength = "1";
+			userData.commLength = "0";
+			userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
+		}
 		console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
 		
 		currentUserProfileChecker = (gapi.hangout.data.getValue("currentUserProfileChecker") || "0");			// setup profile display checker
 		if (currentUserProfileChecker == "0" ){gapi.hangout.data.setValue("currentUserProfileChecker","0");};
 		if (!gapi.hangout.data.getValue("currentConvoMode")){
-		console.log("no current convo mode ");
-		currentProfileLoaded = "0";
-		gapi.hangout.data.setValue("currentConvoMode","0");
-		currentUserProfileLoaded = "0";
-		resetUserProfileTypeLimits();	
-		loadOptions(true);
-		console.log("convo mode set");
+			console.log("no current convo mode ");
+			currentProfileLoaded = "0";
+			gapi.hangout.data.setValue("currentConvoMode","0");
+			currentUserProfileLoaded = "0";
+			resetUserProfileTypeLimits();	
+			loadOptions(true);
+			console.log("convo mode set");
 		};
 		console.log("user data complete");
 	};	
