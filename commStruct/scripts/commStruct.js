@@ -416,7 +416,7 @@
 				for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 					var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 					if(userData.id != userDataHolder.id){ 
-						//console.log("user id " + userDataHolder.id);
+						console.log("user id " + userDataHolder.id);
 						 gapi.hangout.av.muteParticipantMicrophone(userDataHolder.id); 					
 					};
 				};
