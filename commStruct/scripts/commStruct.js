@@ -463,6 +463,7 @@
 			} else {
 				div.style.backgroundColor = "transparent";
 			
+			};
 		};
 	};
   	
