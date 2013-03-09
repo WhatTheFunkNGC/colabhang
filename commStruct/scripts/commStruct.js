@@ -441,7 +441,7 @@
 			userPercent = userData.commLength / (totalTalkTime / 100);
 			console.log("local user contribruted " + userPercent + "% of the convosation");
 			avgTalkTime = totalTalkTime / noUsers;
-			console.log("Average talk time =  " avgTalkTime);
+			console.log("Average talk time =  " + avgTalkTime);
 			
 			div = document.getElementById("userNotification");
 			div.innerHTML = "";	
