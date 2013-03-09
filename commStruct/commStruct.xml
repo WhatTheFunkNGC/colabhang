@@ -6,7 +6,7 @@
   </ModulePrefs>
   <Content type="html">
     <![CDATA[
-      <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.2"></script>   	
+      <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"></script>   	
 	  
 	  <button type="button" id = "optionDisplayToggle">Options</button>
 	  <div id="optionsList"></div>
