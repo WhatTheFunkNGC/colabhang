@@ -489,6 +489,7 @@
 					div.style.backgroundColor="#3399FF";
 					div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsg;
 					minChatTimeMuter();	
+				};
 			};
 		};
 	};
