@@ -426,6 +426,7 @@
 			} else {
 			console.log("MUTING " + allowButtingIn);
 			gapi.hangout.av.setMicrophoneMute(true);
+			handsUpOverlay();
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);
@@ -443,6 +444,17 @@
 			};
 		};	
 	};
+	
+	function handsUpOverlay(){
+		console.log("overlay ");
+		var imgRec = createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		console.log("img created");
+		var over = imgRec.createOverlay(); //{{0,0},0, 0};
+		console.log("overlay made");
+		over.setVisible(true);
+		console.log("displayed");
+	};
+	
 	
 	//------------------------------------ NOTIFICATION / time muter FUNCTIONS ---------------------------------------------------------
 	
