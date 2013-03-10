@@ -25,6 +25,7 @@
 		var allowButtingIn; // Allow users to speak over eachover
 		var muteIfSpeaker; // All users bar speaker muted
 		var notifyChatLength; // if enabled the system displays notes to the user baised on the amount they have been speaking
+		var muteChatLength; // if enabled, if user chats for too long they will be muted
 		
 		
 	//-------------------- Listeners -------------------------
@@ -73,7 +74,7 @@
 		//userDataPos = checkDataExsistanceInArray("userData",(gapi.hangout.getLocalParticipantId()).substring(7,15));	// check if user already exsists
 		console.log("dat pos got " + userDataPos);	
 		
-		alreadyExsists = false
+		alreadyExsists = false;
 		for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 			var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 			if(gapi.hangout.getLocalParticipantId() == userDataHolder.id){ 
@@ -96,6 +97,11 @@
 		}
 		console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
+		
+		if (!gapi.hangout.data.getValue("timerHasControlMute")){						// checks control params are loaded
+			gapi.hangout.data.setValue("timerHasControlMute", "false");
+			gapi.hangout.data.setValue("timerHasControlMuteReturn", "false");
+		};
 		
 		currentUserProfileChecker = (gapi.hangout.data.getValue("currentUserProfileChecker") || "0");			// setup profile display checker
 		if (currentUserProfileChecker == "0" ){gapi.hangout.data.setValue("currentUserProfileChecker","0");};
@@ -312,6 +318,8 @@
 		if(muteIfSpeaker == "false"){muteIfSpeaker = false };
 		notifyChatLength = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].notifyChatLength;
 		if(notifyChatLength == "false"){notifyChatLength = false };
+		muteChatLength = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteChatLength;
+		if(muteChatLength == "false"){muteChatLength = false };
 		
 		
 	};
@@ -392,10 +400,16 @@
 			if(optionsDisplay){displayOptions();};														// and re-displays options acordingly			
 			currentUserProfileChecker = gapi.hangout.data.getValue("currentUserProfileChecker");
 		}
+		
+		// un mutes all users after timer controler actions
+		if ((gapi.hangout.data.getValue("timerHasControlMute") == "false") && (gapi.hangout.data.getValue("timerHasControlMuteReturn") == "true")) {
+		gapi.hangout.data.setValue("timerHasControlMuteReturn", "false");
+		gapi.hangout.av.setMicrophoneMute(false);
+		};
 
 		
 		// check if to unmute
-		if(gapi.hangout.data.getValue("currentSpeaker") == "no one"){
+		if((gapi.hangout.data.getValue("currentSpeaker") == "no one") && (gapi.hangout.data.getValue("timerHasControlMute") == "false")){
 			if (gapi.hangout.av.getMicrophoneMute()){ 
 				console.log(" UN MUTING");				
 				gapi.hangout.av.setMicrophoneMute(false); 
@@ -429,8 +443,9 @@
 		};	
 	};
 	
+	// a function to orginise user notifications and Mutes baised on amount of time spoken
 	 function userNotifyer(){
-		var totalTalkTime, userPercent, avgTalkTime, noUsers, div, lowLevelLimit, highLevelLimit;
+		var totalTalkTime, userPercent, avgTalkTime, noUsers, div, lowLevelLimit, highLevelLimit, minLevelLimit, maxLevelLimit;
 		if(notifyChatLength){
 			totalTalkTime = 0;
 			noUsers = gapi.hangout.data.getValue("userData");
@@ -464,7 +479,41 @@
 				div.style.backgroundColor = "transparent";
 			
 			};
+			gapi.hangout.data.getValue("timerHasControl");
+			if (muteChatLength && (gapi.hangout.data.getValue("timerHasControl") == "false") {
+				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));
+			
+				maxLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsgLevel)));
+			
+				if(userData.commLength <= minLevelLimit) {
+					console.log("display message");
+					div.style.backgroundColor="#3399FF";
+					div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsg;
+					minChatTimeMuter();	
+			};
 		};
+	};
+	
+	// a function to control the muting of users while the least spoken takes the stand
+	function minChatTimeMuter(){
+		var countdown = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].muteCountdownMsgLength;
+		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
+		gapi.hangout.data.setValue("timerHasControl", "true");
+		setTimeout(function (){
+			gapi.hangout.data.setValue("timerHasControlMute", "true");
+			gapi.hangout.data.setValue("timerHasControlMuteReturn", "true");
+			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
+				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
+				if(userData.id != userDataHolder.id){ 
+					console.log("user id " + userDataHolder.id);
+					 gapi.hangout.av.muteParticipantMicrophone(userDataHolder.id); 					
+				};
+			}; 
+		},countdown);
+		
+		setTimeout(function (){
+			gapi.hangout.data.setValue("timerHasControlMute", "false");
+		},controlLength);
 	};
   	
   var commStruct = new commStruct();	
