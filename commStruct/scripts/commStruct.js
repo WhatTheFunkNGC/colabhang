@@ -357,7 +357,7 @@
 	
 	function userChatCounter() {
 		if (chatIntervalCounter == 10){	
-			if (chatIntervalTotal > 3){
+			if (chatIntervalTotal > 7){
 				speakTime = speakTime + 1;				
 				leadSpeaker();			
 			} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
