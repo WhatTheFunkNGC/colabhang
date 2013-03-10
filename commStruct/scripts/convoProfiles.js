@@ -58,10 +58,10 @@ var convoProfiles = [
 					"lowMsg" : "Do you have anything to say?" , 
 					"highMsg" : "You have said alot, does anyone else want to speak?",
 					"maxMsg" : "Your dominating the convosation, you will be muted in 20 seconds, finnish up your point",
-					"minMsgLevel" : "-80",
+					"minMsgLevel" : "-40",
 					"lowMsgLevel" : "-10",
 					"highMsgLevel" : "10",
-					"maxMsgLevel" : "60",
+					"maxMsgLevel" : "30",
 					"muteCountdownMsgLength" : "10000",
 					"controlMsgLength" : "20000",
 					
