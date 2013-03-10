@@ -61,7 +61,7 @@ var convoProfiles = [
 					"minMsgLevel" : "-80",
 					"lowMsgLevel" : "-10",
 					"highMsgLevel" : "10",
-					"maxMsgLevel" : "50",
+					"maxMsgLevel" : "60",
 					"muteCountdownMsgLength" : "10000",
 					"controlMsgLength" : "20000",
 					

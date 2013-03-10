@@ -83,7 +83,7 @@
 				};
 			};
 		
-		console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
+		//console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
 		if (alreadyExsists == false){															// if false create new user data	
 			console.log("make new user profile info"); 		
 			var userData = { };															// create new user data object
@@ -95,7 +95,7 @@
 			//userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
 			userDataPos = addNewItemToSharedList ("userData",-1,JSON.stringify(userData))
 		}
-		console.log("dat pos got " + userDataPos);
+		//console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
 		
 		if (!gapi.hangout.data.getValue("timerHasControl")){						// checks control params are loaded
@@ -162,7 +162,7 @@
 	
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
-		console.log("log");	
+		//console.log("log");	
 		var div, ul, tr, e, i,profName,numIn, limit;	
 		div = document.getElementById("optionsList");
 		div.innerHTML = "";	
@@ -184,7 +184,7 @@
 			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
 		};
 		ul.appendChild(tr);
-		console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
+		//console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
 		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {
 			tr = document.createElement("tr");
 			e = document.createElement("td");
@@ -193,9 +193,9 @@
 			limit  = convoProfiles[currentProfileLoaded].userTypes[i].limit;
 			if ( limit == "-1"){limit = "Unlimited"};
 			
-			console.log("name  = " + profName);
-			console.log("profile numb  = " + numIn);
-			console.log("limit = " + limit);
+			//console.log("name  = " + profName);
+			//console.log("profile numb  = " + numIn);
+			//console.log("limit = " + limit);
 			
 			e.innerHTML = profName + " : " + numIn + " out of " + limit;
 			tr.appendChild(e);
@@ -216,7 +216,7 @@
 	};
 	
 	function createUserProfileButton(profile,userProfile) {
-		console.log("log");	
+		//console.log("log");	
 		var btn = document.createElement("button");
 		btn.innerHTML = convoProfiles[profile].userTypes[userProfile].name;
 		btn.id = "userProfileOptionBtn" + userProfile;
@@ -225,9 +225,9 @@
 			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
 			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
-			console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
+			//console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
-			console.log("doing if limit not reached " + currentUserProfileLoaded);	
+			//console.log("doing if limit not reached " + currentUserProfileLoaded);	
 			
 			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
 			newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString();
@@ -240,7 +240,7 @@
 			currentUserProfileLoaded = btn.id.substring(20);
 			loadOptions();
 			gapi.hangout.data.setValue("currentUserProfileChecker",(parseInt(gapi.hangout.data.getValue("currentUserProfileChecker")) + 1).toString());
-			console.log("currne loaded = " + currentUserProfileLoaded);
+			//console.log("currne loaded = " + currentUserProfileLoaded);
 			};
 		};
 	return btn;			
@@ -293,7 +293,7 @@
 	// checks for data updates that arnt used with timers
 	function updateCheckerCommStruct(addedKeys,removedKeys){
 		var itemNo, div;
-		console.log("checking up");
+		//console.log("checking up");
 		if (addedKeys.length != 0){
 			for (var i = 0; i < addedKeys.length ; i++ ){
 				console.log("add found");
