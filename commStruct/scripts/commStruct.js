@@ -430,7 +430,7 @@
 			};
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);
 			
-			if ((muteIfSpeaker = "true") && (gapi.hangout.data.setValue("timerHasControl") == "false")){													// if muteSpeaker setting, mute all users when speaking starts
+			if ((muteIfSpeaker == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")){													// if muteSpeaker setting, mute all users when speaking starts
 				console.log("MUTE ALL BAR SPEAKER");
 				//console.log("num users " + gapi.hangout.data.getValue("userData"));
 				for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
