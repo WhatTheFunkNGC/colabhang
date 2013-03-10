@@ -503,8 +503,9 @@
 		var countdown = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].muteCountdownMsgLength;
 		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
 		gapi.hangout.data.setValue("timerHasControl", "true");
+		console.log("COUNTDOWN");
 		setTimeout(function (){
-			console.log("COUNTDOWN");
+			console.log("MUTING FROM CONUTDOWN");
 			gapi.hangout.data.setValue("timerHasControlMute", "true");
 			gapi.hangout.data.setValue("timerHasControlMuteReturn", "true");
 			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
@@ -517,7 +518,7 @@
 		},countdown);
 		
 		setTimeout(function (){
-			console.log("MUTE OTHER COUNT");
+			console.log("MUTE ENDING");
 			gapi.hangout.data.setValue("timerHasControl", "false");
 			gapi.hangout.data.setValue("timerHasControlMute", "false");
 		},controlLength);
