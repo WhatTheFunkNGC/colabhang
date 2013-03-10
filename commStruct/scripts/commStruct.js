@@ -447,7 +447,7 @@
 	// a function to orginise user notifications and Mutes baised on amount of time spoken
 	 function userNotifyer(){
 		var totalTalkTime, userPercent, avgTalkTime, noUsers, div, lowLevelLimit, highLevelLimit, minLevelLimit, maxLevelLimit;
-		if(notifyChatLength){
+		if(notifyChatLength && (gapi.hangout.data.getValue("timerHasControl") = "false");){
 			totalTalkTime = 0;
 			noUsers = gapi.hangout.data.getValue("userData");
 			for (var i = 1; i <= noUsers; i++){
@@ -504,6 +504,7 @@
 		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
 		gapi.hangout.data.setValue("timerHasControl", "true");
 		setTimeout(function (){
+			console.log("COUNTDOWN");
 			gapi.hangout.data.setValue("timerHasControlMute", "true");
 			gapi.hangout.data.setValue("timerHasControlMuteReturn", "true");
 			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
@@ -516,6 +517,7 @@
 		},countdown);
 		
 		setTimeout(function (){
+			console.log("MUTE OTHER COUNT");
 			gapi.hangout.data.setValue("timerHasControl", "false");
 			gapi.hangout.data.setValue("timerHasControlMute", "false");
 		},controlLength);

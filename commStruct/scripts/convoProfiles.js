@@ -54,7 +54,7 @@ var convoProfiles = [
 		{	"profileName" : "Strict Shapeing", "discription" : "only the speaker is able to speak",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
-					"minMsg" : "You have barly said anything, you will get the floor in 20 seconds",
+					"minMsg" : "You have barly said anything, you will get the floor in 10 seconds",
 					"lowMsg" : "Do you have anything to say?" , 
 					"highMsg" : "You have said alot, does anyone else want to speak?",
 					"maxMsg" : "Your dominating the convosation, you will be muted in 20 seconds, finnish up your point",
@@ -62,7 +62,7 @@ var convoProfiles = [
 					"lowMsgLevel" : "-10",
 					"highMsgLevel" : "10",
 					"maxMsgLevel" : "50",
-					"muteCountdownMsgLength" : "20000",
+					"muteCountdownMsgLength" : "10000",
 					"controlMsgLength" : "20000",
 					
 					"notifyChatLength" : "true",
