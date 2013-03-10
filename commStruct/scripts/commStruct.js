@@ -493,6 +493,11 @@
 					div.style.backgroundColor="#3399FF";
 					div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsg;
 					minChatTimeMuter();	
+				} else if (userData.commLength >= maxLevelLimit) {
+					console.log("display message");
+					div.style.backgroundColor="#3399FF";
+					div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsg;
+					maxChatTimeMuter();	
 				};
 				
 			};
@@ -521,6 +526,25 @@
 			console.log("MUTE ENDING");
 			gapi.hangout.data.setValue("timerHasControl", "false");
 			gapi.hangout.data.setValue("timerHasControlMute", "false");
+		},controlLength);
+	};
+	
+	// a function to control the muting of the local user if dominating convosation
+	function maxChatTimeMuter() {
+		var countdown = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].muteCountdownMsgLength;
+		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
+		gapi.hangout.data.setValue("timerHasControl", "true");
+		console.log("COUNTDOWN");
+		setTimeout(function (){
+			console.log("MUTING FROM CONUTDOWN");
+			gapi.hangout.data.setValue("timerHasControlMute", "true");
+			gapi.hangout.av.setMicrophoneMute(true); 
+		},countdown);
+		setTimeout(function (){
+			console.log("MUTE ENDING");
+			gapi.hangout.data.setValue("timerHasControl", "false");
+			gapi.hangout.data.setValue("timerHasControlMute", "false");
+			gapi.hangout.av.setMicrophoneMute(false); 
 		},controlLength);
 	};
   	
