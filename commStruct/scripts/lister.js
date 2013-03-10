@@ -8,6 +8,8 @@
   //-------------------- VARS -------------------------	
   
   var tableId;	// holds the id of the main lister Table for refrenceing
+  var addImg; 			//  Stores hands up overlay img
+  var removeImg; 			//  Stores hands up overlay img
   
   
   //-------------------- Listeners -------------------------
@@ -30,6 +32,8 @@
 		} else { 
 			listerTableSetup();
 		};
+		addImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg");
+		removeImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg");
 		console.log("Lister Ready");
 		}			
 	};	
@@ -299,7 +303,8 @@
 	function addAddButton(itemNo) { 									// itemNo targets specific list item
 		var addBut = document.createElement("img");						// create element
 		addBut.id = "addBut" + itemNo;								// fill in element details
-		addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		//addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		addBut.src = addImg;
 		addBut.width = 25;
 		addBut.height = 25;
 		addBut.align = "top";
@@ -331,7 +336,8 @@
 	function addIDAddButton(userID,itemNo) { 					// itemNo targets specific list item
 		var addIDBut = document.createElement("img");			// create element
 		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
-		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		//addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		addIDBut.src = addImg;
 		addIDBut.width = 25;
 		addIDBut.height = 25;
 		addIDBut.align = "top";
