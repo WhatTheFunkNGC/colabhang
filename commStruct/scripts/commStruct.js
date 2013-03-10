@@ -447,7 +447,7 @@
 	// a function to orginise user notifications and Mutes baised on amount of time spoken
 	 function userNotifyer(){
 		var totalTalkTime, userPercent, avgTalkTime, noUsers, div, lowLevelLimit, highLevelLimit, minLevelLimit, maxLevelLimit;
-		if(notifyChatLength && (gapi.hangout.data.getValue("timerHasControl") = "false");){
+		if(notifyChatLength && (gapi.hangout.data.getValue("timerHasControl") = "false")){
 			totalTalkTime = 0;
 			noUsers = gapi.hangout.data.getValue("userData");
 			for (var i = 1; i <= noUsers; i++){
