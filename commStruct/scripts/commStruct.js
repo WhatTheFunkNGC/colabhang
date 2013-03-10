@@ -85,7 +85,7 @@
 				};
 			};
 		handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
-		handUpOverlay = imgRec.createOverlay();
+		handUpOverlay = handUpOverlayImg.createOverlay();
 		//console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
 		if (alreadyExsists == false){															// if false create new user data	
 			console.log("make new user profile info"); 		
