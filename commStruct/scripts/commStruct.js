@@ -18,6 +18,8 @@
 		var dataDisplay;	
 		var optionsDisplay;
 		var currentUserProfileChecker; // changes each time a user changes profile. used for re-drawing display
+		var handUpOverlayImg;
+		var handUpOverlay;
 		
 	//-------------------- Convo Type settings -------------------------
 		var currentProfileLoaded;
@@ -82,7 +84,8 @@
 				alreadyExsists = true;
 				};
 			};
-		
+		handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		handUpOverlay = imgRec.createOverlay();
 		//console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
 		if (alreadyExsists == false){															// if false create new user data	
 			console.log("make new user profile info"); 		
@@ -156,8 +159,10 @@
 		handsUpOverlay();
 		if (!checkDataExsistanceInArray("speakQueue",userData.id)){ // if user not inchat queue
 			findAndAddNewItemToSharedList("speakQueue",userData.id);	// add them
+			handUpOverlay.setVisible(true);
 		} else { 
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);		// if not remove them
+			handUpOverlay.setVisible(false);
 		};
 	};
 	
@@ -427,11 +432,11 @@
 			} else {
 			console.log("MUTING " + allowButtingIn);
 			gapi.hangout.av.setMicrophoneMute(true);
-			handsUpOverlay();
+			handUpOverlay.setVisible(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};
 			findAndRemoveItemFromSharedList("speakQueue",userData.id);
-			
+			handUpOverlay.setVisible(false);
 			if ((muteIfSpeaker == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")){													// if muteSpeaker setting, mute all users when speaking starts
 				console.log("MUTE ALL BAR SPEAKER");
 				//console.log("num users " + gapi.hangout.data.getValue("userData"));
@@ -444,18 +449,7 @@
 				};
 			};
 		};	
-	};
-	
-	function handsUpOverlay(){
-		console.log("overlay ");
-		var imgRec = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
-		console.log("img created");
-		var over = imgRec.createOverlay(); //{{0,0},0, 0};
-		console.log("overlay made");
-		over.setVisible(true);
-		console.log("displayed");
-	};
-	
+	};	
 	
 	//------------------------------------ NOTIFICATION / time muter FUNCTIONS ---------------------------------------------------------
 	
