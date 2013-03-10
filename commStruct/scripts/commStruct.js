@@ -448,7 +448,7 @@
 	
 	function handsUpOverlay(){
 		console.log("overlay ");
-		var imgRec = createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		var imgRec = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
 		console.log("img created");
 		var over = imgRec.createOverlay(); //{{0,0},0, 0};
 		console.log("overlay made");
