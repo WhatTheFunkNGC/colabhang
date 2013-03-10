@@ -444,6 +444,8 @@
 		};	
 	};
 	
+	//------------------------------------ NOTIFICATION / time muter FUNCTIONS ---------------------------------------------------------
+	
 	// a function to orginise user notifications and Mutes baised on amount of time spoken
 	 function userNotifyer(){
 		var totalTalkTime, userPercent, avgTalkTime, noUsers, div, lowLevelLimit, highLevelLimit, minLevelLimit, maxLevelLimit;
