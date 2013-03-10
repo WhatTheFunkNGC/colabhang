@@ -17,9 +17,9 @@
 		var dTimer; // hold the timer object for refreshing the display
 		var dataDisplay;	
 		var optionsDisplay;
-		var currentUserProfileChecker; // changes each time a user changes profile. used for re-drawing display
-		var handUpOverlayImg;
-		var handUpOverlay;
+		var currentUserProfileChecker; 	// changes each time a user changes profile. used for re-drawing display
+		var handUpOverlayImg; 			//  Stores hands up overlay img
+		var handUpOverlay;				// Stores hands up overlay
 		
 	//-------------------- Convo Type settings -------------------------
 		var currentProfileLoaded;
@@ -53,6 +53,8 @@
 		chatIntervalTotal = 0;
 		dataDisplay = false;
 		optionsDisplay = false;
+		handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		handUpOverlay = handUpOverlayImg.createOverlay(); // create overlay for user
 
 		// setup timers
 		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
@@ -84,8 +86,7 @@
 				alreadyExsists = true;
 				};
 			};
-		handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
-		handUpOverlay = handUpOverlayImg.createOverlay();
+		
 		//console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
 		if (alreadyExsists == false){															// if false create new user data	
 			console.log("make new user profile info"); 		
