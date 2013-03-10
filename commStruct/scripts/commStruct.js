@@ -467,6 +467,7 @@
 			highLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel)));
 			
 			console.log("low lev limit = " + lowLevelLimit + "high limit  = " + highLevelLimit);
+			
 			if(userData.commLength <= lowLevelLimit) {
 				console.log("display message");
 				div.style.backgroundColor="#3399FF";
@@ -479,11 +480,13 @@
 				div.style.backgroundColor = "transparent";
 			
 			};
+			console.log(" muter = " + muteChatOnTimer + " and " + gapi.hangout.data.getValue("timerHasControl"));
 			if ((muteChatOnTimer == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")) {
+				console.log("inside muter if");
 				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));
 			
 				maxLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsgLevel)));
-			
+				console.log("min lev limit = " + minLevelLimit + "high limit  = " + maxLevelLimit);
 				if(userData.commLength <= minLevelLimit) {
 					console.log("display message");
 					div.style.backgroundColor="#3399FF";
