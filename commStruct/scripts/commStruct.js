@@ -98,7 +98,8 @@
 		console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
 		
-		if (!gapi.hangout.data.getValue("timerHasControlMute")){						// checks control params are loaded
+		if (!gapi.hangout.data.getValue("timerHasControl")){						// checks control params are loaded
+			gapi.hangout.data.setValue("timerHasControl", "false");
 			gapi.hangout.data.setValue("timerHasControlMute", "false");
 			gapi.hangout.data.setValue("timerHasControlMuteReturn", "false");
 		};
@@ -515,6 +516,7 @@
 		},countdown);
 		
 		setTimeout(function (){
+			gapi.hangout.data.setValue("timerHasControl", "false");
 			gapi.hangout.data.setValue("timerHasControlMute", "false");
 		},controlLength);
 	};
