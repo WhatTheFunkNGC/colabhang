@@ -25,7 +25,7 @@
 		var allowButtingIn; // Allow users to speak over eachover
 		var muteIfSpeaker; // All users bar speaker muted
 		var notifyChatLength; // if enabled the system displays notes to the user baised on the amount they have been speaking
-		var muteChatLength; // if enabled, if user chats for too long they will be muted
+		var muteChatOnTimer; // if enabled, if user chats for too long they will be muted
 		
 		
 	//-------------------- Listeners -------------------------
@@ -318,8 +318,8 @@
 		if(muteIfSpeaker == "false"){muteIfSpeaker = false };
 		notifyChatLength = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].notifyChatLength;
 		if(notifyChatLength == "false"){notifyChatLength = false };
-		muteChatLength = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteChatLength;
-		if(muteChatLength == "false"){muteChatLength = false };
+		muteChatOnTimer = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteChatOnTimer;
+		if(muteChatOnTimer == "false"){muteChatOnTimer = false };
 		
 		
 	};
@@ -479,8 +479,7 @@
 				div.style.backgroundColor = "transparent";
 			
 			};
-			gapi.hangout.data.getValue("timerHasControl");
-			if (muteChatLength && (gapi.hangout.data.getValue("timerHasControl") == "false") {
+			if (muteChatOnTimer && (gapi.hangout.data.getValue("timerHasControl") == "false") {
 				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));
 			
 				maxLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsgLevel)));

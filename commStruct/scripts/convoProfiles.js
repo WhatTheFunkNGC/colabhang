@@ -66,7 +66,7 @@ var convoProfiles = [
 					"controlMsgLength" : "20000",
 					
 					"notifyChatLength" : "true",
-					"muteChatLength" : "true",
+					"muteChatOnTimer" : "true",
 					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "true",
 				}
