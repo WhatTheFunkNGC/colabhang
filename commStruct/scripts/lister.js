@@ -222,6 +222,7 @@
 			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
 			//console.log("add line done");
+			console.log("Lister Ready");
 	};
 	
 	/* runs through all affected list element components and renames them to suit new position
@@ -304,6 +305,7 @@
 		var addBut = document.createElement("img");						// create element
 		addBut.id = "addBut" + itemNo;								// fill in element details
 		//addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		console.log("Lister Ready");
 		addBut.src = addImg;
 		addBut.width = 25;
 		addBut.height = 25;
