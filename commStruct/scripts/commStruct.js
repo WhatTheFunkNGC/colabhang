@@ -156,7 +156,6 @@
 	
 	// a button fuction that toggles if the user is waiting to speak or not
 	commStruct.prototype.toggleHandUp = function () {
-		handsUpOverlay();
 		if (!checkDataExsistanceInArray("speakQueue",userData.id)){ // if user not inchat queue
 			findAndAddNewItemToSharedList("speakQueue",userData.id);	// add them
 			handUpOverlay.setVisible(true);
