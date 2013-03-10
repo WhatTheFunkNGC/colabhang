@@ -455,9 +455,9 @@
 				totalTalkTime = totalTalkTime + parseInt(userDataHolder.commLength);
 			};
 			userPercent = userData.commLength / (totalTalkTime / 100);
-			console.log("local user contribruted " + userPercent + "% of the convosation");
+			//console.log("local user contribruted " + userPercent + "% of the convosation");
 			avgTalkTime = totalTalkTime / noUsers;
-			console.log("Average talk time =  " + avgTalkTime);
+			//console.log("Average talk time =  " + avgTalkTime);
 			
 			div = document.getElementById("userNotification");
 			div.innerHTML = "";	
@@ -467,33 +467,34 @@
 			
 			highLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel)));
 			
-			console.log("low lev limit = " + lowLevelLimit + "high limit  = " + highLevelLimit);
+			//console.log("low lev limit = " + lowLevelLimit + "high limit  = " + highLevelLimit);
 			
 			if(userData.commLength <= lowLevelLimit) {
 				console.log("display message");
 				div.style.backgroundColor="#3399FF";
 				div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsg;	
 			} else if (userData.commLength >= highLevelLimit) {
-				console.log("display message");
+				//console.log("display message");
 				div.style.backgroundColor="#FF6666";
 				div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsg;	
 			} else {
 				div.style.backgroundColor = "transparent";
 			
 			};
-			console.log(" muter = " + muteChatOnTimer + " and " + gapi.hangout.data.getValue("timerHasControl"));
+			//console.log(" muter = " + muteChatOnTimer + " and " + gapi.hangout.data.getValue("timerHasControl"));
 			if ((muteChatOnTimer == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")) {
 				console.log("inside muter if");
 				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));
 			
 				maxLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsgLevel)));
-				console.log("min lev limit = " + minLevelLimit + "high limit  = " + maxLevelLimit);
+				//console.log("min lev limit = " + minLevelLimit + "high limit  = " + maxLevelLimit);
 				if(userData.commLength <= minLevelLimit) {
 					console.log("display message");
 					div.style.backgroundColor="#3399FF";
 					div.innerHTML = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsg;
 					minChatTimeMuter();	
 				};
+				
 			};
 		};
 	};
@@ -511,12 +512,11 @@
 			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 				if(userData.id != userDataHolder.id){ 
-					console.log("user id " + userDataHolder.id);
+					//console.log("user id " + userDataHolder.id);
 					 gapi.hangout.av.muteParticipantMicrophone(userDataHolder.id); 					
 				};
 			}; 
-		},countdown);
-		
+		},countdown);		
 		setTimeout(function (){
 			console.log("MUTE ENDING");
 			gapi.hangout.data.setValue("timerHasControl", "false");
