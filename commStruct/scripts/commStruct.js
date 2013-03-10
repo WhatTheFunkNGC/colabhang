@@ -479,7 +479,7 @@
 				div.style.backgroundColor = "transparent";
 			
 			};
-			if (muteChatOnTimer && (gapi.hangout.data.getValue("timerHasControl") == "false") {
+			if ((muteChatOnTimer == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")) {
 				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));
 			
 				maxLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsgLevel)));
