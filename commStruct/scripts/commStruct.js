@@ -57,7 +57,7 @@
 		var handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
 		handUpOverlay = handUpOverlayImg.createOverlay(); // create overlay for user
 		
-		var shaperMuteOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		var shaperMuteOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/shaperMuteOverlay.png");
 		shaperMuteOverlay = handUpOverlayImg.createOverlay(); // create overlay for user
 
 		// setup timers
