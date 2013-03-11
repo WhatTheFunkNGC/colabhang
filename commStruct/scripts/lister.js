@@ -138,7 +138,7 @@
 					if (addedKeys[i].value.indexOf("hangout") !== -1){
 						itemNo = m[1];
 						//console.log("imtem No is " + itemNo);					
-						updateIDlistDisplay(itemNo,gapi.hangout.data.getValue("listTxt" + itemNo + "listID"));
+						updateIDlistDisplay(itemNo);
 					};											
 				};
 			};
@@ -166,7 +166,7 @@
 					var m = p.exec(removedKeys[i]);		
 					if (m[1] != 0){
 						itemNo = m[1];				
-						updateIDlistDisplay(itemNo,0);
+						updateIDlistDisplay(itemNo);
 					};				
 				};				
 			};
@@ -175,19 +175,20 @@
 	};
 	
 	// updates the User pictre list of an item to reflect additions or removals
-	function updateIDlistDisplay(itemNo,idListLength){
-		var div, i, li, e1, rowNum, userID ;
+	function updateIDlistDisplay(itemNo){
+		var div, i, li, e1, rowNum, userID,idListLength;
 		div = document.getElementById("mainListerTable");				// get element
 		userID =  gapi.hangout.getLocalParticipantId();
 		rowNum = ((2 * parseInt(itemNo))).toString();
-		//console.log(" div  = " + div.rows.length + " " + rowNum);
+		console.log(" div  = " + div.rows.length + " " + rowNum);
 		li = div.rows[rowNum];
 		//li.innerHTML = "";
 		li.removeChild(li.childNodes[0]);
 			e1 = li.insertCell(0);
 			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
 			e1.appendChild(addIDDelButton(userID,itemNo));
-		//console.log("and we have " + idListLength);
+		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
+		console.log("and we have " + idListLength);
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
