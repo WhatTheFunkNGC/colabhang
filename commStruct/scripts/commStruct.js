@@ -158,6 +158,8 @@
 		clearInterval(sTimer);
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
+		div = document.getElementById("speakerlist");
+		div.innerHTML = "";	
 		dataDisplay = false;
 		};
 	};
@@ -176,7 +178,7 @@
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
 		//console.log("log");	
-		var div, ul, tr, e, i,profName,numIn, limit;	
+		var div, ul, tr, e, i,profName,numIn, limit,thresholdEdit;	
 		div = document.getElementById("optionsList");
 		div.innerHTML = "";	
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
@@ -214,6 +216,18 @@
 			tr.appendChild(e);
 			ul.appendChild(tr);	
 		};
+		tr = document.createElement("tr");
+		thresholdEdit = document.createElement("input"); 					// create input element
+		thresholdEdit.id = "txtIn" + itemNo;
+		thresholdEdit.type = "number";											// of text type
+		thresholdEdit.size = "2";
+		thresholdEdit.value = speakingFreshold; 	// value = state value text
+		//fresholdEdit.onchange = function() { 									// updates shared value with enterd txt
+		//		speakingFreshold = txtIn.value); 
+		//}; 
+		tr.innerHTML = "<b>Active Speaker threshold </b>";
+		tr.appendChild(thresholdEdit);
+		ul.appendChild(tr);
 		div.appendChild(ul);	
 	};
 	
