@@ -446,6 +446,7 @@
 		
 		} else { 																			// if no one speaking --------------
 			console.log("No current speaker");
+			gapi.hangout.data.setValue("currentSpeaker",userData.id);
 			if ((muteIfSpeaker == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")){	// if muteSpeaker setting, mute all users when speaking starts
 				console.log("MUTE ALL BAR SPEAKER");
 				console.log("num users " + gapi.hangout.data.getValue("userData"));
