@@ -19,7 +19,7 @@
 		var dataDisplay;	
 		var optionsDisplay;
 		var currentUserProfileChecker; 	// changes each time a user changes profile. used for re-drawing display
-		var handUpOverlayImg; 			//  Stores hands up overlay img
+		var shaperMuteOverlay; 			//  Stores muted overlay
 		var handUpOverlay;				// Stores hands up overlay
 		
 	//-------------------- Convo Type settings -------------------------
@@ -54,8 +54,11 @@
 		chatIntervalTotal = 0;
 		dataDisplay = false;
 		optionsDisplay = false;
-		handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		var handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
 		handUpOverlay = handUpOverlayImg.createOverlay(); // create overlay for user
+		
+		var shaperMuteOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
+		shaperMuteOverlay = handUpOverlayImg.createOverlay(); // create overlay for user
 
 		// setup timers
 		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
@@ -557,6 +560,7 @@
 		setTimeout(function (){
 			console.log("MUTING FROM CONUTDOWN");
 			gapi.hangout.data.setValue("timerHasControlMute", "true");
+			shaperMuteOverlay.setVisible(true);
 			gapi.hangout.av.setMicrophoneMute(true); 
 		},countdown);
 		setTimeout(function (){
@@ -564,6 +568,7 @@
 			gapi.hangout.data.setValue("timerHasControl", "false");
 			gapi.hangout.data.setValue("timerHasControlMute", "false");
 			gapi.hangout.av.setMicrophoneMute(false); 
+			shaperMuteOverlay.setVisible(false);
 		},controlLength);
 	};
   	
