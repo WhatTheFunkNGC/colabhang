@@ -339,8 +339,9 @@
 		var addIDBut = addImg.cloneNode();			// create element
 		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
-			console.log("Add ID press");
-			findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId());
+			console.log("Add ID press " + addIDBut.id.substring(8));
+			var test = findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId());
+			console.log("found loc? " + test);
 		}; 
 		return addIDBut;										// return button element
 	};
