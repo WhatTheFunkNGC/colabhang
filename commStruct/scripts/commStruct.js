@@ -216,12 +216,13 @@
 			tr.appendChild(e);
 			ul.appendChild(tr);	
 		};
+		// create field to edit the threshold required to take hold of the convosation
 		tr = document.createElement("tr");
-		thresholdEdit = document.createElement("input"); 					// create input element
-		thresholdEdit.type = "number";											// of text type
+		thresholdEdit = document.createElement("input"); 					
+		thresholdEdit.type = "number";											
 		thresholdEdit.size = "2";
-		thresholdEdit.value = speakingFreshold; 	// value = state value text
-		thresholdEdit.onchange = function() { 									// updates shared value with enterd txt
+		thresholdEdit.value = speakingFreshold; 	
+		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
 		tr.innerHTML = "<b>Active Speaker threshold </b>";
