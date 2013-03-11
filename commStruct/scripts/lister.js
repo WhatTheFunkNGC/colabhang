@@ -8,9 +8,8 @@
   //-------------------- VARS -------------------------	
   
   var tableId;	// holds the id of the main lister Table for refrenceing
-  var addImg; 			//  Stores hands up overlay img
-  var removeImg; 			//  Stores hands up overlay img
-  
+  var addImg; 			//  Stores addImage node for cloneing on list
+  var removeImg; 			//  Stores deleteImage node for cloneing on list
   
   //-------------------- Listeners -------------------------
 	
@@ -91,7 +90,7 @@
 		div.appendChild(tb);
 		
 	}
-	
+	// this function pre-creates the add and remove buttons so images are not missing on load.
 	function imagePreload(){
 		addImg = document.createElement("img");						// create element
 		addImg .src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
@@ -299,12 +298,8 @@
 	
 	// add Delete list item button
 	function addDelButton(itemNo) { 								// itemNo targets specific list item
-		var delBut = document.createElement("img");					// create element
+		var delBut = removeImg.cloneNode();						// create element
 		delBut.id = "delBut" + itemNo;							// fill in element details
-		delBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
-		delBut.width = 25;
-		delBut.height = 25;
-		delBut.align = "top";
 		delBut.onclick = function() { 								// on click calls remove function with param targeting the specific line
 				console.log("Delete Press " + delBut.id);
 				gapi.hangout.data.setValue("lastListItemDeleted", delBut.id.substring(6));
@@ -315,13 +310,8 @@
 	
 	// add Add list item button name
 	function addAddButton(itemNo) { 									// itemNo targets specific list item
-		//var addBut = document.createElement("img");						// create element
 		var addBut = addImg.cloneNode();
 		addBut.id = "addBut" + itemNo;								// fill in element details
-		//addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
-		//addBut.width = 25;
-		//addBut.height = 25;
-		//addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.id);
 				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6)); 
@@ -333,12 +323,8 @@
 	
 	// add Delete ID list item button
 	function addIDDelButton(userID,itemNo) { 						// itemNo targets specific list item
-		var delIDBut = document.createElement("img");				// create element
+		var delIDBut = removeImg.cloneNode();				// create element
 		delIDBut.id = "delIDBut" + itemNo;						// fill in element details
-		delIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
-		delIDBut.width = 25;
-		delIDBut.height = 25;
-		delIDBut.align = "top";
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 			console.log("Del ID Press");
 			findAndRemoveItemFromSharedList("listTxt" + delIDBut.id.substring(8) + "listID",userID);
@@ -348,12 +334,8 @@
 	
 	// add Add ID list item button
 	function addIDAddButton(userID,itemNo) { 					// itemNo targets specific list item
-		var addIDBut = document.createElement("img");			// create element
+		var addIDBut = addImg.cloneNode();			// create element
 		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
-		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
-		addIDBut.width = 25;
-		addIDBut.height = 25;
-		addIDBut.align = "top";
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press");
 			findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",userID);
