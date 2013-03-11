@@ -64,10 +64,10 @@
 	Returns false if not found and the arry pos if it is          */
 	function checkDataExsistanceInArray(list,data,identical) {
 		var listLength, i;
-		if( !identical){ identical = false;};
+		if(  !identical){ identical = false;};
 		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
 		for (i = 1; i <= listLength; i++){	
-			if (data == gapi.hangout.data.getValue(list + i))){							
+			if (data == gapi.hangout.data.getValue(list + i)){							
 				return i;												// if index found, return true
 			};
 			if ((identical == false) && data.indexOf(gapi.hangout.data.getValue(list + i) !== -1)){							
