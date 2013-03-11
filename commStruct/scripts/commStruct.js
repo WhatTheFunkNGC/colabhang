@@ -284,7 +284,7 @@
 	function listUsers() {	
 		var div, ul, tr, i, e1, e2, e3, userD, userDString;	
 		ul = document.createElement("table");
-		ul.innerHTML = "<u>user name : connection time : Speeking Time</u>";		
+		ul.innerHTML = "<u>Name : connection time : chat Time</u>";		
 		for (i = 1; i <= gapi.hangout.data.getValue("userData"); i++) {						// loop through all users in data array and display in table format
 			userDString = gapi.hangout.data.getValue("userData" + i);
 			userD = eval( "(" + userDString + ")");
