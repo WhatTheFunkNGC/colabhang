@@ -40,8 +40,8 @@
 	/* remove an item from the list
 	- list : name of the list to remove from
 	- data : the data to find and remove from the list */
-	function findAndRemoveItemFromSharedList(list,data){
-		var loc = checkDataExsistanceInArray(list,data);
+	function findAndRemoveItemFromSharedList(list,data,identical){
+		var loc = checkDataExsistanceInArray(list,data,identical);
 		if (!loc) {
 		} else {
 			removeItemFromSharedList(list,loc);
@@ -51,21 +51,26 @@
 	/* adds an item to a list providing it dosnt already exsist
 	- list : name of the list to remove from
 	- data : the data to find and remove from the list */
-	function findAndAddNewItemToSharedList(list,data){
-		if (!checkDataExsistanceInArray(list,data)){
+	function findAndAddNewItemToSharedList(list,data,identical){
+		if (!checkDataExsistanceInArray(list,data,identical)){
 		return addNewItemToSharedList (list,-1,data);
-		} else { return checkDataExsistanceInArray(list,data); };
+		} else { return checkDataExsistanceInArray(list,data,identical); };
 	};
 	
 	/* checks if data exsists within the list array
 	- data : the data to check for in the list
 	- list : the name of the list in the shared state to look through 
+	- identical : optional - if to find exsact match or just within
 	Returns false if not found and the arry pos if it is          */
-	function checkDataExsistanceInArray(list,data) {
+	function checkDataExsistanceInArray(list,data,identical) {
 		var listLength, i;
+		if( !identical){ identical = false;};
 		listLength = gapi.hangout.data.getValue(list) || "0";				// get length of list
-		for (i = 1; i <= listLength; i++){									
-			if (data.indexOf(gapi.hangout.data.getValue(list + i) !== -1)){							
+		for (i = 1; i <= listLength; i++){	
+			if (data == gapi.hangout.data.getValue(list + i))){							
+				return i;												// if index found, return true
+			};
+			if ((identical == false) && data.indexOf(gapi.hangout.data.getValue(list + i) !== -1)){							
 				return i;												// if index found, return true
 			};																						
 		}																							

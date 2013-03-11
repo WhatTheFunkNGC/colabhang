@@ -329,7 +329,7 @@
 		delIDBut.id = "delIDBut" + itemNo;						// fill in element details
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 			console.log("Del ID Press");
-			findAndRemoveItemFromSharedList("listTxt" + delIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId());
+			findAndRemoveItemFromSharedList("listTxt" + delIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId(),true);
 		}; 
 		return delIDBut;											// return button element
 	};
@@ -340,7 +340,7 @@
 		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press " + addIDBut.id.substring(8));
-			var test = findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId());
+			var test = findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId(),true);
 			console.log("found loc? " + test);
 		}; 
 		return addIDBut;										// return button element
