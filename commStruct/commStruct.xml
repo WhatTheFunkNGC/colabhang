@@ -13,9 +13,10 @@
 	  <div id="optionsList"></div>
 	  
 	  
-	  <div id="speakerlist"></div>	
+	  
 	  
 	  <button type="button" id = "dataDisplayToggle">Data Display</button>
+	  <div id="speakerlist"></div>	
       <div id="userDetailsList"></div>	 
 	  
 	  <div id="lister"></div>	
