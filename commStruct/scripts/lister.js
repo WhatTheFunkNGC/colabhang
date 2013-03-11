@@ -205,7 +205,7 @@
 		//console.log(" delete row " + i);
 		div.deleteRow(i);
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
-		if ( gapi.hangout.data.getValue("listTxt") == 0){
+		if ( gapi.hangout.data.getValue("listTxt") == "0"){
 			addNewItemToSharedList ("listTxt",1);
 		};
 	};	
