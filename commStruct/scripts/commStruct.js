@@ -222,7 +222,7 @@
 		thresholdEdit.size = "2";
 		thresholdEdit.value = speakingFreshold; 	// value = state value text
 		thresholdEdit.onchange = function() { 									// updates shared value with enterd txt
-				speakingFreshold = thresholdEdit.value); 
+			speakingFreshold = thresholdEdit.value; 
 		}; 
 		tr.innerHTML = "<b>Active Speaker threshold </b>";
 		tr.appendChild(thresholdEdit);
