@@ -68,7 +68,6 @@
 		tb.id = "mainListerTable";
 		tableId = tb.id;
 		tb.insertRow(0);
-		userID =  gapi.hangout.getLocalParticipantId();
 		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			j = ((2 * parseInt(i)) - 1).toString();
 			li = tb.insertRow(j);								// Create new element to attach
@@ -80,8 +79,8 @@
 			li2 = tb.insertRow(j);
 
 				e2 = li2.insertCell(0);
-				e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
-				e2.appendChild(addIDDelButton(userID,i));
+				e2.appendChild(addIDAddButton(i));					// add Add user sign button
+				e2.appendChild(addIDDelButton(i));
 				idListLength = gapi.hangout.data.getValue("listTxt" + i + "listID");
 				for (k = 1; k <= idListLength; k++) {									// for all ID pics in list line, imcriment name refrence by 1
 					e2.appendChild(userPicture(i,k));
@@ -176,17 +175,16 @@
 	
 	// updates the User pictre list of an item to reflect additions or removals
 	function updateIDlistDisplay(itemNo){
-		var div, i, li, e1, rowNum, userID,idListLength;
+		var div, i, li, e1, rowNum,idListLength;
 		div = document.getElementById("mainListerTable");				// get element
-		userID =  gapi.hangout.getLocalParticipantId();
 		rowNum = ((2 * parseInt(itemNo))).toString();
 		console.log(" div  = " + div.rows.length + " " + rowNum);
 		li = div.rows[rowNum];
 		//li.innerHTML = "";
 		li.removeChild(li.childNodes[0]);
 			e1 = li.insertCell(0);
-			e1.appendChild(addIDAddButton(userID,itemNo));					// add Add user sign button
-			e1.appendChild(addIDDelButton(userID,itemNo));
+			e1.appendChild(addIDAddButton(itemNo));					// add Add user sign button
+			e1.appendChild(addIDDelButton(itemNo));
 		idListLength = gapi.hangout.data.getValue("listTxt" + itemNo + "listID");
 		console.log("and we have " + idListLength);
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
@@ -215,7 +213,7 @@
 	/* Adds a new table row for a new list item
 	itemNo - the location in the list to add too */
 	function addListItem (itemNo){
-	var div, i, li, li2, e1, e2, userID, j;
+	var div, i, li, li2, e1, e2, j;
 	//console.log("New list item print");
 		itemNo = gapi.hangout.data.getValue("lastListItemAdded");
 		//console.log("call refrence update " + gapi.hangout.data.getValue("lastListItemAdded"));
@@ -223,7 +221,6 @@
 		i = (parseInt(itemNo) + 1).toString();
 		
 		updateListRefrencesAdd(itemNo);
-		userID =  gapi.hangout.getLocalParticipantId();
 		
 		j = ((2 * parseInt(i)) - 1).toString();					// use (2N - 1) to selest tabe line corectly
 		//console.log("start adding rows " + i);
@@ -235,8 +232,8 @@
 			j++;														// set to add below just added line
 		li2 = div.insertRow(j);
 			e2 = li2.insertCell(0);
-			e2.appendChild(addIDAddButton(userID,i));					// add Add user sign button
-			e2.appendChild(addIDDelButton(userID,i));					// add Remove user sign button 	
+			e2.appendChild(addIDAddButton(i));					// add Add user sign button
+			e2.appendChild(addIDDelButton(i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
 			//console.log("add line done");
 			console.log("Lister Ready");
@@ -327,23 +324,23 @@
 	};
 	
 	// add Delete ID list item button
-	function addIDDelButton(userID,itemNo) { 						// itemNo targets specific list item
+	function addIDDelButton(itemNo) { 						// itemNo targets specific list item
 		var delIDBut = removeImg.cloneNode();				// create element
 		delIDBut.id = "delIDBut" + itemNo;						// fill in element details
 		delIDBut.onclick = function() { 							// on click calls remove function with param targeting the specific line
 			console.log("Del ID Press");
-			findAndRemoveItemFromSharedList("listTxt" + delIDBut.id.substring(8) + "listID",userID);
+			findAndRemoveItemFromSharedList("listTxt" + delIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId());
 		}; 
 		return delIDBut;											// return button element
 	};
 	
 	// add Add ID list item button
-	function addIDAddButton(userID,itemNo) { 					// itemNo targets specific list item
+	function addIDAddButton(itemNo) { 					// itemNo targets specific list item
 		var addIDBut = addImg.cloneNode();			// create element
 		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
 		addIDBut.onclick = function() { 						// on click calls remove function with param targeting the specific line
 			console.log("Add ID press");
-			findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",userID);
+			findAndAddNewItemToSharedList("listTxt" + addIDBut.id.substring(8) + "listID",gapi.hangout.getLocalParticipantId());
 		}; 
 		return addIDBut;										// return button element
 	};
