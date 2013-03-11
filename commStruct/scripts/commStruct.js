@@ -218,7 +218,6 @@
 		};
 		tr = document.createElement("tr");
 		thresholdEdit = document.createElement("input"); 					// create input element
-		thresholdEdit.id = "txtIn" + itemNo;
 		thresholdEdit.type = "number";											// of text type
 		thresholdEdit.size = "2";
 		thresholdEdit.value = speakingFreshold; 	// value = state value text
