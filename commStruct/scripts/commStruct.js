@@ -221,9 +221,9 @@
 		thresholdEdit.type = "number";											// of text type
 		thresholdEdit.size = "2";
 		thresholdEdit.value = speakingFreshold; 	// value = state value text
-		//fresholdEdit.onchange = function() { 									// updates shared value with enterd txt
-		//		speakingFreshold = txtIn.value); 
-		//}; 
+		thresholdEdit.onchange = function() { 									// updates shared value with enterd txt
+				speakingFreshold = thresholdEdit.value); 
+		}; 
 		tr.innerHTML = "<b>Active Speaker threshold </b>";
 		tr.appendChild(thresholdEdit);
 		ul.appendChild(tr);
