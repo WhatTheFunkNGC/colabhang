@@ -12,6 +12,7 @@
 		var userDataPos;	// golbal var - marks the position that the local users data is stored in "userData"		
 		var refreshUserList = 1000; // refresh rate of main display
 		var refreshUserListHolder = 1000; // refresh rate of main display Holder
+		var speakingFreshold = 8;
 		var chatIntervalCounter;
 		var chatIntervalTotal;
 		var dTimer; // hold the timer object for refreshing the display
@@ -210,6 +211,7 @@
 		div.appendChild(ul);	
 	};
 	
+	// creates a button for a profile type
 	function createProfileButton(num) {
 		var btn = document.createElement("button");
 		btn.innerHTML = convoProfiles[num].profileName;
@@ -221,6 +223,7 @@
 	return btn;			
 	};
 	
+	// creates a button for a user profile type
 	function createUserProfileButton(profile,userProfile) {
 		//console.log("log");	
 		var btn = document.createElement("button");
@@ -356,16 +359,18 @@
 	}
 	
 	function userChatCounter() {
-		if (chatIntervalCounter == 10){	
-			if (chatIntervalTotal > 7){
-				speakTime = speakTime + 1;				
-				leadSpeaker();			
-			} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
-			chatIntervalCounter = 0; 
-			chatIntervalTotal = 0;
-		} else {
-			chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
-			chatIntervalCounter = chatIntervalCounter + 1;
+		if (!gapi.hangout.av.getMicrophoneMute()){ // only do counting if user isnt muted.
+			if (chatIntervalCounter == 10){	
+				if (chatIntervalTotal >= speakingFreshold){
+					speakTime = speakTime + 1;				
+					leadSpeaker();			
+				} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
+				chatIntervalCounter = 0; 
+				chatIntervalTotal = 0;
+			} else {
+				chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
+				chatIntervalCounter = chatIntervalCounter + 1;
+			};
 		};
 	};
 	
