@@ -16,11 +16,13 @@
 		var chatIntervalCounter;
 		var chatIntervalTotal;
 		var dTimer; // hold the timer object for refreshing the display
+		var sTimer; // hold the timer object for refreshing the speaker
 		var dataDisplay;	
 		var optionsDisplay;
 		var currentUserProfileChecker; 	// changes each time a user changes profile. used for re-drawing display
 		var shaperMuteOverlay; 			//  Stores muted overlay
 		var handUpOverlay;				// Stores hands up overlay
+		
 		
 	//-------------------- Convo Type settings -------------------------
 		var currentProfileLoaded;
@@ -46,7 +48,6 @@
 			//updateCheckerCommStruct(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 			//});
 		};	
-		
 		// initilise global vars 
 		totalTime = 1;
 		speakTime = 0;
@@ -62,8 +63,7 @@
 
 		// setup timers
 		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
-		var uTimer = setInterval(function() {userTimer(); updateTimer(); displaySpeakerInfo();},1000);			// setup update timer	
-		//var sTimer = setInterval(function() {displaySpeakerInfo()},1000);			// setup timer for displaying current speaker and thoes who wish to speak
+		var uTimer = setInterval(function() {userTimer(); updateTimer();},1000);			// setup update timer	
 		var cTimer;		
 		var nTimer;		
 		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer after a 1.5 sec wait
@@ -149,10 +149,13 @@
 		if (!dataDisplay){ 
 		console.log("clicked when false");
 		dTimer = setInterval(function() {listUsers()},refreshUserList);		// setup refresh rate of user display
+		sTimer = setInterval(function() {displaySpeakerInfo()},1000);
+		
 		dataDisplay = true;
 		} else { 
 		console.log("clicked when true");
 		clearInterval(dTimer);
+		clearInterval(sTimer);
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
 		dataDisplay = false;
@@ -222,6 +225,8 @@
 		btn.value = convoProfiles[num].profileName;	
 		btn.onclick = function() {
 			gapi.hangout.data.setValue("currentConvoMode", btn.id.substring(10));
+			div = document.getElementById("userNotification");
+			div.innerHTML = "";	
 		};
 	return btn;			
 	};
@@ -278,7 +283,8 @@
 	// display list of partisipants with relivant time stats
 	function listUsers() {	
 		var div, ul, tr, i, e1, e2, e3, userD, userDString;	
-		ul = document.createElement("table");	
+		ul = document.createElement("table");
+		ul.innerHTML = "USERS       : connection time : Speeking Time";		
 		for (i = 1; i <= gapi.hangout.data.getValue("userData"); i++) {						// loop through all users in data array and display in table format
 			userDString = gapi.hangout.data.getValue("userData" + i);
 			userD = eval( "(" + userDString + ")");
