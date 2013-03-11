@@ -431,7 +431,7 @@
 	
 	// A function to sort the current spekaer state
 	function leadSpeaker(){
-		if (gapi.hangout.data.getValue("currentSpeaker") != (userData.id || "no one")){	  // if other user speaking --------------
+		if ((gapi.hangout.data.getValue("currentSpeaker") != userData.id ) && (gapi.hangout.data.getValue("currentSpeaker") != "no one")){	  // if other user speaking --------------
 			if (allowButtingIn){
 				gapi.hangout.data.setValue("currentSpeaker",userData.id); 	// if allowed to butt in, local user become active speaker
 			} else {
@@ -445,9 +445,10 @@
 			handUpOverlay.setVisible(false);
 		
 		} else { 																			// if no one speaking --------------
+			console.log("No current speaker");
 			if ((muteIfSpeaker == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")){	// if muteSpeaker setting, mute all users when speaking starts
 				console.log("MUTE ALL BAR SPEAKER");
-				//console.log("num users " + gapi.hangout.data.getValue("userData"));
+				console.log("num users " + gapi.hangout.data.getValue("userData"));
 				for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 					var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 					if(userData.id != userDataHolder.id){ 
