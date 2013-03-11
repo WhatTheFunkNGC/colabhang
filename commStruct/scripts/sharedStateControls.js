@@ -39,7 +39,8 @@
 	
 	/* remove an item from the list
 	- list : name of the list to remove from
-	- data : the data to find and remove from the list */
+	- data : the data to find and remove from the list 
+	- identical : OPTIONAL - if true looks for an exsact match. false can exsist within a string*/
 	function findAndRemoveItemFromSharedList(list,data,identical){
 		var loc = checkDataExsistanceInArray(list,data,identical);
 		if (!loc) {
@@ -50,7 +51,8 @@
 	
 	/* adds an item to a list providing it dosnt already exsist
 	- list : name of the list to remove from
-	- data : the data to find and remove from the list */
+	- data : the data to find and remove from the list 
+	- identical : OPTIONAL - if true looks for an exsact match. false can exsist within a string*/
 	function findAndAddNewItemToSharedList(list,data,identical){
 		if (!checkDataExsistanceInArray(list,data,identical)){
 		return addNewItemToSharedList (list,-1,data);
@@ -60,7 +62,7 @@
 	/* checks if data exsists within the list array
 	- data : the data to check for in the list
 	- list : the name of the list in the shared state to look through 
-	- identical : optional - if to find exsact match or just within
+	- identical : OPTIONAL - if true looks for an exsact match. false can exsist within a string
 	Returns false if not found and the arry pos if it is          */
 	function checkDataExsistanceInArray(list,data,identical) {
 		var listLength, i;
