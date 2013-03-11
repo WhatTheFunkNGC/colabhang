@@ -181,12 +181,12 @@
 		div.innerHTML = "";	
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
 		//console.log("user num = " + currentUserProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
-		div.innerHTML = "<b>Convo Mode<\b> : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br><b>User Mode<\b> : " + 
+		div.innerHTML = "<b>Convo Mode</b> : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br><b>User Mode</b> : " + 
 			convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].name +
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		tr.innerHTML = "<b>Convo Modes<\b> : ";
+		tr.innerHTML = "<b>Convo Modes</b> : ";
 		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
@@ -284,7 +284,7 @@
 	function listUsers() {	
 		var div, ul, tr, i, e1, e2, e3, userD, userDString;	
 		ul = document.createElement("table");
-		ul.innerHTML = "<b><u>user name : connection time : Speeking Time</u></b>";		
+		ul.innerHTML = "<u>user name : connection time : Speeking Time</u>";		
 		for (i = 1; i <= gapi.hangout.data.getValue("userData"); i++) {						// loop through all users in data array and display in table format
 			userDString = gapi.hangout.data.getValue("userData" + i);
 			userD = eval( "(" + userDString + ")");
