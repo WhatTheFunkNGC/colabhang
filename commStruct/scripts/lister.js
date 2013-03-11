@@ -26,14 +26,15 @@
 		
 		//if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
 		
+		imagePreload();
+		
 		//this.displayListItems();
 		if (!!gapi.hangout.data.getValue("listTxt")){ 
 			listerTableSetupExsisting();
 		} else { 
 			listerTableSetup();
 		};
-		addImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg");
-		removeImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg");
+		
 		console.log("Lister Ready");
 		}			
 	};	
@@ -91,6 +92,18 @@
 		
 	}
 	
+	function imagePreload(){
+		addImg = document.createElement("img");						// create element
+		addImg .src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
+		addImg.width = 25;
+		addImg.height = 25;
+		addImg.align = "top";
+		removeImg = document.createElement("img");						// create element
+		removeImg.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/deleteBtn.jpg";
+		removeImg.width = 25;
+		removeImg.height = 25;
+		removeImg.align = "top";
+	};
 	
 	//-------------------------------------------- Functions -------------------------------------------------------
 	
@@ -302,14 +315,13 @@
 	
 	// add Add list item button name
 	function addAddButton(itemNo) { 									// itemNo targets specific list item
-		var addBut = document.createElement("img");						// create element
+		//var addBut = document.createElement("img");						// create element
+		var addBut = addImg.cloneNode();
 		addBut.id = "addBut" + itemNo;								// fill in element details
 		//addBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
-		console.log("Lister Ready");
-		addBut.src = addImg;
-		addBut.width = 25;
-		addBut.height = 25;
-		addBut.align = "top";
+		//addBut.width = 25;
+		//addBut.height = 25;
+		//addBut.align = "top";
 		addBut.onclick = function() { 									// on click calls remove function with param targeting the specific line
 				console.log("Add Press " + addBut.id);
 				gapi.hangout.data.setValue("lastListItemAdded", addBut.id.substring(6)); 
@@ -338,8 +350,7 @@
 	function addIDAddButton(userID,itemNo) { 					// itemNo targets specific list item
 		var addIDBut = document.createElement("img");			// create element
 		addIDBut.id = "addIDBut" + itemNo;					// fill in element details
-		//addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
-		addIDBut.src = addImg;
+		addIDBut.src = "https://raw.github.com/WhatTheFunkNGC/colabhang/master/lister/img/addBtn.jpg";
 		addIDBut.width = 25;
 		addIDBut.height = 25;
 		addIDBut.align = "top";
