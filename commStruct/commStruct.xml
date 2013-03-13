@@ -9,7 +9,7 @@
       <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"></script>  
 	  
 	 <div type = "textarea" id="userNotification"></div>	 
-	 <button type="button" id = "handUpBtn" align="left">Hand Up</button> <button type="button" id = "optionDisplayToggle" align="center">Options</button> <button type="button" id = "dataDisplayToggle" align="right">Data Display</button>
+	 <button type="button" id = "handUpBtn" align="left">Hand Up</button> <button type="button" id = "optionDisplayToggle" align="center">Options</button> <button type="button" id = "dataDisplayToggle" align="right">Data</button>
 	 <div id="controls"></div>
 	 <div style="margin-left: 25px; margin-top: 10px;"></div>
 	 <div id="optionsList"></div>

@@ -304,7 +304,6 @@
 		if (highlightControl){
 			htmlString = "Highlight";			
 		};
-		htmlString = htmlString + " overide";	
 		div.innerHTML = htmlString;
 		if (highlightControl){
 			div.appendChild(createListNavBtnUp());
@@ -354,7 +353,7 @@
 		}	
 		div = document.getElementById("userDetailsList");
 		div.innerHTML = "";	
-		div.innerHTML = "<u>Name : connection time : chat Time</u>";			
+		div.innerHTML = "<b>Name : connection time : chat Time</b>";			
 		div.appendChild(ul);	
 		//console.log("Displayed"); 
 	};
