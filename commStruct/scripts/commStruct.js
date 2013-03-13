@@ -189,7 +189,7 @@
 		tr = document.createElement("tr");
 		//tr.innerHTML = "<b>Convo Modes</b> : " ;
 		c1 = tr.insertCell(-1);
-		c1.innerHTML = "Convo Modes : ";
+		c1.innerHTML = "Convo Mode :";
 		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
 		c2.appendChild(addDDBconvoProfile());
@@ -198,7 +198,7 @@
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		c1 = tr.insertCell(-1);
-		c1.innerHTML = "<b>User Mode </b>: ";
+		c1.innerHTML = "User Mode :";
 		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
 		c2.appendChild(addDDBUserProfile());
@@ -217,8 +217,14 @@
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
-		tr.innerHTML = "<b>Active Speaker threshold </b>";
-		tr.appendChild(thresholdEdit);
+		c1 = tr.insertCell(-1);
+		c1.innerHTML = "Active Speaker threshold ";
+		c1.style.align ="left"
+		c2 = tr.insertCell(-1);
+		c2.appendChild(thresholdEdit);
+		c2.style.width = "100%";
+		c2.style.align ="left"
+		//tr.appendChild(thresholdEdit);
 		ul.appendChild(tr);
 		div.appendChild(ul);	
 	};
