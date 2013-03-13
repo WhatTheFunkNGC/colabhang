@@ -314,7 +314,7 @@
 		if (itemNo != "0"){
 			rowNum = (2 * parseInt(itemNo)) - 1;
 			div = document.getElementById(tableId);	
-			if (div.Rows[rowNum].style.backgroundColor == "transparent"){
+			if (div.rows[rowNum].style.backgroundColor == "transparent"){
 				div.rows[rowNum].style.backgroundColor="#F8ED69";
 				div.rows[rowNum + 1].style.backgroundColor="#F8ED69";
 			} else {
