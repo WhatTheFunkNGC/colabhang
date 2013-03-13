@@ -269,7 +269,7 @@
 		for (var i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			dDBUserProfile.add(createProfileButton(i));
 		};
-		dDBUserProfile.onchange = function() {
+		dDBconvoProfile.onchange = function() {
 			gapi.hangout.data.setValue("currentConvoMode", dDBconvoProfile.selectedIndex.toString());
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
