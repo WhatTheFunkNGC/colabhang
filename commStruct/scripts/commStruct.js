@@ -191,9 +191,10 @@
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
 		tr.innerHTML = "<b>Convo Modes</b> : ";
-		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
-			tr.appendChild(createProfileButton(i));
-		};
+		//for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
+		//	tr.appendChild(createProfileButton(i));
+		//};
+		tr.appendChild(dDBconvoProfile());
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		tr.innerHTML = "<b>User Modes </b>: ";
@@ -262,20 +263,28 @@
 		div.appendChild(ul);	
 	};
 	
-	// creates a button for a profile type
-	function createProfileButton(num) {
-		var btn = document.createElement("button");
-		btn.innerHTML = convoProfiles[num].profileName;
-		btn.id = "profileBut" + num;
-		btn.value = convoProfiles[num].profileName;	
-		btn.onclick = function() {
-			gapi.hangout.data.setValue("currentConvoMode", btn.id.substring(10));
+	
+	function dDBconvoProfile(){
+		var dDBUserProfile = document.createElement("select");
+		dDBUserProfile.onchange = function() {
+			gapi.hangout.data.setValue("currentConvoMode", dDBconvoProfile.selectedIndex);
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
 			};
 		};
-	return btn;			
+		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
+			tr.appendChild(createProfileButton(i));
+		};
+		return dDBUserProfile;
+	};
+		
+		
+	// creates a button for a profile type
+	function createProfileButton(num) {
+		var btn = document.createElement("option");
+		btn.text = convoProfiles[num].profileName;
+		return btn;			
 	};
 	
 	// creates a button for a user profile type
