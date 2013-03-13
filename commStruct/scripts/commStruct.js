@@ -359,7 +359,7 @@
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != "0"){
 				var newVal = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
 				gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
-			};
+			}else {gapi.hangout.data.setValue("currentHighlightedItem","1"); };
 		};
 	return btn;			
 	};
