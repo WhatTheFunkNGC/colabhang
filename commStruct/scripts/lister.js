@@ -118,6 +118,7 @@
 	function updateCheckerLister (addedKeys,removedKeys){
 		var itemNo, div;
 		div = document.getElementById(tableId);
+		console.log("log");
 		if (addedKeys.length != 0){
 			console.log("1");
 		 // check for ligitimate additions
@@ -187,10 +188,10 @@
 		};
 	};
 	// used exsclusivly for updating textfeilds
-	function msgHandler(incoming){	
-		var field = document.getElementById("txtIn"+ incoming);
-		field.value = gapi.hangout.data.getValue("listTxt" + incoming); 
-	};
+	//function msgHandler(incoming){	
+	//	var field = document.getElementById("txtIn"+ incoming);
+	//	field.value = gapi.hangout.data.getValue("listTxt" + incoming); 
+	//};
 	
 	// updates the User pictre list of an item to reflect additions or removals
 	function updateIDlistDisplay(itemNo){
