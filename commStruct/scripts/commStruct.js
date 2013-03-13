@@ -203,20 +203,20 @@
 			speakingFreshold = thresholdEdit.value; 
 		}; 
 		var outputDisplay = createTxtOutputBox();
-		var displayOutputBtn = document.createElement("button"); 
-		displayOutputBtn.innerHTML = "show Output";
-		displayOutputBtn.onclick = function() { 
-			if (!outputBtnToggle){
-			outputDisplay.visible = true;
-			outputBtnToggle = true;
-			} else {
-			outputDisplay.visible = false;
-			outputBtnToggle = false;
-			}
-		};
+		//var displayOutputBtn = document.createElement("button"); 
+		//displayOutputBtn.innerHTML = "show Output";
+		//displayOutputBtn.onclick = function() { 
+		//	if (!outputBtnToggle){
+		//	outputDisplay.visible = true;
+		//	outputBtnToggle = true;
+		//	} else {
+		//	outputDisplay.visible = false;
+		//	outputBtnToggle = false;
+		//	}
+		//};
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
-		ul.appendChild(makeSettingsLayout("Output : ",displayOutputBtn));
-		ul.appendChild(outputDisplay);
+		ul.appendChild(makeSettingsLayout("Output : ",createTxtOutputBox()));
+		//ul.appendChild(outputDisplay);
 		div.appendChild(ul);	
 	};
 	
