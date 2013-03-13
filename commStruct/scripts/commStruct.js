@@ -284,14 +284,13 @@
 		div = document.getElementById("controls");
 		htmlString = "";
 		if (highlightControl){
-			htmlString = "List Highlight : ";
-			div.appendChild(createListNavBtnUp());
-			div.appendChild(createListNavBtnDown());
+			htmlString = "List Highlight : ";			
 		};
 		div.innerHTML = htmlString;
 		if (highlightControl){
 			div.appendChild(createListNavBtnUp());
 			div.appendChild(createListNavBtnDown());
+			div.appendChild(createListNavBtnRemove());
 		};
 	};
 	
@@ -361,6 +360,16 @@
 				var newVal = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
 				gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
 			};
+		};
+	return btn;			
+	};
+	// a button for navigating which list item is highlighted
+	function createListNavBtnRemove() {
+		var btn = document.createElement("button");
+		btn.innerHTML = "&nbsp X &nbsp";
+		btn.id = "listHighlightremoveBtn";
+		btn.onclick = function() {
+			gapi.hangout.data.setValue("currentHighlightedItem","0");	
 		};
 	return btn;			
 	};

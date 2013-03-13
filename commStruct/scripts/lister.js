@@ -209,7 +209,7 @@
 		//console.log(" delete row " + i);
 		div.deleteRow(i);
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
-		console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
+		//console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
 		var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
 		currentHighlightItem = (parseInt(currentHighlightItem)- 1).toString();
 		gapi.hangout.data.setValue("currentHighlightedItem",newHighlight);
@@ -240,9 +240,11 @@
 			e2.appendChild(addIDAddButton(i));					// add Add user sign button
 			e2.appendChild(addIDDelButton(i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
-			console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
-			var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1).toString();
-			gapi.hangout.data.setValue("currentHighlightedItem",newHighlight);
+			if(gapi.hangout.data.getValue("currentHighlightedItem") != "0"){
+				//console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
+				var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1).toString();
+				gapi.hangout.data.setValue("currentHighlightedItem",newHighlight);
+			};
 	};
 	
 	/* runs through all affected list element components and renames them to suit new position
