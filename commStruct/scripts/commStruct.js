@@ -190,10 +190,7 @@
 			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		tr.innerHTML = "<b>Convo Modes</b> : ";
-		//for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
-		//	tr.appendChild(createProfileButton(i));
-		//};
+		tr.innerHTML = "<b>Convo Modes</b> : " ;
 		console.log("do it");
 		tr.appendChild(dDBconvoProfile());
 		console.log("nearly");
@@ -277,7 +274,7 @@
 			};
 		};
 		for (var i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
-			tr.appendChild(createProfileButton(i));
+			dDBUserProfile.add(createProfileButton(i));
 		};
 		return dDBUserProfile;
 	};
