@@ -195,6 +195,7 @@
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
+		scrollHighlightChange();
 	};
 		
 	/* removes a list element from the display table
@@ -209,10 +210,7 @@
 		//console.log(" delete row " + i);
 		div.deleteRow(i);
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
-		if ( gapi.hangout.data.getValue("listTxt") == "0"){ 			// checks if no list items left and adds a new one if true
-			gapi.hangout.data.setValue("lastListItemAdded", "0"); 
-			addNewItemToSharedList ("listTxt",1);
-		};
+		scrollHighlightChange();
 	};	
 		
 	/* Adds a new table row for a new list item
@@ -340,6 +338,10 @@
 				console.log("Delete Press " + delBut.id);
 				gapi.hangout.data.setValue("lastListItemDeleted", delBut.id.substring(6));
 				removeItemFromSharedList("listTxt",delBut.id.substring(6));
+				if ( gapi.hangout.data.getValue("listTxt") == "0"){ 			// checks if no list items left and adds a new one if true
+					gapi.hangout.data.setValue("lastListItemAdded", "0"); 
+					addNewItemToSharedList ("listTxt",1);
+				};
 		}; 
 		return delBut;												// return button element
 	};
