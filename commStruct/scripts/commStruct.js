@@ -241,7 +241,7 @@
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
 			};
-			if(currentUserProfileLoaded != "pie"){
+			if(currentUserProfileLoaded == "pie"){
 				var oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
 				var newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals0")) + 1).toString();
 				var oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
