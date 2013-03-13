@@ -276,6 +276,7 @@
 		for (var i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			dDBUserProfile.add(createProfileButton(i));
 		};
+		dDBUserProfile.selectedIndex = currentProfileLoaded;
 		return dDBUserProfile;
 	};
 		
