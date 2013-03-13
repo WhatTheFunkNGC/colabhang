@@ -437,8 +437,8 @@
 		console.log("called list calculator");
 		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + " Time Discussed : " ;	
-			for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
-				outputString = outputString + gapi.hangout.data.getValue("listTxt" + i + "times" + j) + " ";
+			for (var j = 1; j <= gapi.hangout.data.getValue("listTxt" + i + "Times"); j++) { 
+				outputString = outputString + gapi.hangout.data.getValue("listTxt" + i + "Times" + j) + " ";
 			};
 			outputString = outputString + "\n";	
 			
