@@ -424,7 +424,7 @@
   
   function listTextOutput(){
 		var outputString = "";
-		for (vari = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
+		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			
 			//for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
 			//gapi.hangout.data.getValue("listTxt" + i + "times");
