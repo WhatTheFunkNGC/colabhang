@@ -481,6 +481,7 @@
 			gapi.hangout.data.setValue("userProfileTotals" + j, "0");
 		};
 		numProfiles = (convoProfiles[profile].userTypes.length).toString();
+		currentUserProfileLoaded = "0";
 		gapi.hangout.data.setValue("userProfileTotals",numProfiles);
 	};
 	
