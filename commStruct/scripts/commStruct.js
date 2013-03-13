@@ -274,7 +274,7 @@
 			};
 		
 		};
-		dDBUserProfile.style.width =100%;
+		dDBUserProfile.style.width = "100%";
 		dDBUserProfile.selectedIndex = currentUserProfileLoaded;
 		return dDBUserProfile;
 	};
