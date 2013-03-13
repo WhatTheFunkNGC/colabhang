@@ -273,7 +273,7 @@
 				div.innerHTML = "";	
 			};
 		};
-		for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
+		for (var i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 			tr.appendChild(createProfileButton(i));
 		};
 		return dDBUserProfile;
