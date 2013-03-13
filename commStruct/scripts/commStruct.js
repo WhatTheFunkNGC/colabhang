@@ -239,7 +239,7 @@
 			dDBconvoProfile.add(createProfileButton(i));
 		};
 		dDBconvoProfile.onchange = function() {
-			console.log("set to = " + dDBconvoProfile.selectedIndex);
+			console.log("set to = " + dDBconvoProfile.selectedIndex + " so " + convoProfiles[dDBconvoProfile.selectedIndex].userTypes[currentUserProfileLoaded].name);
 			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
