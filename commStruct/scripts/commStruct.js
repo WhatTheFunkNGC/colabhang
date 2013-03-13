@@ -187,12 +187,17 @@
 	//		"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
-		tr.innerHTML = "<b>Convo Modes</b> : " ;
-		tr.appendChild(addDDBconvoProfile());
+		//tr.innerHTML = "<b>Convo Modes</b> : " ;
+		c1 = tr.insertCell(-1);
+		c1.innerHTML = "Convo Modes : ";
+		c1.style.align ="left"
+		c2 = tr.insertCell(-1);
+		c2.appendChild(addDDBconvoProfile());
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		c1 = tr.insertCell(-1);
 		c1.innerHTML = "<b>User Mode </b>: ";
+		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
 		c2.appendChild(addDDBUserProfile());
 		ul.appendChild(tr);
@@ -237,7 +242,7 @@
 			};
 			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 		};
-		
+		dDBconvoProfile.style.width =100%;
 		dDBconvoProfile.selectedIndex = currentProfileLoaded;
 		return dDBconvoProfile;
 	};
@@ -269,7 +274,7 @@
 			};
 		
 		};
-		
+		dDBUserProfile.style.width =100%;
 		dDBUserProfile.selectedIndex = currentUserProfileLoaded;
 		return dDBUserProfile;
 	};
