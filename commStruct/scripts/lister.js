@@ -324,7 +324,7 @@
 	/* toggles if a selected List item is highlighted */
 	function highlightListItem(itemNo){
 		var div, rowNum;
-		if (itemNo != "0"){
+		if ((itemNo != "0") || (!itemNo) ){
 			rowNum = (2 * parseInt(itemNo)) - 1;
 			div = document.getElementById(tableId);			
 			div.rows[rowNum].style.backgroundColor="#F8ED69";
