@@ -247,8 +247,8 @@
 			};
 			var oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
 			var newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals0")) + 1).toString();
-			oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
-			newTotalNum = "userProfileTotals" + dDBUserProfile.selectedIndex;			
+			var oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
+			var newTotalNum = "userProfileTotals" + dDBUserProfile.selectedIndex;			
 			gapi.hangout.data.setValue(oldTotalNum,oldTotal);
 			gapi.hangout.data.setValue(newTotalNum,newTotal);
 			currentUserProfileLoaded = "0";
