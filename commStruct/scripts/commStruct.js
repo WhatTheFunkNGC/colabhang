@@ -202,7 +202,7 @@
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
-		var outputDisplay = createTxtOutputBox();
+		//var outputDisplay = createTxtOutputBox();
 		//var displayOutputBtn = document.createElement("button"); 
 		//displayOutputBtn.innerHTML = "show Output";
 		//displayOutputBtn.onclick = function() { 
@@ -424,6 +424,8 @@
 		var btn = document.createElement("textarea");
 		btn.value = listTextOutput();
 		btn.id = "listtxtOut";
+		btn.style.width = "120";
+		btn.style.hight = "25";
 		btn.onclick = function() {
 			console.log("clicked box");
 			btn.value = listTextOutput();
