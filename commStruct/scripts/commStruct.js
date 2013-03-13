@@ -200,7 +200,7 @@
 		var dDBUserProfile = document.createElement("select");
 		//------------------------------------------------------------------------------------------------------
 		dDBUserProfile.onchange = function() {
-			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
+			//console.log("USER PROFILE BUT PRESS " + dDBUserProfile.selectedIndex);	
 			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[dDBUserProfile.selectedIndex].limit;
 			//console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
