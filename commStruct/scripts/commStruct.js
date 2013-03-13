@@ -186,30 +186,23 @@
 	//		convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].name +
 	//		"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
+		ul.appendChild(makeSettingsLayout("Convo Mode :",addDDBconvoProfile()));
+		ul.appendChild(makeSettingsLayout("User Mode :",addDDBUserProfile()));
 		//tr = document.createElement("tr");
-		//c1 = tr.insertCell(-1);
-		//c1.innerHTML = "Convo Mode :";
-		//c1.style.align ="left"
-		//c2 = tr.insertCell(-1);
-		//c2.appendChild(addDDBconvoProfile());
-		//c2.style.width = "100%";
-		//c2.style.align ="left"
-		ul.appendChild(makeSettingsLayout("Convo :",addDDBconvoProfile()));
+		//tr.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
+		//tr.style.fontSize = "x-small";
 		//ul.appendChild(tr);
 		tr = document.createElement("tr");
 		c1 = tr.insertCell(-1);
-		c1.innerHTML = "User Mode :";
+		c1.innerHTML = "Active Speaker threshold ";
 		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
-		c2.appendChild(addDDBUserProfile());
+		c2.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
+		c2.style.fontSize = "x-small";
 		c2.style.align ="left"
-		c2.style.width = "100%";
 		ul.appendChild(tr);
-		tr = document.createElement("tr");
-		tr.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
-		tr.style.fontSize = "x-small";
-		ul.appendChild(tr);
-		//tr = document.createElement("tr");
+		
+		
 		thresholdEdit = document.createElement("input"); 					
 		thresholdEdit.type = "number";											
 		thresholdEdit.size = "2";
@@ -218,13 +211,6 @@
 			speakingFreshold = thresholdEdit.value; 
 		}; 
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
-		//c1 = tr.insertCell(-1);
-		//c1.innerHTML = "Active Speaker threshold ";
-		//c1.style.align ="left"
-		//c2 = tr.insertCell(-1);
-		//c2.appendChild(thresholdEdit);
-		//c2.style.align ="left"
-		//tr.appendChild(thresholdEdit);
 		ul.appendChild(tr);
 		div.appendChild(ul);	
 	};
