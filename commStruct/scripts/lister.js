@@ -212,7 +212,7 @@
 		console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
 		var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
 		currentHighlightItem = (parseInt(currentHighlightItem)- 1).toString();
-		gapi.hangout.data.setValue("currentHighlightedItem",newVal);
+		gapi.hangout.data.setValue("currentHighlightedItem",newHighlight);
 	};	
 		
 	/* Adds a new table row for a new list item
@@ -242,7 +242,7 @@
 			//console.log("New list item print Complete");
 			console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
 			var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1).toString();
-			gapi.hangout.data.setValue("currentHighlightedItem",newVal);
+			gapi.hangout.data.setValue("currentHighlightedItem",newHighlight);
 	};
 	
 	/* runs through all affected list element components and renames them to suit new position
