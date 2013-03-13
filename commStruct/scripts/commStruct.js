@@ -32,6 +32,7 @@
 		var notifyChatLength; // if enabled the system displays notes to the user baised on the amount they have been speaking
 		var muteChatOnTimer; // if enabled, if user chats for too long they will be muted
 		var highlightControl; // if enabled, displays the lister highlight buttons to the user
+		var overideShapeing; // alows the cancling of shapeing mute
 		
 		
 	//-------------------- Listeners -------------------------
@@ -301,13 +302,17 @@
 		div = document.getElementById("controls");
 		htmlString = "";
 		if (highlightControl){
-			htmlString = "List Highlight : ";			
+			htmlString = "Highlight";			
 		};
+		htmlString = htmlString + " overide";	
 		div.innerHTML = htmlString;
 		if (highlightControl){
 			div.appendChild(createListNavBtnUp());
 			div.appendChild(createListNavBtnDown());
 			div.appendChild(createListNavBtnRemove());
+		};
+		if (overideShapeing){
+			div.appendChild(createOverideBtn());			
 		};
 	};
 	
@@ -378,7 +383,7 @@
 				gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
 			}else {gapi.hangout.data.setValue("currentHighlightedItem","1"); };
 		};
-	return btn;			
+		return btn;			
 	};
 	// a button for navigating which list item is highlighted
 	function createListNavBtnRemove() {
@@ -388,8 +393,18 @@
 		btn.onclick = function() {
 			gapi.hangout.data.setValue("currentHighlightedItem","0");	
 		};
-	return btn;			
+		return btn;			
 	};
+	
+	function createOverideBtn(){
+		var btn = document.createElement("button");
+		btn.innerHTML = "Overide Shapeing";
+		btn.id = "overideBtn";
+		btn.onclick = function() {
+			gapi.hangout.data.setValue("timerHasControlMute","false");	
+		};
+		return btn;
+	}
   
   
   //-------------------- Functions -------------------------
@@ -411,7 +426,8 @@
 		if(muteChatOnTimer == "false"){muteChatOnTimer = false };
 		highlightControl = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].highlightControl;
 		if(highlightControl == "false"){highlightControl = false };
-		
+		overideShapeing = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].overideShapeing;
+		if(overideShapeing == "false"){overideShapeing = false };
 		
 	};
   
