@@ -315,7 +315,6 @@
 			console.log("is more transparent");
 			div.rows[rowNum].style.backgroundColor = "transparent";
 			div.rows[rowNum + 1].style.backgroundColor = "transparent";
-			};
 		};
 	};
 	
