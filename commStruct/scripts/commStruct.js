@@ -253,8 +253,8 @@
 	
 	function addDDBUserProfile(){
 		var dDBUserProfile = document.createElement("select");
-		for (var i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
-			dDBUserProfile.add(createProfileButton(i));
+		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
+			dDBUserProfile.add(createUserProfileButton(currentProfileLoaded,i));
 		};
 		dDBUserProfile.onchange = function() {
 			//console.log("USER PROFILE BUT PRESS " + dDBUserProfile.selectedIndex);	
@@ -279,9 +279,7 @@
 			};
 		
 		};
-		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
-			dDBUserProfile.add(createUserProfileButton(currentProfileLoaded,i));
-		};
+		
 		dDBUserProfile.selectedIndex = currentUserProfileLoaded;
 		return dDBUserProfile;
 	};
