@@ -204,21 +204,8 @@
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
-		//var outputDisplay = createTxtOutputBox();
-		//var displayOutputBtn = document.createElement("button"); 
-		//displayOutputBtn.innerHTML = "show Output";
-		//displayOutputBtn.onclick = function() { 
-		//	if (!outputBtnToggle){
-		//	outputDisplay.visible = true;
-		//	outputBtnToggle = true;
-		//	} else {
-		//	outputDisplay.visible = false;
-		//	outputBtnToggle = false;
-		//	}
-		//};
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
 		ul.appendChild(makeSettingsLayout("Output : ",createTxtOutputBox()));
-		//ul.appendChild(outputDisplay);
 		div.appendChild(ul);	
 	};
 	
@@ -383,6 +370,8 @@
 		btn.onclick = function() {
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != gapi.hangout.data.getValue("listTxt")){
 			var newVal = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1).toString();
+			var hostUser = eval( "(" + gapi.hangout.data.getValue("userData0") + ")");		
+			addNewItemToSharedList ("listTxt" + newVal,-1,displayTimerString(hostUser.connectionLength));
 			gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
 			};
 		};
@@ -394,10 +383,17 @@
 		btn.innerHTML = "&#9650";
 		btn.id = "listHighlightUpBtn";
 		btn.onclick = function() {
+			var hostUser = eval( "(" + gapi.hangout.data.getValue("userData0") + ")");	
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != "0"){
 				var newVal = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
-				gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
-			}else {gapi.hangout.data.setValue("currentHighlightedItem","1"); };
+				gapi.hangout.data.setValue("currentHighlightedItem",newVal);
+				addNewItemToSharedList ("listTxt" + newVal,-1,displayTimerString(hostUser.connectionLength));
+			}else {
+				gapi.hangout.data.setValue("currentHighlightedItem","1"); 
+				addNewItemToSharedList ("listTxt1",-1,displayTimerString(hostUser.connectionLength));
+			};
+				
+			
 		};
 		return btn;			
 	};
@@ -440,10 +436,10 @@
 		var outputString = "";
 		console.log("called list calculator");
 		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
-			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) 	
-			//for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
-			//gapi.hangout.data.getValue("listTxt" + i + "times");
-			//};
+			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + " Time Discussed : " ;	
+			for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
+				outputString = outputString + gapi.hangout.data.getValue("listTxt" + i + "times" + j) + " ";
+			};
 			outputString = outputString + "\n";	
 			
 		};
