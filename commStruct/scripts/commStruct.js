@@ -198,6 +198,7 @@
 		tr = document.createElement("tr");
 		tr.innerHTML = "<b>User Modes </b>: ";
 		var dDBUserProfile = document.createElement("select");
+		
 		//------------------------------------------------------------------------------------------------------
 		dDBUserProfile.onchange = function() {
 			//console.log("USER PROFILE BUT PRESS " + dDBUserProfile.selectedIndex);	
@@ -226,6 +227,7 @@
 		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
 			dDBUserProfile.add(createUserProfileButton(currentProfileLoaded,i));
 		};
+		dDBUserProfile.selectedIndex(currentUserProfileLoaded);
 		tr.appendChild(dDBUserProfile);
 		ul.appendChild(tr);
 		//console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
