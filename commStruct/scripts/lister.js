@@ -303,7 +303,7 @@
 	// moves the highlight up from the items
 	function scrollHighlightChange(){
 		unHighlightListItem(currentHighlightItem);
-		toggleHighlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
+		highlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
 		currentHighlightItem = gapi.hangout.data.getValue("currentHighlightedItem");
 	};
 	
