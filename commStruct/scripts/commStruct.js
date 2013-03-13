@@ -203,6 +203,7 @@
 		var displayOutputBtn = document.createElement("button"); 
 		displayOutputBtn.innerHTML = "show Output";
 		displayOutputBtn.onclick = function() { 
+			
 			div = document.getElementById("optionsList");		
 			div.appendChild(makeSettingsLayout("Output :",createTxtOutputBox()));
 		};
@@ -416,6 +417,7 @@
 		btn.txt = listTextOutput();
 		btn.id = "listtxtOut";
 		btn.onclick = function() {
+			console.log("clicked box");
 			btn.txt = listTextOutput();
 			btn.select();
 		};
@@ -424,13 +426,15 @@
   
   function listTextOutput(){
 		var outputString = "";
-		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
-			
+		console.log("called list calculator");
+		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 			
 			//for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
 			//gapi.hangout.data.getValue("listTxt" + i + "times");
 			//};
 			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + "<br>";
+			
 		};
+		console.log("String = " + outputString);
 		return outputString;
 	};
   
