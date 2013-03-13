@@ -208,8 +208,6 @@
 		};
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
 		ul.appendChild(makeSettingsLayout("Output : ",displayOutputBtn));
-		
-		createTxtOutpuBox
 		div.appendChild(ul);	
 	};
 	
