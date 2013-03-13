@@ -22,6 +22,7 @@
 		var currentUserProfileChecker; 	// changes each time a user changes profile. used for re-drawing display
 		var shaperMuteOverlay; 			//  Stores muted overlay
 		var handUpOverlay;				// Stores hands up overlay
+		var outputBtnToggle;
 		
 		
 	//-------------------- Convo Type settings -------------------------
@@ -143,6 +144,7 @@
 	
 	};
 	
+	
 	// a button fuction that enables and disables the data display
 	commStruct.prototype.toggleDataDisplay = function () {
 		var div;
@@ -200,15 +202,21 @@
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
+		var outputDisplay = makeSettingsLayout("",createTxtOutputBox();
 		var displayOutputBtn = document.createElement("button"); 
 		displayOutputBtn.innerHTML = "show Output";
 		displayOutputBtn.onclick = function() { 
-			
-			div = document.getElementById("optionsList");		
-			div.appendChild(makeSettingsLayout("Output :",createTxtOutputBox()));
+			if (!outputBtnToggle){
+			outputDisplay.visible = true;
+			outputBtnToggle = true;
+			} else {
+			outputDisplay.visible = false;
+			outputBtnToggle = false;
+			}
 		};
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
 		ul.appendChild(makeSettingsLayout("Output : ",displayOutputBtn));
+		ul.appendChild(outputDisplay);
 		div.appendChild(ul);	
 	};
 	
@@ -427,11 +435,12 @@
   function listTextOutput(){
 		var outputString = "";
 		console.log("called list calculator");
-		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 			
+		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
+			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) 	
 			//for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
 			//gapi.hangout.data.getValue("listTxt" + i + "times");
 			//};
-			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + "<br>";
+			outputString = outputString + "\n";	
 			
 		};
 		console.log("String = " + outputString);
