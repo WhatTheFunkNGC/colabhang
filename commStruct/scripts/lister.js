@@ -313,7 +313,9 @@
 		var div, rowNum;
 		if (itemNo != "0"){
 			rowNum = (2 * parseInt(itemNo)) - 1;
-			div = document.getElementById(tableId);	
+			div = document.getElementById(tableId);
+			console.log("town num = " + rowNum);
+			console.log("town num = " + div.rows[rowNum]);				
 			if (div.rows[rowNum].style.backgroundColor == "transparent"){
 				div.rows[rowNum].style.backgroundColor="#F8ED69";
 				div.rows[rowNum + 1].style.backgroundColor="#F8ED69";
