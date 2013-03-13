@@ -337,7 +337,7 @@
 	// a button for navigating which list item is highlighted
 	function createListNavBtnDown() {
 		var btn = document.createElement("button");
-		btn.innerHTML = "&#9660";
+		btn.innerHTML = "  &#9660  b";
 		btn.id = "listHighlightDownBtn";
 		btn.onclick = function() {
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != gapi.hangout.data.getValue("listTxt")){
@@ -350,7 +350,7 @@
 	// a button for navigating which list item is highlighted
 	function createListNavBtnUp() {
 		var btn = document.createElement("button");
-		btn.innerHTML = "&#9650";
+		btn.innerHTML = "  &#9650  a";
 		btn.id = "listHighlightUpBtn";
 		btn.onclick = function() {
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != "0"){
