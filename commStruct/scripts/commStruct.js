@@ -217,16 +217,29 @@
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
-		c1 = tr.insertCell(-1);
-		c1.innerHTML = "Active Speaker threshold ";
-		c1.style.align ="left"
-		c2 = tr.insertCell(-1);
-		c2.appendChild(thresholdEdit);
-		c2.style.width = "100%";
-		c2.style.align ="left"
+		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
+		//c1 = tr.insertCell(-1);
+		//c1.innerHTML = "Active Speaker threshold ";
+		//c1.style.align ="left"
+		//c2 = tr.insertCell(-1);
+		//c2.appendChild(thresholdEdit);
+		//c2.style.align ="left"
 		//tr.appendChild(thresholdEdit);
 		ul.appendChild(tr);
 		div.appendChild(ul);	
+	};
+	
+	function makeSettingsLayout(txt,btn){
+		var tr, c1, c2;
+		tr = document.createElement("tr");
+		c1 = tr.insertCell(-1);
+		c1.innerHTML = txt;
+		c1.style.align ="left"
+		c2 = tr.insertCell(-1);
+		c2.appendChild(btn);
+		c2.style.align ="left"
+		c2.style.width = "100%";
+		return tr;
 	};
 	
 	
