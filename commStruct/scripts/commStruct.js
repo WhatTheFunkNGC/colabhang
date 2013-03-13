@@ -424,11 +424,11 @@
   
   function listTextOutput(){
 		var outputString = "";
-		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
+		for (vari = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			
-			for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
-			gapi.hangout.data.getValue("listTxt" + i + "times");
-			};
+			//for (var j = 1; j <= gapi.hangout.data.getValue("listTxt"); j++) { 
+			//gapi.hangout.data.getValue("listTxt" + i + "times");
+			//};
 			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + "<br>";
 		};
 		return outputString;
