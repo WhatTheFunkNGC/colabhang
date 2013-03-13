@@ -20,13 +20,13 @@
 			console.log("Lister Startup");	
 			
 	
-		gapi.hangout.data.onStateChanged.add(function(messageRC) {				// add callback event for list change
-		msgHandler(messageRC.message);
-		});
-		
-		//gapi.hangout.data.onMessageReceived.add(function(stateChangeEvent) {				// add callback event for list change
-		//updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
+		//gapi.hangout.data.onStateChanged.add(function(messageRC) {				// add callback event for list change
+		//msgHandler(messageRC.message);
 		//});
+		
+		gapi.hangout.data.onMessageReceived.add(function(stateChangeEvent) {				// add callback event for list change
+		updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
+		});
 		
 		imagePreload();
 		currentHighlightItem = "0";
