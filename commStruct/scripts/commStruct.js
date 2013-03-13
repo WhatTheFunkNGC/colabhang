@@ -414,11 +414,11 @@
 	
 	function createTxtOutputBox(){
 		var btn = document.createElement("textarea");
-		btn.txt = listTextOutput();
+		btn.value = listTextOutput();
 		btn.id = "listtxtOut";
 		btn.onclick = function() {
 			console.log("clicked box");
-			btn.txt = listTextOutput();
+			btn.value = listTextOutput();
 			btn.select();
 		};
 		return btn;
