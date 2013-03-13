@@ -371,7 +371,7 @@
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != gapi.hangout.data.getValue("listTxt")){
 			var newVal = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1).toString();
 			var hostUser = eval( "(" + gapi.hangout.data.getValue("userData1") + ")");		
-			addNewItemToSharedList ("listTxt" + newVal,-1,displayTimerString(hostUser.connectionLength));
+			addNewItemToSharedList ("listTxt" + newVal + "Times",-1,displayTimerString(hostUser.connectionLength));
 			gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
 			};
 		};
@@ -387,10 +387,10 @@
 			if(gapi.hangout.data.getValue("currentHighlightedItem") != "0"){
 				var newVal = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
 				gapi.hangout.data.setValue("currentHighlightedItem",newVal);
-				addNewItemToSharedList ("listTxt" + newVal,-1,displayTimerString(hostUser.connectionLength));
+				addNewItemToSharedList ("listTxt" + newVal + "Times",-1,displayTimerString(hostUser.connectionLength));
 			}else {
 				gapi.hangout.data.setValue("currentHighlightedItem","1"); 
-				addNewItemToSharedList ("listTxt1",-1,displayTimerString(hostUser.connectionLength));
+				addNewItemToSharedList ("listTxt1Times",-1,displayTimerString(hostUser.connectionLength));
 			};
 				
 			
