@@ -119,10 +119,14 @@
 		var itemNo, div;
 		div = document.getElementById(tableId);
 		if (addedKeys.length != 0){
+			console.log("1");
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
+					console.log("2");
 				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
+					console.log("3");
 					if ((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){			// checks add change is relivent lister items	
+						console.log("4");
 						var re1='.*?';	// Non-greedy match on filler
 						var re2='(\\d+)';	// Integer Number 1
 						var p = new RegExp(re1+re2,["i"]);
