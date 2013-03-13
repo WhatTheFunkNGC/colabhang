@@ -270,8 +270,10 @@
 		btn.value = convoProfiles[num].profileName;	
 		btn.onclick = function() {
 			gapi.hangout.data.setValue("currentConvoMode", btn.id.substring(10));
-			div = document.getElementById("userNotification");
-			div.innerHTML = "";	
+			if (!document.getElementById("userNotification")){
+				div = document.getElementById("userNotification");
+				div.innerHTML = "";	
+			};
 		};
 	return btn;			
 	};
