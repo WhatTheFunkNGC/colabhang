@@ -180,18 +180,9 @@
 		var div, ul, tr,c1,c2, e, i,profName,numIn, limit,thresholdEdit;	
 		div = document.getElementById("optionsList");
 		div.innerHTML = "";	
-		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
-		//console.log("user num = " + currentUserProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
-	//	div.innerHTML = "<b>Convo Mode</b> : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br><b>User Mode</b> : " + 
-	//		convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].name +
-	//		"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		ul.appendChild(makeSettingsLayout("Convo Mode :",addDDBconvoProfile()));
 		ul.appendChild(makeSettingsLayout("User Mode :",addDDBUserProfile()));
-		//tr = document.createElement("tr");
-		//tr.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
-		//tr.style.fontSize = "x-small";
-		//ul.appendChild(tr);
 		tr = document.createElement("tr");
 		c1 = tr.insertCell(-1);
 		c1.innerHTML = "Mode Details :";
@@ -201,8 +192,6 @@
 		c2.style.fontSize = "x-small";
 		c2.style.align ="left"
 		ul.appendChild(tr);
-		
-		
 		thresholdEdit = document.createElement("input"); 					
 		thresholdEdit.type = "number";											
 		thresholdEdit.size = "2";
@@ -211,7 +200,6 @@
 			speakingFreshold = thresholdEdit.value; 
 		}; 
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
-		ul.appendChild(tr);
 		div.appendChild(ul);	
 	};
 	
