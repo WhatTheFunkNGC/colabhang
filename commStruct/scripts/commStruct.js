@@ -198,6 +198,8 @@
 		thresholdEdit = document.createElement("input"); 					
 		thresholdEdit.type = "number";											
 		thresholdEdit.size = "2";
+		thresholdEdit.style.width = "50";
+		thresholdEdit.style.hight = "25";
 		thresholdEdit.value = speakingFreshold; 	
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
