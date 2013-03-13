@@ -184,7 +184,7 @@
 	};
 	// used exsclusivly for updating textfeilds
 	function msgHandler(incoming){	
-		field = document.getElementById("txtIn"+ incoming);
+		var field = document.getElementById("txtIn"+ incoming);
 		field.value = gapi.hangout.data.getValue("listTxt" + incoming); 
 	};
 	
