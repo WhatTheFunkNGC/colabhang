@@ -193,6 +193,8 @@
 		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
 		c2.appendChild(addDDBconvoProfile());
+		c2.style.width = "100%";
+		c2.style.align ="left"
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		c1 = tr.insertCell(-1);
@@ -200,6 +202,8 @@
 		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
 		c2.appendChild(addDDBUserProfile());
+		c2.style.align ="left"
+		c2.style.width = "100%";
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		tr.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
@@ -242,7 +246,7 @@
 			};
 			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 		};
-		dDBconvoProfile.style.width = "100%";
+		//dDBconvoProfile.style.width = "100%";
 		dDBconvoProfile.selectedIndex = currentProfileLoaded;
 		return dDBconvoProfile;
 	};
@@ -274,7 +278,7 @@
 			};
 		
 		};
-		dDBUserProfile.style.width = "100%";
+		//dDBUserProfile.style.width = "100%";
 		dDBUserProfile.selectedIndex = currentUserProfileLoaded;
 		return dDBUserProfile;
 	};
