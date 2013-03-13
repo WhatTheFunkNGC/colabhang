@@ -357,6 +357,7 @@
 				var newVal = parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1;
 				gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
 			};
+		};
 	return btn;			
 	};
   
