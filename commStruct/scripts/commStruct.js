@@ -240,7 +240,6 @@
 		};
 		dDBconvoProfile.onchange = function() {
 			//console.log("set to = " + dDBconvoProfile.selectedIndex + " so " + convoProfiles[dDBconvoProfile.selectedIndex].userTypes[currentUserProfileLoaded].name);
-			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
@@ -248,10 +247,12 @@
 			var oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
 			var newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals0")) + 1).toString();
 			var oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
-			var newTotalNum = "userProfileTotals" + dDBUserProfile.selectedIndex;			
+			var newTotalNum = "userProfileTotals0";			
 			gapi.hangout.data.setValue(oldTotalNum,oldTotal);
 			gapi.hangout.data.setValue(newTotalNum,newTotal);
 			currentUserProfileLoaded = "0";
+			
+			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 		};
 		
 		dDBconvoProfile.selectedIndex = currentProfileLoaded;
