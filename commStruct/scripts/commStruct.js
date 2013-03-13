@@ -422,6 +422,17 @@
 		return btn;
 	}
   
+  function listTextOutput(){
+		var outputString = "";
+		for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
+			
+			for (i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
+			gapi.hangout.data.getValue("listTxt" + i + "times");
+			};
+			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + "<br>";
+		};
+		return outputString;
+	};
   
   //-------------------- Functions -------------------------
   
