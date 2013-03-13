@@ -194,8 +194,11 @@
 		//for (i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
 		//	tr.appendChild(createProfileButton(i));
 		//};
-		tr.appendChild(dDBconvoProfile());
+		console.log("do it");
+		tr.appendChild(dDBconvoProfile(););
+		console.log("nearly");
 		ul.appendChild(tr);
+		console.log("done");
 		tr = document.createElement("tr");
 		tr.innerHTML = "<b>User Modes </b>: ";
 		var dDBUserProfile = document.createElement("select");
