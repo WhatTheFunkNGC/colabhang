@@ -201,22 +201,22 @@
 		tr.appendChild(addDDBUserProfile());
 		ul.appendChild(tr);
 		//console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
-		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {
-			tr = document.createElement("tr");
-			e = document.createElement("td");
-			profName = convoProfiles[currentProfileLoaded].userTypes[i].name; 						// get main bits of statistical data to display
-			numIn = (gapi.hangout.data.getValue("userProfileTotals" + i) || "0");
-			limit  = convoProfiles[currentProfileLoaded].userTypes[i].limit;
-			if ( limit == "-1"){limit = "Unlimited"};
+		//for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {
+		//	tr = document.createElement("tr");
+		//	e = document.createElement("td");
+		//	profName = convoProfiles[currentProfileLoaded].userTypes[i].name; 						// get main bits of statistical data to display
+		//	numIn = (gapi.hangout.data.getValue("userProfileTotals" + i) || "0");
+		//	limit  = convoProfiles[currentProfileLoaded].userTypes[i].limit;
+		//	if ( limit == "-1"){limit = "X"};
 			
 			//console.log("name  = " + profName);
 			//console.log("profile numb  = " + numIn);
 			//console.log("limit = " + limit);
 			
-			e.innerHTML = profName + " : " + numIn + " out of " + limit;
-			tr.appendChild(e);
-			ul.appendChild(tr);	
-		};
+		//	e.innerHTML = profName + " : " + numIn + " / " + limit;
+		//	tr.appendChild(e);
+		//	ul.appendChild(tr);	
+		//};
 		// create field to edit the threshold required to take hold of the convosation
 		tr = document.createElement("tr");
 		thresholdEdit = document.createElement("input"); 					
@@ -294,8 +294,13 @@
 	
 	// creates a button for a user profile type
 	function createUserProfileButton(profile,userProfile) {
-		var btn = document.createElement("option");
-		btn.text = convoProfiles[profile].userTypes[userProfile].name;
+		var btn, profName, numIn, limit;
+		btn = document.createElement("option");
+		profName = convoProfiles[currentProfileLoaded].userTypes[userProfile].name; 						// get main bits of statistical data to display
+		numIn = (gapi.hangout.data.getValue("userProfileTotals" + userProfile) || "0");
+		limit  = convoProfiles[currentProfileLoaded].userTypes[userProfile].limit;
+		if ( limit == "-1"){limit = "X"};
+		btn.text = convoProfiles[profile].userTypes[userProfile].name + "&nbsp" + numIn + " / " + limit;
 	return btn;			
 	};
 	
