@@ -265,9 +265,9 @@
 	
 	
 	function dDBconvoProfile(){
-		var dDBUserProfile = document.createElement("select");
+		var dDBconvoProfile = document.createElement("select");
 		for (var i = 0; i < convoProfiles.length; i++) {						// loop through all users in data array and display in table format					
-			dDBUserProfile.add(createProfileButton(i));
+			dDBconvoProfile.add(createProfileButton(i));
 		};
 		dDBconvoProfile.onchange = function() {
 			gapi.hangout.data.setValue("currentConvoMode", dDBconvoProfile.selectedIndex.toString());
@@ -277,8 +277,8 @@
 			};
 		};
 		
-		dDBUserProfile.selectedIndex = currentProfileLoaded;
-		return dDBUserProfile;
+		dDBconvoProfile.selectedIndex = currentProfileLoaded;
+		return dDBconvoProfile;
 	};
 		
 		
