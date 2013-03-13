@@ -241,7 +241,7 @@
 			e2.appendChild(addIDDelButton(i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
 			console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
-			var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
+			var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1).toString();
 			gapi.hangout.data.setValue("currentHighlightedItem",newVal);
 	};
 	
