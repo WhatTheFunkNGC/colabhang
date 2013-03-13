@@ -88,7 +88,7 @@
 		}
 		div.appendChild(tb);
 		if (gapi.hangout.data.getValue("currentHighlightedItem") != "0"){				// highlight if needed.
-			toggleHighlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
+			highlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
 		};
 	};
 	// this function pre-creates the add and remove buttons so images are not missing on load.
@@ -302,29 +302,31 @@
 		
 	// moves the highlight up from the items
 	function scrollHighlightChange(){
-		toggleHighlightListItem(currentHighlightItem);
+		unHighlightListItem(currentHighlightItem);
 		toggleHighlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
 		currentHighlightItem = gapi.hangout.data.getValue("currentHighlightedItem");
 	};
 	
+	function unHighlightListItem(itemNo){
+	var div, rowNum;
+		if (itemNo != "0"){
+			rowNum = (2 * parseInt(itemNo)) - 1;
+			div = document.getElementById(tableId);			
+			console.log("is more transparent");
+			div.rows[rowNum].style.backgroundColor = "transparent";
+			div.rows[rowNum + 1].style.backgroundColor = "transparent";
+			};
+		};
+	};
 	
 	/* toggles if a selected List item is highlighted */
-	function toggleHighlightListItem(itemNo){
+	function highlightListItem(itemNo){
 		var div, rowNum;
 		if (itemNo != "0"){
 			rowNum = (2 * parseInt(itemNo)) - 1;
-			div = document.getElementById(tableId);
-			console.log("town num = " + rowNum);
-			console.log("town num = " + div.rows[rowNum]);				
-			if (div.rows[rowNum].style.backgroundColor == "transparent"){
-			console.log("is transparent");
-				div.rows[rowNum].style.backgroundColor="#F8ED69";
-				div.rows[rowNum + 1].style.backgroundColor="#F8ED69";
-			} else {
-				console.log("is more transparent");
-				div.rows[rowNum].style.backgroundColor = "transparent";
-				div.rows[rowNum + 1].style.backgroundColor = "transparent";
-			};
+			div = document.getElementById(tableId);			
+			div.rows[rowNum].style.backgroundColor="#F8ED69";
+			div.rows[rowNum + 1].style.backgroundColor="#F8ED69";
 		};
 	};
 
