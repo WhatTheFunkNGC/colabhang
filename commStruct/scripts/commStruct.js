@@ -270,7 +270,8 @@
 			dDBconvoProfile.add(createProfileButton(i));
 		};
 		dDBconvoProfile.onchange = function() {
-			gapi.hangout.data.setValue("currentConvoMode", dDBconvoProfile.selectedIndex.toString());
+			console.log("set to = " + dDBconvoProfile.selectedIndex);
+			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
