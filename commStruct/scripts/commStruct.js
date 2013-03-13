@@ -289,6 +289,10 @@
 			div.appendChild(createListNavBtnDown());
 		};
 		div.innerHTML = htmlString;
+		if (highlightControl){
+			div.appendChild(createListNavBtnUp());
+			div.appendChild(createListNavBtnDown());
+		};
 	};
 	
 		
