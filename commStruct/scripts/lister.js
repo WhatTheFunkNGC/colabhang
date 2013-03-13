@@ -331,6 +331,7 @@
 			div.rows[rowNum + 1].style.backgroundColor="#F8ED69";
 		};
 	};
+	
 
 	
 //-------------------- Button creation -------------------------

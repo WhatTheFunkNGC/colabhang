@@ -197,9 +197,36 @@
 		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		tr.innerHTML = "<b>User Modes </b>: ";
-		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
-			tr.appendChild(createUserProfileButton(currentProfileLoaded,i));
+		var dDBUserProfile = document.createElement("select");
+		//------------------------------------------------------------------------------------------------------
+		dDBUserProfile.onchange = function() {
+			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
+			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
+			var limit = convoProfiles[currentProfileLoaded].userTypes[dDBUserProfile.selectedIndex].limit;
+			//console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
+			if(limit > gapi.hangout.data.getValue("userProfileTotals" + dDBUserProfile.selectedIndex) || limit == "-1"){
+			//console.log("doing if limit not reached " + currentUserProfileLoaded);	
+			
+			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
+			newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + dDBUserProfile.selectedIndex)) + 1).toString();
+			oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
+			newTotalNum = "userProfileTotals" + dDBUserProfile.selectedIndex;
+			
+			gapi.hangout.data.setValue(oldTotalNum,oldTotal);
+			gapi.hangout.data.setValue(newTotalNum,newTotal);
+			
+			currentUserProfileLoaded = dDBUserProfile.selectedIndex;
+			loadOptions();
+			gapi.hangout.data.setValue("currentUserProfileChecker",(parseInt(gapi.hangout.data.getValue("currentUserProfileChecker")) + 1).toString());
+			//console.log("currne loaded = " + currentUserProfileLoaded);
+			};
+		
 		};
+		//------------------------------------------------------------------------------------------------------
+		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
+			dDBUserProfile.add(createUserProfileButton(currentProfileLoaded,i));
+		};
+		tr.appendChild(dDBUserProfile);
 		ul.appendChild(tr);
 		//console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
 		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {
@@ -250,32 +277,32 @@
 	// creates a button for a user profile type
 	function createUserProfileButton(profile,userProfile) {
 		//console.log("log");	
-		var btn = document.createElement("button");
-		btn.innerHTML = convoProfiles[profile].userTypes[userProfile].name;
-		btn.id = "userProfileOptionBtn" + userProfile;
-		btn.value = convoProfiles[profile].userTypes[userProfile].name;	
-		btn.onclick = function() {
-			console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
-			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
-			var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
-			//console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
-			if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
-			//console.log("doing if limit not reached " + currentUserProfileLoaded);	
-			
-			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
-			newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString();
-			oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
-			newTotalNum = "userProfileTotals" + btn.id.substring(20);
-			
-			gapi.hangout.data.setValue(oldTotalNum,oldTotal);
-			gapi.hangout.data.setValue(newTotalNum,newTotal);
-			
-			currentUserProfileLoaded = btn.id.substring(20);
-			loadOptions();
-			gapi.hangout.data.setValue("currentUserProfileChecker",(parseInt(gapi.hangout.data.getValue("currentUserProfileChecker")) + 1).toString());
-			//console.log("currne loaded = " + currentUserProfileLoaded);
-			};
-		};
+		var btn = document.createElement("option");
+		btn.text = convoProfiles[profile].userTypes[userProfile].name;
+		//btn.id = "userProfileOptionBtn" + userProfile;
+		//btn.value = profile + " " + userProfile;	
+		//btn.onclick = function() {
+		//	console.log("USER PROFILE BUT PRESS " + btn.id.substring(20));	
+		//	var oldTotal, oldTotalNum ,newTotalNum, newTotal;
+		//	var limit = convoProfiles[currentProfileLoaded].userTypes[btn.id.substring(20)].limit;
+		//	//console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
+		//	if(limit > gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)) || limit == "-1"){
+		//	//console.log("doing if limit not reached " + currentUserProfileLoaded);	
+		//	
+		//	oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
+		//	newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20))) + 1).toString();
+		//	oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
+		//	newTotalNum = "userProfileTotals" + btn.id.substring(20);
+		//	
+		//	gapi.hangout.data.setValue(oldTotalNum,oldTotal);
+		//	gapi.hangout.data.setValue(newTotalNum,newTotal);
+		//	
+		//	currentUserProfileLoaded = btn.id.substring(20);
+		//	loadOptions();
+		//	gapi.hangout.data.setValue("currentUserProfileChecker",(parseInt(gapi.hangout.data.getValue("currentUserProfileChecker")) + 1).toString());
+		//	//console.log("currne loaded = " + currentUserProfileLoaded);
+		//	};
+		//};
 	return btn;			
 	};
 	
