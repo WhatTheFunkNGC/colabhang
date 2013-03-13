@@ -195,7 +195,6 @@
 		for (i = 1; i <= idListLength; i++) {									// for all ID pics in list line, imcriment name refrence by 1
 				e1.appendChild(userPicture(itemNo,i));
 		};
-		scrollHighlightChange();
 	};
 		
 	/* removes a list element from the display table
@@ -210,7 +209,8 @@
 		//console.log(" delete row " + i);
 		div.deleteRow(i);
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
-		scrollHighlightChange();
+		var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
+		gapi.hangout.data.setValue("currentHighlightedItem",newVal);
 	};	
 		
 	/* Adds a new table row for a new list item
