@@ -28,9 +28,9 @@
 		currentHighlightItem = "0";
 		//this.displayListItems();
 		if (!!gapi.hangout.data.getValue("listTxt")){ 
-			gapi.hangout.data.setValue("currentHighlightedItem","0");
 			listerTableSetupExsisting();
 		} else { 
+			gapi.hangout.data.setValue("currentHighlightedItem","0");
 			listerTableSetup();
 		};
 		
