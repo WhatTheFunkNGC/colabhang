@@ -211,6 +211,7 @@
 		div.deleteRow(i);												// deletes second row contating ID list which is now at pos i
 		console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
 		var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
+		currentHighlightItem = (parseInt(currentHighlightItem)- 1).toString();
 		gapi.hangout.data.setValue("currentHighlightedItem",newVal);
 	};	
 		
@@ -240,6 +241,8 @@
 			e2.appendChild(addIDDelButton(i));					// add Remove user sign button 	
 			//console.log("New list item print Complete");
 			console.log("local : " + currentHighlightItem + " server side : " + gapi.hangout.data.getValue("currentHighlightedItem"));
+			var newHighlight = (parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1).toString();
+			gapi.hangout.data.setValue("currentHighlightedItem",newVal);
 	};
 	
 	/* runs through all affected list element components and renames them to suit new position
