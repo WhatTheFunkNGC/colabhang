@@ -267,7 +267,7 @@
 	function dDBconvoProfile(){
 		var dDBUserProfile = document.createElement("select");
 		dDBUserProfile.onchange = function() {
-			gapi.hangout.data.setValue("currentConvoMode", dDBconvoProfile.selectedIndex);
+			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
