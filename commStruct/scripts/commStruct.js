@@ -403,6 +403,17 @@
 		};
 		return btn;
 	}
+	
+	function createTxtOutpuBox(){
+		var btn = document.createElement("textarea");
+		btn.txt = listTextOutput();
+		btn.id = "listtxtOut";
+		btn.onclick = function() {
+			btn.txt = listTextOutput();
+			btn.select();
+		};
+		return btn;
+	}
   
   
   //-------------------- Functions -------------------------
