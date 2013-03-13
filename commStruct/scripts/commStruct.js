@@ -355,7 +355,6 @@
 		div.innerHTML = "";	
 		div.innerHTML = "<b>Name : connection time : chat Time</b>";			
 		div.appendChild(ul);	
-		//console.log("Displayed"); 
 	};
   
 	// a button for navigating which list item is highlighted
