@@ -20,7 +20,11 @@
 			console.log("Lister Startup");	
 			
 	
-		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
+		gapi.hangout.data.onStateChanged.add(function(messageRC) {				// add callback event for list change
+		msgHandler(messageRC.message);
+		});
+		
+		gapi.hangout.data.onMessageReceived.add(function(stateChangeEvent) {				// add callback event for list change
 		updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		
@@ -177,6 +181,11 @@
 			};
 			//console.log("removed check done");
 		};
+	};
+	// used exsclusivly for updating textfeilds
+	function msgHandler(incoming){	
+		field = document.getElementById("txtIn"+ incoming);
+		field.value = gapi.hangout.data.getValue("listTxt" + incoming); 
 	};
 	
 	// updates the User pictre list of an item to reflect additions or removals
@@ -403,6 +412,7 @@
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
+				 gapi.hangout.data.sendMessage(itemNo);
 				gapi.hangout.data.setValue("listTxt" + txtIn.id.substring(5), txtIn.value); 
 		}; 		
 		return txtIn;													// return txtInput element
