@@ -177,44 +177,29 @@
 	// sets up the button display for the possible convo profiles
 	function displayOptions() {
 		//console.log("log");	
-		var div, ul, tr, e, i,profName,numIn, limit,thresholdEdit;	
+		var div, ul, tr,c1,c2, e, i,profName,numIn, limit,thresholdEdit;	
 		div = document.getElementById("optionsList");
 		div.innerHTML = "";	
 		//console.log("convo mode = " + gapi.hangout.data.getValue("currentConvoMode") + " profile name " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].profileName );
 		//console.log("user num = " + currentUserProfileLoaded + " length " + convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].userTypes.length );			
-		div.innerHTML = "<b>Convo Mode</b> : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br><b>User Mode</b> : " + 
-			convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].name +
-			"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
+	//	div.innerHTML = "<b>Convo Mode</b> : " + (convoProfiles[currentProfileLoaded].profileName || "none") + " <br><b>User Mode</b> : " + 
+	//		convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].name +
+	//		"<br>" +  convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;			
 		ul = document.createElement("table");				// create table for users waiting to chat
 		tr = document.createElement("tr");
 		tr.innerHTML = "<b>Convo Modes</b> : " ;
-		console.log("do it");
 		tr.appendChild(addDDBconvoProfile());
-		console.log("nearly");
 		ul.appendChild(tr);
-		console.log("done");
 		tr = document.createElement("tr");
-		tr.innerHTML = "<b>User Modes </b>: ";
-		tr.appendChild(addDDBUserProfile());
+		c1 = tr.insertCell(-1);
+		c1.innerHTML = "<b>User Mode </b>: ";
+		c2 = tr.insertCell(-1);
+		c2.appendChild(addDDBUserProfile());
 		ul.appendChild(tr);
-		//console.log("number of user types = " + gapi.hangout.data.getValue("userProfileTotals"));
-		//for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {
-		//	tr = document.createElement("tr");
-		//	e = document.createElement("td");
-		//	profName = convoProfiles[currentProfileLoaded].userTypes[i].name; 						// get main bits of statistical data to display
-		//	numIn = (gapi.hangout.data.getValue("userProfileTotals" + i) || "0");
-		//	limit  = convoProfiles[currentProfileLoaded].userTypes[i].limit;
-		//	if ( limit == "-1"){limit = "X"};
-			
-			//console.log("name  = " + profName);
-			//console.log("profile numb  = " + numIn);
-			//console.log("limit = " + limit);
-			
-		//	e.innerHTML = profName + " : " + numIn + " / " + limit;
-		//	tr.appendChild(e);
-		//	ul.appendChild(tr);	
-		//};
-		// create field to edit the threshold required to take hold of the convosation
+		tr = document.createElement("tr");
+		tr.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
+		tr.style.fontSize = "x-small";
+		ul.appendChild(tr);
 		tr = document.createElement("tr");
 		thresholdEdit = document.createElement("input"); 					
 		thresholdEdit.type = "number";											
