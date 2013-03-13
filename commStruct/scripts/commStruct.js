@@ -45,9 +45,6 @@
 			document.getElementById("dataDisplayToggle").onclick = this.toggleDataDisplay.bind(this); // bind data display button
 			document.getElementById("handUpBtn").onclick = this.toggleHandUp.bind(this); // bind data display button
 			
-			//gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
-			//updateCheckerCommStruct(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
-			//});
 		};	
 		// initilise global vars 
 		totalTime = 1;
@@ -244,14 +241,15 @@
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
 			};
-			var oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
-			var newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals0")) + 1).toString();
-			var oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
-			var newTotalNum = "userProfileTotals0";			
-			gapi.hangout.data.setValue(oldTotalNum,oldTotal);
-			gapi.hangout.data.setValue(newTotalNum,newTotal);
-			currentUserProfileLoaded = "0";
-			
+			if(currentUserProfileLoaded != "pie"){
+				var oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
+				var newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals0")) + 1).toString();
+				var oldTotalNum = "userProfileTotals" + currentUserProfileLoaded;
+				var newTotalNum = "userProfileTotals0";			
+				gapi.hangout.data.setValue(oldTotalNum,oldTotal);
+				gapi.hangout.data.setValue(newTotalNum,newTotal);
+				currentUserProfileLoaded = "0";			
+			};
 			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 		};
 		
@@ -408,22 +406,6 @@
   
   
   //-------------------- Functions -------------------------
-  
-	// checks for data updates that arnt used with timers
-	function updateCheckerCommStruct(addedKeys,removedKeys){
-		var itemNo, div;
-		//console.log("checking up");
-		if (addedKeys.length != 0){
-			for (var i = 0; i < addedKeys.length ; i++ ){
-				console.log("add found");
-				if (addedKeys[i].key.indexOf("currentConvoMode") !== -1 ){
-				console.log("found true");
-				loadOptions();
-				};
-			};
-			console.log("done");
-		};
-	};
   
   
 	// loads profile variables into local user
