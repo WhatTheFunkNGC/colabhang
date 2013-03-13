@@ -194,7 +194,7 @@
 		//ul.appendChild(tr);
 		tr = document.createElement("tr");
 		c1 = tr.insertCell(-1);
-		c1.innerHTML = "Active Speaker threshold ";
+		c1.innerHTML = "Mode Details :";
 		c1.style.align ="left"
 		c2 = tr.insertCell(-1);
 		c2.innerHTML = convoProfiles[gapi.hangout.data.getValue("currentConvoMode")].discription;
@@ -224,7 +224,7 @@
 		c2 = tr.insertCell(-1);
 		c2.appendChild(btn);
 		c2.style.align ="left"
-		c2.style.width = "100%";
+		//c2.style.width = "100%";
 		return tr;
 	};
 	
