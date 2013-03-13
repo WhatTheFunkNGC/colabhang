@@ -7,6 +7,8 @@
   <Content type="html">
     <![CDATA[
       <script src="//talkgadget.google.com/hangouts/_/api/hangout.js?v=1.4"></script>  
+	  <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.js" type="text/javascript" ></script>
+	  <script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/sharedStateControls.js" type="text/javascript" ></script>
 	  
 	 <div type = "textarea" id="userNotification"></div>	 
 	 <button type="button" id = "handUpBtn" align="left">Hand Up</button> <button type="button" id = "optionDisplayToggle" align="center">Options</button> <button type="button" id = "dataDisplayToggle" align="right">Data</button>
@@ -19,9 +21,9 @@
 	  
 	  <div id="lister"></div>	
       	
-		<script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/convoProfiles.js" type="text/javascript" ></script>
 		
-		<script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/sharedStateControls.js" type="text/javascript" ></script>
+		
+		
 		
 		<script src="https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/scripts/commStruct.js" type="text/javascript" ></script>
 		
