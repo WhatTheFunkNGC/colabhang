@@ -201,6 +201,8 @@
 			speakingFreshold = thresholdEdit.value; 
 		}; 
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
+		ul.appendChild(makeSettingsLayout("Output :",createTxtOutputBox()));
+		createTxtOutpuBox
 		div.appendChild(ul);	
 	};
 	
@@ -404,7 +406,7 @@
 		return btn;
 	}
 	
-	function createTxtOutpuBox(){
+	function createTxtOutputBox(){
 		var btn = document.createElement("textarea");
 		btn.txt = listTextOutput();
 		btn.id = "listtxtOut";
