@@ -10,6 +10,7 @@
   var tableId;	// holds the id of the main lister Table for refrenceing
   var addImg; 			//  Stores addImage node for cloneing on list
   var removeImg; 			//  Stores deleteImage node for cloneing on list
+  var currentHighlightItem; // stores the item number that uis currently highlighted in the list
   
   //-------------------- Listeners -------------------------
 	
@@ -23,12 +24,11 @@
 		updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		
-		//if (!!gapi.hangout.data.getValue("lastListItemAdded")){ gapi.hangout.data.setValue("lastListItemAdded", "1");};
-		
 		imagePreload();
-		
+		currentHighlightItem = "0";
 		//this.displayListItems();
 		if (!!gapi.hangout.data.getValue("listTxt")){ 
+			gapi.hangout.data.setValue("currentHighlightedItem","0");
 			listerTableSetupExsisting();
 		} else { 
 			listerTableSetup();
@@ -87,8 +87,10 @@
 				};
 		}
 		div.appendChild(tb);
-		
-	}
+		if (gapi.hangout.data.getValue("currentHighlightedItem") != "0"){				// highlight if needed.
+			toggleHighlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
+		};
+	};
 	// this function pre-creates the add and remove buttons so images are not missing on load.
 	function imagePreload(){
 		addImg = document.createElement("img");						// create element
@@ -139,6 +141,9 @@
 						//console.log("imtem No is " + itemNo);					
 						updateIDlistDisplay(itemNo);
 					};											
+				};
+				if (addedKeys[i].key == "currentHighlightedItem"){
+					scrollHighlightChange();
 				};
 			};
 		};
@@ -294,6 +299,30 @@
 				userPic.id = "listTxt" + j + "listID" + k;
 			};
 		};
+		
+	// moves the highlight up from the items
+	function scrollHighlightChange(){
+		toggleHighlightListItem(currentHighlightItem);
+		toggleHighlightListItem(gapi.hangout.data.getValue("currentHighlightedItem"));
+		currentHighlightItem = gapi.hangout.data.getValue("currentHighlightedItem");
+	};
+	
+	
+	/* toggles if a selected List item is highlighted */
+	function toggleHighlightListItem(itemNo){
+		var div, rowNum;
+		if (itemNo != "0"){
+			rowNum = (2 * parseInt(itemNo)) - 1;
+			div = document.getElementById(tableId);	
+			if (div.Rows[rowNum].style.backgroundColor == "transparent"){
+				div.rows[rowNum].style.backgroundColor="#F8ED69";
+				div.rows[rowNum + 1].style.backgroundColor="#F8ED69";
+			} else {
+				div.rows[rowNum].style.backgroundColor = "transparent";
+				div.rows[rowNum + 1].style.backgroundColor = "transparent";
+			};
+		};
+	};
 
 	
 //-------------------- Button creation -------------------------

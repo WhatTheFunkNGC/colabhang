@@ -31,6 +31,7 @@
 		var muteIfSpeaker; // All users bar speaker muted
 		var notifyChatLength; // if enabled the system displays notes to the user baised on the amount they have been speaking
 		var muteChatOnTimer; // if enabled, if user chats for too long they will be muted
+		var highlightControl; // if enabled, displays the lister highlight buttons to the user
 		
 		
 	//-------------------- Listeners -------------------------
@@ -121,6 +122,7 @@
 			currentUserProfileLoaded = "0";
 			resetUserProfileTypeLimits();	
 			loadOptions(true);
+			loadControlBtns();
 			console.log("convo mode set");
 		};
 		console.log("user data complete");
@@ -277,6 +279,18 @@
 	return btn;			
 	};
 	
+	function loadControlBtns(){
+		var div, htmlString;	
+		div = document.getElementById("controls");
+		htmlString = "";
+		if (highlightControl){
+			htmlString = "List Highlight : ";
+			div.appendChild(createListNavBtnUp());
+			div.appendChild(createListNavBtnDown());
+		};
+		div.innerHTML = htmlString;
+	};
+	
 		
 	// display list of partisipants with relivant time stats
 	function displaySpeakerInfo() {	
@@ -318,7 +332,34 @@
 		div.innerHTML = "<u>Name : connection time : chat Time</u>";			
 		div.appendChild(ul);	
 		//console.log("Displayed"); 
-  };
+	};
+  
+	// a button for navigating which list item is highlighted
+	function createListNavBtnDown() {
+		var btn = document.createElement("button");
+		btn.innerHTML = "&#9660";
+		btn.id = "listHighlightDownBtn";
+		btn.onclick = function() {
+			if(gapi.hangout.data.getValue("currentHighlightedItem") != gapi.hangout.data.getValue("listTxt")){
+			var newVal = parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) + 1;
+			gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
+			};
+		};
+	return btn;			
+	};
+	// a button for navigating which list item is highlighted
+	function createListNavBtnUp() {
+		var btn = document.createElement("button");
+		btn.innerHTML = "&#9650";
+		btn.id = "listHighlightUpBtn";
+		btn.onclick = function() {
+			if(gapi.hangout.data.getValue("currentHighlightedItem") != "0"){
+				var newVal = parseInt(gapi.hangout.data.getValue("currentHighlightedItem")) - 1;
+				gapi.hangout.data.setValue("currentHighlightedItem",newVal);	
+			};
+	return btn;			
+	};
+  
   
   //-------------------- Functions -------------------------
   
@@ -353,6 +394,8 @@
 		if(notifyChatLength == "false"){notifyChatLength = false };
 		muteChatOnTimer = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].muteChatOnTimer;
 		if(muteChatOnTimer == "false"){muteChatOnTimer = false };
+		highlightControl = convoProfiles[profileNum].userTypes[currentUserProfileLoaded].highlightControl;
+		if(highlightControl == "false"){highlightControl = false };
 		
 		
 	};
@@ -428,10 +471,12 @@
 			currentProfileLoaded = gapi.hangout.data.getValue("currentConvoMode");
 			resetUserProfileTypeLimits();
 			loadOptions();
+			loadControlBtns();
 			displayOptions();
 		};
 		// user profile update 
 		if (currentUserProfileChecker != gapi.hangout.data.getValue("currentUserProfileChecker")){		// checker detects if a user has chnaged profile 
+			loadControlBtns();
 			if(optionsDisplay){displayOptions();};														// and re-displays options acordingly			
 			currentUserProfileChecker = gapi.hangout.data.getValue("currentUserProfileChecker");
 		}

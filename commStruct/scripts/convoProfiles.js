@@ -8,6 +8,7 @@ var convoProfiles = [
 					"muteChatLength" : "false",
 					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "false",
+					"highlightControl" : "true"
 				}
 				] },
 			
@@ -22,7 +23,8 @@ var convoProfiles = [
 					"notifyChatLength" : "true",
 					"muteChatLength" : "false",
 					"allowButtingIn" : "false",
-					"muteIfSpeaker" : "false" 
+					"muteIfSpeaker" : "false",
+					"highlightControl" : "false"
 				},
 				{"name" : "lead", "limit" : "2",
 					"lowMsg" : "Do you have anything to say?" , 
@@ -33,7 +35,8 @@ var convoProfiles = [
 					"notifyChatLength" : "true",
 					"muteChatLength" : "false",
 					"allowButtingIn" : "true",
-					"muteIfSpeaker" : "false" 
+					"muteIfSpeaker" : "false",
+					"highlightControl" : "true"
 				}
 				] },
 		{	"profileName" : "Shapeing", "discription" : "only the speaker is able to speak",
@@ -48,6 +51,7 @@ var convoProfiles = [
 					"muteChatLength" : "false",
 					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "true",
+					"highlightControl" : "true"
 				}
 				] },
 				
@@ -69,6 +73,7 @@ var convoProfiles = [
 					"muteChatOnTimer" : "true",
 					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "true",
+					"highlightControl" : "true"
 				}
 				] }
     ];
