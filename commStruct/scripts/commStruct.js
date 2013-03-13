@@ -253,7 +253,7 @@
 	
 	function addDDBUserProfile(){
 		var dDBUserProfile = document.createElement("select");
-		for (i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
+		for (var i = 0; i < convoProfiles[currentProfileLoaded].userTypes.length; i++) {				// loop through all users in data array and display in table format					
 			dDBUserProfile.add(createUserProfileButton(currentProfileLoaded,i));
 		};
 		dDBUserProfile.onchange = function() {
