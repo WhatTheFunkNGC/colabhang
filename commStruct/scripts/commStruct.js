@@ -200,8 +200,15 @@
 		thresholdEdit.onchange = function() { 									
 			speakingFreshold = thresholdEdit.value; 
 		}; 
+		var displayOutputBtn = document.createElement("button"); 
+		displayOutputBtn.innerHTML = "show Output";
+		displayOutputBtn.onclick = function() { 
+			div = document.getElementById("optionsList");		
+			div.appendChild(makeSettingsLayout("Output :",createTxtOutputBox()));
+		};
 		ul.appendChild(makeSettingsLayout("Active Speaker threshold :",thresholdEdit));
-		ul.appendChild(makeSettingsLayout("Output :",createTxtOutputBox()));
+		ul.appendChild(makeSettingsLayout("Output : ",displayOutputBtn));
+		
 		createTxtOutpuBox
 		div.appendChild(ul);	
 	};
