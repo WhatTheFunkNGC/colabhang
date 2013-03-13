@@ -300,7 +300,7 @@
 		numIn = (gapi.hangout.data.getValue("userProfileTotals" + userProfile) || "0");
 		limit  = convoProfiles[currentProfileLoaded].userTypes[userProfile].limit;
 		if ( limit == "-1"){limit = "X"};
-		btn.text = convoProfiles[profile].userTypes[userProfile].name + "&nbsp" + numIn + " / " + limit;
+		btn.text = convoProfiles[profile].userTypes[userProfile].name + " (" + numIn + " / " + limit+ ")";
 	return btn;			
 	};
 	
