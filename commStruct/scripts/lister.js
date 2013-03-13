@@ -125,7 +125,8 @@
 						var m = p.exec(addedKeys[i].key);										
 						if (m != null){
 							itemNo = m[1];
-							//console.log("imtem No is " + itemNo);					
+							//console.log("imtem No is " + itemNo);	
+							console.log("adding found");						
 							addListItem(itemNo);
 						};	
 					};
@@ -313,6 +314,7 @@
 	function unHighlightListItem(itemNo){
 	var div, rowNum;
 		if (itemNo != "0"){
+		console.log("item No  = " + itemNo);
 			rowNum = (2 * parseInt(itemNo)) - 1;
 			div = document.getElementById(tableId);			
 			console.log("is more transparent");
