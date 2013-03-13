@@ -242,7 +242,7 @@
 			};
 			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 		};
-		dDBconvoProfile.style.width =100%;
+		dDBconvoProfile.style.width = "100%";
 		dDBconvoProfile.selectedIndex = currentProfileLoaded;
 		return dDBconvoProfile;
 	};
