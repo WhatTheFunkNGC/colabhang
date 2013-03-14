@@ -436,14 +436,20 @@
 		var outputString = "";
 		console.log("called list calculator");
 		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
-			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + " Time Discussed : " ;	
+			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + " Users  : ";
+			for (var j = 1; j <= gapi.hangout.data.getValue("listTxt" + i + "listID"); j++) {
+				var user = gapi.hangout.getParticipantById(gapi.hangout.data.getValue("listTxt" + i + "listID" + j);
+				outputString = outputString + user.person.displayName + " ";				
+			};
+			
+			
+			outputString = outputString + " Times : " ;	
 			for (var j = 1; j <= gapi.hangout.data.getValue("listTxt" + i + "Times"); j++) { 
 				outputString = outputString + gapi.hangout.data.getValue("listTxt" + i + "Times" + j) + " ";
 			};
 			outputString = outputString + "\n";	
 			
 		};
-		console.log("String = " + outputString);
 		return outputString;
 	};
   
