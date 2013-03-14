@@ -119,17 +119,12 @@
 	function updateCheckerLister (addedKeys,removedKeys){
 		var itemNo, div;
 		div = document.getElementById(tableId);
-		console.log("log");
 		if (addedKeys.length != 0){
-			console.log("1");
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
-					console.log("2");
 					console.log("length = " + div.rows.length + " limit = " + ((2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1));
 				if((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){
-					console.log("3");
 					if (div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){			// checks add change is relivent lister items	
-						console.log("4");
 						var re1='.*?';	// Non-greedy match on filler
 						var re2='(\\d+)';	// Integer Number 1
 						var p = new RegExp(re1+re2,["i"]);
@@ -142,13 +137,11 @@
 						};	
 					};
 					if(addedKeys[i].key.length <= 8){
-						console.log("5 +" + addedKeys[i].key);
 						var re1='.*?';	// Non-greedy match on filler
 						var re2='(\\d+)';	// Integer Number 1
 						var p = new RegExp(re1+re2,["i"]);
 						var m = p.exec(addedKeys[i].key);		
 						if (m != null){
-							console.log("number is = " + m[1]);
 							var txtFeild = document.getElementById("txtIn" + m[1]);
 							txtFeild.value = gapi.hangout.data.getValue("listTxt" + m[1]);
 						};
