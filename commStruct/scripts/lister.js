@@ -142,12 +142,13 @@
 						};	
 					};
 					if(addedKeys[i].key.length <= 8){
-						console.log("5");
+						console.log("5 +" + addedKeys[i].key);
 						var re1='.*?';	// Non-greedy match on filler
 						var re2='(\\d+)';	// Integer Number 1
 						var p = new RegExp(re1+re2,["i"]);
 						var m = p.exec(addedKeys[i]);		
 						if (m != null){
+							console.log("number is = " + m[1]);
 							var txtFeild = document.getElementById("txtIn" + m[1]);
 							txtFeild.value = gapi.hangout.data.getValue("listTxt" + m[1]);
 						};
