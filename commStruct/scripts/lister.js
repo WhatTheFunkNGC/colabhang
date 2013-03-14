@@ -20,11 +20,11 @@
 			console.log("Lister Startup");	
 			
 	
-		//gapi.hangout.data.onStateChanged.add(function(messageRC) {				// add callback event for list change
+		//gapi.hangout.data.onMessageReceived.add(function(messageRC) {				// add callback event for list change
 		//msgHandler(messageRC.message);
 		//});
 		
-		gapi.hangout.data.onMessageReceived.add(function(stateChangeEvent) {				// add callback event for list change
+		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
 		updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
 		});
 		
@@ -59,6 +59,7 @@
 		div.appendChild(tb);
 		//console.log("length = " + tb.rows.length);
 		gapi.hangout.data.setValue("lastListItemAdded", "0"); 
+		console.log("adding new item");
 		addNewItemToSharedList ("listTxt",1);
 	};
 	
