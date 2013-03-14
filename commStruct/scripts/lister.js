@@ -18,11 +18,6 @@
 	Lister.prototype.onApiReady = function (event) {	
 		if (event.isApiReady === true) {	
 			console.log("Lister Startup");	
-			
-	
-		//gapi.hangout.data.onMessageReceived.add(function(messageRC) {				// add callback event for list change
-		//msgHandler(messageRC.message);
-		//});
 		
 		gapi.hangout.data.onStateChanged.add(function(stateChangeEvent) {				// add callback event for list change
 		updateCheckerLister(stateChangeEvent.addedKeys,stateChangeEvent.removedKeys);
@@ -122,7 +117,6 @@
 		if (addedKeys.length != 0){
 		 // check for ligitimate additions
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
-					console.log("length = " + div.rows.length + " limit = " + ((2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1));
 				if((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){
 					if (div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){			// checks add change is relivent lister items	
 						var re1='.*?';	// Non-greedy match on filler
@@ -195,11 +189,7 @@
 			//console.log("removed check done");
 		};
 	};
-	// used exsclusivly for updating textfeilds
-	//function msgHandler(incoming){	
-	//	var field = document.getElementById("txtIn"+ incoming);
-	//	field.value = gapi.hangout.data.getValue("listTxt" + incoming); 
-	//};
+
 	
 	// updates the User pictre list of an item to reflect additions or removals
 	function updateIDlistDisplay(itemNo){
