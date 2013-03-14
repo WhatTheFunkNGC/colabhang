@@ -432,7 +432,7 @@
 		//txtIn.className = "css-class-name";							// set style will be implimented later
 		txtIn.value = gapi.hangout.data.getValue("listTxt" + itemNo); 	// value = state value text
 		txtIn.onchange = function() { 									// updates shared value with enterd txt
-				 gapi.hangout.data.sendMessage(itemNo);
+				// gapi.hangout.data.sendMessage(itemNo);
 				gapi.hangout.data.setValue("listTxt" + txtIn.id.substring(5), txtIn.value); 
 		}; 		
 		return txtIn;													// return txtInput element
