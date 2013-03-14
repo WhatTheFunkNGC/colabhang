@@ -126,9 +126,9 @@
 			for (var i = 0; i < addedKeys.length ; i++ ){				// for all the added keys
 					console.log("2");
 					console.log("length = " + div.rows.length + " limit = " + ((2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1));
-				if(div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){
+				if((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){
 					console.log("3");
-					if ((addedKeys[i].key.indexOf("listTxt") !== -1 ) && (addedKeys[i].key.indexOf("listID") == -1)){			// checks add change is relivent lister items	
+					if (div.rows.length < (2 * parseInt(gapi.hangout.data.getValue("listTxt"),10)) + 1){			// checks add change is relivent lister items	
 						console.log("4");
 						var re1='.*?';	// Non-greedy match on filler
 						var re2='(\\d+)';	// Integer Number 1
@@ -141,7 +141,19 @@
 							addListItem(itemNo);
 						};	
 					};
+					if(addedKeys[i].key.length <= 8){
+						console.log("5");
+						var re1='.*?';	// Non-greedy match on filler
+						var re2='(\\d+)';	// Integer Number 1
+						var p = new RegExp(re1+re2,["i"]);
+						var m = p.exec(addedKeys[i]);		
+						if (m != null){
+							var txtFeild = document.getElementById("txtIn" + m[1]);
+							txtFeild.value = gapi.hangout.data.getValue("listTxt" + m[1]);
+						};
+					}
 				};
+				
 				if (addedKeys[i].key.indexOf("listID") !== -1){	// if list id found then if refrencing a new user ID added to list element
 					//console.log("ADD ID FOUND = " + addedKeys[i].key + " " + addedKeys[i].value);
 					var re1='.*?';	// Non-greedy match on filler
