@@ -438,7 +438,7 @@
 		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
 			outputString = outputString + gapi.hangout.data.getValue("listTxt" + i) + " Users  : ";
 			for (var j = 1; j <= gapi.hangout.data.getValue("listTxt" + i + "listID"); j++) {
-				var user = gapi.hangout.getParticipantById(gapi.hangout.data.getValue("listTxt" + i + "listID" + j);
+				var user = gapi.hangout.getParticipantById(gapi.hangout.data.getValue("listTxt" + i + "listID" + j));
 				outputString = outputString + user.person.displayName + " ";				
 			};
 			
