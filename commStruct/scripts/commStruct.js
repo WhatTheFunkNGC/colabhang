@@ -706,7 +706,7 @@
 	
 	// a function to control the muting of the local user if dominating convosation
 	function maxChatTimeMuter() {
-		if gapi.hangout.data.getValue("timerHasControl") != "false"){ return;};
+		if (gapi.hangout.data.getValue("timerHasControl") != "false"){ return;};
 		var countdown = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].muteCountdownMsgLength;
 		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
 		gapi.hangout.data.setValue("timerHasControl", "true");
