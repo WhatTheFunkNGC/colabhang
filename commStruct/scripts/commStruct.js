@@ -23,6 +23,7 @@
 		var shaperMuteOverlay; 			//  Stores muted overlay
 		var handUpOverlay;				// Stores hands up overlay
 		var outputBtnToggle;
+		var butInTicker; // the number of ticks after a but in before being un muted.
 		
 		
 	//-------------------- Convo Type settings -------------------------
@@ -53,6 +54,7 @@
 		speakTime = 0;
 		chatIntervalCounter = 0;
 		chatIntervalTotal = 0;
+		butInTicker = 0;
 		dataDisplay = false;
 		optionsDisplay = false;
 		var handUpOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/handUpOverlayWantsToSpeak.png");
@@ -102,7 +104,7 @@
 			userData.connectionLength = "1";
 			userData.commLength = "0";
 			//userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
-			userDataPos = addNewItemToSharedList ("userData",-1,JSON.stringify(userData))
+			userDataPos = addNewItemToSharedList ("userData",-1,JSON.stringify(userData));
 		}
 		//console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
@@ -510,6 +512,11 @@
 				} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
 				chatIntervalCounter = 0; 
 				chatIntervalTotal = 0;
+			} else if (chatIntervalCounter == (2 || 4 || 6 || 8)){
+				chatIntervalCounter = chatIntervalCounter + 1;
+				if(chatIntervalTotal >= (parseInt(speakingFreshold) / 5)){
+					leadSpeaker();	
+				};
 			} else {
 				chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 				chatIntervalCounter = chatIntervalCounter + 1;
@@ -568,10 +575,12 @@
 		
 		// check if to unmute
 		if((gapi.hangout.data.getValue("currentSpeaker") == "no one") && (gapi.hangout.data.getValue("timerHasControlMute") == "false")){
-			if (gapi.hangout.av.getMicrophoneMute()){ 
-				console.log(" UN MUTING");				
-				gapi.hangout.av.setMicrophoneMute(false); 
-			};
+			if (butInTicker == 0){
+				if (gapi.hangout.av.getMicrophoneMute()){ 
+					console.log(" UN MUTING");				
+					gapi.hangout.av.setMicrophoneMute(false); 
+				};
+			} else {butInTicker = butInTicker - 1};
 		};
 	};
 	
@@ -583,6 +592,7 @@
 			} else {
 				console.log("MUTING " + allowButtingIn);
 				gapi.hangout.av.setMicrophoneMute(true);
+				butInTicker = 5;
 			handUpOverlay.setVisible(true);
 			findAndAddNewItemToSharedList("speakQueue",userData.id); 	// else set user to be "wants to speak"
 			};						
@@ -626,7 +636,6 @@
 			
 			div = document.getElementById("userNotification");
 			div.innerHTML = "";	
-			// CRAZY MATHS TIME!!!!!!!!!!!!!!!!!!!!!!!!!
 			// the level is the avrage + the percantage limit from that avrage. (e.g. if limit is 10%. and the avrage is 30, then the limit is 33)
 			lowLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel)));
 			
@@ -671,6 +680,7 @@
 	
 	// a function to control the muting of users while the least spoken takes the stand
 	function minChatTimeMuter(){
+		if gapi.hangout.data.getValue("timerHasControl") != "false"){ return;};
 		var countdown = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].muteCountdownMsgLength;
 		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
 		gapi.hangout.data.setValue("timerHasControl", "true");
@@ -696,6 +706,7 @@
 	
 	// a function to control the muting of the local user if dominating convosation
 	function maxChatTimeMuter() {
+		if gapi.hangout.data.getValue("timerHasControl") != "false"){ return;};
 		var countdown = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].muteCountdownMsgLength;
 		var controlLength = convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].controlMsgLength;
 		gapi.hangout.data.setValue("timerHasControl", "true");
