@@ -63,10 +63,11 @@
 
 		// setup timers
 		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
-		var uTimer = setInterval(function() {userTimer(); updateTimer();},1000);			// setup update timer	
+		var uTimer;			// setup update timer	
 		var cTimer;		
-		var nTimer;		
-		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},1500);			// setup chat update timer after a 1.5 sec wait
+		var nTimer;	
+		setTimeout(function (){ uTimer = setInterval(function() {userTimer(); updateTimer();},1000);},1000);
+		setTimeout(function (){ cTimer = setInterval(function() {userChatCounter()},100);},3000);			// setup chat update timer after a 1.5 sec wait
 		setTimeout(function (){ nTimer = setInterval(function() {userNotifyer()},10000);},60000);			// setup notification checker
 
 		

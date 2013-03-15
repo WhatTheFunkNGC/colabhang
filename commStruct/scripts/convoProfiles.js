@@ -1,7 +1,7 @@
 
 
 var convoProfiles = [
-		{	"profileName" : "Basic", "discription" : "basic profile operating with no aditional functionality",
+		{	"profileName" : "Basic", "discription" : "basic profile operating with no additional functionality",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",	
 					"overideShapeing" : "false",				
@@ -13,11 +13,11 @@ var convoProfiles = [
 				}
 				] },
 			
-		{	"profileName" : "Family", "discription" : "basic profile that gards against butting in",
+		{	"profileName" : "Family", "discription" : "basic profile that guards against butting in",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
-					"lowMsg" : "Do you have anything to say?" , 
-					"highMsg" : "You have said alot, does anyone else want to speak?",
+					"lowMsg" : "Say something!" , 
+					"highMsg" : "You have been nattering for a while",
 					"lowMsgLevel" : "-10",
 					"highMsgLevel" : "10",
 					
@@ -29,13 +29,9 @@ var convoProfiles = [
 					"highlightControl" : "false"
 				},
 				{"name" : "lead", "limit" : "2",
-					"lowMsg" : "Do you have anything to say?" , 
-					"highMsg" : "You have said alot, does anyone else want to speak?",
-					"lowMsgLevel" : "-10",
-					"highMsgLevel" : "10",
 					
 					"overideShapeing" : "false",
-					"notifyChatLength" : "true",
+					"notifyChatLength" : "false",
 					"muteChatLength" : "false",
 					"allowButtingIn" : "true",
 					"muteIfSpeaker" : "false",
@@ -46,7 +42,7 @@ var convoProfiles = [
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
 					"lowMsg" : "Do you have anything to say?" , 
-					"highMsg" : "You have said alot, does anyone else want to speak?",
+					"highMsg" : "You have said a lot, does anyone else want to speak?",
 					"lowMsgLevel" : "-20",
 					"highMsgLevel" : "20",
 					
@@ -58,17 +54,17 @@ var convoProfiles = [
 					"highlightControl" : "true"
 				}
 				] },
-		{	"profileName" : "Strict Shapeing", "discription" : "only the speaker is able to speak",
+		{	"profileName" : "Meeting", "discription" : "Facilitate group discussion on points in a shaped manner",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
-					"minMsg" : "You have barly said anything, you will get the floor in 10 seconds",
+					"minMsg" : "You have barley said anything, you will get the floor in 10 seconds",
 					"lowMsg" : "Do you have anything to say?" , 
-					"highMsg" : "You have said alot, does anyone else want to speak?",
+					"highMsg" : "You have said a lot, does anyone else want to speak?",
 					"maxMsg" : "Your dominating the convosation, you will be muted in 20 seconds, finnish up your point",
-					"minMsgLevel" : "-40",
-					"lowMsgLevel" : "-10",
-					"highMsgLevel" : "10",
-					"maxMsgLevel" : "30",
+					"minMsgLevel" : "-50",
+					"lowMsgLevel" : "-20",
+					"highMsgLevel" : "20",
+					"maxMsgLevel" : "70",
 					"muteCountdownMsgLength" : "10000",
 					"controlMsgLength" : "20000",
 					
@@ -76,21 +72,21 @@ var convoProfiles = [
 					"notifyChatLength" : "true",
 					"muteChatOnTimer" : "true",
 					"allowButtingIn" : "true",
-					"muteIfSpeaker" : "true",
+					"muteIfSpeaker" : "false",
 					"highlightControl" : "true"
 				}
 				] },
-		{	"profileName" : "Strict Meeting", "discription" : "setup to make all members speak evenly",
+		{	"profileName" : "Strict Meeting", "discription" : "Strict business meeting where members are all meant to contribute evenly",
 			"userTypes" : [
 				{"name" : "standard", "limit" : "-1",
-					"minMsg" : "You have barly said anything, you will get the floor in 10 seconds",
-					"lowMsg" : "Do you have anything to say?" , 
-					"highMsg" : "You have said alot, does anyone else want to speak?",
-					"maxMsg" : "Your dominating the convosation, you will be muted in 20 seconds, finnish up your point",
-					"minMsgLevel" : "-30",
-					"lowMsgLevel" : "-10",
-					"highMsgLevel" : "10",
-					"maxMsgLevel" : "40",
+					"minMsg" : "You haven't contributed anything, you will have floor in 10 seconds",
+					"lowMsg" : "Do you have anything to contribute?" , 
+					"highMsg" : "You have been speaking for a while. try not to dominate the discussion",
+					"maxMsg" : "Your dominating the convocation and will be muted in 10 seconds, finish up your point",
+					"minMsgLevel" : "-40",
+					"lowMsgLevel" : "-15",
+					"highMsgLevel" : "15",
+					"maxMsgLevel" : "50",
 					"muteCountdownMsgLength" : "10000",
 					"controlMsgLength" : "20000",
 					
@@ -103,7 +99,7 @@ var convoProfiles = [
 				},
 				{"name" : "Leader", "limit" : "1",
 					"lowMsg" : "Do you have anything to say?" , 
-					"highMsg" : "You have said alot, does anyone else want to speak?",
+					"highMsg" : "You have said a lot, does anyone else want to speak?",
 					"lowMsgLevel" : "-10",
 					"highMsgLevel" : "10",
 					"muteCountdownMsgLength" : "10000",
