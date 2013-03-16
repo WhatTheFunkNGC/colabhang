@@ -512,13 +512,6 @@
 				} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
 				chatIntervalCounter = 0; 
 				chatIntervalTotal = 0;
-			} else if (chatIntervalCounter == (2 || 4 || 6 || 8)){
-				console.log("per2");
-				chatIntervalCounter = chatIntervalCounter + 1;
-				if(chatIntervalTotal >= (parseInt(speakingFreshold) / 5)){
-					console.log("actv");
-					leadSpeaker();	
-				};
 			} else {
 				chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 				chatIntervalCounter = chatIntervalCounter + 1;
@@ -605,7 +598,7 @@
 		} else { 																			// if no one speaking --------------
 			console.log("No current speaker");
 			gapi.hangout.data.setValue("currentSpeaker",userData.id);
-			if ((muteIfSpeaker == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")){	// if muteSpeaker setting, mute all users when speaking starts
+			if ((muteIfSpeaker == "true") && (gapi.hangout.data.getValue("timerHasControlMute") == "false")){	// if muteSpeaker setting, mute all users when speaking starts
 				console.log("MUTE ALL BAR SPEAKER");
 				console.log("num users " + gapi.hangout.data.getValue("userData"));
 				for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
