@@ -504,19 +504,17 @@
 	}
 	
 	function userChatCounter() {
-		if (!gapi.hangout.av.getMicrophoneMute()){ // only do counting if user isnt muted.
-			if (chatIntervalCounter == 10){	
-				if (chatIntervalTotal >= speakingFreshold){
-					speakTime = speakTime + 1;				
-					leadSpeaker();			
-				} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
+		if (chatIntervalCounter == 10){	
+			if ((chatIntervalTotal >= speakingFreshold) && (!gapi.hangout.av.getMicrophoneMute())){
+				speakTime = speakTime + 1;				
+				leadSpeaker();			
+			} else if ( gapi.hangout.data.getValue("currentSpeaker") == userData.id) {gapi.hangout.data.setValue("currentSpeaker","no one");};
 				chatIntervalCounter = 0; 
 				chatIntervalTotal = 0;
 			} else {
 				chatIntervalTotal = chatIntervalTotal + gapi.hangout.av.getParticipantVolume(userData.id); // get current user vol
 				chatIntervalCounter = chatIntervalCounter + 1;
 			};
-		};
 	};
 	
 	function resetUserProfileTypeLimits(){
@@ -720,6 +718,7 @@
 			shaperMuteOverlay.setVisible(false);
 		},controlLength);
 	};
+
   	
   var commStruct = new commStruct();	
 }(window));
