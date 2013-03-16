@@ -682,6 +682,7 @@
 			console.log("MUTING FROM CONUTDOWN");
 			gapi.hangout.data.setValue("timerHasControlMute", "true");
 			gapi.hangout.data.setValue("timerHasControlMuteReturn", "true");
+			gapi.hangout.data.setValue("currentSpeaker", userData.id);
 			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 				if(userData.id != userDataHolder.id){ 
@@ -705,8 +706,9 @@
 		gapi.hangout.data.setValue("timerHasControl", "true");
 		console.log("COUNTDOWN");
 		setTimeout(function (){
-			console.log("MUTING FROM CONUTDOWN");
+			console.log("MUTING FROM COUNTDOWN");
 			gapi.hangout.data.setValue("timerHasControlMute", "true");
+			gapi.hangout.data.setValue("currentSpeaker", "no one");
 			shaperMuteOverlay.setVisible(true);
 			gapi.hangout.av.setMicrophoneMute(true); 
 		},countdown);
