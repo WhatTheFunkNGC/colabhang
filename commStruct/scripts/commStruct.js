@@ -513,8 +513,10 @@
 				chatIntervalCounter = 0; 
 				chatIntervalTotal = 0;
 			} else if (chatIntervalCounter == (2 || 4 || 6 || 8)){
+				console.log("per2");
 				chatIntervalCounter = chatIntervalCounter + 1;
 				if(chatIntervalTotal >= (parseInt(speakingFreshold) / 5)){
+					console.log("actv");
 					leadSpeaker();	
 				};
 			} else {
