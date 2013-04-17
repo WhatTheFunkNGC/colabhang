@@ -29,7 +29,6 @@
 			j--;																				// j in loop always is i + 1
 			gapi.hangout.data.setValue(listName + i, gapi.hangout.data.getValue(listName + j));	// save data in pos j into i
 		}
-		//if(!entryValue){ var entryValue = "List item " + targetLocation;};						// TESTING if no Value to enter, defult to blank
 		if(!entryValue){ var entryValue = "";};	
 			
 		gapi.hangout.data.setValue(listName + targetLocation, entryValue); 						// create textvalue for list item					

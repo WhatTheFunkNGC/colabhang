@@ -63,8 +63,7 @@
 		var shaperMuteOverlayImg = gapi.hangout.av.effects.createImageResource("https://raw.github.com/WhatTheFunkNGC/colabhang/master/commStruct/img/shaperMuteOverlay.png");
 		shaperMuteOverlay = handUpOverlayImg.createOverlay(); // create overlay for user
 
-		// setup timers
-		//var tTimer = setInterval(function() {userTimer()},1000);			// setup connection timer		
+		// setup timers		
 		var uTimer;			// setup update timer	
 		var cTimer;		
 		var nTimer;	
@@ -82,7 +81,6 @@
 	function startSystem(){
 		var jsonLoader, jsonTxt, alreadyExsists;
 		console.log("user data initilisation " + (gapi.hangout.getLocalParticipantId()).substring(7,15));	
-		//userDataPos = checkDataExsistanceInArray("userData",(gapi.hangout.getLocalParticipantId()).substring(7,15));	// check if user already exsists
 		console.log("dat pos got " + userDataPos);	
 		
 		alreadyExsists = false;
@@ -94,7 +92,6 @@
 				};
 			};
 		
-		//console.log("dat pos got " + userDataPos + " so " + alreadyExsists);	
 		if (alreadyExsists == false){															// if false create new user data	
 			console.log("make new user profile info"); 		
 			var userData = { };															// create new user data object
@@ -103,10 +100,8 @@
 			userData.hasMic = gapi.hangout.getLocalParticipant().person.hasMicrophone;
 			userData.connectionLength = "1";
 			userData.commLength = "0";
-			//userDataPos = findAndAddNewItemToSharedList("userData",JSON.stringify(userData));
 			userDataPos = addNewItemToSharedList ("userData",-1,JSON.stringify(userData));
 		}
-		//console.log("dat pos got " + userDataPos);
 		if (!currentUserProfileLoaded) { currentUserProfileLoaded = "0";};
 		
 		if (!gapi.hangout.data.getValue("timerHasControl")){						// checks control params are loaded
@@ -221,7 +216,6 @@
 		c2 = tr.insertCell(-1);
 		c2.appendChild(btn);
 		c2.style.align ="left"
-		//c2.style.width = "100%";
 		return tr;
 	};
 	
@@ -232,7 +226,6 @@
 			dDBconvoProfile.add(createProfileButton(i));
 		};
 		dDBconvoProfile.onchange = function() {
-			//console.log("set to = " + dDBconvoProfile.selectedIndex + " so " + convoProfiles[dDBconvoProfile.selectedIndex].userTypes[currentUserProfileLoaded].name);
 			if (!document.getElementById("userNotification")){
 				div = document.getElementById("userNotification");
 				div.innerHTML = "";	
@@ -248,7 +241,6 @@
 			};
 			gapi.hangout.data.setValue("currentConvoMode", (dDBconvoProfile.selectedIndex).toString());
 		};
-		//dDBconvoProfile.style.width = "100%";
 		dDBconvoProfile.selectedIndex = currentProfileLoaded;
 		return dDBconvoProfile;
 	};
@@ -259,12 +251,9 @@
 			dDBUserProfile.add(createUserProfileButton(currentProfileLoaded,i));
 		};
 		dDBUserProfile.onchange = function() {
-			//console.log("USER PROFILE BUT PRESS " + dDBUserProfile.selectedIndex);	
 			var oldTotal, oldTotalNum ,newTotalNum, newTotal;
 			var limit = convoProfiles[currentProfileLoaded].userTypes[dDBUserProfile.selectedIndex].limit;
-			//console.log("limit = " + limit + " and current numbers = " + gapi.hangout.data.getValue("userProfileTotals" + btn.id.substring(20)));	
 			if(limit > gapi.hangout.data.getValue("userProfileTotals" + dDBUserProfile.selectedIndex) || limit == "-1"){
-			//console.log("doing if limit not reached " + currentUserProfileLoaded);	
 			
 			oldTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + currentUserProfileLoaded)) - 1).toString();
 			newTotal = (parseInt(gapi.hangout.data.getValue("userProfileTotals" + dDBUserProfile.selectedIndex)) + 1).toString();
@@ -276,7 +265,6 @@
 			currentUserProfileLoaded = dDBUserProfile.selectedIndex;
 			loadOptions();
 			gapi.hangout.data.setValue("currentUserProfileChecker",(parseInt(gapi.hangout.data.getValue("currentUserProfileChecker")) + 1).toString());
-			//console.log("currne loaded = " + currentUserProfileLoaded);
 			};
 		
 		};
@@ -305,6 +293,7 @@
 	return btn;			
 	};
 	
+	// creates the navigation buttons for the highlighter
 	function loadControlBtns(){
 		var div, htmlString;	
 		div = document.getElementById("controls");
@@ -410,7 +399,7 @@
 		};
 		return btn;			
 	};
-	
+	// creates the overide button
 	function createOverideBtn(){
 		var btn = document.createElement("button");
 		btn.innerHTML = "Overide Shapeing";
@@ -421,6 +410,7 @@
 		return btn;
 	}
 	
+	//creates the Lister output box
 	function createTxtOutputBox(){
 		var btn = document.createElement("textarea");
 		btn.value = listTextOutput();
@@ -434,7 +424,7 @@
 		};
 		return btn;
 	}
-  
+	// takes the lister data and convers it to a single string
   function listTextOutput(){
 		var outputString = "";
 		for (var i = 1; i <= gapi.hangout.data.getValue("listTxt"); i++) { 
@@ -503,6 +493,7 @@
 		totalTime = totalTime + 1 ;
 	}
 	
+	// a function to count count the users chat time
 	function userChatCounter() {
 		if (chatIntervalCounter == 10){	
 			if ((chatIntervalTotal >= speakingFreshold) && (!gapi.hangout.av.getMicrophoneMute())){
@@ -517,6 +508,7 @@
 			};
 	};
 	
+	//a function to clean after a profile change 
 	function resetUserProfileTypeLimits(){
 		var i, j, numProfiles;
 		var profile = (gapi.hangout.data.getValue("currentConvoMode") || "0");
@@ -623,9 +615,7 @@
 				totalTalkTime = totalTalkTime + parseInt(userDataHolder.commLength);
 			};
 			userPercent = userData.commLength / (totalTalkTime / 100);
-			//console.log("local user contribruted " + userPercent + "% of the convosation");
 			avgTalkTime = totalTalkTime / noUsers;
-			//console.log("Average talk time =  " + avgTalkTime);
 			
 			div = document.getElementById("userNotification");
 			div.innerHTML = "";	
@@ -633,9 +623,7 @@
 			lowLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].lowMsgLevel)));
 			
 			highLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].highMsgLevel)));
-			
-			//console.log("low lev limit = " + lowLevelLimit + "high limit  = " + highLevelLimit);
-			
+				
 			if(userData.commLength <= lowLevelLimit) {
 				console.log("display message");
 				div.style.backgroundColor="#3399FF";
@@ -648,13 +636,10 @@
 				div.style.backgroundColor = "transparent";
 			
 			};
-			//console.log(" muter = " + muteChatOnTimer + " and " + gapi.hangout.data.getValue("timerHasControl"));
 			if ((muteChatOnTimer == "true") && (gapi.hangout.data.getValue("timerHasControl") == "false")) {
 				console.log("inside muter if");
-				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));
-			
+				minLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].minMsgLevel)));			
 				maxLevelLimit = avgTalkTime + ((avgTalkTime/100) * (parseInt(convoProfiles[currentProfileLoaded].userTypes[currentUserProfileLoaded].maxMsgLevel)));
-				//console.log("min lev limit = " + minLevelLimit + "high limit  = " + maxLevelLimit);
 				if(userData.commLength <= minLevelLimit) {
 					console.log("display message");
 					div.style.backgroundColor="#3399FF";
@@ -686,7 +671,6 @@
 			for (var i = 1; i <= gapi.hangout.data.getValue("userData"); i++){
 				var userDataHolder = eval( "(" + gapi.hangout.data.getValue("userData" + i) + ")");				
 				if(userData.id != userDataHolder.id){ 
-					//console.log("user id " + userDataHolder.id);
 					 gapi.hangout.av.muteParticipantMicrophone(userDataHolder.id); 					
 				};
 			}; 
